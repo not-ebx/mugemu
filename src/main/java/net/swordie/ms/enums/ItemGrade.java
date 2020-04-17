@@ -64,19 +64,19 @@ public enum ItemGrade {
         if(option < 0) {
             itemGrade =  Arrays.stream(values()).filter(is -> is.getVal() == Math.abs(option)).findFirst().orElse(None);
         }
-        if((option > 0 && option < 14) || (option > 900 && option < 906) || (option > 1999 && option < 10000)) {
+        if((option > 0 && option < 10000)) {
             itemGrade = RareSecondary;
         }
         if(option > 10000 && option < 20000) {
             itemGrade = Rare;
         }
-        if(option > 20014 && option < 30000) {
+        if(option > 20000 && option < 30000) {
             itemGrade = Epic;
         }
-        if(option > 30014 && option < 40000) {
+        if(option > 30000 && option < 40000) {
             itemGrade = Unique;
         }
-        if(option > 40014 && option < 50000) {
+        if(option > 40000 && option < 50000) {
             itemGrade = Legendary;
         }
         return itemGrade;

@@ -88,8 +88,6 @@ public class ItemHandler {
         Char chr = c.getChr();
         Inventory useInv = chr.getInventoryByType(CONSUME);
         inPacket.decodeInt(); // tick
-
-
         short pos = inPacket.decodeShort();
 
         Item item = useInv.getItemBySlot(pos);
@@ -98,189 +96,71 @@ public class ItemHandler {
         }
         int itemID = item.getItemId();
 
-        if(ItemConstants.MEISTERS_CUBES.contains(itemID) || ItemConstants.MASTER_CRAFTSMANS_CUBES.contains(itemID) || ItemConstants.OCCULT_CUBES.contains(itemID) || ItemConstants.BONUS_OCCULT_CUBES.contains(itemID)){
-            switch (itemID) {
-                case ItemConstants.MEISTERS_CUBE:
-                case ItemConstants.REBOOT_MEISTERS_CUBE:
-                    short ePos = inPacket.decodeShort();
-                    InvType invType = ePos < 0 ? EQUIPPED : EQUIP;
-                    Equip equip = (Equip) chr.getInventoryByType(invType).getItemBySlot(ePos);
-                    if (equip == null) {
-                        chr.chatMessage(SystemNotice, "Could not find equip.");
-                        chr.dispose();
-                        return;
-                    } else if (equip.getBaseGrade() < ItemGrade.Rare.getVal()) {
-                        String msg = String.format("Character %d tried to use cube (id %d) an equip without a potential (id %d)", chr.getId(), itemID, equip.getItemId());
-                        chr.getOffenseManager().addOffense(msg);
-                        chr.dispose();
-                        return;
-                    }
-                    Equip oldEquip = equip.deepCopy();
-                    int tierUpChance = ItemConstants.getTierUpChance(itemID, ItemGrade.getGradeByVal(equip.getBaseGrade()));
-                    short hiddenValue = ItemGrade.getGradeByVal(equip.getBaseGrade()).getVal();
-                    boolean tierUp = !(hiddenValue >= ItemGrade.Legendary.getVal()) && Util.succeedProp(tierUpChance, 1000);
-                    if (tierUp) {
-                        hiddenValue++;
-                    }
-                    equip.setHiddenOptionBase(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
-                    equip.releaseOptions(false, itemID);
-
-                    c.write(FieldPacket.inGameCubeResult(chr.getId(), tierUp, itemID, ePos, equip));
-                    c.write(FieldPacket.showItemReleaseEffect(chr.getId(), ePos, false));
-                    equip.updateToChar(chr);
-                    if(item.getQuantity() <= 1){
-                        useInv.removeItem(item);
-                        chr.write(WvsContext.inventoryOperation(true, false, Remove, (short) item.getBagIndex(), (short) 0, 0, item));
-                    }
-                    else{
-                        item.removeQuantity(1);
-                        item.updateToChar(chr);
-                    }
-                    break;
-
-
-                case ItemConstants.MASTER_CRAFTSMANS_CUBE:
-                case ItemConstants.REBOOT_MASTER_CRAFTSMANS_CUBE:
-                    ePos = inPacket.decodeShort();
-                    invType = ePos < 0 ? EQUIPPED : EQUIP;
-                    equip = (Equip) chr.getInventoryByType(invType).getItemBySlot(ePos);
-                    if (equip == null) {
-                        chr.chatMessage(SystemNotice, "Could not find equip.");
-                        chr.dispose();
-                        return;
-                    }
-                    else if (equip.getBaseGrade() > ItemGrade.Unique.getVal()) {
-                        String msg = String.format("Character %d tried to use Master Craftsman's cube (id %d) an equip with a potential greater than Unique (id %d)", chr.getId(), itemID, equip.getItemId());
-                        chr.getOffenseManager().addOffense(msg);
-                        chr.dispose();
-                        return;
-                    }
-                    else if (equip.getBaseGrade() < ItemGrade.Rare.getVal()) {
-                        String msg = String.format("Character %d tried to use cube (id %d) an equip without a potential (id %d)", chr.getId(), itemID, equip.getItemId());
-                        chr.getOffenseManager().addOffense(msg);
-                        chr.dispose();
-                        return;
-                    }
-                    oldEquip = equip.deepCopy();
-
-                    tierUpChance = ItemConstants.getTierUpChance(itemID, ItemGrade.getGradeByVal(equip.getBaseGrade()));
-                    hiddenValue = ItemGrade.getGradeByVal(equip.getBaseGrade()).getVal();
-                    tierUp = !(hiddenValue >= ItemGrade.Unique.getVal()) && Util.succeedProp(tierUpChance, 1000);
-                    if (tierUp) {
-                        hiddenValue++;
-                    }
-                    equip.setHiddenOptionBase(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
-                    equip.releaseOptions(false, itemID);
-
-                    c.write(FieldPacket.inGameCubeResult(chr.getId(), tierUp, itemID, ePos, equip));
-                    c.write(FieldPacket.showItemReleaseEffect(chr.getId(), ePos, false));
-                    equip.updateToChar(chr);
-                    if(item.getQuantity() <= 1){
-                        useInv.removeItem(item);
-                        chr.write(WvsContext.inventoryOperation(true, false, Remove, (short) item.getBagIndex(), (short) 0, 0, item));
-                    }
-                    else{
-                        item.removeQuantity(1);
-                        item.updateToChar(chr);
-                    }
-                    break;
-
-
-                case ItemConstants.OCCULT_CUBE:
-                case ItemConstants.REBOOT_OCCULT_CUBE:
-                    ePos = inPacket.decodeShort();
-                    invType = ePos < 0 ? EQUIPPED : EQUIP;
-                    equip = (Equip) chr.getInventoryByType(invType).getItemBySlot(ePos);
-                    if (equip == null) {
-                        chr.chatMessage(SystemNotice, "Could not find equip.");
-                        chr.dispose();
-                        return;
-                    }
-                    else if (equip.getBaseGrade() > ItemGrade.Epic.getVal()) {
-                        String msg = String.format("Character %d tried to use occult cube (id %d) an equip with a potential greater than Epic (id %d)", chr.getId(), itemID, equip.getItemId());
-                        chr.getOffenseManager().addOffense(msg);
-                        chr.dispose();
-                        return;
-                    }
-                    else if (equip.getBaseGrade() < ItemGrade.Rare.getVal()) {
-                        String msg = String.format("Character %d tried to use cube (id %d) an equip without a potential (id %d)", chr.getId(), itemID, equip.getItemId());
-                        chr.getOffenseManager().addOffense(msg);
-                        chr.dispose();
-                        return;
-                    }
-                    oldEquip = equip.deepCopy();
-                    tierUpChance = ItemConstants.getTierUpChance(itemID, ItemGrade.getGradeByVal(equip.getBaseGrade()));
-                    hiddenValue = ItemGrade.getGradeByVal(equip.getBaseGrade()).getVal();
-                    tierUp = !(hiddenValue >= ItemGrade.Epic.getVal()) && Util.succeedProp(tierUpChance, 1000);
-                    if (tierUp) {
-                        hiddenValue++;
-                    }
-                    equip.setHiddenOptionBase(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
-                    equip.releaseOptions(false, itemID);
-
-                    c.write(FieldPacket.inGameCubeResult(chr.getId(), tierUp, itemID, ePos, equip));
-                    c.write(FieldPacket.showItemReleaseEffect(chr.getId(), ePos, false));
-                    equip.updateToChar(chr);
-                    if(item.getQuantity() <= 1){
-                        useInv.removeItem(item);
-                        chr.write(WvsContext.inventoryOperation(true, false, Remove, (short) item.getBagIndex(), (short) 0, 0, item));
-                    }
-                    else{
-                        item.removeQuantity(1);
-                        item.updateToChar(chr);
-                    }
-                    break;
-
-                case ItemConstants.BONUS_OCCULT_CUBE:
-                    ePos = inPacket.decodeShort();
-                    invType = ePos < 0 ? EQUIPPED : EQUIP;
-                    equip = (Equip) chr.getInventoryByType(invType).getItemBySlot(ePos);
-                    if (equip == null) {
-                        chr.chatMessage(SystemNotice, "Could not find equip.");
-                        chr.dispose();
-                        return;
-                    }
-                    else if (equip.getBonusGrade() > ItemGrade.Epic.getVal()) {
-                        String msg = String.format("Character %d tried to use occult cube (id %d) an equip with a potential greater than Epic (id %d)", chr.getId(), itemID, equip.getItemId());
-                        chr.getOffenseManager().addOffense(msg);
-                        chr.dispose();
-                        return;
-                    }
-                    else if (equip.getBonusGrade() < ItemGrade.Rare.getVal()) {
-                        String msg = String.format("Character %d tried to use cube (id %d) an equip without a potential (id %d)", chr.getId(), itemID, equip.getItemId());
-                        chr.getOffenseManager().addOffense(msg);
-                        chr.dispose();
-                        return;
-                    }
-                    oldEquip = equip.deepCopy();
-                    tierUpChance = ItemConstants.getTierUpChance(itemID, ItemGrade.getGradeByVal(equip.getBonusGrade()));
-                    hiddenValue = ItemGrade.getGradeByVal(equip.getBonusGrade()).getVal();
-                    tierUp = !(hiddenValue >= ItemGrade.Epic.getVal()) && Util.succeedProp(tierUpChance, 1000);
-                    if (tierUp) {
-                        hiddenValue++;
-                    }
-                    equip.setHiddenOptionBonus(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
-                    equip.releaseOptions(true, itemID);
-
-                    c.write(FieldPacket.inGameCubeResult(chr.getId(), tierUp, itemID, ePos, equip));
-                    c.write(FieldPacket.showItemReleaseEffect(chr.getId(), ePos, true));
-                    equip.updateToChar(chr);
-                    if(item.getQuantity() <= 1){
-                        useInv.removeItem(item);
-                        chr.write(WvsContext.inventoryOperation(true, false, Remove, (short) item.getBagIndex(), (short) 0, 0, item));
-                    }
-                    else{
-                        item.removeQuantity(1);
-                        item.updateToChar(chr);
-                    }
-                    break;
-            }
-        }
-        else{
+        if(!ItemConstants.MEISTERS_CUBES.contains(itemID) && !ItemConstants.MASTER_CRAFTSMANS_CUBES.contains(itemID) && !ItemConstants.OCCULT_CUBES.contains(itemID) && !ItemConstants.BONUS_OCCULT_CUBES.contains(itemID)){
             String msg = String.format("Character %d tried to use a non-cube (id %d) on an equip via Use inventory. OPCode : %d", chr.getId(), itemID, InHeader.USER_FREE_MIRACLE_CUBE_ITEM_USE_REQUEST.getValue());
             chr.getOffenseManager().addOffense(msg);
             chr.dispose();
         }
+        else{
+            switch (itemID) {
+                case ItemConstants.MEISTERS_CUBE:
+                case ItemConstants.REBOOT_MEISTERS_CUBE:
+                    useConsumeItemMiracleCube(c, chr, itemID, item, inPacket.decodeShort(), ItemGrade.Legendary, false);
+                    break;
+
+                case ItemConstants.MASTER_CRAFTSMANS_CUBE:
+                case ItemConstants.REBOOT_MASTER_CRAFTSMANS_CUBE:
+                    useConsumeItemMiracleCube(c, chr, itemID, item, inPacket.decodeShort(), ItemGrade.Unique, false);
+                    break;
+
+                case ItemConstants.OCCULT_CUBE:
+                case ItemConstants.REBOOT_OCCULT_CUBE:
+                    useConsumeItemMiracleCube(c, chr, itemID, item, inPacket.decodeShort(), ItemGrade.Epic, false);
+                    break;
+
+                case ItemConstants.BONUS_OCCULT_CUBE:
+                    useConsumeItemMiracleCube(c, chr, itemID, item, inPacket.decodeShort(), ItemGrade.Epic, true);
+                    break;
+            }
+        }
+    }
+
+    private static void useConsumeItemMiracleCube(Client c, Char chr, int cubeId, Item item, short ePos, ItemGrade itemGradeMax, boolean bonus){
+        InvType invType = ePos < 0 ? EQUIPPED : EQUIP;
+        Equip equip = (Equip) chr.getInventoryByType(invType).getItemBySlot(ePos);
+        if (equip == null) {
+            chr.chatMessage(SystemNotice, "Could not find equip.");
+            chr.dispose();
+            return;
+
+        } else if (equip.getBonusGrade() > itemGradeMax.getVal()) {
+            String msg = String.format("Character %d tried to use %s cube (id %d) an equip with a potential greater than it is allowed to (id %d)", chr.getId(), StringData.getItemStringById(cubeId), cubeId, equip.getItemId());
+            chr.getOffenseManager().addOffense(msg);
+            chr.dispose();
+            return;
+        } else if (equip.getBaseGrade() < ItemGrade.Rare.getVal()) {
+            String msg = String.format("Character %d tried to use cube (id %d) an equip without a potential (id %d)", chr.getId(), cubeId, equip.getItemId());
+            chr.getOffenseManager().addOffense(msg);
+            chr.dispose();
+            return;
+        }
+        int tierUpChance = bonus ? ItemConstants.getTierUpChance(cubeId, ItemGrade.getGradeByVal(equip.getBonusGrade())) : ItemConstants.getTierUpChance(cubeId, ItemGrade.getGradeByVal(equip.getBaseGrade()));
+        short hiddenValue = bonus ? ItemGrade.getGradeByVal(equip.getBonusGrade()).getVal() : ItemGrade.getGradeByVal(equip.getBaseGrade()).getVal();
+        boolean tierUp = !(hiddenValue >= ItemGrade.Legendary.getVal()) && Util.succeedProp(tierUpChance, 1000);
+        if (tierUp) {
+            hiddenValue++;
+        }
+        if(bonus){
+            equip.setHiddenOptionBonus(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
+        } else {
+            equip.setHiddenOptionBase(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
+        }
+        equip.releaseOptions(bonus, cubeId);
+
+        c.write(FieldPacket.inGameCubeResult(chr.getId(), tierUp, cubeId, ePos, equip));
+        c.write(FieldPacket.showItemReleaseEffect(chr.getId(), ePos, bonus));
+        equip.updateToChar(chr);
+        chr.consumeItem(item);
     }
 
     @Handler(op = InHeader.USER_CONSUME_CASH_ITEM_USE_REQUEST)

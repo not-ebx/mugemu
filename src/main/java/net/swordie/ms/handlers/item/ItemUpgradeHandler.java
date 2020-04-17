@@ -388,7 +388,8 @@ public class ItemUpgradeHandler {
             switch (itemID) {
                 case 2049505: // Gold Potential Stamp
                 case 2049517:
-                    equip.setOption(2, equip.getRandomOption(false, 2, ItemConstants.SYSTEM_DEFAULT_CUBE_INDICATOR, ItemConstants.getAdditionalPrimeCountForCube(ItemConstants.SYSTEM_DEFAULT_CUBE_INDICATOR)), false);
+                    equip.setOption(2, equip.getRandomOption(false, 2, ItemConstants.SYSTEM_DEFAULT_CUBE_INDICATOR,
+                            ItemConstants.getAdditionalPrimeCountForCube(ItemConstants.SYSTEM_DEFAULT_CUBE_INDICATOR)), false);
                     break;
                 default:
                     log.error("Unhandled slot extend item " + itemID);
