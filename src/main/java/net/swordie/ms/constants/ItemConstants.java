@@ -696,9 +696,9 @@ public class ItemConstants {
                 for(int j = 0; j < 5; j++){ //Max of 5 additional at lower chance
                     if(Util.succeedProp(VIOLET_CUBE_PRIME_LINE_CHANCE, 1000)){
                         addedPrimeCount++;
-                        break;
                     }
                 }
+                break;
             case BLACK_CUBE:
             case WHITE_BONUS_POTENTIAL_CUBE:
                 if(Util.succeedProp(BOOSTED_PRIME_LINE_2_CHANCE, 1000)){ //Dependent Probability for 2 additional primes
