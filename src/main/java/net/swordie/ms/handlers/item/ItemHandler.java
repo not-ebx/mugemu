@@ -98,7 +98,7 @@ public class ItemHandler {
         }
         int itemID = item.getItemId();
 
-        if(ItemConstants.MEISTERS_CUBES.contains(itemID) || ItemConstants.MASTER_CRAFTSMANS_CUBES.contains(itemID) || ItemConstants.OCCULT_CUBES.contains(itemID)){
+        if(ItemConstants.MEISTERS_CUBES.contains(itemID) || ItemConstants.MASTER_CRAFTSMANS_CUBES.contains(itemID) || ItemConstants.OCCULT_CUBES.contains(itemID) || ItemConstants.BONUS_OCCULT_CUBES.contains(itemID)){
             switch (itemID) {
                 case ItemConstants.MEISTERS_CUBE:
                 case ItemConstants.REBOOT_MEISTERS_CUBE:
