@@ -16,6 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static net.swordie.ms.enums.InvType.EQUIP;
+import static net.swordie.ms.enums.ItemGrade.*;
 
 /**
  * Created on 12/12/2017.
@@ -42,17 +43,72 @@ public class ItemConstants {
 
     static final org.apache.log4j.Logger log = LogManager.getRootLogger();
 
-    public static final int THIRD_LINE_CHANCE = 50;
-    public static final int PRIME_LINE_CHANCE = 15;
-
     public static final int HYPER_TELEPORT_ROCK = 5040004;
+
+    //CUBING CONSTANTS BELOW
+    public static int GLOBAL_TIER_UP_MULTIPLIER = 1; //For DMT uses? 2 = 2x, 3 = 3x, etc etc
+    public static final int THIRD_LINE_CHANCE = 50;
+
+    //Chances are out of 1k (10* typical 100 values so we don't have to use doubles)
+    public static final int DEFAULT_PRIME_LINE_2_CHANCE = 100;
+    public static final int DEFAULT_PRIME_LINE_3_CHANCE = 50;
+
+    public static final int BOOSTED_PRIME_LINE_2_CHANCE = 200;
+    public static final int BOOSTED_PRIME_LINE_3_CHANCE = 100;
 
     public static final int RED_CUBE = 5062009;
     public static final int BLACK_CUBE = 5062010;
 
-    public static final int BONUS_POT_CUBE = 5062500;
-    public static final int SPECIAL_BONUS_POT_CUBE = 5062501;
-    public static final int WHITE_BONUS_POT_CUBE = 5062503;
+    public static final int VIOLET_CUBE = 5062024; //NEVER!
+    //If you plan to implement, you must store the grade to the item and change Equip#getBaseGrade and similar methods behave appropriately
+    //This is because you can select a non-current tier line as the primary line, thus making the current methods believe the item is actually a tier lower!
+    //By storing the tier in the Equip object you can allow for the list of potentials to be completely independent
+
+    public static final int BONUS_POTENTIAL_CUBE = 5062500;
+    public static final int SPECIAL_BONUS_POTENTIAL_CUBE = 5062501;
+    public static final int WHITE_BONUS_POTENTIAL_CUBE = 5062503;
+
+
+    public static final int OCCULT_CUBE = 2711000;
+    public static final int REBOOT_OCCULT_CUBE = 2711001; //Later Versions 2711011(?)
+    public static final List<Integer> OCCULT_CUBES = Arrays.asList(2711000, 2711001, 2711009, 2711011); //2711000 = Tradable Stackable, 2711001 = Untradable NonStackable, 2711009 = Untradable Stackable, >v176 2711011 = Account Movement only
+
+    public static final int MASTER_CRAFTSMANS_CUBE = 2711005;
+    public static final int REBOOT_MASTER_CRAFTSMANS_CUBE = 2710002; //Later Versions 2711012(?)
+    public static final List<Integer> MASTER_CRAFTSMANS_CUBES = Arrays.asList(2711003, 2710002, 2711005, 2711012); //2711003 = Tradable, 2710002 = Account Movement only  -  Later Versions Untradable, 2711005 = Untradable, >v176 2711012 = Account Movement only
+
+    public static final int MEISTERS_CUBE = 2711004;
+    public static final int REBOOT_MEISTERS_CUBE = 2710003; //Later Versions 2711013(?)
+    public static final List<Integer> MEISTERS_CUBES = Arrays.asList(2711004, 2710003, 2711006, 2711013); //2711004 = Tradable, 2710003 = Account Movement only  -  Later Versions Untradable, 2711006 = Untradable, >v176 2711013 = Account Movement only
+
+    public static final int BONUS_OCCULT_CUBE = 2730002; // > v176
+    public static final List<Integer> BONUS_OCCULT_CUBES = Arrays.asList(2730000, 2730002, 2730004); //2730000 = Untradable Stackable, 2730002 = Tradable Stackable, 2730004 = Account Movement only Stackable
+
+
+    public static final int SYSTEM_DEFAULT_CUBE_INDICATOR = -1; //Cause default int value is 0 and we want to differentiate when it is intentional to not have a cube source
+
+    //Chances are out of 1k (10* typical 100 values so we don't have to use doubles)
+
+
+    public static final int[] OCCULT_CUBE_TIER_UP_RATES = new int[]{10, 0, 0}; //1%, 0%, 0%
+    public static final int[] MASTER_CRAFTSMANS_CUBE_TIER_UP_RATES = new int[]{120, 40, 0}; //12%, 4%, 0%
+    public static final int[] MEISTERS_CUBE_TIER_UP_RATES = new int[]{120, 80, 50}; //12%, 8%, 5%
+
+    public static final int[] RED_CUBE_TIER_UP_RATES = new int[]{150, 60, 25}; //15%, 6%, 2.5%
+    public static final int[] BLACK_CUBE_TIER_UP_RATES = new int[]{150, 120, 50}; //15%, 12%, 5%
+
+    public static final int[] VIOLET_CUBE_TIER_UP_RATES = new int[]{30, 12, 5}; //3%, 1.2%, 0.5% //No data to support this, but it's confirmed to be the worst cube to tier with
+
+
+    public static final int[] BONUS_OCCULT_CUBE_TIER_UP_RATES = new int[]{20, 0, 0}; //2%, 0%, 0%
+    public static final int[] BONUS_POT_CUBE_TIER_UP_RATE = new int[]{200, 100, 50}; //20%, 10%, 5%
+    public static final int[] WHITE_BONUS_POT_CUBE_TIER_UP_RATE = new int[]{200, 150, 75}; //20%, 15%, 7.5%
+
+
+    public static final int[] DEFAULT_CUBE_TIER_UP_RATES = new int[]{100, 50, 25}; //10%, 5%, 2.5%
+
+
+
 
     public static final int NEBILITE_BASE_ID = 3060000;
 
@@ -495,7 +551,7 @@ public class ItemConstants {
     }
 
     public static boolean isArmor(int itemID) {
-        return !isAccessory(itemID) && !isWeapon(itemID);
+        return !isAccessory(itemID) && !isWeapon(itemID) && !isBadge(itemID) && !isMechanicalHeart(itemID);
     }
 
     public static boolean isRing(int itemID) {
@@ -608,17 +664,65 @@ public class ItemConstants {
         return getItemPrefix(item.getItemId()) == 247;
     }
 
-    /**
+    /*
      * Gets potential tier for a line.
      * Accounts prime lines too.
      * @param line Potential line.
      * @param grade Our current potential grade.
+     * @param additionalPrimes How many extra prime lines this item has;
      */
-    public static ItemGrade getLineTier(int line, ItemGrade grade) {
-        if (line == 0 || Util.succeedProp(PRIME_LINE_CHANCE)) {
+    public static ItemGrade getLineTier(int line, ItemGrade grade, int additionalPrimes) {
+        if (line == 0) {
             return grade;
         }
-        return ItemGrade.getOneTierLower(grade.getVal());
+        if(additionalPrimes >= line){ //If cube has > 3 lines, still supports
+            return grade;
+        }
+        else{
+            return getOneTierLower(grade.getVal());
+        }
+    }
+
+    /**
+     * Gets prime line count based on cubeId
+     * Used to manage the position of lines on the item throughout the cube method chain
+     * @param cubeId used to grab which rate will be used;
+     */
+    public static int getAdditionalPrimeCountForCube(int cubeId) {
+        int i = 0;
+        switch (cubeId){
+            case BLACK_CUBE:
+            case WHITE_BONUS_POTENTIAL_CUBE:
+                if(Util.succeedProp(BOOSTED_PRIME_LINE_2_CHANCE, 1000)){ //Dependent Probability for 2 additional primes, else single additional chance is boosted
+                    i++;
+                    if(Util.succeedProp(BOOSTED_PRIME_LINE_3_CHANCE, 1000)){
+                        i++;
+                        break;
+                    }
+                    break;
+                }
+                break;
+            case VIOLET_CUBE: //Max of 5 additional since default has 1 prime
+                //Independent Probability
+                for(int j = 0; j < 5; j++){ //Max of 5 additional at lower chance
+                    if(Util.succeedProp(DEFAULT_PRIME_LINE_3_CHANCE, 1000)){
+                        i++;
+                    }
+                }
+                break;
+            default:
+                if(Util.succeedProp(DEFAULT_PRIME_LINE_2_CHANCE, 1000)){
+                    i++;
+                    if(Util.succeedProp(DEFAULT_PRIME_LINE_3_CHANCE, 1000)){
+                        i++;
+                        break;
+                    }
+                    break;
+                }
+                break;
+        }
+
+        return i;
     }
 
     /**
@@ -641,7 +745,7 @@ public class ItemConstants {
                 return isWeapon(equipId) || isShield(equipId);
             case AnyExceptWeapon:
                 return !isWeapon(equipId) && !isShield(equipId);
-            case ArmorExceptGlove:
+            case Armor:
                 return isBelt(equipId) || isHat(equipId) || isOverall(equipId) || isTop(equipId) || isBottom(equipId) || isShoe(equipId) || isCape(equipId);
             case Accessory:
                 return isRing(equipId) || isPendant(equipId) || isFaceAccessory(equipId) || isEyeAccessory(equipId) || isEarrings(equipId) || isShoulder(equipId);
@@ -660,77 +764,168 @@ public class ItemConstants {
         }
     }
 
-    public static List<ItemOption> getOptionsByEquip(Equip equip, boolean bonus, int line) {
+    public static List<ItemOption> getOptionsByEquip(Equip equip, boolean bonus, int line, int cubeId, int additionalPrimes) {
         int id = equip.getItemId();
         Collection<ItemOption> data = ItemData.getItemOptions().values();
-        ItemGrade grade = getLineTier(line, ItemGrade.getGradeByVal(bonus ? equip.getBonusGrade() : equip.getBaseGrade()));
-
+        ItemGrade grade = getLineTier(line, getGradeByVal(bonus ? equip.getBonusGrade() : equip.getBaseGrade()), additionalPrimes);
         // need a list, as we take a random item from it later on
         List<ItemOption> res = data.stream().filter(
                 io -> io.getOptionType() == ItemOptionType.AnyEquip.getVal() &&
-                io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
-                .collect(Collectors.toList());
-        if (isWeapon(id) || isShield(id) || isEmblem(id)) {
-            // TODO: block boss% on emblem
-            res.addAll(data.stream().filter(
-                    io -> io.getOptionType() == ItemOptionType.Weapon.getVal()
-                    &&  io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus
-            ).collect(Collectors.toList()));
-        } else {
+                io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus
+                        && !String.valueOf(io.getId()).endsWith("014") //Old Magic Def, now regular Def ; removed to not have duplicates
+                        && io.getId() != 14 //Old Magic Def, now regular Def ; removed to not have duplicates
+                        && !String.valueOf(io.getId()).endsWith("054") //Old Magic Def%, now regular Def% ; removed to not have duplicates
+                        && !String.valueOf(io.getId()).endsWith("007") //Old Accuracy, now Max HP ; removed to not have duplicates
+                        && io.getId() != 7 //Old Accuracy, now Max HP ; removed to not have duplicates
+                        && !String.valueOf(io.getId()).endsWith("047") //Old Accuracy%, now Max HP% ; removed to not have duplicates
+                        && !String.valueOf(io.getId()).endsWith("008") //Old Avoid, now Max MP ; removed to not have duplicates
+                        && io.getId() != 8 //Old Accuracy, now Max HP ; removed to not have duplicates
+                        && !String.valueOf(io.getId()).endsWith("048") //Old Avoid%, now Max MP% ; removed to not have duplicates
+                        && io.getId() != 40081 //Flat AllStat
+
+        ).collect(Collectors.toList());
+
+        if(isWeapon(id) || isEmblem(id) || isShield(id) || isSecondary(id)) {
+            if (isShield(id) || isSecondary(id)) {
+                res.addAll(data.stream().filter(
+                        io -> (io.getOptionType() == ItemOptionType.Armor.getVal() ||
+                                io.getOptionType() == ItemOptionType.Weapon.getVal())
+                                &&  io.hasMatchingGrade(grade.getVal())
+                                && io.isBonus() == bonus
+                                && io.getId() != 42060 //ArmorAdditionals Crit Damage Min
+                                && io.getId() != 42062 //ArmorAdditionals Crit Damage Max
+                ).collect(Collectors.toList()));
+            }
+            else if (isWeapon(id)) {
+                res.addAll(data.stream().filter(
+                        io -> io.getOptionType() == ItemOptionType.Weapon.getVal()
+                                &&  io.hasMatchingGrade(grade.getVal())
+                                && io.isBonus() == bonus
+                ).collect(Collectors.toList()));
+            }
+            else if(isEmblem(id)){
+                res.addAll(data.stream().filter(
+                        io -> io.getOptionType() == ItemOptionType.Weapon.getVal()
+                                &&  io.hasMatchingGrade(grade.getVal())
+                                && io.isBonus() == bonus
+                                && !io.getString().contains("Boss")
+
+                ).collect(Collectors.toList()));
+            }
+            res = res.stream().filter(io ->
+                    !String.valueOf(io.getId()).endsWith("202") && //Secondary %HP Recovery - WeaponsEmblemSecondary
+                            !String.valueOf(io.getId()).endsWith("207") && //Secondary %MP Recovery - WeaponsEmblemSecondary
+                            io.getId() != 10222 && //Secondary Rare-Prime 20% Poison Chance - WeaponsEmblemSecondary
+                            io.getId() != 10227 && //Secondary Rare-Prime 10% Stun Chance - WeaponsEmblemSecondary
+                            io.getId() != 10232 && //Secondary Rare-Prime 20% Slow Chance - WeaponsEmblemSecondary
+                            io.getId() != 10237 && //Secondary Rare-Prime 20% Blind Chance - WeaponsEmblemSecondary
+                            io.getId() != 10242 && //Secondary Rare-Prime 10% Freeze Chance - WeaponsEmblemSecondary
+                            io.getId() != 10247 //Secondary Rare-Prime 10% Seal Chance - WeaponsEmblemSecondary
+                            && !String.valueOf(io.getId()).endsWith("801") //Old Damage Cap Increase, now AllStat/Ignore Enemy Defense/AllStat%/Abnormal Status Res
+            ).collect(Collectors.toList());
+
+        }
+
+        else {
             res.addAll(data.stream().filter(
                     io -> io.getOptionType() == ItemOptionType.AnyExceptWeapon.getVal()
-                    && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
-                    .collect(Collectors.toList()));
+                            && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus
+                            && !String.valueOf(io.getId()).endsWith("014") //Old Magic Def, now regular Def ; removed to not have duplicates
+                            && !String.valueOf(io.getId()).endsWith("054") //Old Magic Def%, now regular Def% ; removed to not have duplicates
+                            && !String.valueOf(io.getId()).endsWith("007") //Old Accuracy, now Max HP ; removed to not have duplicates
+                            && io.getId() != 7 //Old Accuracy, now Max HP ; removed to not have duplicates
+                            && !String.valueOf(io.getId()).endsWith("047") //Old Accuracy%, now Max HP% ; removed to not have duplicates
+                            && !String.valueOf(io.getId()).endsWith("008") //Old Avoid, now Max MP ; removed to not have duplicates
+                            && io.getId() != 8 //Old Accuracy, now Max HP ; removed to not have duplicates
+                            && !String.valueOf(io.getId()).endsWith("048") //Old Avoid%, now Max MP% ; removed to not have duplicates
+
+                            && !String.valueOf(io.getId()).endsWith("802") //Old Damage Cap Increase, now AllStat%/ElementalResist
+                            && !String.valueOf(io.getId()).endsWith("2056") //Old CritRate/Magic Def%, now AllStat%/ElementalResist ; removed to not have duplicates
+
+            ).collect(Collectors.toList()));
+
             if (isRing(id) || isPendant(id) || isFaceAccessory(id) || isEyeAccessory(id) || isEarrings(id)) {
                 res.addAll(data.stream().filter(
                         io -> io.getOptionType() == ItemOptionType.Accessory.getVal()
-                        && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
+                                && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
                         .collect(Collectors.toList()));
-            } else {
-                if (isHat(id)) {
+            }
+            if (isHat(id)) {
+                res.addAll(data.stream().filter(
+                        io -> io.getOptionType() == ItemOptionType.Hat.getVal()
+                                && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus
+                                && io.getId() != 32661
+                                && io.getId() != 42661
+                )
+                        .collect(Collectors.toList()));
+            }
+            if (isTop(id) || isOverall(id)) {
+                res.addAll(data.stream().filter(
+                        io -> io.getOptionType() == ItemOptionType.Top.getVal()
+                                && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus
+                                && io.getId() != 20396 //Duplicate "invincible for additional seconds"
+                )
+                        .collect(Collectors.toList()));
+            }
+            if (isBottom(id)) {
+                res.addAll(data.stream().filter(
+                        io -> io.getOptionType() == ItemOptionType.Bottom.getVal()
+                                && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
+                        .collect(Collectors.toList()));
+            }
+            if (isShoe(id)) {
+                res.addAll(data.stream().filter(
+                        io -> io.getOptionType() == ItemOptionType.Shoes.getVal()
+                                && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
+                        .collect(Collectors.toList()));
+            }
+            if(isGlove(id)){
+                if(grade == HiddenUnique || grade == Unique || grade == HiddenLegendary || grade == Legendary || grade == UniqueBonusHidden || grade == LegendaryBonusHidden){
                     res.addAll(data.stream().filter(
-                            io -> io.getOptionType() == ItemOptionType.Hat.getVal()
-                            && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
-                            .collect(Collectors.toList()));
+                            io -> (io.getOptionType() == ItemOptionType.Glove.getVal()
+                                    || io.getOptionType() == ItemOptionType.Armor.getVal())
+                                    && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus
+                                    && io.getId() != 40057 //Glove's Crit Damage Duplicate
+                                    && io.getId() != 42060 //Bonus - Armor's 1% Crit Damage
+                                    && io.getId() != 42061 //Bonus - Glove's Crit Damage Duplicate
+                                    && io.getId() != 42062 //Bonus - Armor's 1% Crit Damage Duplicate
+                    ).collect(Collectors.toList()));
+                    if(!MEISTERS_CUBES.contains(cubeId) && !MASTER_CRAFTSMANS_CUBES.contains(cubeId) && (cubeId != SYSTEM_DEFAULT_CUBE_INDICATOR)){
+                        res = res.stream().filter(
+                                io -> !io.getString().contains("Auto Steal"))
+                                .collect(Collectors.toList());
+                    }
                 }
-                if (isTop(id) || isOverall(id)) {
-                    res.addAll(data.stream().filter(
-                            io -> io.getOptionType() == ItemOptionType.Top.getVal()
-                            && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
-                            .collect(Collectors.toList()));
-                }
-                if (isBottom(id) || isOverall(id)) {
-                    res.addAll(data.stream().filter(
-                            io -> io.getOptionType() == ItemOptionType.Bottom.getVal()
-                            && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
-                            .collect(Collectors.toList()));
-                }
-                if (isGlove(id)) {
+                else {
                     res.addAll(data.stream().filter(
                             io -> io.getOptionType() == ItemOptionType.Glove.getVal()
-                            && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
-                            .collect(Collectors.toList()));
-                } else {
-                    // gloves are not counted for this one
-                    res.addAll(data.stream().filter(
-                            io -> io.getOptionType() == ItemOptionType.ArmorExceptGlove.getVal()
-                                    && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
-                            .collect(Collectors.toList()));
-                }
-                if (isShoe(id)) {
-                    res.addAll(data.stream().filter(
-                            io -> io.getOptionType() == ItemOptionType.Shoes.getVal()
-                            && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus)
-                            .collect(Collectors.toList()));
+                                    && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus
+                    ).collect(Collectors.toList()));
                 }
             }
+            else{
+                if (isArmor(id) || isShoulder(id) || isBelt(id)) {
+                    // gloves AREN'T counted for this one
+                    res.addAll(data.stream().filter(
+                            io -> io.getOptionType() == ItemOptionType.Armor.getVal()
+                                    && io.hasMatchingGrade(grade.getVal()) && io.isBonus() == bonus
+                    ).collect(Collectors.toList()));
+                }
+            }
+            res = res.stream().filter(io ->
+                            io.getId() != 42062 //Old MaxCrit,; removed to not have duplicates
+                            && !io.getString().contains("Critical Rate") //Non-weapons should not obtain critical rate, targeting Bonus Potentials Primarily
+                            && !io.getString().contains("incDAMr%")
+                            && !io.getString().contains("incMADr%")
+                            && !io.getString().contains("incPADr%")
+            ).collect(Collectors.toList());
         }
         return res.stream().filter(io -> io.getReqLevel() <= equip.getrLevel() + equip.getiIncReq()).collect(Collectors.toList());
     }
 
-    public static List<Integer> getWeightedOptionsByEquip(Equip equip, boolean bonus, int line) {
+    public static List<Integer> getWeightedOptionsByEquip(Equip equip, boolean bonus, int line, int cubeId, int additionalPrimes) {
         List<Integer> res = new ArrayList<>();
-        List<ItemOption> data = getOptionsByEquip(equip, bonus, line);
+        List<ItemOption> data = getOptionsByEquip(equip, bonus, line, cubeId, additionalPrimes);
         for(ItemOption io : data) {
             for (int i = 0; i < io.getWeight(); i++) {
                 res.add(io.getId());
@@ -739,25 +934,73 @@ public class ItemConstants {
         return res;
     }
 
-    public static int getRandomOption(Equip equip, boolean bonus, int line) {
-        List<Integer> data = getWeightedOptionsByEquip(equip, bonus, line);
+    public static int getRandomOption(Equip equip, boolean bonus, int line, int cubeId, int additionalPrimes) {
+        List<Integer> data = getWeightedOptionsByEquip(equip, bonus, line, cubeId, additionalPrimes);
         return data.get(Util.getRandom(data.size()));
     }
 
-    public static int getTierUpChance(int id) {
-        int res = 0;
-        switch(id) {
-            case ItemConstants.RED_CUBE: // Red cube
-            case ItemConstants.BONUS_POT_CUBE: // Bonus potential cube
-                res = 30;
-                break;
-            case ItemConstants.BLACK_CUBE:
-            case ItemConstants.WHITE_BONUS_POT_CUBE:
-                res = 40;
-                break;
+    public static int getTierUpChance(int id, ItemGrade grade) {
+        int[] rateArray;
+        if(id == ItemConstants.RED_CUBE){
+            rateArray = ItemConstants.RED_CUBE_TIER_UP_RATES;
         }
-        return res;
+        else if(id == ItemConstants.BLACK_CUBE){
+            rateArray = ItemConstants.BLACK_CUBE_TIER_UP_RATES;
+        }
+//        else if(id == ItemConstants.VIOLET_CUBE){
+//            rateArray = ItemConstants.VIOLET_CUBE_TIER_UP_RATES;
+//        }
+        else if(MEISTERS_CUBES.contains(id)){
+            rateArray = ItemConstants.MEISTERS_CUBE_TIER_UP_RATES;
+        }
+        else if(MASTER_CRAFTSMANS_CUBES.contains(id)){
+            rateArray = ItemConstants.MASTER_CRAFTSMANS_CUBE_TIER_UP_RATES;
+        }
+        else if(OCCULT_CUBES.contains(id)){
+            rateArray = ItemConstants.OCCULT_CUBE_TIER_UP_RATES;
+        }
+
+        else if(BONUS_OCCULT_CUBES.contains(id)){
+            rateArray = ItemConstants.BONUS_OCCULT_CUBE_TIER_UP_RATES;
+        }
+        else if(id == ItemConstants.BONUS_POTENTIAL_CUBE || id == ItemConstants.SPECIAL_BONUS_POTENTIAL_CUBE){
+            rateArray = ItemConstants.BONUS_POT_CUBE_TIER_UP_RATE;
+        }
+
+        else if(id == ItemConstants.WHITE_BONUS_POTENTIAL_CUBE){
+            rateArray = ItemConstants.WHITE_BONUS_POT_CUBE_TIER_UP_RATE;
+        }
+
+
+        else{
+            rateArray = ItemConstants.DEFAULT_CUBE_TIER_UP_RATES;
+        }
+
+
+        switch (grade){
+            case Rare:
+            case HiddenRare:
+            case RareBonusHidden:
+                return rateArray[0] * GLOBAL_TIER_UP_MULTIPLIER;
+            case Epic:
+            case HiddenEpic:
+            case EpicBonusHidden:
+                return rateArray[1] * GLOBAL_TIER_UP_MULTIPLIER;
+            case Unique:
+            case HiddenUnique:
+            case UniqueBonusHidden:
+                return rateArray[2] * GLOBAL_TIER_UP_MULTIPLIER;
+            case Hidden:
+            case None:
+            case RareSecondary:
+            case LegendaryBonusHidden:
+            case HiddenLegendary:
+            case Legendary:
+            default:
+                return 0;
+        }
     }
+
 
     public static boolean isEquip(int id) {
         return id / 1000000 == 1;

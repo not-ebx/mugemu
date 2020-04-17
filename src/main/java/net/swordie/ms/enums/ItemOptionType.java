@@ -11,7 +11,7 @@ public enum ItemOptionType {
     AnyEquip(0),
     Weapon(10),
     AnyExceptWeapon(11),
-    ArmorExceptGlove(20),
+    Armor(20),
     Accessory(40),
     Hat(51),
     Top(52),
