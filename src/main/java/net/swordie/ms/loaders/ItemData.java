@@ -499,10 +499,10 @@ public class ItemData {
                 itemInfo.getReqItemIds().add(dataInputStream.readInt());
             }
 
-//            size = dataInputStream.readShort();
-//            for (int i = 0; i < size; i++) {
-//                itemInfo.addSkill(dataInputStream.readInt());
-//            }
+            size = dataInputStream.readShort();
+            for (int i = 0; i < size; i++) {
+                itemInfo.addSkill(dataInputStream.readInt());
+            }
 
             size = dataInputStream.readShort();
             for (int i = 0; i < size; i++) {

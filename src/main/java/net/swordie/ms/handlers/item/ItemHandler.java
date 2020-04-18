@@ -220,6 +220,16 @@ public class ItemHandler {
         } else if (ItemConstants.isPortableStorage(itemID)) {
 
             chr.getScriptManager().openTrunk(1022005);
+        } else if (ItemConstants.isFusionAnvil(itemID)) {
+            int appearancePos = inPacket.decodeInt();
+            int functionPos = inPacket.decodeInt();
+            Inventory inv = chr.getEquipInventory();
+            Equip appearance = (Equip) inv.getItemBySlot((short) appearancePos);
+            Equip function = (Equip) inv.getItemBySlot((short) functionPos);
+            if (appearance != null && function != null && appearance.getItemId() / 10000 == function.getItemId() / 10000) {
+                function.getOptions().set(6, appearance.getItemId() % 10000);
+            }
+            function.updateToChar(chr);
         } else {
             Equip medal = (Equip) chr.getEquippedInventory().getFirstItemByBodyPart(BodyPart.Medal);
             int medalInt = 0;
@@ -437,17 +447,6 @@ public class ItemHandler {
                     world = chr.getClient().getWorld();
                     smega = BroadcastMsg.tripleMegaphone(stringList, (byte) chr.getClient().getChannelInstance().getChannelId(), whisperIcon);
                     world.broadcastPacket(WvsContext.broadcastMsg(smega));
-                    break;
-                case 5062405: // Fusion anvil
-                    int appearancePos = inPacket.decodeInt();
-                    int functionPos = inPacket.decodeInt();
-                    Inventory inv = chr.getEquipInventory();
-                    Equip appearance = (Equip) inv.getItemBySlot((short) appearancePos);
-                    Equip function = (Equip) inv.getItemBySlot((short) functionPos);
-                    if (appearance != null && function != null && appearance.getItemId() / 10000 == function.getItemId() / 10000) {
-                        function.getOptions().set(6, appearance.getItemId());
-                    }
-                    function.updateToChar(chr);
                     break;
                 default:
                     chr.chatMessage(Mob, String.format("Cash item %d is not implemented, notify Sjonnie pls.", itemID));
