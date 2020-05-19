@@ -1686,8 +1686,8 @@ public class Equip extends Item {
         }
     }
 
-    public int getRandomOption(boolean bonus, int line) {
-        List<Integer> data = ItemConstants.getWeightedOptionsByEquip(this, bonus, line);
+    public int getRandomOption(boolean bonus, int line, int cubeId, int additionalPrimes) {
+        List<Integer> data = ItemConstants.getWeightedOptionsByEquip(this, bonus, line, cubeId, additionalPrimes);
         return data.get(Util.getRandom(data.size() - 1));
     }
 
@@ -1710,7 +1710,7 @@ public class Equip extends Item {
         }
 
         int max = 3;
-        if (getOptionBase(3) == 0) {
+        if (getOptionBase(2) == 0) {
             // If this equip did not have a 3rd line already, thirdLineChance to get it
             if (Util.succeedProp(100 - thirdLineChance)) {
                 max = 2;
@@ -1727,7 +1727,7 @@ public class Equip extends Item {
         }
 
         int max = 3;
-        if (getOptionBonus(3) == 0) {
+        if (getOptionBonus(2) == 0) {
             // If this equip did not have a 3rd line already, thirdLineChance to get it
             if (Util.succeedProp(100 - thirdLineChance)) {
                 max = 2;
@@ -1742,10 +1742,24 @@ public class Equip extends Item {
         if (!ItemConstants.canEquipHavePotential(this)) {
             return;
         }
-
+        //Have to generate the prime count here as we loop afterwards and would regenerate otherwise
+        int n = ItemConstants.getAdditionalPrimeCountForCube(ItemConstants.SYSTEM_DEFAULT_CUBE_INDICATOR);
         for (int i = 0; i < 3; i++) {
             if (getOption(i, bonus) < 0) {
-                setOption(i, getRandomOption(bonus, i), bonus);
+                setOption(i, getRandomOption(bonus, i, ItemConstants.SYSTEM_DEFAULT_CUBE_INDICATOR, n), bonus);
+            }
+        }
+    }
+
+    public void releaseOptions(boolean bonus, int cubeId) {
+        if (!ItemConstants.canEquipHavePotential(this)) {
+            return;
+        }
+        //Have to generate the prime count here as we loop afterwards and would regenerate otherwise
+        int n = ItemConstants.getAdditionalPrimeCountForCube(cubeId);
+        for (int i = 0; i < 3; i++) {
+            if (getOption(i, bonus) < 0) {
+                setOption(i, getRandomOption(bonus, i, cubeId, n), bonus);
             }
         }
     }

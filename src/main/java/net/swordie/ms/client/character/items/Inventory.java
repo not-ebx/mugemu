@@ -144,7 +144,7 @@ public class Inventory {
     }
 
     public Item getItemByItemID(int itemId) {
-        return getItems().stream().filter(item -> item.getItemId() == itemId).findFirst().orElse(null);
+        return getItems().stream().filter(item -> (item.getItemId() == itemId) && item.getQuantity() != 0).findFirst().orElse(null);
     }
 
     public Item getItemByItemIDAndStackable(int itemId) {
