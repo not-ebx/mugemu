@@ -18,7 +18,6 @@ import static net.swordie.ms.connection.netty.NettyClient.CLIENT_KEY;
 
 public class ChannelAcceptor implements Runnable {
 
-    public Map<String, Channel> channelPool = new HashMap<>();
     public net.swordie.ms.world.Channel channel;
     private static final org.apache.log4j.Logger log = LogManager.getRootLogger();
 
@@ -44,10 +43,7 @@ public class ChannelAcceptor implements Runnable {
 
                     Client c = new Client(ch, siv, riv);
                     // remove after debug stage
-//                    log.debug(String.format("Opened session with %s on channel %d", c.getIP(), channel.getChannelId()));
                     c.write(Login.sendConnect(riv, siv));
-
-                    channelPool.put(c.getIP(), ch);
 
                     ch.attr(CLIENT_KEY).set(c);
                     ch.attr(Client.CRYPTO_KEY).set(new MapleCrypto());
