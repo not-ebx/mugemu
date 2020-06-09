@@ -3471,6 +3471,7 @@ public class Char {
 			getClient().setChr(null);
 		}
 		DatabaseManager.saveToDB(getAccount());
+		DatabaseManager.saveToDB(getUser());
 	}
 
 	public int getSubJob() {
