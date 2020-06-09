@@ -1058,4 +1058,10 @@ public class WvsContext {
         outPacket.encodeInt(7);
         return outPacket;
     }
+
+    public static OutPacket setMaplePoint(int maplePoint) {
+        OutPacket outPacket = new OutPacket(OutHeader.SET_MAPLE_POINT);
+        outPacket.encodeInt(maplePoint);
+        return outPacket;
+    }
 }

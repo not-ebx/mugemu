@@ -1414,7 +1414,8 @@ public class Mob extends Life {
 
             if (Util.succeedProp(GameConstants.NX_DROP_CHANCE)) {
                 int nx = (int) (damagePerc * getNxDropAmount());
-                chr.addNx(nx);
+//                chr.addNx(nx);
+                chr.addMaplePoint(nx);
             }
 
             Party party = chr.getParty();
