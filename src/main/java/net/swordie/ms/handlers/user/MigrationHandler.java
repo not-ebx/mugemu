@@ -114,6 +114,7 @@ public class MigrationHandler {
         chr.initBaseStats();
         chr.setOnline(true); // v195+: respect 'invisible login' setting
         chr.getOffenseManager().setChr(chr);
+        c.write(WvsContext.setMaplePoint(user.getMaplePoints()));
     }
 
 
