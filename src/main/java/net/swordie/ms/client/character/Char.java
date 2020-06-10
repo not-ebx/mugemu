@@ -3471,7 +3471,6 @@ public class Char {
 			getClient().setChr(null);
 		}
 		DatabaseManager.saveToDB(getAccount());
-		DatabaseManager.saveToDB(getUser());
 	}
 
 	public int getSubJob() {
@@ -4669,6 +4668,7 @@ public class Char {
 	public void addNx(int nx) {
 		getAccount().addNXCredit(nx);
 		chatScriptMessage("You have gained " + nx + " NX.");
+		write(WvsContext.setMaplePoint(getAccount().getNxCredit()));
 	}
 
 	public void initBlessingSkillNames() {
