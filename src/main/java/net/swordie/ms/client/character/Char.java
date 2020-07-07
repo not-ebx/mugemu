@@ -4674,6 +4674,7 @@ public class Char {
 	public void addNx(int nx) {
 		getAccount().addNXCredit(nx);
 		chatScriptMessage("You have gained " + nx + " NX.");
+		write(WvsContext.setMaplePoint(getAccount().getNxCredit()));
 	}
 
 	public void initBlessingSkillNames() {
@@ -5029,5 +5030,11 @@ public class Char {
 		}
 
 		return amount;
+	}
+
+	public void addMaplePoint(int maplePoint) {
+		getUser().addMaplePoints(maplePoint);
+		chatScriptMessage("You have gained " + maplePoint + " MaplePoint.");
+		getClient().write(WvsContext.setMaplePoint(getUser().getMaplePoints()));
 	}
 }
