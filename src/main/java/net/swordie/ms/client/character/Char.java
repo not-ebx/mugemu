@@ -2275,6 +2275,12 @@ public class Char {
 			equip.setEquippedDate(FileTime.currentTime());
 			equip.addAttribute(EquipAttribute.Untradable);
 		}
+		if (equip.getCharmEXP() > 0) {
+			addStatAndSendPacket(Stat.charmEXP, equip.getCharmEXP());
+			equip.setCharmEXP(0);
+			equip.setiCraft((short) 0);
+			equip.addAttribute(EquipAttribute.NoNonCombatStatGain);
+		}
 		AvatarLook al = getAvatarData().getAvatarLook();
 		int itemID = item.getItemId();
 		getInventoryByType(EQUIP).removeItem(item);
@@ -4668,6 +4674,7 @@ public class Char {
 	public void addNx(int nx) {
 		getAccount().addNXCredit(nx);
 		chatScriptMessage("You have gained " + nx + " NX.");
+		write(WvsContext.setMaplePoint(getAccount().getNxCredit()));
 	}
 
 	public void initBlessingSkillNames() {
@@ -5023,5 +5030,11 @@ public class Char {
 		}
 
 		return amount;
+	}
+
+	public void addMaplePoint(int maplePoint) {
+		getUser().addMaplePoints(maplePoint);
+		chatScriptMessage("You have gained " + maplePoint + " MaplePoint.");
+		getClient().write(WvsContext.setMaplePoint(getUser().getMaplePoints()));
 	}
 }

@@ -85,7 +85,11 @@ public class PetHandler {
         inPacket.decodeInt(); // tick
         short slot = inPacket.decodeShort();
         int itemID = inPacket.decodeInt();
-        // TODO check properly for items here
+        if (itemID != 2120000) {
+            chr.dispose();
+            return;
+        }
+
         Item item = chr.getConsumeInventory().getItemBySlot(slot);
         if (item != null) {
             chr.consumeItem(item);

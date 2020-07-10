@@ -52,7 +52,7 @@ public class ItemOption {
     }
 
     public boolean isBonus() {
-        return getId() > 10000 && getId() / 1000 % 10 == 2;
+        return getId() > 2000 && getId() / 1000 % 10 == 2;
     }
 
     public void setReqLevel(int reqLevel) {

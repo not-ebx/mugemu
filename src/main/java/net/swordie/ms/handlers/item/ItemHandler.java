@@ -43,7 +43,7 @@ import java.util.Map;
 import static net.swordie.ms.enums.ChatType.*;
 import static net.swordie.ms.enums.EquipBaseStat.tuc;
 import static net.swordie.ms.enums.InvType.*;
-import static net.swordie.ms.enums.InventoryOperation.Move;
+import static net.swordie.ms.enums.InventoryOperation.*;
 
 public class ItemHandler {
 
@@ -83,6 +83,85 @@ public class ItemHandler {
         tsm.sendResetStatPacket();
     }
 
+    @Handler(op = InHeader.USER_FREE_MIRACLE_CUBE_ITEM_USE_REQUEST)
+    public static void handleUserFreeMiracleCubeItemUserRequest(Client c, InPacket inPacket){
+        Char chr = c.getChr();
+        Inventory useInv = chr.getInventoryByType(CONSUME);
+        inPacket.decodeInt(); // tick
+        short pos = inPacket.decodeShort();
+
+        Item item = useInv.getItemBySlot(pos);
+        if (item == null) {
+            return;
+        }
+        int itemID = item.getItemId();
+
+        if(!ItemConstants.MEISTERS_CUBES.contains(itemID) && !ItemConstants.MASTER_CRAFTSMANS_CUBES.contains(itemID) && !ItemConstants.OCCULT_CUBES.contains(itemID) && !ItemConstants.BONUS_OCCULT_CUBES.contains(itemID)){
+            String msg = String.format("Character %d tried to use a non-cube (id %d) on an equip via Use inventory. OPCode : %d", chr.getId(), itemID, InHeader.USER_FREE_MIRACLE_CUBE_ITEM_USE_REQUEST.getValue());
+            chr.getOffenseManager().addOffense(msg);
+            chr.dispose();
+        }
+        else{
+            switch (itemID) {
+                case ItemConstants.MEISTERS_CUBE:
+                case ItemConstants.REBOOT_MEISTERS_CUBE:
+                    useConsumeItemMiracleCube(c, chr, itemID, item, inPacket.decodeShort(), ItemGrade.Legendary, false);
+                    break;
+
+                case ItemConstants.MASTER_CRAFTSMANS_CUBE:
+                case ItemConstants.REBOOT_MASTER_CRAFTSMANS_CUBE:
+                    useConsumeItemMiracleCube(c, chr, itemID, item, inPacket.decodeShort(), ItemGrade.Unique, false);
+                    break;
+
+                case ItemConstants.OCCULT_CUBE:
+                case ItemConstants.REBOOT_OCCULT_CUBE:
+                    useConsumeItemMiracleCube(c, chr, itemID, item, inPacket.decodeShort(), ItemGrade.Epic, false);
+                    break;
+
+                case ItemConstants.BONUS_OCCULT_CUBE:
+                    useConsumeItemMiracleCube(c, chr, itemID, item, inPacket.decodeShort(), ItemGrade.Epic, true);
+                    break;
+            }
+        }
+    }
+
+    private static void useConsumeItemMiracleCube(Client c, Char chr, int cubeId, Item item, short ePos, ItemGrade itemGradeMax, boolean bonus){
+        InvType invType = ePos < 0 ? EQUIPPED : EQUIP;
+        Equip equip = (Equip) chr.getInventoryByType(invType).getItemBySlot(ePos);
+        if (equip == null) {
+            chr.chatMessage(SystemNotice, "Could not find equip.");
+            chr.dispose();
+            return;
+
+        } else if (equip.getBonusGrade() > itemGradeMax.getVal()) {
+            String msg = String.format("Character %d tried to use %s cube (id %d) an equip with a potential greater than it is allowed to (id %d)", chr.getId(), StringData.getItemStringById(cubeId), cubeId, equip.getItemId());
+            chr.getOffenseManager().addOffense(msg);
+            chr.dispose();
+            return;
+        } else if (equip.getBaseGrade() < ItemGrade.Rare.getVal()) {
+            String msg = String.format("Character %d tried to use cube (id %d) an equip without a potential (id %d)", chr.getId(), cubeId, equip.getItemId());
+            chr.getOffenseManager().addOffense(msg);
+            chr.dispose();
+            return;
+        }
+        int tierUpChance = bonus ? ItemConstants.getTierUpChance(cubeId, ItemGrade.getGradeByVal(equip.getBonusGrade())) : ItemConstants.getTierUpChance(cubeId, ItemGrade.getGradeByVal(equip.getBaseGrade()));
+        short hiddenValue = bonus ? ItemGrade.getGradeByVal(equip.getBonusGrade()).getVal() : ItemGrade.getGradeByVal(equip.getBaseGrade()).getVal();
+        boolean tierUp = !(hiddenValue >= ItemGrade.Legendary.getVal()) && Util.succeedProp(tierUpChance, 1000);
+        if (tierUp) {
+            hiddenValue++;
+        }
+        if(bonus){
+            equip.setHiddenOptionBonus(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
+        } else {
+            equip.setHiddenOptionBase(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
+        }
+        equip.releaseOptions(bonus, cubeId);
+
+        c.write(FieldPacket.inGameCubeResult(chr.getId(), tierUp, cubeId, ePos, equip));
+        c.write(FieldPacket.showItemReleaseEffect(chr.getId(), ePos, bonus));
+        equip.updateToChar(chr);
+        chr.consumeItem(item);
+    }
 
     @Handler(op = InHeader.USER_CONSUME_CASH_ITEM_USE_REQUEST)
     public static void handleUserConsumeCashItemUseRequest(Client c, InPacket inPacket) {
@@ -141,16 +220,23 @@ public class ItemHandler {
         } else if (ItemConstants.isPortableStorage(itemID)) {
 
             chr.getScriptManager().openTrunk(1022005);
-
+        } else if (ItemConstants.isFusionAnvil(itemID)) {
+            int appearancePos = inPacket.decodeInt();
+            int functionPos = inPacket.decodeInt();
+            Inventory inv = chr.getEquipInventory();
+            Equip appearance = (Equip) inv.getItemBySlot((short) appearancePos);
+            Equip function = (Equip) inv.getItemBySlot((short) functionPos);
+            if (appearance != null && function != null && appearance.getItemId() / 10000 == function.getItemId() / 10000) {
+                function.getOptions().set(6, appearance.getItemId() % 10000);
+            }
+            function.updateToChar(chr);
         } else {
-
             Equip medal = (Equip) chr.getEquippedInventory().getFirstItemByBodyPart(BodyPart.Medal);
             int medalInt = 0;
             if (medal != null) {
                 medalInt = (medal.getAnvilId() == 0 ? medal.getItemId() : medal.getAnvilId()); // Check for Anvilled medal
             }
             String medalString = (medalInt == 0 ? "" : String.format("<%s> ", StringData.getItemStringById(medalInt)));
-
             switch (itemID) {
                 case ItemConstants.HYPER_TELEPORT_ROCK: // Hyper Teleport Rock
                     short type = inPacket.decodeShort();
@@ -218,15 +304,28 @@ public class ItemHandler {
                         chr.dispose();
                         return;
                     }
+                    if(itemID == ItemConstants.BLACK_CUBE){
+                        //Have to handle this here atleast in 176  as well since "another try" button doesn't trigger memorial packet ; thus rolling continuously and not saving previous potential
+                        MemorialCubeInfo mci = chr.getMemorialCubeInfo();
+                        if (mci != null) {
+                            Inventory inventory = chr.getInventoryByType(invType);
+                            Equip mciOldEquip = mci.getOldEquip();
+                            inventory.removeItem(equip);
+                            equip = mciOldEquip;
+                            inventory.addItem(mciOldEquip);
+                            mciOldEquip.updateToChar(chr);
+                            chr.setMemorialCubeInfo(null);
+                        }
+                    }
                     Equip oldEquip = equip.deepCopy();
-                    int tierUpChance = ItemConstants.getTierUpChance(itemID);
-                    short hiddenValue = ItemGrade.getHiddenGradeByVal(equip.getBaseGrade()).getVal();
-                    boolean tierUp = !(hiddenValue >= ItemGrade.HiddenLegendary.getVal()) && Util.succeedProp(tierUpChance);
+                    int tierUpChance = ItemConstants.getTierUpChance(itemID, ItemGrade.getGradeByVal(equip.getBaseGrade()));
+                    short hiddenValue = ItemGrade.getGradeByVal(equip.getBaseGrade()).getVal();
+                    boolean tierUp = !(hiddenValue >= ItemGrade.Legendary.getVal()) && Util.succeedProp(tierUpChance, 1000);
                     if (tierUp) {
                         hiddenValue++;
                     }
                     equip.setHiddenOptionBase(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
-                    equip.releaseOptions(false);
+                    equip.releaseOptions(false, itemID);
                     if (itemID == ItemConstants.RED_CUBE) {
                         c.write(FieldPacket.redCubeResult(chr.getId(), tierUp, itemID, ePos, equip));
                         c.write(FieldPacket.showItemReleaseEffect(chr.getId(), ePos, false));
@@ -247,9 +346,9 @@ public class ItemHandler {
                         }
                     }
                     break;
-                case ItemConstants.BONUS_POT_CUBE: // Bonus Potential Cube
-                case ItemConstants.SPECIAL_BONUS_POT_CUBE: // [Special] Bonus Potential Cube
-                case ItemConstants.WHITE_BONUS_POT_CUBE: // White Bonus Potential Cube
+                case ItemConstants.BONUS_POTENTIAL_CUBE: // Bonus Potential Cube
+                case ItemConstants.SPECIAL_BONUS_POTENTIAL_CUBE: // [Special] Bonus Potential Cube
+                case ItemConstants.WHITE_BONUS_POTENTIAL_CUBE: // White Bonus Potential Cube
                     if (c.getWorld().isReboot()) {
                         chr.getOffenseManager().addOffense(String.format("Character %d attempted to use a bonus potential cube in reboot world.", chr.getId()));
                         chr.dispose();
@@ -266,16 +365,29 @@ public class ItemHandler {
                         chr.dispose();
                         return;
                     }
+                    if(itemID == ItemConstants.WHITE_BONUS_POTENTIAL_CUBE){
+                        //Have to handle this here atleast in 176 as well since "another try" button doesn't trigger memorial packet ; thus rolling continuously and not saving previous potential
+                        MemorialCubeInfo mci = chr.getMemorialCubeInfo();
+                        if (mci != null) {
+                            Inventory inventory = chr.getInventoryByType(invType);
+                            Equip mciOldEquip = mci.getOldEquip();
+                            inventory.removeItem(equip);
+                            equip = mciOldEquip;
+                            inventory.addItem(mciOldEquip);
+                            mciOldEquip.updateToChar(chr);
+                            chr.setMemorialCubeInfo(null);
+                        }
+                    }
                     oldEquip = equip.deepCopy();
-                    tierUpChance = ItemConstants.getTierUpChance(itemID);
-                    hiddenValue = ItemGrade.getHiddenGradeByVal(equip.getBonusGrade()).getVal();
-                    tierUp = !(hiddenValue >= ItemGrade.HiddenLegendary.getVal()) && Util.succeedProp(tierUpChance);
+                    tierUpChance = ItemConstants.getTierUpChance(itemID, ItemGrade.getGradeByVal(equip.getBonusGrade()));
+                    hiddenValue = ItemGrade.getGradeByVal(equip.getBonusGrade()).getVal();
+                    tierUp = !(hiddenValue >= ItemGrade.Legendary.getVal()) && Util.succeedProp(tierUpChance, 1000);
                     if (tierUp) {
                         hiddenValue++;
                     }
                     equip.setHiddenOptionBonus(hiddenValue, ItemConstants.THIRD_LINE_CHANCE);
-                    equip.releaseOptions(true);
-                    if (itemID != ItemConstants.WHITE_BONUS_POT_CUBE) {
+                    equip.releaseOptions(true, itemID);
+                    if (itemID != ItemConstants.WHITE_BONUS_POTENTIAL_CUBE) {
                         c.write(FieldPacket.inGameCubeResult(chr.getId(), tierUp, itemID, ePos, equip));
                         c.write(FieldPacket.showItemReleaseEffect(chr.getId(), ePos, true));
                     } else {
@@ -335,17 +447,6 @@ public class ItemHandler {
                     world = chr.getClient().getWorld();
                     smega = BroadcastMsg.tripleMegaphone(stringList, (byte) chr.getClient().getChannelInstance().getChannelId(), whisperIcon);
                     world.broadcastPacket(WvsContext.broadcastMsg(smega));
-                    break;
-                case 5062405: // Fusion anvil
-                    int appearancePos = inPacket.decodeInt();
-                    int functionPos = inPacket.decodeInt();
-                    Inventory inv = chr.getEquipInventory();
-                    Equip appearance = (Equip) inv.getItemBySlot((short) appearancePos);
-                    Equip function = (Equip) inv.getItemBySlot((short) functionPos);
-                    if (appearance != null && function != null && appearance.getItemId() / 10000 == function.getItemId() / 10000) {
-                        function.getOptions().set(6, appearance.getItemId());
-                    }
-                    function.updateToChar(chr);
                     break;
                 default:
                     chr.chatMessage(Mob, String.format("Cash item %d is not implemented, notify Sjonnie pls.", itemID));

@@ -19,6 +19,7 @@ public enum ItemGrade {
 
     None(0),
 
+    RareSecondary(16), //we need this defined for the lowest tier to exist
     Rare(17),
     Epic(18),
     Unique(19),
@@ -63,7 +64,10 @@ public enum ItemGrade {
         if(option < 0) {
             itemGrade =  Arrays.stream(values()).filter(is -> is.getVal() == Math.abs(option)).findFirst().orElse(None);
         }
-        if(option > 0 && option < 20000) {
+        if((option > 0 && option < 10000)) {
+            itemGrade = RareSecondary;
+        }
+        if(option > 10000 && option < 20000) {
             itemGrade = Rare;
         }
         if(option > 20000 && option < 30000) {
@@ -72,18 +76,20 @@ public enum ItemGrade {
         if(option > 30000 && option < 40000) {
             itemGrade = Unique;
         }
-        if(option > 40000 && option < 60000) {
+        if(option > 40000 && option < 50000) {
             itemGrade = Legendary;
         }
         return itemGrade;
     }
-
+    
     public static boolean isMatching(short first, short second) {
         ItemGrade firstGrade = getGradeByVal(first);
         ItemGrade other = getGradeByVal(second);
         switch(firstGrade) {
             case None:
                 return other == None;
+            case RareSecondary:
+                return other == RareSecondary;
             case HiddenRare:
             case Rare:
                 return other == HiddenRare || other == Rare;
@@ -130,6 +136,8 @@ public enum ItemGrade {
         ItemGrade arg = getGradeByVal(val);
         switch(arg) {
             case Rare:
+                ig = RareSecondary;
+                break;
             case Epic:
                 ig = Rare;
                 break;

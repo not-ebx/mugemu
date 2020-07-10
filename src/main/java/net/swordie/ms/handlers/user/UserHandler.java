@@ -6,6 +6,7 @@ import net.swordie.ms.client.character.Char;
 import net.swordie.ms.client.character.MonsterCollection;
 import net.swordie.ms.client.character.MonsterCollectionExploration;
 import net.swordie.ms.client.character.items.Item;
+import net.swordie.ms.client.character.keys.FuncKeyMap;
 import net.swordie.ms.client.character.potential.CharacterPotential;
 import net.swordie.ms.client.character.potential.CharacterPotentialMan;
 import net.swordie.ms.client.character.runestones.RuneStone;
@@ -21,6 +22,7 @@ import net.swordie.ms.client.jobs.resistance.WildHunter;
 import net.swordie.ms.connection.InPacket;
 import net.swordie.ms.connection.packet.*;
 import net.swordie.ms.constants.GameConstants;
+import net.swordie.ms.constants.JobConstants;
 import net.swordie.ms.constants.MonsterCollectionGroup;
 import net.swordie.ms.constants.SkillConstants;
 import net.swordie.ms.enums.*;
@@ -119,15 +121,21 @@ public class UserHandler {
 
     @Handler(op = InHeader.FUNC_KEY_MAPPED_MODIFIED)
     public static void handleFuncKeyMappedModified(Client c, InPacket inPacket) {
+        Char chr = c.getChr();
         int updateType = inPacket.decodeInt();
         switch (updateType) {
             case 0:
+                FuncKeyMap funcKeyMap = chr.getFuncKeyMap();
                 int size = inPacket.decodeInt();
                 for (int i = 0; i < size; i++) {
                     int index = inPacket.decodeInt();
                     byte type = inPacket.decodeByte();
                     int value = inPacket.decodeInt();
-                    c.getChr().getFuncKeyMap().putKeyBinding(index, type, value);
+                    if (JobConstants.isBeastTamer(chr.getJob())) {
+                        int keyMap = SkillConstants.getBeastFromSkill(value).getVal();
+                        funcKeyMap = chr.getFuncKeyMaps().get(keyMap);
+                    }
+                    funcKeyMap.putKeyBinding(index, type, value);
                 }
                 break;
             case 1: // HP potion

@@ -15,6 +15,7 @@ import net.swordie.ms.client.jobs.legend.Phantom;
 import net.swordie.ms.client.jobs.nova.AngelicBuster;
 import net.swordie.ms.client.jobs.resistance.Demon;
 import net.swordie.ms.client.jobs.resistance.Mechanic;
+import net.swordie.ms.enums.BeastTamerBeasts;
 import net.swordie.ms.loaders.SkillData;
 import org.apache.log4j.Logger;
 
@@ -1511,5 +1512,20 @@ public class SkillConstants {
         }
         // Tower of Oz skill rings
         return (skillID >= 80001455 && skillID <= 80001479);
+    }
+
+    public static BeastTamerBeasts getBeastFromSkill(int skillId) {
+        switch (skillId / 10000) {
+            case 11200:
+                return BeastTamerBeasts.Bear;
+            case 11210:
+                return BeastTamerBeasts.Leopard;
+            case 11211:
+                return BeastTamerBeasts.Bird;
+            case 11212:
+                return BeastTamerBeasts.Cat;
+            default:
+                return BeastTamerBeasts.None;
+        }
     }
 }
