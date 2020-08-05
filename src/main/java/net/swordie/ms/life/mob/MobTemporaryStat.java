@@ -420,14 +420,19 @@ public class MobTemporaryStat {
 					chr.write(BattleRecordMan.dotDamageInfo(bi, count));
 				}
 			}
-			if (!fromSchedule) {
-				getBurnCancelSchedules().get(charID).cancel(true);
-				getBurnCancelSchedules().remove(charID);
-				getBurnSchedules().get(charID).cancel(true);
-				getBurnSchedules().remove(charID);
-			} else {
-				getBurnCancelSchedules().remove(charID);
-				getBurnSchedules().remove(charID);
+			Set<Tuple<Integer, Integer>> filteredTuples = getBurnSchedules().keySet().stream().filter(s -> s.getLeft() == charID).collect(Collectors.toSet());
+			for(Tuple<Integer, Integer> tuple : filteredTuples)
+			{
+				if(!fromSchedule) {
+					getBurnCancelSchedules().get(tuple).cancel(true);
+					getBurnCancelSchedules().remove(tuple);
+					getBurnSchedules().get(tuple).cancel(true);
+					getBurnSchedules().remove(tuple);
+				}
+				else {
+					getBurnCancelSchedules().remove(tuple);
+					getBurnSchedules().remove(tuple);
+				}
 			}
 		}
 	}
