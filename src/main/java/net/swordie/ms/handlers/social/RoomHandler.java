@@ -134,14 +134,18 @@ public class RoomHandler {
             case Chat:
                 inPacket.decodeInt(); // tick
                 String msg = inPacket.decodeString();
-                if (tradeRoom == null) {
-                    chr.chatMessage("You are currently not in a room.");
-                    return;
-                }
-                // this is kinda weird atm, so no different colours
                 String msgWithName = String.format("%s : %s", chr.getName(), msg);
-                chr.write(MiniroomPacket.chat(1, msgWithName));
-                tradeRoom.getOtherChar(chr).write(MiniroomPacket.chat(0, msgWithName));
+                if (tradeRoom != null) {
+                    chr.write(MiniroomPacket.chat(1, msgWithName));
+                    tradeRoom.getOtherChar(chr).write(MiniroomPacket.chat(0, msgWithName));
+                    break;
+                } else if (chr.getVisitingmerchant() != null) {
+                    chr.getVisitingmerchant().broadCastPacket(MiniroomPacket.chat(1, msgWithName));
+                    break;
+                }
+                chr.chatMessage("You are currently not in a room.");
+                // this is kinda weird atm, so no different colours
+
                 break;
             case Accept:
                 if (tradeRoom == null) {
