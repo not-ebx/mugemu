@@ -3001,7 +3001,7 @@ public class Char {
 	 */
 	public void healHPMP() {
 		heal(getMaxHP(), true);
-		healMP(getMaxMP(), true);
+		healMP(getMaxMP());
 	}
 
 	/**
@@ -3039,7 +3039,7 @@ public class Char {
 	 *
 	 * @param amount The amount to heal.
 	 */
-	public void healMP(int amount, boolean whilstDeath) {
+	public void healMP(int amount) {
 		int curMP = getMP();
 		int maxMP = getMaxMP();
 		int newMP = curMP + amount > maxMP ? maxMP : curMP + amount;
@@ -3047,10 +3047,6 @@ public class Char {
 		setStat(Stat.mp, newMP);
 		stats.put(Stat.mp, newMP);
 		write(WvsContext.statChanged(stats));
-	}
-
-	public void healMP(int amount) {
-		heal(amount, false);
 	}
 
 	/**
