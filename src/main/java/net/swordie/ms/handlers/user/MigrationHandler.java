@@ -81,7 +81,7 @@ public class MigrationHandler {
         Server.getInstance().addUser(user);
         Field field = chr.getOrCreateFieldByCurrentInstanceType(chr.getFieldID() <= 0 ? 100000000 : chr.getFieldID());
         if (chr.getHP() <= 0) { // automatically revive when relogging
-            chr.heal(chr.getMaxHP() / 2);
+            chr.heal(chr.getMaxHP() / 2, true);
         }
         if (chr.getPartyID() != 0) {
             Party party = c.getWorld().getPartybyId(chr.getPartyID());
@@ -159,7 +159,7 @@ public class MigrationHandler {
         } else if (chr.getHP() <= 0) {
             if (InGameEventManager.getInstance().charInEventMap(chr.getId())) {
                 InGameEventManager.getInstance().getActiveEvent().onMigrateDeath(chr);
-                chr.heal(chr.getMaxHP());
+                chr.heal(chr.getMaxHP(), true);
                 chr.healMP(chr.getMaxMP());
                 return;
             }
