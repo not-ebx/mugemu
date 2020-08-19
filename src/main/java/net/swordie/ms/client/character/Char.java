@@ -3975,7 +3975,7 @@ public class Char {
 			return false;
 		} else {
 			Skill skill = getSkill(skillID);
-			if (skill != null && SkillData.getSkillInfoById(skillID).hasCooltime()) {
+			if (skill != null && SkillData.getSkillInfoById(skillID).hasCooltime() && !SkillConstants.isKeydownCDSkill(skillID)) {
 				setSkillCooldown(skillID, (byte) skill.getCurrentLevel());
 			}
 			return true;

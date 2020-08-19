@@ -107,6 +107,7 @@ public class Magician extends Beginner {
     public static final int ARCANE_AIM_IL = 2220010;
     public static final int MAPLE_WARRIOR_IL = 2221000;
     public static final int HEROS_WILL_IL = 2221008;
+    public static final int LIGHTNING_ORB = 2221052;
 
     //Bishop
     public static final int HEAL = 2301002;
