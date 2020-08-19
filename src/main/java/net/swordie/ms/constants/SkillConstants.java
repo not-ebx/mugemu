@@ -18,10 +18,7 @@ import net.swordie.ms.enums.BeastTamerBeasts;
 import net.swordie.ms.loaders.SkillData;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static net.swordie.ms.client.jobs.legend.Aran.*;
 import static net.swordie.ms.client.jobs.legend.Mercedes.STAGGERING_STRIKES;
@@ -52,6 +49,23 @@ public class SkillConstants {
 
     public static final int MINING_SKILL = 92010000;
     public static final int HERBALISM_SKILL = 92000000;
+
+    public static final HashSet<Integer> KeydownSkills = new HashSet<>(
+            Arrays.asList(
+                    Shade.SPIRIT_INCARNATION,
+                    Shade.SPIRIT_FRENZY,
+                    BeastTamer.FISHY_SLAP,
+                    BeastTamer.TORNADO_FLIGHT,
+                    PinkBean.LETS_ROLL,
+                    Demon.VITALITY_VEIL,
+                    AngelicBuster.SOUL_RESONANCE,
+                    BlazeWizard.DRAGON_BLAZE_FIRST,
+                    Phantom.TEMPEST,
+                    Magician.LIGHTNING_ORB,
+                    Pirate.FALLING_STARS,
+                    Pirate.BACKUP_BEATDOWN,
+                    AngelicBuster.SUPREME_SUPERNOVA)
+    );
 
 
     //custom skill cd's
@@ -1531,23 +1545,6 @@ public class SkillConstants {
 
     public static boolean isKeydownCDSkill(int nSkillID)
     {
-        ArrayList<Integer> KeydownSkills = new ArrayList<>(
-                Arrays.asList(
-                        Shade.SPIRIT_INCARNATION,
-                        Shade.SPIRIT_FRENZY,
-                        BeastTamer.FISHY_SLAP,
-                        BeastTamer.TORNADO_FLIGHT,
-                        PinkBean.LETS_ROLL,
-                        Demon.VITALITY_VEIL,
-                        AngelicBuster.SOUL_RESONANCE,
-                        BlazeWizard.DRAGON_BLAZE_FIRST,
-                        Phantom.TEMPEST,
-                        Magician.LIGHTNING_ORB,
-                        Pirate.FALLING_STARS,
-                        Pirate.BACKUP_BEATDOWN,
-                        AngelicBuster.SUPREME_SUPERNOVA)
-        );
-
         return KeydownSkills.contains(nSkillID);
     }
 }
