@@ -50,7 +50,7 @@ public class SkillConstants {
     public static final int MINING_SKILL = 92010000;
     public static final int HERBALISM_SKILL = 92000000;
 
-    public static final HashSet<Integer> KeydownSkills = new HashSet<>(
+    public static final HashSet<Integer> KEYDOWN_SKILLS = new HashSet<>(
             Arrays.asList(
                     Shade.SPIRIT_INCARNATION,
                     Shade.SPIRIT_FRENZY,
@@ -1545,6 +1545,6 @@ public class SkillConstants {
 
     public static boolean isKeydownCDSkill(int nSkillID)
     {
-        return KeydownSkills.contains(nSkillID);
+        return KEYDOWN_SKILLS.contains(nSkillID);
     }
 }
