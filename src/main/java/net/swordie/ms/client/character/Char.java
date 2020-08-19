@@ -3020,7 +3020,7 @@ public class Char {
 			stats.put(Stat.hp, newHP);
 			write(WvsContext.statChanged(stats));
 		}
-		if(!whilstDeath && getHP() > 0) {
+		else if(getHP() > 0) {
 			setStat(Stat.hp, newHP);
 			stats.put(Stat.hp, newHP);
 			write(WvsContext.statChanged(stats));
