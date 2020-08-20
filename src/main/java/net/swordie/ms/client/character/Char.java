@@ -3988,6 +3988,10 @@ public class Char {
 			return true;
 		}
 	}
+	public void addSkillCooldown(int skillId, int time) {
+		addSkillCoolTime(skillId, System.currentTimeMillis() + time);
+		write(UserLocal.skillCooltimeSetM(skillId, time));
+	}
 
 	/**
 	 * Sets a skill's cooltime according to their property in the WZ files, and stores the moment where the skill
