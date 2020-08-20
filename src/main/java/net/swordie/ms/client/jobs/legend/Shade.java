@@ -63,6 +63,8 @@ public class Shade extends Job {
     public static final int SPIRIT_INCARNATION = 25121030;
 
     private int[] addedSkills = new int[] {
+            FOX_TROT,
+            SPIRIT_BOND_I,
     };
 
     private final int[] buffs = new int[]{
