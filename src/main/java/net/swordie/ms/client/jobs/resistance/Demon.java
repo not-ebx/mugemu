@@ -348,7 +348,7 @@ public class Demon extends Job {
 
     public void diabolicRecoveryHPRecovery() {
         TemporaryStatManager tsm = chr.getTemporaryStatManager();
-        if(tsm.hasStat(DiabolikRecovery)) {
+		if(tsm.hasStat(DiabolikRecovery)) {
             Skill skill = chr.getSkill(DIABOLIC_RECOVERY);
             byte slv = (byte) skill.getCurrentLevel();
             SkillInfo si = SkillData.getSkillInfoById(skill.getSkillId());

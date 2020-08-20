@@ -3000,7 +3000,7 @@ public class Char {
 	 * Heals character's MP and HP completely.
 	 */
 	public void healHPMP() {
-		heal(getMaxHP());
+		heal(getMaxHP(), true);
 		healMP(getMaxMP());
 	}
 
@@ -3009,17 +3009,24 @@ public class Char {
 	 *
 	 * @param amount The amount to heal.
 	 */
-	public void heal(int amount) {
+	public void heal(int amount, boolean whilstDeath) {
 		int curHP = getHP();
 		int maxHP = getMaxHP();
 		int newHP = curHP + amount > maxHP ? maxHP : curHP + amount;
 		Map<Stat, Object> stats = new HashMap<>();
-		setStat(Stat.hp, newHP);
-		stats.put(Stat.hp, newHP);
-		write(WvsContext.statChanged(stats));
+
+		if(whilstDeath || getHP() > 0) {
+			setStat(Stat.hp, newHP);
+			stats.put(Stat.hp, newHP);
+			write(WvsContext.statChanged(stats));
+		}
 		if (getParty() != null) {
 			getParty().broadcast(UserRemote.receiveHP(this), this);
 		}
+	}
+
+	public void heal(int amount) {
+		heal(amount, false);
 	}
 
 	/**

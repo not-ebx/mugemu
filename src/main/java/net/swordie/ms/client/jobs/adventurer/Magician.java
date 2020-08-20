@@ -390,6 +390,9 @@ public class Magician extends Beginner {
                 break;
             case RESURRECTION:
                 Party party = chr.getParty();
+                if(party == null) {
+                    chr.resetSkillCoolTime(skillID);
+                }
                 if(party != null) {
                     field = chr.getField();
                     Rect rect = chr.getPosition().getRectAround(si.getRects().get(0));
@@ -402,8 +405,7 @@ public class Magician extends Beginner {
                             collect(Collectors.toList());
                     for (PartyMember partyMember : eligblePartyMemberList) {
                         Char partyChr = partyMember.getChr();
-                        partyChr.heal(partyChr.getMaxHP());
-                        partyChr.healMP(partyChr.getMaxMP());
+                        partyChr.healHPMP();
                         partyChr.write(UserPacket.effect(Effect.skillAffected(skillID, (byte) 1, 0)));
                         partyChr.getField().broadcastPacket(UserRemote.effect(partyChr.getId(), Effect.skillAffected(skillID, (byte) 1, 0)));
                     }
@@ -620,7 +622,7 @@ public class Magician extends Beginner {
         }
         if(tsm.hasStat(VengeanceOfAngel)) {
             SkillInfo hsi = SkillData.getSkillInfoById(RIGHTEOUSLY_INDIGNANT);
-            healrate = (int) (healrate / ((double) 100 / (hsi.getValue(hp, 1)))); //TODO
+            healrate = (int) (healrate / ((double) 100 / (hsi.getValue(hp, 1))));
         }
         return healrate;
     }
@@ -876,8 +878,8 @@ public class Magician extends Beginner {
                         partyTSM.putCharacterStatValue(ReviveOnce, o1);
                         partyTSM.sendSetStatPacket();
                         if(partyChr != chr) {
-                          chr.getField().broadcastPacket(UserRemote.effect(partyChr.getId(), Effect.skillAffected(skillID, slv, 0)), partyChr);
-                          partyChr.write(UserPacket.effect(Effect.skillAffected(skillID, slv, 0)));
+                            chr.getField().broadcastPacket(UserRemote.effect(partyChr.getId(), Effect.skillAffected(skillID, slv, 0)), partyChr);
+                            partyChr.write(UserPacket.effect(Effect.skillAffected(skillID, slv, 0)));
                         }
                     }
                 } else {
@@ -1383,7 +1385,7 @@ public class Magician extends Beginner {
 
     public static void reviveByHeavensDoor(Char chr) {
         TemporaryStatManager tsm = chr.getTemporaryStatManager();
-        chr.heal(chr.getMaxHP());
+        chr.healHPMP();
         tsm.removeStatsBySkill(HEAVENS_DOOR);
         tsm.sendResetStatPacket();
         chr.chatMessage("You have been revived by Heaven's Door.");
