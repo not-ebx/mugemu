@@ -32,6 +32,7 @@ import net.swordie.ms.constants.GameConstants;
 import net.swordie.ms.constants.JobConstants;
 import net.swordie.ms.constants.SkillConstants;
 import net.swordie.ms.enums.*;
+import net.swordie.ms.handlers.EventManager;
 import net.swordie.ms.life.AffectedArea;
 import net.swordie.ms.life.Summon;
 import net.swordie.ms.life.mob.Mob;
@@ -43,9 +44,12 @@ import net.swordie.ms.world.field.Field;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static net.swordie.ms.client.character.skills.SkillStat.*;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.*;
+import static net.swordie.ms.client.jobs.adventurer.Beginner.NIMBLE_FEET;
+import static net.swordie.ms.client.jobs.adventurer.Beginner.RECOVERY;
 import static net.swordie.ms.client.jobs.adventurer.Warrior.PARASHOCK_GUARD;
 import static net.swordie.ms.client.jobs.cygnus.Mihile.*;
 
@@ -119,7 +123,9 @@ public abstract class Job {
 			BOSS_SLAYERS,
 			UNDETERRED,
 			FOR_THE_GUILD,
-			MAPLERUNNER_DASH
+			MAPLERUNNER_DASH,
+			NIMBLE_FEET,
+			RECOVERY
 	};
 
 	public Job(Char chr) {
@@ -378,11 +384,36 @@ public abstract class Job {
 				o2.nValue = si.getValue(indieForceSpeed, slv);
 				tsm.putCharacterStatValue(IndieForceSpeed, o2);
 				break;
+			case NIMBLE_FEET:
+				o1.nOption = 5 + 5 * slv;
+				o1.rOption = skillID;
+				o1.tOption = 4 * slv;
+				tsm.putCharacterStatValue(Speed, o1);
+				chr.addSkillCooldown(skillID, 60000);
+				break;
+			case RECOVERY:
+				o1.rOption = skillID;
+				o1.tOption = 30;
+				tsm.putCharacterStatValue(Restoration, o1);
+				recoveryInterval();
+				chr.addSkillCooldown(skillID, 600000);
+				break;
 			default:
 				sendStat = false;
 		}
 		if (sendStat) {
 			tsm.sendSetStatPacket();
+		}
+	}
+	public void recoveryInterval() {
+		if (chr.hasSkill(RECOVERY)) {
+			Skill skill = chr.getSkill(RECOVERY);
+			TemporaryStatManager tsm = chr.getTemporaryStatManager();
+			byte slv = (byte) skill.getCurrentLevel();
+			if (tsm.hasStat(Restoration)) {
+				chr.heal(24 * slv / 3);
+				EventManager.addEvent(this::recoveryInterval, 10, TimeUnit.SECONDS);
+			}
 		}
 	}
 
