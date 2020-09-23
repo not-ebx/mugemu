@@ -156,8 +156,6 @@ public class ItemOption {
         DAMreflect,
         HP,
         MP,
-        incMHPr,
-        incMMPr,
         time
     }
 }
