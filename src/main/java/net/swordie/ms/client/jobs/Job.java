@@ -654,6 +654,9 @@ public abstract class Job {
 		if (level > 10) {
 			chr.addStat(Stat.ap, 5);
 			stats.put(Stat.ap, (short) chr.getStat(Stat.ap));
+		}
+		if (level >= 50) {
+			chr.addHonorExp(700 + ((chr.getLevel() - 50) / 10) * 100);
 		} else {
 			if (level >= 6) {
 				chr.addStat(Stat.str, 4);
