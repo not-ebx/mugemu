@@ -111,7 +111,7 @@ public class ItemOption {
         } else {
             for (String currentString : split) {
                 String opt = removeSpecialCharacters(currentString.split(" ")[0]);
-                if (!currentString.equals("") && checkIfItemOptionTypeExists(opt)) {
+                if (!currentString.equals("") && doesItemOptionTypeExists(opt)) {
                     val = getMiscValuesByLevel(level).get(ItemOptionType.valueOf(opt));
                     str = str.replace("#" + opt, val + "");
                 }
@@ -120,7 +120,7 @@ public class ItemOption {
         return str;
     }
 
-    public boolean checkIfItemOptionTypeExists(String typeForCheck) {
+    public boolean doesItemOptionTypeExists(String typeForCheck) {
         for (ItemOptionType types : ItemOptionType.values()) {
             if (types.toString().equals(typeForCheck)) {
                 return true;
@@ -129,7 +129,7 @@ public class ItemOption {
         return false;
     }
 
-    public boolean checkIfBaseStatTypeExists(String typeForCheck) {
+    public boolean doesBaseStatTypeExists(String typeForCheck) {
         for (BaseStat types : BaseStat.values()) {
             if (types.toString().equals(typeForCheck)) {
                 return true;
