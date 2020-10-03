@@ -3,6 +3,7 @@ package net.swordie.ms.life.Merchant;
 import net.swordie.ms.Server;
 import net.swordie.ms.client.character.Char;
 import net.swordie.ms.client.character.items.Item;
+import net.swordie.ms.connection.OutPacket;
 import net.swordie.ms.connection.db.DatabaseManager;
 import net.swordie.ms.connection.packet.MiniroomPacket;
 import net.swordie.ms.constants.GameConstants;
@@ -287,5 +288,7 @@ public class Merchant extends Life {
         getField().broadcastPacket(MiniroomPacket.destroyShop(this));
     }
 
-
+    public void broadCastPacket(OutPacket outPacket) {
+        getVisitors().forEach(chr -> chr.write(outPacket));
+    }
 }

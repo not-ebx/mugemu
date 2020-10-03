@@ -985,7 +985,7 @@ public class AdminCommands {
     @Command(names = {"heal"}, requiredType = Tester)
     public static class Heal extends AdminCommand {
         public static void execute(Char chr, String[] args) {
-            chr.heal(Integer.parseInt(args[1]));
+            chr.heal(Integer.parseInt(args[1]), true);
         }
     }
 
