@@ -267,8 +267,9 @@ public class WvsContext {
         outPacket.encodeByte(0); // ?
         outPacket.encodeByte(demount);
 
-        if(isMigrate)
+        if(isMigrate) {
             temporaryStatManager.getToBroadcastAfterMigrate().add(outPacket);
+        }
 
         temporaryStatManager.getRemovedStats().clear();
         return outPacket;

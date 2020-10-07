@@ -2645,7 +2645,7 @@ public class Char {
 			write(UserLocal.setDressChanged(false, true));
 		}
 
-		afterMigrate(tsm);
+		afterMigrate();
 	}
 
 	/**
@@ -5053,13 +5053,15 @@ public class Char {
 		getClient().write(WvsContext.setMaplePoint(getUser().getMaplePoints()));
 	}
 
-	public void afterMigrate(TemporaryStatManager tsm) {
-		if(isChangingChannel())
+	public void afterMigrate() {
+		if(isChangingChannel()) {
 			setChangingChannel(false);
-		if(isInCashShop())
+		}
+		if(isInCashShop()) {
 			setInCashShop(false);
-		tsm.getToBroadcastAfterMigrate().forEach(this::write);
-		tsm.getToBroadcastAfterMigrate().clear();
+		}
+		getTemporaryStatManager().getToBroadcastAfterMigrate().forEach(this::write);
+		getTemporaryStatManager().getToBroadcastAfterMigrate().clear();
 	}
 
 	public boolean isInCashShop() {
