@@ -264,6 +264,8 @@ public class Char {
 	@Transient
 	private ZeroInfo zeroInfo;
 	@Transient
+	private boolean inCashShop;
+	@Transient
 	private int nickItem;
 	@Transient
 	private DamageSkinSaveData damageSkin = new DamageSkinSaveData(18, 2433063, false, "Je moeder");
@@ -2642,6 +2644,8 @@ public class Char {
 		if (JobConstants.isAngelicBuster(getJob())) {
 			write(UserLocal.setDressChanged(false, true));
 		}
+
+		afterMigrate(tsm);
 	}
 
 	/**
@@ -5048,4 +5052,22 @@ public class Char {
 		chatScriptMessage("You have gained " + maplePoint + " MaplePoint.");
 		getClient().write(WvsContext.setMaplePoint(getUser().getMaplePoints()));
 	}
+
+	public void afterMigrate(TemporaryStatManager tsm) {
+		if(isChangingChannel())
+			setChangingChannel(false);
+		if(isInCashShop())
+			setInCashShop(false);
+		tsm.getToBroadcastAfterMigrate().forEach(this::write);
+		tsm.getToBroadcastAfterMigrate().clear();
+	}
+
+	public boolean isInCashShop() {
+		return inCashShop;
+	}
+
+	public void setInCashShop(boolean inCashShop) {
+		this.inCashShop = inCashShop;
+	}
+
 }
