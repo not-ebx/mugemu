@@ -56,6 +56,8 @@ public class TemporaryStatManager {
     private List<TemporaryStatBase> twoStates = new ArrayList<>();
     private Set<AffectedArea> affectedAreas = new HashSet<>();
     private Map<BaseStat, Integer> baseStats = new HashMap<>();
+    private List<OutPacket> toBroadcastAfterMigrate = new ArrayList<>();
+
 
     public TemporaryStatManager(Char chr){
         this.chr = chr;
@@ -841,7 +843,7 @@ public class TemporaryStatManager {
             Warrior.finalPactEnd(chr);
         }
         getChr().getField().broadcastPacket(UserRemote.resetTemporaryStat(getChr()), getChr());
-        getChr().getClient().write(WvsContext.temporaryStatReset(this, demount));
+        getChr().getClient().write(WvsContext.temporaryStatReset(this, demount, getChr().isInCashShop() || getChr().isChangingChannel()));
     }
 
     public void removeAllDebuffs() {
@@ -967,5 +969,9 @@ public class TemporaryStatManager {
         } else {
             return getOptions(cts).stream().mapToLong(o -> o.nOption).sum();
         }
+    }
+
+    public List<OutPacket> getToBroadcastAfterMigrate() {
+        return toBroadcastAfterMigrate;
     }
 }
