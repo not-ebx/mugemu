@@ -6,6 +6,7 @@ import net.swordie.ms.connection.db.DatabaseManager;
 import net.swordie.ms.enums.*;
 import net.swordie.ms.life.drop.DropInfo;
 import net.swordie.ms.life.pet.PetSkill;
+import net.swordie.ms.loaders.EtcData;
 import net.swordie.ms.loaders.ItemData;
 import net.swordie.ms.loaders.containerclasses.EquipDrop;
 import net.swordie.ms.loaders.containerclasses.ItemInfo;
@@ -1289,18 +1290,8 @@ public class ItemConstants {
     }
 
     public static int getSoulSkillFromSoulID(int soulID) {
-        switch(soulID) {
-            case 256:
-            case 257:
-            case 258:
-            case 259:
-            case 260:
-            case 261:
-            case 262:
-            case 263:
-                return 80001340; // Advance of Magnus
-        }
-        return 0;
+        int itemId = soulID + SOUL_ITEM_BASE_ID - 1;
+        return EtcData.getSkillBySoulItem(itemId);
     }
 
     public static boolean isMobCard(int itemID) {
