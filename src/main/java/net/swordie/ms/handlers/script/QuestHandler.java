@@ -65,6 +65,10 @@ public class QuestHandler {
             return;
         }
         QuestInfo qi = QuestData.getQuestInfoById(questID);
+        if (qi == null) {
+            chr.chatMessage(String.format("Could not find quest info %d.", questID));
+            return;
+        }
         switch (qt) {
             case QuestReq_AcceptQuest:
                 if (qm.canStartQuest(questID)) {
