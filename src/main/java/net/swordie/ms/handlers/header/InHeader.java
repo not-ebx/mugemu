@@ -72,7 +72,7 @@ public enum InHeader {
     UPDATE_CHARACTER_CARD_REQUEST(143),
     AUTH_HEARTBEAT(147),
     CLIENT_ERROR(149),
-    CLIENT_START(152),
+    APPLIED_HOT_FIX(152),
     SERVERSTATUS_REQUEST(-1), // disconnects upon sending message (no error given)
     WVS_SET_UP_STEP(154),
     WVS_CRASH_CALLBACK(155),
