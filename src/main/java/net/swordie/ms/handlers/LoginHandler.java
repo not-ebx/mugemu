@@ -7,7 +7,6 @@ import net.swordie.ms.client.User;
 import net.swordie.ms.client.character.BroadcastMsg;
 import net.swordie.ms.client.character.Char;
 import net.swordie.ms.client.character.CharacterStat;
-import net.swordie.ms.client.character.keys.FuncKeyMap;
 import net.swordie.ms.client.character.items.BodyPart;
 import net.swordie.ms.client.character.items.Equip;
 import net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat;
@@ -32,6 +31,12 @@ import net.swordie.ms.connection.packet.Login;
 import net.swordie.ms.world.Channel;
 import net.swordie.ms.Server;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static net.swordie.ms.enums.InvType.EQUIPPED;
 
@@ -58,9 +63,43 @@ public class LoginHandler {
         client.write(Login.sendAuthServer(false));
     }
 
-    @Handler(op = InHeader.CLIENT_START)
-    public static void handleClientStart(Client client, InPacket inPacket) {
-        client.write(Login.sendStart());
+    @Handler(op = InHeader.APPLIED_HOT_FIX)
+    public static void handleAppliedHotFix(Client client, InPacket inPacket) {
+        // First 4 bytes of a SHA1 hash of Data.wz, 0's if does not exist
+        byte[] appliedHotFix = inPacket.decodeArr(4);
+        boolean incorrectHotFix = true;
+        File dataWz = new File("resources/Data.wz");
+        if (dataWz.exists()) {
+            try {
+                byte[] hotFix = Files.readAllBytes(dataWz.toPath());
+                byte[] dataWzHash = Util.sha1Hash(hotFix);
+                if (dataWzHash == null)  {
+                    log.error("Data.wz hashing has failed.");
+                    incorrectHotFix = true;
+                    client.write(Login.setHotFix(incorrectHotFix));
+                    return;
+                }
+                // Only care about the first 4 bytes of the hash
+                dataWzHash = Arrays.copyOfRange(dataWzHash, 0, 4);
+                if (Arrays.equals(dataWzHash, appliedHotFix))  {
+                    incorrectHotFix = false;
+                    client.write(Login.setHotFix(incorrectHotFix));
+                    return;
+                }
+                ArrayList<Byte> encryptedHotFixLen = new ArrayList<>();
+                int cryptHotFixLen = hotFix.length << 1;
+                while (cryptHotFixLen > 0x80) {
+                    encryptedHotFixLen.add((byte) ((cryptHotFixLen & 0x7F) | 0x80));
+                    cryptHotFixLen = cryptHotFixLen >> 7;
+                }
+                encryptedHotFixLen.add((byte) cryptHotFixLen);
+                client.write(Login.setHotFix(encryptedHotFixLen, dataWzHash, hotFix));
+                return;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        client.write(Login.setHotFix(incorrectHotFix));
     }
 
     @Handler(op = InHeader.PONG)
