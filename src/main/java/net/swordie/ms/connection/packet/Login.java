@@ -16,10 +16,7 @@ import net.swordie.ms.Server;
 import net.swordie.ms.world.World;
 import net.swordie.ms.util.FileTime;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Tim on 2/28/2017.
@@ -51,11 +48,19 @@ public class Login {
         return outPacket;
     }
 
-    public static OutPacket sendStart() {
-        OutPacket outPacket = new OutPacket(OutHeader.CLIENT_START.getValue());
+    public static OutPacket setHotFix(boolean incorrectHotFix) {
+        OutPacket outPacket = new OutPacket(OutHeader.SET_HOT_FIX.getValue());
+        outPacket.encodeByte(incorrectHotFix);
+        return outPacket;
+    }
 
-        outPacket.encodeByte(true);
-
+    public static OutPacket setHotFix(ArrayList<Byte> encryptedHotFixLen, byte[] dataWzHash, byte[] hotFix) {
+        OutPacket outPacket = new OutPacket(OutHeader.SET_HOT_FIX.getValue());
+        for(Byte lenByte : encryptedHotFixLen)  {
+            outPacket.encodeByte(lenByte);
+        }
+        outPacket.encodeArr(dataWzHash);
+        outPacket.encodeArr(hotFix);
         return outPacket;
     }
 

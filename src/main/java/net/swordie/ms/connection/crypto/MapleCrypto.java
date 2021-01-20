@@ -79,13 +79,13 @@ public final class MapleCrypto {
         // key changes later on in version
         cipher.setKey(new byte[]{
                 (byte) 0xB3, 0x00, 0x00, 0x00,
-                0x2C, 0x00, 0x00, 0x00,
+                (byte) 0x2C, 0x00, 0x00, 0x00,
                 (byte) 0x96, 0x00, 0x00, 0x00,
                 (byte) 0x65, 0x00, 0x00, 0x00,
                 (byte) 0x99, 0x00, 0x00, 0x00,
-                0x32, 0x00, 0x00, 0x00,
+                (byte) 0x32, 0x00, 0x00, 0x00,
                 (byte) 0xD0, 0x00, 0x00, 0x00,
-                0x41, 0x00, 0x00, 0x00
+                (byte) 0x41, 0x00, 0x00, 0x00
         });
     }
 
@@ -150,16 +150,28 @@ public final class MapleCrypto {
      * @return the header to be sent with this net.swordie.ms.connection.packet.
      */
     public static byte[] getHeader(int delta, byte[] gamma) {
-        int a = (gamma[3]) & 0xFF;
-        a |= (gamma[2] << 8) & 0xFF00;
-        a ^= sVersion;
-        int b = ((delta << 8) & 0xFF00) | (delta >>> 8);
-        int c = a ^ b;
-        byte[] ret = new byte[4];
-        ret[0] = (byte) ((a >>> 8) & 0xFF);
-        ret[1] = (byte) (a & 0xFF);
-        ret[2] = (byte) ((c >>> 8) & 0xFF);
-        ret[3] = (byte) (c & 0xFF);
+        int rawSeq = (gamma[3]) & 0xFF;
+        rawSeq |= (gamma[2] << 8) & 0xFF00;
+        rawSeq ^= sVersion;
+        int dataLen = ((delta & 0xFF) << 8) | ((delta & 0xFF00) >>> 8);
+        dataLen ^= rawSeq;
+        int headerLen = 4;
+        if (delta >= 0xFF00)  {
+            headerLen += 4;
+            dataLen = 0xFFFF ^ rawSeq;
+        }
+        byte[] ret = new byte[headerLen];
+        ret[0] = (byte) ((rawSeq >>> 8) & 0xFF);
+        ret[1] = (byte) (rawSeq & 0xFF);
+        ret[2] = (byte) ((dataLen >>> 8) & 0xFF);
+        ret[3] = (byte) (dataLen & 0xFF);
+        if (headerLen > 4)  {
+            delta ^= ((rawSeq & 0xFF) << 8) | ((rawSeq & 0xFF00) >>> 8);
+            ret[4] = (byte) (delta & 0xFF);
+            ret[5] = (byte) ((delta >> 8) & 0xFF);
+            ret[6] = (byte) ((delta >> 16) & 0xFF);
+            ret[7] = (byte) ((delta >> 24) & 0xFF);
+        }
         return ret;
     }
 

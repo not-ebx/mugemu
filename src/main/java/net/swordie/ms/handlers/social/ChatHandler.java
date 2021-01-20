@@ -23,10 +23,7 @@ import org.apache.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static net.swordie.ms.enums.ChatType.*;
@@ -140,8 +137,11 @@ public class ChatHandler {
     @Handler(op = InHeader.GROUP_MESSAGE)
     public static void handleGroupMessage(Char chr, InPacket inPacket) {
         byte type = inPacket.decodeByte(); // party = 1, alliance = 3
-        byte idk2 = inPacket.decodeByte();
-        int idk3 = inPacket.decodeInt(); // party id?
+        byte loopSize = inPacket.decodeByte();
+        Set<Integer> charIds = new HashSet<>();
+        for (int i = 0; i < loopSize; i++) {
+            charIds.add(inPacket.decodeInt());
+        }
         String msg = inPacket.decodeString();
         if (msg.length() > 1000 || !Util.isValidString(msg)) {
             return;
