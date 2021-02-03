@@ -1,9 +1,11 @@
 package net.swordie.ms.loaders;
 
 import net.swordie.ms.ServerConstants;
+import net.swordie.ms.client.character.items.BossSoul;
 import net.swordie.ms.client.character.items.ItemOption;
 import net.swordie.ms.client.character.items.SetEffect;
 import net.swordie.ms.enums.ScrollStat;
+import net.swordie.ms.enums.SoulType;
 import net.swordie.ms.loaders.containerclasses.AndroidInfo;
 import net.swordie.ms.util.Loader;
 import net.swordie.ms.util.Saver;
@@ -25,6 +27,7 @@ public class EtcData {
     private static final Map<Integer, SetEffect> setEffects = new HashMap<>();
     private static final Map<Integer, Integer> characterCards = new HashMap<>();
     private static Map<Integer, AndroidInfo> androidInfo = new HashMap<>();
+    private static Map<Integer, BossSoul> soulCollection = new HashMap<>();
 
     private static final String SCROLL_STAT_ID = "1";
     private static final String ITEM_OPTION_ID = "2";
@@ -104,6 +107,86 @@ public class EtcData {
             }
         }
     }
+
+    public static void loadSoulCollectionFromWz() {
+        String wzDir = ServerConstants.WZ_DIR + "/Etc.wz/SoulCollection.img.xml";
+        File dir = new File(wzDir);
+        Node node = XMLApi.getFirstChildByNameBF(XMLApi.getRoot(dir), "SoulCollection.img");
+        List<Node> nodes = XMLApi.getAllChildren(node);
+        for (Node mainNode : nodes) {
+            int skillId = 0;
+            int skillIdH = 0;
+            Node soulSkill = XMLApi.getFirstChildByNameBF(mainNode, "soulSkill");
+            Node soulSkillH = XMLApi.getFirstChildByNameBF(mainNode, "soulSkillH");
+            if (soulSkill != null) {
+                skillId = Integer.parseInt(XMLApi.getNamedAttribute(soulSkill, "value"));
+            }
+            if (soulSkillH != null) {
+                skillIdH = Integer.parseInt(XMLApi.getNamedAttribute(soulSkillH, "value"));
+            }
+
+            Node soulList = XMLApi.getFirstChildByNameBF(mainNode, "soulList");
+            List<Node> soulNodes = XMLApi.getAllChildren(soulList);
+            for (int i = 0; i < soulNodes.size(); i++) {
+                Node soulNode = soulNodes.get(i);
+                int soul1 = -1;
+                int soul2 = -1;
+                Node soul1Node = XMLApi.getFirstChildByNameBF(soulNode, "0");
+                Node soul2Node = XMLApi.getFirstChildByNameBF(soulNode, "1");
+                if (soul1Node != null) {
+                    soul1 = Integer.valueOf(XMLApi.getNamedAttribute(soul1Node, "value"));
+                }
+                if (soul2Node != null) {
+                    soul2 = Integer.valueOf(XMLApi.getNamedAttribute(soul2Node, "value"));
+                }
+                int finalSkillId = -1;
+                if (i <= SoulType.Radiant.getVal()) { //normal soul
+                    finalSkillId = skillId;
+                } else { //hard soul
+                    finalSkillId = skillIdH;
+                }
+                BossSoul bs = new BossSoul(finalSkillId, SoulType.getSoulTypeByVal(i));
+                if (finalSkillId != -1) {
+                    if (soul1 != -1) {
+                        soulCollection.put(soul1, bs);
+                    }
+                    if (soul2 != -1) {
+                        soulCollection.put(soul2, bs);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void saveSoulCollection(String dir) {
+        Util.makeDirIfAbsent(dir);
+        try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(new File(dir + "/" + "soulCollection" + ".dat")))) {
+            dataOutputStream.writeInt(soulCollection.size());
+            for (Map.Entry<Integer, BossSoul> soulEntry : soulCollection.entrySet()) {
+                dataOutputStream.writeInt(soulEntry.getKey());
+                dataOutputStream.writeInt(soulEntry.getValue().getSkillId());
+                dataOutputStream.writeByte(soulEntry.getValue().getSoulType().getVal());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void loadSoulCollectionFromFile(String dir) {
+        Util.makeDirIfAbsent(dir);
+        try (DataInputStream dataInputStream = new DataInputStream(new FileInputStream(new File(dir + "/" + "soulCollection" + ".dat")))) {
+            int size = dataInputStream.readInt();
+            for (int i = 0; i < size; i++) {
+                int itemId = dataInputStream.readInt();
+                int skillId = dataInputStream.readInt();
+                byte soulType = dataInputStream.readByte();
+                soulCollection.put(itemId, new BossSoul(skillId, soulType));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void loadCharacterCardsFromWz() {
         File file = new File(String.format("%s/Etc.wz/CharacterCard.img.xml", ServerConstants.WZ_DIR));
@@ -277,6 +360,8 @@ public class EtcData {
         saveSetEffects(ServerConstants.DAT_DIR + "/etc/setEffects");
         loadCharacterCardsFromWz();
         saveCharacterCards(ServerConstants.DAT_DIR + "/etc");
+        loadSoulCollectionFromWz();
+        saveSoulCollection(ServerConstants.DAT_DIR);
         log.info(String.format("Completed generating etc data in %dms.", System.currentTimeMillis() - start));
     }
 
@@ -339,4 +424,17 @@ public class EtcData {
     public static int getSkillByFamiliarID(int familiarID) {
         return familiarSkills.get(familiarID);
     }
+
+    public static int getSkillBySoulItem(int soulItemId) {
+        BossSoul bs = getBossSoulByItem(soulItemId);
+        return bs != null ? bs.getSkillId() : 0;
+    }
+
+    public static BossSoul getBossSoulByItem(int soulItemId) {
+        if (soulCollection.isEmpty()) {
+            loadSoulCollectionFromFile(ServerConstants.DAT_DIR);
+        }
+        return soulCollection.getOrDefault(soulItemId, null);
+    }
+
 }

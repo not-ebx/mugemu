@@ -253,7 +253,7 @@ public class WvsContext {
         return outPacket;
     }
 
-    public static OutPacket temporaryStatReset(TemporaryStatManager temporaryStatManager, boolean demount) {
+    public static OutPacket temporaryStatReset(TemporaryStatManager temporaryStatManager, boolean demount, boolean isMigrate) {
         OutPacket outPacket = new OutPacket(OutHeader.TEMPORARY_STAT_RESET);
 
         for (int i : temporaryStatManager.getRemovedMask()) {
@@ -266,6 +266,10 @@ public class WvsContext {
         }
         outPacket.encodeByte(0); // ?
         outPacket.encodeByte(demount);
+
+        if(isMigrate) {
+            temporaryStatManager.getToBroadcastAfterMigrate().add(outPacket);
+        }
 
         temporaryStatManager.getRemovedStats().clear();
         return outPacket;

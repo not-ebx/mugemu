@@ -276,6 +276,7 @@ public class MigrationHandler {
             return;
         }
 
+        chr.setInCashShop(true);
         chr.punishLieDetectorEvasion();
         CashShop cs = Server.getInstance().getCashShop();
         c.write(Stage.setCashShop(chr, cs));

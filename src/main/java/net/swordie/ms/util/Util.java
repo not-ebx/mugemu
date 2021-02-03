@@ -1,13 +1,14 @@
 package net.swordie.ms.util;
 
 import io.netty.buffer.ByteBuf;
-import javafx.print.Printer;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.function.Predicate;
@@ -488,6 +489,22 @@ public class Util {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Compute the SHA-1 hash of the bytes in the given buffer
+     * @param toHash ByteBuffer
+     * @return byte[]
+     */
+    public static byte[] sha1Hash(byte[] toHash) {
+        try {
+            MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+            crypt.update(toHash);
+            return crypt.digest();
+        }
+        catch (NoSuchAlgorithmException nsae)   {
+            return null;
         }
     }
 }
