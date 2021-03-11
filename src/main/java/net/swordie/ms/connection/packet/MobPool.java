@@ -191,6 +191,16 @@ public class MobPool {
         return outPacket;
     }
 
+    public static OutPacket effectByItem(Mob mob, int itemID, boolean success) {
+        OutPacket outPacket = new OutPacket(OutHeader.MOB_EFFECT_BY_ITEM);
+
+        outPacket.encodeInt(mob.getObjectId());
+        outPacket.encodeInt(itemID);
+        outPacket.encodeByte(success);
+
+        return outPacket;
+    }
+
     public static OutPacket affected(Mob mob, int skillID, int slv, boolean userSkill, short delay) {
         OutPacket outPacket = new OutPacket(OutHeader.MOB_AFFECTED);
 

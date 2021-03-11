@@ -30,6 +30,8 @@ public class ItemInfo {
     private int senseEXP;
     private Set<Integer> questIDs = new HashSet<>();
     private int mobID;
+    private int mobHP;
+    private int createID;
     private int npcID;
     private int linkedID;
     private boolean monsterBook;
@@ -187,6 +189,22 @@ public class ItemInfo {
 
     public int getMobID() {
         return mobID;
+    }
+
+    public void setCreateID(int createID) {
+        this.createID = createID;
+    }
+
+    public int getCreateID() {
+        return this.createID;
+    }
+
+    public void setMobHP(int mobHP) {
+        this.mobHP = mobHP;
+    }
+
+    public int getMobHP() {
+        return mobHP;
     }
 
     public void setNpcID(int npcID) {
