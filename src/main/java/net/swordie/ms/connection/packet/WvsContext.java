@@ -753,12 +753,12 @@ public class WvsContext {
         return outPacket;
     }
 
-    public static OutPacket bridleMobCatchFail(int itemID) {
+    public static OutPacket bridleMobCatchFail(int itemID, boolean elementRock) {
         OutPacket outPacket = new OutPacket(OutHeader.BRIDLE_MOB_CATCH_FAIL);
 
-        outPacket.encodeByte(0);
+        outPacket.encodeByte(elementRock);//rock?
         outPacket.encodeInt(itemID);
-        outPacket.encodeInt(0);
+        outPacket.encodeInt(0); //ignored
 
         return outPacket;
     }
