@@ -187,15 +187,25 @@ public class ItemInfo {
         this.mobID = mobID;
     }
 
-    public int getMobID() { return mobID; }
+    public int getMobID() {
+        return mobID;
+    }
 
-    public void setCreateID(int createID) { this.createID = createID;}
+    public void setCreateID(int createID) {
+        this.createID = createID;
+    }
 
-    public int getCreateID() { return this.createID; }
+    public int getCreateID() {
+        return this.createID;
+    }
 
-    public void setMobHP(int mobHP) { this.mobHP = mobHP; }
+    public void setMobHP(int mobHP) {
+        this.mobHP = mobHP;
+    }
 
-    public int getMobHP() { return mobHP; }
+    public int getMobHP() {
+        return mobHP;
+    }
 
     public void setNpcID(int npcID) {
         this.npcID = npcID;
