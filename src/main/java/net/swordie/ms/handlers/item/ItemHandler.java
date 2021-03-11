@@ -18,6 +18,7 @@ import net.swordie.ms.constants.SkillConstants;
 import net.swordie.ms.enums.*;
 import net.swordie.ms.handlers.Handler;
 import net.swordie.ms.handlers.header.InHeader;
+import net.swordie.ms.life.mob.Mob;
 import net.swordie.ms.life.pet.PetSkill;
 import net.swordie.ms.loaders.FieldData;
 import net.swordie.ms.loaders.ItemData;
@@ -34,6 +35,7 @@ import net.swordie.ms.world.field.FieldInstanceType;
 import net.swordie.ms.world.field.Portal;
 import org.apache.log4j.Logger;
 
+import java.io.PrintStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -1025,6 +1027,44 @@ public class ItemHandler {
             chr.write(WvsContext.changeSkillRecordResult(skills, true, false, false, false));
             chr.write(WvsContext.receiveHyperStatSkillResetResult(chr.getId(), true, true));
         }
+    }
+
+    @Handler(op = InHeader.USER_BRIDLE_ITEM_USE_REQUEST)
+    public static void handleUserBridleItemUseRequest(Char chr, InPacket inPacket) {
+        inPacket.decodeInt(); // tick
+        short pos = inPacket.decodeShort();// // nPOS
+        int itemID = inPacket.decodeInt();// nItemID
+        int mobId = inPacket.decodeInt(); // apMob
+
+        Item item = chr.getInventoryByType(CONSUME).getItemBySlot(pos);
+        Mob mob = (Mob) chr.getField().getLifeByObjectID(mobId);
+
+        if (item.getItemId() != itemID || (mob == null || mob.getHp() <= 0)) {
+            chr.dispose();
+            return;
+        }
+
+        if (chr != null && chr.getHP() > 0 && ItemConstants.isBridleItem(itemID)) {
+            ItemInfo bridle = ItemData.getItemInfoByID(itemID);
+            if (mob.getTemplateId() == bridle.getMobID()) {
+                if (mob.getHp() < (mob.getMaxHp() * bridle.getMobHP()/100)) { //success/failure hp check
+                    // do success handler
+                    chr.write(MobPool.effectByItem(mob, item.getItemId(), true));
+                    
+                    chr.consumeItem(item); // consume the bridle
+                    chr.addItemToInventory(bridle.getCreateID(), 1);//gives the bridle reward
+                    mob.die(false);
+                } else {
+                    // do fail handler
+                    chr.write(WvsContext.bridleMobCatchFail(item.getItemId()));
+
+                }
+            }
+
+        }
+
+        chr.dispose();
+
     }
 
 

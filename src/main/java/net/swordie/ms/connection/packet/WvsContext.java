@@ -753,6 +753,16 @@ public class WvsContext {
         return outPacket;
     }
 
+    public static OutPacket bridleMobCatchFail(int itemID) {
+        OutPacket outPacket = new OutPacket(OutHeader.BRIDLE_MOB_CATCH_FAIL);
+
+        outPacket.encodeByte(0);
+        outPacket.encodeInt(itemID);
+        outPacket.encodeInt(0);
+
+        return outPacket;
+    }
+
     public static OutPacket cashPetPickUpOnOffResult(boolean changed, boolean on) {
         OutPacket outPacket = new OutPacket(OutHeader.CASHPET_PICK_UP_ON_OFF_RESULT);
 

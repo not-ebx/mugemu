@@ -1,6 +1,7 @@
 package net.swordie.ms.connection.packet;
 
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.client.character.items.Item;
 import net.swordie.ms.connection.OutPacket;
 import net.swordie.ms.constants.BossConstants;
 import net.swordie.ms.handlers.header.OutHeader;
@@ -187,6 +188,16 @@ public class MobPool {
         outPacket.encodeInt(skillID);
         outPacket.encodeInt(charId);
         outPacket.encodeShort(hit);
+
+        return outPacket;
+    }
+
+    public static OutPacket effectByItem(Mob mob, int itemID, boolean success) {
+        OutPacket outPacket = new OutPacket(OutHeader.MOB_EFFECT_BY_ITEM);
+
+        outPacket.encodeInt(mob.getObjectId());
+        outPacket.encodeInt(itemID);
+        outPacket.encodeByte(success);
 
         return outPacket;
     }

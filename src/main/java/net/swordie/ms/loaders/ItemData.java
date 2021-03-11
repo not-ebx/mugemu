@@ -473,6 +473,8 @@ public class ItemData {
             itemInfo.setNotConsume(dataInputStream.readBoolean());
             itemInfo.setMonsterBook(dataInputStream.readBoolean());
             itemInfo.setMobID(dataInputStream.readInt());
+            itemInfo.setCreateID(dataInputStream.readInt());
+            itemInfo.setMobHP(dataInputStream.readInt());
             itemInfo.setNpcID(dataInputStream.readInt());
             itemInfo.setLinkedID(dataInputStream.readInt());
             itemInfo.setScript(dataInputStream.readUTF());
@@ -549,6 +551,8 @@ public class ItemData {
                 dataOutputStream.writeBoolean(ii.isNotConsume());
                 dataOutputStream.writeBoolean(ii.isMonsterBook());
                 dataOutputStream.writeInt(ii.getMobID());
+                dataOutputStream.writeInt(ii.getCreateID());
+                dataOutputStream.writeInt(ii.getMobHP());
                 dataOutputStream.writeInt(ii.getNpcID());
                 dataOutputStream.writeInt(ii.getLinkedID());
                 dataOutputStream.writeUTF(ii.getScript());
@@ -998,11 +1002,15 @@ public class ItemData {
                                 case "delayMsg":
                                 case "bridlePropZeroMsg":
                                 case "create":
+                                    item.setCreateID(intValue);
+                                    break;
                                 case "nomobMsg":
                                 case "bridleProp":
                                 case "bridlePropChg":
                                 case "bridleMsgType":
                                 case "mobHP":
+                                    item.setMobHP(intValue);
+                                    break;
                                 case "left":
                                 case "right":
                                 case "top":

@@ -1591,6 +1591,10 @@ public class ItemConstants {
         return itemID / 10000 == 251;
     }
 
+    public static boolean isBridleItem(int itemID) {
+        return itemID / 10000 == 227;
+    }
+
     public static Set<DropInfo> getConsumableMobDrops(int level) {
         level = Math.min(100, (level / 20) * 20); // round it to the nearest 20th level + max of level 100
         return consumableDropsPerLevel.getOrDefault(level, new HashSet<>());
