@@ -35,7 +35,6 @@ import net.swordie.ms.world.field.FieldInstanceType;
 import net.swordie.ms.world.field.Portal;
 import org.apache.log4j.Logger;
 
-import java.io.PrintStream;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -1050,7 +1049,7 @@ public class ItemHandler {
                 if (mob.getHp() < (mob.getMaxHp() * bridle.getMobHP()/100)) { //success/failure hp check
                     // do success handler
                     chr.write(MobPool.effectByItem(mob, item.getItemId(), true));
-                    
+
                     chr.consumeItem(item); // consume the bridle
                     chr.addItemToInventory(bridle.getCreateID(), 1);//gives the bridle reward
                     mob.die(false);
