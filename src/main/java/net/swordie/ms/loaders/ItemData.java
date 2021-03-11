@@ -1001,16 +1001,10 @@ public class ItemData {
                                 case "unitPrice":
                                 case "delayMsg":
                                 case "bridlePropZeroMsg":
-                                case "create":
-                                    item.setCreateID(intValue);
-                                    break;
                                 case "nomobMsg":
                                 case "bridleProp":
                                 case "bridlePropChg":
                                 case "bridleMsgType":
-                                case "mobHP":
-                                    item.setMobHP(intValue);
-                                    break;
                                 case "left":
                                 case "right":
                                 case "top":
@@ -1318,6 +1312,12 @@ public class ItemData {
                                     break;
                                 case "setItemCategory":
                                     item.putScrollStat(setItemCategory, intValue);
+                                    break;
+                                case "create":
+                                    item.setCreateID(intValue);
+                                    break;
+                                case "mobHP":
+                                    item.setMobHP(intValue);
                                     break;
                                 default:
                                     if (LOG_UNKS) {
