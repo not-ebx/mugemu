@@ -22,4 +22,3 @@ select = sm.sendNext("You're planning to go to the Hallowed Ground? Good idea. Y
                 + thunderString)
 
 sm.warp(maps[select], 0)
-sm.dispose()

@@ -9,5 +9,3 @@ if sm.hasQuestCompleted(CYGNUS_GARDEN_QUEST):
 elif sm.hasQuest(CYGNUS_GARDEN_QUEST):
     sm.chat("The Cygnus Garden has been located.")
     sm.setQRValue(CYGNUS_GARDEN_QUEST, "find", False)    
-else:
-    sm.dispose()

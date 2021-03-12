@@ -9,5 +9,3 @@ if sm.hasQuest(SCOUTING_THE_STRONGHOLD):
     sm.setQRValue(SCOUTING_THE_STRONGHOLD, "end", False)
 elif sm.hasQuestCompleted(SCOUTING_THE_STRONGHOLD):
     sm.warp(KNIGHT_DISTRICT_1)
-else:
-    sm.dispose()

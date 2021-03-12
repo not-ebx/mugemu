@@ -6,5 +6,3 @@ SECRET_GROVE = 271030410
 
 if sm.hasQuest(RESCUE_NEINHART):
     sm.warpInstanceIn(SECRET_GROVE) #Secret Grove
-else:
-    sm.dispose()
