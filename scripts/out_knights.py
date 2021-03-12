@@ -3,5 +3,4 @@ STRONGHOLD_ENTRANCE = 271030000
 
 if sm.hasQuest(SCOUTING_THE_STRONGHOLD) or sm.hasQuestCompleted(SCOUTING_THE_STRONGHOLD):
     warp(STRONGHOLD_ENTRANCE)
-
-sm.dipose()
+sm.dispose()

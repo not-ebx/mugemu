@@ -11,3 +11,4 @@ sm.sendNext("Thank you for saving me, but I'll remain here. My"
 sm.sendSay("Please tell Alex my decision.")
 sm.sendPrev("And please...stop her. There's no way to get the old"
             "\r\nCygnus back. We only have one option...")
+sm.dispose()
