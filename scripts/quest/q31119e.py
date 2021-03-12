@@ -1,4 +1,4 @@
-# Dark Ereve: Mutan Tiru Forest
+# Dark Ereve: Mutant Tiru Forest
 # Quest: Forest in Time
 
 ANNE = 2142008
