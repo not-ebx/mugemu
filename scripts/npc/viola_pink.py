@@ -13,5 +13,9 @@ if abs(sm.getObjectPositionX() - (sm.getChr().getPosition().getX())) > MIN_DIST:
                     "\r\nyou're too far. Go a little closer.")
 else:
     if sm.hasQuest(JOHNS_PINK):
-        sm.giveItem(PINK_VIOLA, 10)
+        if sm.canHold(PINK_VIOLA):
+            sm.giveItem(PINK_VIOLA, 10)
+        else:
+            sm.sendSayOkay("Please make more space in your ETC inventory.")
+            sm.dispose()
     sm.warp(SLEEPYWOOD)
