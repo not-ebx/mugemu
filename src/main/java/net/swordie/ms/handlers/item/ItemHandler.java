@@ -1047,12 +1047,14 @@ public class ItemHandler {
             ItemInfo bridle = ItemData.getItemInfoByID(itemID);
             if (mob.getTemplateId() == bridle.getMobID()) {
                 if (mob.getHp() < (mob.getMaxHp() * bridle.getMobHP() / 100)) { //success/failure hp check
-                    // do success handler
-                    chr.write(MobPool.effectByItem(mob, item.getItemId(), true));
-
-                    chr.consumeItem(item); // consume the bridle
-                    chr.addItemToInventory(bridle.getCreateID(), 1);//gives the bridle reward
-                    mob.die(false);
+                    if (chr.canHold(bridle.getCreateID())) { // check if we have space
+                        chr.write(MobPool.effectByItem(mob, item.getItemId(), true));// do success handler
+                        chr.consumeItem(item); // consume the bridle
+                        chr.addItemToInventory(bridle.getCreateID(), 1);//gives the bridle reward
+                        mob.die(false);
+                    } else {
+                        chr.chatMessage("Please make more space in your inventory.");
+                    }
                 } else {
                     // do fail handler
                     chr.write(WvsContext.bridleMobCatchFail(item.getItemId(), item.getItemId() == 2270002));
