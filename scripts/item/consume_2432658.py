@@ -1,5 +1,5 @@
 # Sweet Tea Cake Damage Skin
-success = sm.addDamageSkin(2432154)
+success = sm.addDamageSkin(2432658)
 if success:
     sm.chat("The Sweet Tea Cake Damage Skin has been added to your account's damage skin collection.")
-    # sm.consumeItem(2432154)
+    # sm.consumeItem(2432658)

@@ -1,5 +1,5 @@
 # Singles Army Damage Skin
-success = sm.addDamageSkin(2432592)
+success = sm.addDamageSkin(2433263)
 if success:
     sm.chat("The Singles Army Damage Skin has been added to your account's damage skin collection.")
-    # sm.consumeItem(2432592)
+    # sm.consumeItem(2433263)

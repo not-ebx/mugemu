@@ -1,5 +1,5 @@
 # Snowflake Damage Skin
-success = sm.addDamageSkin(2432355)
+success = sm.addDamageSkin(2432972)
 if success:
     sm.chat("The Snowflake Damage Skin has been added to your account's damage skin collection.")
-    # sm.consumeItem(2432355)
+    # sm.consumeItem(2432972)
