@@ -1125,9 +1125,9 @@ public class SkillConstants {
         return skillID >= 80000400 && skillID <= 80000418;
     }
 
-    public static int getTotalHyperStatSpByLevel(short level) {
+    public static int getTotalHyperStatSpByLevel(short currentlevel) {
         int sp = 0;
-        for (int i = 140; i <= level; i++) {
+        for (short level = 140; level <= currentlevel; level++) {
             sp += getHyperStatSpByLv(level);
         }
         return sp;
