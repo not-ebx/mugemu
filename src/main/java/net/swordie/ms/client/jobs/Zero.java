@@ -194,6 +194,7 @@ public class Zero extends Job {
         short level = chr.getLevel();
         chr.addStat(Stat.mhp, 500);
         chr.addStat(Stat.ap, 5);
+        chr.addHonorExp(700 + ((chr.getLevel() - 50) / 10) * 100);
         int sp = 3;
         if (level > 100 && (level % 10) % 3 == 0) {
             sp = 6; // double sp on levels ending in 3/6/9
