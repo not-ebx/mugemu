@@ -2746,8 +2746,12 @@ public class ScriptManagerImpl implements ScriptManager {
 		mob.getField().broadcastPacket(MobPool.mobAttackBlock(mob, blockedSkills));
 	}
 
-	public void changeFootHold(String footHoldName, boolean show) {
-		chr.getField().broadcastPacket(FieldPacket.footholdAppear(footHoldName, show));
+	public void changeFootHold(String footholdName, boolean show) {
+		changeFootHold(footholdName, show, 0, 0);
+	}
+
+	public void changeFootHold(String footholdName, boolean show, int x, int y) {
+		chr.getField().broadcastPacket(FieldPacket.footholdAppear(footholdName, show, new Position(x, y)));
 	}
 
 	public boolean hasMobById(int mobID) {
