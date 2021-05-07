@@ -846,6 +846,15 @@ public class JobConstants {
         return jobId / 10 == 53 || jobId == 501;
     }
 
+    public static boolean isAdventurer(short jobId) {
+        return jobId == 0
+                || isAdventurerWarrior(jobId)
+                || isAdventurerMage(jobId)
+                || isAdventurerArcher(jobId)
+                || isAdventurerThief(jobId)
+                || isAdventurerPirate(jobId);
+    }
+
     public static boolean isCygnusKnight(short jobId) {
         return jobId / 1000 == 1;
     }
