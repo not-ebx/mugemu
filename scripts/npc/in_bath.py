@@ -8,9 +8,9 @@ spaM = 801000100
 response = sm.sendAskYesNo("Would you like to enter the bathhouse? That'll be 300 mesos for you. And don't take the towels!")
 
 if response:
-    if(sm.getMesos() >= 300):
+    if sm.getMesos() >= 300:
         sm.deductMesos(300)
-        if(gender == 1):
+        if gender == 1:
             sm.warp(spaF)
         else:
             sm.warp(spaM)

@@ -1,7 +1,7 @@
 palaceToll = 3901
 palacePass = 4031582
 
-if(sm.hasItem(palacePass)):
+if sm.hasItem(palacePass):
     sm.warp(260000301)
 else:
     sm.chat("You need an Entry Pass to enter the palace.")
