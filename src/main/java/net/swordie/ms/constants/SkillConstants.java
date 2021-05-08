@@ -436,6 +436,9 @@ public class SkillConstants {
     public static int getOriginalOfLinkedSkill(int skillID) {
         int result = 0;
         switch(skillID) {
+            case 80010006:
+                result = 110000800;
+                break;
             case 80001040:
                 result = 20021110;
                 break;
