@@ -4,11 +4,12 @@ faintStigma = 4001868
 twistedStigma = 4001869
 stigmaCoin = 4310199
 
-if sm.hasItem(faintStigma, 50) and sm.hasItem(twistedStigma):
+faintQuantity = sm.getQuantityOfItem(faintStigma)
+twistedQuantity = sm.getQuantityOfItem(twistedStigma)
+
+if faintQuantity >= 50 and twistedQuantity >= 1:
     #How many coins can the user exchange up to?
-    faintQuantity = sm.getQuantityOfItem(faintStigma)
-    faintQuotient = faintQuantity//50
-    twistedQuantity = sm.getQuantityOfItem(twistedStigma)
+    faintQuotient = faintQuantity // 50
     if faintQuotient > twistedQuantity:
         purchaseCap = twistedQuantity
     else:
@@ -17,10 +18,11 @@ if sm.hasItem(faintStigma, 50) and sm.hasItem(twistedStigma):
     sm.sendNext("Ah, a Spirit Stone marked by the stigma of vengeance.")
     sm.sendNext("Give to me 50 #i" + str(faintStigma) + "##z" + str(faintStigma)
     + "# and 1 #i" + str(twistedStigma) + "##z" + str(twistedStigma) + "#,\r\n"
-    + "and I'll give you 1 #i" + str(stigmaCoin) + "##z" + str(stigmaCoin) + "# in return."
+    + "and I'll give you 1 #i" + str(stigmaCoin) + "##z" + str(stigmaCoin) + "# in return. "
     + "What do you say?\r\n"
     + "#L0# #i" + str(stigmaCoin) + "##z" + str(stigmaCoin) + "##l")
-    quantity = sm.sendAskNumber("You can get up to " + str(purchaseCap) + " #b#z" + str(stigmaCoin) + "#(s)#k. How many do you want to trade? \r\n"
+    quantity = sm.sendAskNumber("You can get up to " + str(purchaseCap) + " #b#z" + str(stigmaCoin) + "#(s)#k. "
+    + "How many do you want to trade?\r\n"
     + "(#t" + str(faintStigma) + "# in your possession: " + str(faintQuantity) + ")\r\n"
     + "(#t" + str(twistedStigma) + "# in your possession: " + str(twistedQuantity) + ")\r\n", 1, 1, 100)
 
