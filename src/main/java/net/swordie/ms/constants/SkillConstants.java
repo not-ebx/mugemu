@@ -436,6 +436,9 @@ public class SkillConstants {
     public static int getOriginalOfLinkedSkill(int skillID) {
         int result = 0;
         switch(skillID) {
+            case 80010006:
+                result = 110000800;
+                break;
             case 80001040:
                 result = 20021110;
                 break;
@@ -1059,6 +1062,10 @@ public class SkillConstants {
             return 80000000;
         } else if (JobConstants.isCygnusKnight(job)) { // Cygnus Blessing
             return 80000070;
+        }  else if (JobConstants.isAran(job)) { // Combo Kill Blessing
+            return 80000370;
+        } else if (JobConstants.isEvan(job)) { // Rune Persistence
+            return 80000369;
         } else if (JobConstants.isMercedes(job)) { // Elven Blessing
             return 80001040;
         } else if (JobConstants.isDemonSlayer(job)) { // Fury Unleashed
@@ -1083,6 +1090,10 @@ public class SkillConstants {
             return 80000006;
         } else if (JobConstants.isXenon(job)) { // Hybrid Logic
             return 80000047;
+        } else if (JobConstants.isZero(job)) { // Rhinne's Blessing
+            return 80000110;
+        } else if (JobConstants.isKinesis(job)) { // Judgment
+            return 80000188;
         } else if (JobConstants.isBeastTamer(job)) { // Focus Spirit
             return 80010006;
         }
