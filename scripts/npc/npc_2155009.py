@@ -15,6 +15,10 @@ if diffusionQuantity >= 50 and lotusQuantity >= 1:
     else:
         purchaseCap = diffusionQuotient
     
+    #Max stack sanity check
+    if purchaseCap > 100:
+        purchaseCap = 100
+    
     sm.sendNext("I think you have what I need...")
     sm.sendNext("Give me 50 #i" + str(diffusionLine) + "##z" + str(diffusionLine)
     + "# items and 1 #i" + str(lotusExtraordinary) + "##z" + str(lotusExtraordinary) + "#,\r\n"
@@ -24,12 +28,10 @@ if diffusionQuantity >= 50 and lotusQuantity >= 1:
     quantity = sm.sendAskNumber("You can get up to " + str(purchaseCap) + " #b#z" + str(absoCoin) + "#(s)#k..."
     + "How many do you want to trade?\r\n"
     + "(#t" + str(diffusionLine) + "# in your possession: " + str(diffusionQuantity) + ")\r\n"
-    + "(#t" + str(lotusExtraordinary) + "# in your possession: " + str(lotusQuantity) + ")\r\n", 1, 1, 100)
+    + "(#t" + str(lotusExtraordinary) + "# in your possession: " + str(lotusQuantity) + ")\r\n", 1, 1, purchaseCap)
 
     if not sm.canHold(absoCoin):
         sm.sendSayOkay("Please make room in your Etc. inventory.")
-    elif purchaseCap < quantity:
-        sm.sendSayOkay("You don't have enough Energy Cores.")
     else:
         sm.consumeItem(diffusionLine, quantity*50)
         sm.consumeItem(lotusExtraordinary, quantity)
