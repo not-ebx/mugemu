@@ -886,15 +886,25 @@ public class ScriptManagerImpl implements ScriptManager {
 	@Override
 	public void changeCharacterLook(int look) {
 		AvatarLook al = chr.getAvatarData().getAvatarLook();
-		if (look < 100) { // skin
+		if (look <= ItemConstants.MAX_SKIN) { // skin
 			al.setSkin(look);
 			chr.setStatAndSendPacket(Stat.skin, look);
-		} else if (look < 30000) {
-			al.setFace(look);
-			chr.setStatAndSendPacket(Stat.face, look);
-		} else if (look < 1000000) {
-			al.setHair(look);
-			chr.setStatAndSendPacket(Stat.hair, look);
+		} else if (ItemConstants.MIN_FACE <= look && look < ItemConstants.MAX_FACE) {
+			if (StringData.getItemStringById(look) != null){
+				al.setFace(look);
+				chr.setStatAndSendPacket(Stat.face, look);
+			}
+			else{
+				log.error(String.format("Tried changing a look with invalid id (%d)", look));
+			}
+		} else if (ItemConstants.MIN_HAIR <= look && look < ItemConstants.MAX_HAIR) {
+			if (StringData.getItemStringById(look) != null){
+				al.setHair(look);
+				chr.setStatAndSendPacket(Stat.hair, look);
+			}
+			else{
+				log.error(String.format("Tried changing a look with invalid id (%d)", look));
+			}
 		} else {
 			log.error(String.format("Tried changing a look with invalid id (%d)", look));
 		}

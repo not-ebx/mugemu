@@ -1,16 +1,19 @@
-# Ariant VIP Hair
-# Male: Afro, Cabana, Dreadlocks, Kravitz Locks, Line Scratch, Mane, Matinee, Natural, Tornade
-# Female: Bridget, Celeb, Edgy, Lana, Penelope, Rae, Boyish, Desert Flower, Tighty Bun
+# Mazra (2100006) | Ariant (260000000)
+# 39000 - 39990
+
+from net.swordie.ms.loaders import StringData
 
 options = []
 
 al = chr.getAvatarData().getAvatarLook()
 hairColour = al.getHair() % 10
-if al.getGender() == 0: # Male
-    options = [30320, 30330, 30150, 30900, 30170, 30180, 30820, 30410, 30460]
-else: # Female
-    options = [31090, 31190, 31040, 31420, 31330, 31340, 31620, 31660]
-options = list(map(lambda x: x + hairColour, options))
+baseID = 39000
+
+for i in range(0, 1000, 10):
+    hair = baseID + i + hairColour
+    if not StringData.getItemStringById(hair) is None:
+        options.append(hair)
+
 answer = sm.sendAskAvatar("Choose your new hairstyle!", False, False, options)
 
 if answer < len(options):

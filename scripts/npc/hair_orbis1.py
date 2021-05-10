@@ -1,6 +1,6 @@
-# Natalie (1012103) | Henesys Hair Salon (100000104)
-# Male: 30000 - 30990 (Toben to Tentacle)
-# Female: 31000 - 31990 (Sammy to Evan)
+# Mino the Owner (2010001) | Orbis Hair Salon (200000202)
+# Male: 35000 - 35990 (Bang-up to Rover)
+# Female: 37000 - 37990 (Orchid to Apple Tea)
 
 from net.swordie.ms.loaders import StringData
 
@@ -10,9 +10,9 @@ al = chr.getAvatarData().getAvatarLook()
 hairColour = al.getHair() % 10
 
 if al.getGender() == 0:
-    baseID = 30000
+    baseID = 35000
 else:
-    baseID = 31000
+    baseID = 37000
 
 for i in range(0, 1000, 10):
     hair = baseID + i + hairColour
