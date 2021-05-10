@@ -1,6 +1,9 @@
+magicSeed = 4031346
+
 selection = sm.sendNext("...Can I help you?"
             "\r\n\r\n#b"
-            "#L0#Find the ingredients for the Flying Potion (Dragon moss Extract)#l")
+            "#L0#Find the ingredients for the Flying Potion (Dragon moss Extract)#l\r\n"
+            "#L1#Buy the #t" + str(magicSeed) + "##l")
 
 if selection == 0:
     if sm.hasQuest(3759) and not sm.hasItem(4032531):
@@ -21,3 +24,27 @@ if selection == 0:
             sm.sendSayOkay("Please make some room in your ETC inventory.")
     else:
         sm.sendSayOkay("I'm sorry, I can't give you Dragon Moss Extract at the moment.")
+
+elif selection == 1:
+    seedCost = 30000
+    seedCap = sm.getMesos() // seedCost
+    
+    sm.sendNext("You don't seem to be from our town. How can I help you?\r\n#b"
+    "#L0# I would like some #z" + str(magicSeed) + "#.#l")
+    if seedCap > 0:
+        quantity = sm.sendAskNumber("#b#z" + str(magicSeed) + "##k is a precious item; I cannot give it to you just like that.\r\n"
+        "How about doing me a little favor? Then I'll give it to you. "
+        "I'll sell the #b#z" + str(magicSeed) + "##k to you for #b 30,000 mesos#k each.\r\n"
+        "Are you willing to make the purchase? How many would you like, then?", 1, 1, seedCap)
+        response = sm.sendAskYesNo("Buying #b" + str(quantity) + " #z" + str(magicSeed) + "#(s)#k will cost you #b" + str(seedCost * quantity) + " mesos#k. "
+        "Are you sure you want to make the purchase?")
+        if response:
+            if sm.canHold(magicSeed):
+                sm.deductMesos(seedCost * quantity)
+                sm.giveItem(magicSeed, quantity)
+                sm.sendNext("See you again.")
+            else:
+                sm.sendSayOkay("Please make some room in your ETC inventory.")
+    else:
+        sm.sendSayOkay("Hm...You don't have enough mesos. Speak to me again when you have at least #b 30,000 mesos#k.")
+        

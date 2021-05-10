@@ -7,4 +7,4 @@ sm.giveItem(1402001)  # Wooden Sword (2H)
 sm.giveItem(1142066)
 
 sm.completeQuest(parentID)
-sm.sendSayOkay("Congratulations, you are now a thunder breaker! I have added 4 SP, enjoy your journey!")
+sm.sendSayOkay("Congratulations, you are now a Dawn Warrior! I have added 4 SP, enjoy your journey!")

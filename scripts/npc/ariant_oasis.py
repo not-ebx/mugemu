@@ -3,6 +3,7 @@
 ariantCulture = 3900
 
 if sm.hasQuest(ariantCulture):
-    sm.sendSayOkay("You used two hands to drink the clean water of the Oasis. "
-    + "Delicious! It quenched your thirst right on the spot.")
     sm.setQRValue(ariantCulture, "5", False)
+    sm.sendSayOkay("You used two hands to drink the clean water of the Oasis. "
+    "Delicious! It quenched your thirst right on the spot.")
+    

@@ -8,4 +8,4 @@ sm.giveItem(2070000, 500)  # Subi Throwing Stars
 sm.giveItem(1142066)
 
 sm.completeQuest(parentID)
-sm.sendSayOkay("Congratulations, you are now a night walker! I have added 5 SP, enjoy your journey!")
+sm.sendSayOkay("Congratulations, you are now a Night Walker! I have added 5 SP, enjoy your journey!")
