@@ -5,9 +5,9 @@ treasure = 4031578
 
 if sm.hasQuest(queensRing):
     if sm.canHold(treasure):
-        sm.sendSayOkay("You carefully opened the chest and took out a ring. "
-        + "You better get out of here now...")
-
         sm.giveItem(treasure)
+        sm.sendSayOkay("You carefully opened the chest and took out a ring. "
+        "You better get out of here now...")
     else:
         sm.sendSayOkay("Please make room in your Etc. inventory.")
+        

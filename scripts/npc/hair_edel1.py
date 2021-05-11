@@ -1,16 +1,44 @@
-# Amoria Hair Salon
-# Male: Astro, //Babby, //Battle Mage, Bowling, Cabana, Grand Lionman, Rockstar, Roving Rockstar, //SHaggy Dragon, Slick Dean, Tornade
-# Female: Carla, Cecelia Twist, Daisy Do, Jolie, Lori, Minnie, Rose, Roxy, Sunflower Power, Wild Hunter, Zessica
+# Fabio (2150003) | Edelstein Hair Salon (310000003)
+# Male: 40000 - 40990 (Boomy to Bandana)
+# Female: 41000 - 41990 (Free to Bandana)
+
+from net.swordie.ms.loaders import StringData
+
 options = []
 
 al = chr.getAvatarData().getAvatarLook()
 hairColour = al.getHair() % 10
-if al.getGender() == 0: # Male
-    options = [30350, 30760, 30330, 30560, 30040, 30730, 30470, 30460]
-else: # Female
-    options = [31310, 31490, 37810, 31130, 31160, 31500, 31230, 31320, 31560, 34190, 31530]
-options = list(map(lambda x: x + hairColour, options))
-answer = sm.sendAskAvatar("Choose your new hairstyle!", False, False, options)
 
-if answer < len(options):
-    sm.changeCharacterLook(options[answer])
+# Edelstein's Hair Salon has just Fabio in it
+# For convenience's sake, he can also change hair colour
+selection = sm.sendNext("Hello. How can I help you?"
+            "\r\n#b"
+            "#L0#Change hairstyle#l\r\n"
+            "#L1#Change hair colour#l")
+
+if selection == 0:
+    if al.getGender() == 0:
+        baseID = 40000
+    else:
+        baseID = 41000
+
+    for i in range(0, 1000, 10):
+        hair = baseID + i + hairColour
+        if not StringData.getItemStringById(hair) is None:
+            options.append(hair)
+
+    answer = sm.sendAskAvatar("Choose your new hairstyle!", False, False, options)
+
+    if answer < len(options):
+        sm.changeCharacterLook(options[answer])
+
+else:
+    baseHair = al.getHair() - hairColour
+
+    for colour in range(8):
+        colourOption = baseHair + colour
+        options.append(colourOption)
+
+    answer = sm.sendAskAvatar("Choose your new hair colour!", False, False, options)
+    if answer < len(options):
+        sm.changeCharacterLook(options[answer])

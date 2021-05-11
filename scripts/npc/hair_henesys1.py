@@ -1,16 +1,24 @@
-# Natalie - Henesys Hair Salon
-# Male: Aran cut, Catalyst, Evan hair (m), gaga hair, shaggy wax, the coco, the mo rawk
-# Female: Dual blade, front braid, grace, hime, laguna beach, lively wave, long with bangs, wavy bob, wavy ponytail
+# Natalie (1012103) | Henesys Hair Salon (100000104)
+# Male: 30000 - 30990 (Toben to Tentacle)
+# Female: 31000 - 31990 (Sammy to Evan)
+
+from net.swordie.ms.loaders import StringData
 
 options = []
 
 al = chr.getAvatarData().getAvatarLook()
 hairColour = al.getHair() % 10
-if al.getGender() == 0: # Male
-    options = [33040, 30060, 32350, 33170, 30210, 33100, 30610]
-else: # Female
-    options = [32360, 34400, 31820, 34270, 31860, 34210, 34250, 34490, 31360]
-options = list(map(lambda x: x + hairColour, options))
+
+if al.getGender() == 0:
+    baseID = 30000
+else:
+    baseID = 31000
+
+for i in range(0, 1000, 10):
+    hair = baseID + i + hairColour
+    if not StringData.getItemStringById(hair) is None:
+        options.append(hair)
+
 answer = sm.sendAskAvatar("Choose your new hairstyle!", False, False, options)
 
 if answer < len(options):

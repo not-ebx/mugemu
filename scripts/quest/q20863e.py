@@ -8,4 +8,4 @@ sm.giveItem(2060000, 1000)  # Bow Arrow
 sm.giveItem(1142066)
 
 sm.completeQuest(parentID)
-sm.sendSayOkay("Congratulations, you are now a wind archer! I have added 5 AP and 5 SP, enjoy your journey!")
+sm.sendSayOkay("Congratulations, you are now a Wind Archer! I have added 5 AP and 5 SP, enjoy your journey!")
