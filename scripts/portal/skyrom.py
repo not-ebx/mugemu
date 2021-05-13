@@ -1,5 +1,6 @@
+# Palace Hallway (260000302) => Treasure Room of Queen for Eleska's Test
+
 skyJewel = 3935
-hallway = 260000302
 treasureRoom = 926000010
 
 if sm.hasQuest(skyJewel):

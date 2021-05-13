@@ -1,3 +1,5 @@
+# Ariant Castle (260000300) => Castle Garden
+
 palaceToll = 3901
 palacePass = 4031582
 

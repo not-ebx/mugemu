@@ -6,28 +6,24 @@ jewelry = 4031579
 if sm.hasQuest(redScorpions):
     # Did the user just start the quest, or have they already dropped off some treasure elsewhere?
     jewelryStatus = sm.getQRValue(redScorpions)
-    placedJewelry = jewelryStatus.isdecimal()
-    jewelryParse = 1
-    if placedJewelry:
-        jewelryParse = int(jewelryStatus)
+    jewelryParse = "0000"
+    houseIndex = 2
+    if jewelryStatus:
+        jewelryParse = jewelryStatus
     
-    #Check if the user already visited this house
-    if jewelryParse % 5 != 0 and sm.hasItem(jewelry):
+    # Check if the user already visited this house
+    if jewelryParse[houseIndex] != "3" and sm.hasItem(jewelry):
         sm.consumeItem(jewelry)
-        #Check if this was the first house visited
-        if not placedJewelry:
-            jewelryStatus = "5"
-        else:
-            jewelryStatus = str(jewelryParse * 5)
-        
-        #Will this be the last house visited?
-        if jewelryStatus == "210":
-            sm.setQRValue(redScorpions, "3333", False)
-        else:
-            sm.setQRValue(redScorpions, jewelryStatus)
 
+        # Check if this was the first house visited
+        if not jewelryStatus:
+            jewelryStatus = "0030"
+        else:
+            jewelryStatus = jewelryParse[:houseIndex] + "3" + jewelryParse[houseIndex+1:]
+        
+        sm.setQRValue(redScorpions, jewelryStatus, False)
         sm.sendSayOkay("You carefully placed the treasure on the ground.")
-    elif not sm.hasItem(jewelry) and jewelryParse % 5 != 0 and jewelryStatus != "3333":
+    elif not sm.hasItem(jewelry) and jewelryParse[houseIndex] != "3" and jewelryStatus != "3333":
         sm.sendSayOkay("You do not have any more #t" + str(jewelry) + "#. Forfeit the quest and return to the Red Scorpion's Lair.")
     else:
         sm.sendSayOkay("There's already treasure placed here.")

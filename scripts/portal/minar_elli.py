@@ -1,3 +1,5 @@
+# Green Tree Trunk <=> Minar Forest West Border
+
 elliniaSide = 101030100
 minarSide = 240010100
 
