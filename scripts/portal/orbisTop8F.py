@@ -1,0 +1,1 @@
+sm.chat("Rubble prevents you from ascending to the 9th floor.")

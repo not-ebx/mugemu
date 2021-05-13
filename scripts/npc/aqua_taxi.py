@@ -1,14 +1,8 @@
-# Danger Zone Taxi (2023000)
+# Dolphin (2060009)
 
 destinationDict = {
-    105000000: [105030000], # Sleepywood
-    105030000: [105000000], # Another Door
-    211000000: [211060000, 211040200, 211041400, 300000100], # El Nath
-    211060000: [211000000], # Desolate Moor
-    220000000: [220050300, 300000100], # Ludibrium
-    220050300: [220000000], # Path of Time
-    240000000: [240030000, 240040500], # Leafre
-    300000100: [211000000, 220000000], # Small Forest
+    230000000: [230030200, 251000100], # Aquarium
+    251000100: [230000000] # Pier on the Beach
     }
 
 currentMap = sm.getFieldID()

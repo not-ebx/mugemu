@@ -1,3 +1,11 @@
-# 272000000 - Portal to leafre in flames
+# Crack in Time (272000000) => Leafre in Flames or Distorted Temple of Time
 
-sm.warp(272000100, 0)
+optionList = [272000100, 272020000]
+statue = 2144018
+
+destString = "Where would you like to go?\r\n"
+for index, option in enumerate(optionList):
+    destString += "#L"+ str(index) + "##m" + str(option) + "##l\r\n"
+sm.setSpeakerID(statue)
+destIndex = sm.sendNext(destString)
+sm.warp(optionList[destIndex])

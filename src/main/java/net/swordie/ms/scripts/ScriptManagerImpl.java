@@ -941,6 +941,10 @@ public class ScriptManagerImpl implements ScriptManager {
 		chr.healMP(chr.getMaxMP());
 	}
 
+	public int getCurrentLevel(){
+		return chr.getLevel();
+	}
+
 	public void addLevel(int level) {
 		int curLevel = chr.getLevel();
 		for (int i = curLevel + 1; i <= curLevel + level; i++) {
