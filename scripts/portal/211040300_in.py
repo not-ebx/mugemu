@@ -1,7 +1,7 @@
 # Ice Valley II (211040200) => Sharp Cliff I
 
 sharpCliff = 211040300
-currentLevel = sm.getCurrentLevel()
+currentLevel = chr.getLevel()
 
 if currentLevel >= 60:
     sm.warp(sharpCliff, 5)

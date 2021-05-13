@@ -1,7 +1,7 @@
 # Jeff (2030000) | Ice Valley II (211040200)
 
 sharpCliff = 211040300
-currentLevel = sm.getCurrentLevel()
+currentLevel = chr.getLevel()
 
 sm.sendNext("Hey, you look like you want to go farther and deeper past this place. "
 "Over there, though, you'll find yourself surrounded by aggressive, dangerous monsters, "

@@ -1,6 +1,6 @@
-# Regular Cab in Victoria (1012000)
+# Audrey (9201135)
 
-maps = [104000000, 100000000, 103000000, 101000000, 102000000, 120000100, 105000000]
+maps = [540000000, 541000000, 550000000, 551000000]
 currentMap = sm.getFieldID()
 if currentMap in maps:
     maps.remove(currentMap)

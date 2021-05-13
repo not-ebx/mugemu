@@ -1,7 +1,7 @@
 # Edelstein Strolling Path 3 (310030200) => Android Research Lab 3
 
 verne = 310060120
-currentLevel = sm.getCurrentLevel()
+currentLevel = chr.getLevel()
 
 if currentLevel >= 60:
     sm.warp(verne)

@@ -1,7 +1,7 @@
 # Sky Nest I => Freezing Forest 2
 
 toKritias = 241000218
-currentLevel = sm.getCurrentLevel()
+currentLevel = chr.getLevel()
 
 if currentLevel >= 170:
     sm.warp(toKritias)
