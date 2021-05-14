@@ -4,7 +4,7 @@ from net.swordie.ms.client.character.skills.temp import CharacterTemporaryStat
 
 karcasa = 2101013
 tigun = 2101004
-isTigun = sm.hasCTS(CharacterTemporaryStat.Morph)
+isTigun = sm.getnOptionByCTS(CharacterTemporaryStat.Morph) == 6
 
 sm.setSpeakerID(karcasa)
 if isTigun:

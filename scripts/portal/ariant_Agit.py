@@ -1,3 +1,5 @@
+# Town of Ariant (260000200) => An Old, Empty House
+
 sejan = 3930
 ardin = 3933
 eleska = 3936

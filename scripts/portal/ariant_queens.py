@@ -1,3 +1,5 @@
+# Forced warp to Castle Garden during 3rd Red Scorpions quest
+
 queensRing = 3923
 garden = 260000301
 

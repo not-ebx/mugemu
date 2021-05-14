@@ -1,11 +1,12 @@
 maps = {
-    2012013 : [220000100, "Ludibrium"],
-    1032008 : [200000100, "Orbis"],
-    2012021 : [240000100, "Leafre"],
-    2012001 : [104020110, "Victoria Island"],
-    2041000 : [220000100, "Orbis"],
-    2012025 : [260000100, "Ariant"],
-    2102000 : [200000100, "Orbis"],
+    1032008 : [200000100, "Orbis"], # Cherry (Victoria Island)
+    2012001 : [104020110, "Victoria Island"], # Rini (Orbis)
+    2012013 : [220000100, "Ludibrium"], # Sunny (Orbis)
+    2012021 : [240000100, "Leafre"], # Ramini (Orbis)
+    2012025 : [260000100, "Ariant"], # Geras (Orbis)
+    2041000 : [200000100, "Orbis"], # Tian (Ludi)
+    2082001 : [200000100, "Orbis"], # Tommie (Leafre)
+    2102000 : [200000100, "Orbis"] # Asesson (Ariant)
 }
 
 if parentID in maps:
