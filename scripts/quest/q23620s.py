@@ -1,10 +1,9 @@
-# A Warm(er) Welcome (23620)
+# [Skill] A Warm(er) Welcome (23620)
 
-charName = chr.getName()
 claudine = 2151003
 
 sm.setSpeakerID(claudine)
-sm.sendNext("Hello, #b" + charName + "#k? Do you have time to come by Edelstein?")
+sm.sendNext("Hello, #b #h ##k? Do you have time to come by Edelstein?")
 
 sm.setPlayerAsSpeaker()
 sm.sendSay("Is everything okay?")
