@@ -3,7 +3,7 @@
 from net.swordie.ms.constants import JobConstants
 
 #Check character's job category
-adv = sm.getChr().getJob()
+adv = chr.getJob()
 
 if JobConstants.isAdventurer(adv):
     response = sm.sendAskYesNo("Would you like to go back to #bMaple Island#k?")
