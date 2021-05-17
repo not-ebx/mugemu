@@ -1,4 +1,3 @@
-# 106030600
+# Storage Deck (106030600) => Captain's Quarters
 
-sm.warp(106030600, 3)
-sm.dispose()
+sm.warpInstanceIn(106030800)
