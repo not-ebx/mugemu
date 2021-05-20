@@ -1,8 +1,7 @@
-# A Warm(er) Welcome (23620)
+# [Skill] A Warm(er) Welcome (23620)
 
 echo = 30021005
 lastOneHome = 1142579
-charName = chr.getName()
 
 claudine = 2151003
 belle = 2151002
@@ -47,7 +46,7 @@ if sm.canHold(lastOneHome):
 
     sm.setSpeakerID(brighton)
     sm.flipDialogue()
-    sm.sendSay("Hey. We're here to welcome " + str(charName) + ". So get over it.")
+    sm.sendSay("Hey. We're here to welcome #h #. So get over it.")
 
     sm.flipDialoguePlayerAsSpeaker()
     sm.sendSay("Hahaha... Thank you all.")
@@ -56,7 +55,7 @@ if sm.canHold(lastOneHome):
 
     sm.setSpeakerID(claudine)
     sm.flipDialogue()
-    sm.sendSay("Something wrong, " + str(charName) + "? You wandered off there.")
+    sm.sendSay("Something wrong, #h #? You wandered off there.")
 
     sm.flipDialoguePlayerAsSpeaker()
     sm.sendSay("Oh, it's nothing.")
