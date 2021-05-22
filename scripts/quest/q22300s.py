@@ -28,8 +28,8 @@ sm.sendSay("Huh? Really?")
 
 sm.setSpeakerID(mir)
 sm.sendSay("You didn't know that? An Onyx Dragon responds to a strong spirit, "
-"so I've been feeling that every day. It's not as much as the previous Masters, "
-"but at this rate we'll be able to become as strong as them. \r\n\r\n"
+"so I've been feeling that every day. It's not particularly strong unlike with the previous Dragon Masters, "
+"but we'll be able to match them someday. \r\n\r\n"
 "Ah, the scale fell off.")
 
 sm.setPlayerAsSpeaker()
@@ -48,7 +48,7 @@ if response:
         sm.sendNext("(You received #p" + str(mir) + "#'s dragon scale. "
         "As you place your hand on the scale, it magically transforms into #i" + str(successor) + "#.)")
         sm.sendSay("(You have learned #b#q" + str(echo) + "##k.)")
-        sm.sendSay("Yay, a new skill! Now I really look like Freud's true successor as a Dragon Master!")
+        sm.sendSay("Yay, a new skill! Now I really look like Freud's true successor!")
 
         sm.setSpeakerID(mir)
         sm.sendPrev("Hehe. Congratulations, master. Let's keep on growing to surpass our predecessors!")

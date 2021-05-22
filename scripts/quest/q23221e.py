@@ -17,4 +17,4 @@ if sm.sendAskYesNo("But you succeeded, #h #! I should write this down for poster
     sm.giveItem(1142556)
     sm.giveAndEquip(1099009)
     sm.jobAdvance(chr.getJob()+1)
-    sm.sendSayOkay("Your inner rage is now under your control, #h #! All that's elft for you is to keep training.")
+    sm.sendSayOkay("Your inner rage is now under your control, #h #! All that's left for you is to keep training.")
