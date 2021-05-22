@@ -817,7 +817,13 @@ public class JobConstants {
     }
 
     public static boolean isAdventurerArcher(short jobId) {
-        return jobId == 300 || jobId == 310 || jobId == 311 || jobId == 312 || jobId == 320 || jobId == 321 || jobId == 322;
+        return jobId == 300
+                || jobId == 310
+                || jobId == 311
+                || jobId == 312
+                || jobId == 320
+                || jobId == 321
+                || jobId == 322;
     }
 
     public static boolean isAdventurerThief(short jobId) {
