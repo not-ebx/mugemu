@@ -1,4 +1,4 @@
-# Herb Town (251000000) => Ardentmill
+# Kritias Town Hall (241000120) => Ardentmill
 sm.setReturnField()
 sm.setReturnPortal()
 sm.warp(910001000, 6)

@@ -9,6 +9,7 @@ import net.swordie.ms.life.mob.Mob;
 import net.swordie.ms.util.Position;
 import net.swordie.ms.world.field.Clock;
 import net.swordie.ms.world.field.Field;
+import net.swordie.ms.world.field.Portal;
 
 import java.util.Observer;
 import java.util.concurrent.ScheduledFuture;
@@ -508,6 +509,29 @@ public interface ScriptManager extends Observer {
 	 * 		The id of the {@link Field}.
 	 */
 	void setReturnField(int fieldID);
+
+	/**
+	 * Gets the ID of the current return {@link Portal}.
+	 * Example: "sm.getReturnPortal()"
+	 *
+	 * @return The ID of the linked return {@link Portal}.
+	 */
+	int getReturnPortal();
+
+	/**
+	 * Sets the return {@link Portal} to the {@link Portal} linked to the {@link ScriptManager}.
+	 * Example: "sm.setReturnPortal()"
+	 */
+	void setReturnPortal();
+
+	/**
+	 * Sets the return {@link Portal}.
+	 * Example: "sm.setReturnPortal(2)"
+	 *
+	 * @param portalID
+	 * 		The id of the {@link Portal}.
+	 */
+	void setReturnPortal(int portalID);
 
 	/**
 	 * Determines if there are mobs present in the {@link Field} linked to the {@link

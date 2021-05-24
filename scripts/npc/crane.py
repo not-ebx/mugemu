@@ -14,6 +14,10 @@ if sm.getFieldID() == 250000100:
     "#L0# Orbis #l\r\n"
     "#L1# Herb Town #l\r\n"
     "#L2# Golden Temple #l\r\n")
+    # Make sure the player goes back to Mu Lung Temple if warping to Golden Temple by Crane
+    if destination == 2:
+        sm.setReturnField()
+        sm.setReturnPortal(0)
     sm.warp(optionList[destination])
 else:
     response = sm.sendAskYesNo("Would you like to go to Mu Lung?")

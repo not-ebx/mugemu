@@ -1,4 +1,4 @@
-# Showa Town (801000000) => Ardentmill
+# Yu Garden (701100000) => Ardentmill
 sm.setReturnField()
 sm.setReturnPortal()
 sm.warp(910001000, 6)
