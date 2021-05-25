@@ -1,6 +1,9 @@
-# Harmony (101000200): Return to previous map
+# Harmony (101000200) Exit
+
 map = sm.getReturnField()
-if map == 0 or map == 910000000:
+portal = 0
+
+if map is None or map == 910000000:
     sm.chat("(Portal) Cannot find your previous map ID, warping to Henesys.")
     map = 100000000
     portal = 0
