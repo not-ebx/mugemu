@@ -193,16 +193,10 @@ sm.sendSay("Everyone...")
 
 sm.setSpeakerID(HILLA)
 sm.sendSay("Your hounds are trying desperately to ignore the truth.")
-
-sm.setSpeakerID(CYGNUS)
 sm.sendSay("I won't deny your hard work, Cygnus. You have been surprisingly wise for a young girl, but I urge you to make the right decision.")
 sm.sendSay("Acknowledge me as the real empress and step away from this charade before it's too late.")
-
-sm.setSpeakerID(HILLA)
 sm.sendSay("Tell the alliance that they will follow me now.")
 sm.sendSay("Of course, I'm not without sympathy to your situation. I'll give you some time to take all of this in. Do whatever you need to do to reconcile yourself with the truth.")
-
-sm.setSpeakerID(CYGNUS)
 sm.sendSay("When you are finished, you will find that the true Empress of Maple World is not Cygnus, but Hilla.")
 
 sm.flipDialoguePlayerAsSpeaker()

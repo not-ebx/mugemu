@@ -3,6 +3,6 @@
 medal = 1142495
 
 if sm.canHold(medal):
-    sm.chatScript("You have earned a new medal.")
+    sm.chatScript("You obtained the <Pretty Angel Power> medal.")
     sm.startQuest(parentID)
     sm.completeQuest(parentID)

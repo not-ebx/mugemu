@@ -7,4 +7,5 @@ mapID = DimensionalPortalType.getByVal(response).getMapID()
 
 if mapID != 0 and sm.getFieldID() == current:
     sm.setReturnField(return_field)
+    sm.setReturnPortal(0)
     sm.warp(mapID)

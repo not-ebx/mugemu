@@ -1,3 +1,2 @@
-# 260010601
-sm.warp(260010600, 0)
-sm.dispose()
+# Overlooked Area (260010601) => Tent of the Entertainers
+sm.warp(260010600, 1)

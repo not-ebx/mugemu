@@ -2,7 +2,7 @@
 
 from net.swordie.ms.constants import JobConstants
 
-#Check character's job category
+# Check character's job category
 adv = chr.getJob()
 
 if JobConstants.isAdventurer(adv):

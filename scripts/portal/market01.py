@@ -1,2 +1,4 @@
-# 100000100 - henesys fm portal
+# Henesys Market (100000100) => Free Market
+sm.setReturnField()
+sm.setReturnPortal()
 sm.warp(910000000, 36)

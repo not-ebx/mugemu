@@ -1,3 +1,2 @@
-# 240010102
-sm.warp(240010101, 0)
-sm.dispose()
+# Lush Forest (240010102) => Fuzzy Forest
+sm.warp(240010101, 3)

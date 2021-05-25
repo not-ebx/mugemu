@@ -1,10 +1,8 @@
 sm.lockInGameUI(True)
 
 sm.giveAndEquip(1352104)
-sm.giveSkill(20031211, 0)
-sm.giveSkill(20031211, 1)
-sm.giveSkill(20031212, 0)
-sm.giveSkill(20031212, 1)
+sm.giveSkill(20031211)
+sm.giveSkill(20031212)
 sm.playVideoByScript("phantom_memory.avi")
 
 sm.showFieldEffect("phantom/mapname1", 0)
