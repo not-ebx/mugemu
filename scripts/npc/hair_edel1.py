@@ -11,8 +11,7 @@ hairColour = al.getHair() % 10
 
 # Edelstein's Hair Salon has just Fabio in it
 # For convenience's sake, he can also change hair colour
-selection = sm.sendNext("Hello. How can I help you?"
-            "\r\n#b"
+selection = sm.sendNext("Hello. How can I help you? #b\r\n"
             "#L0#Change hairstyle#l\r\n"
             "#L1#Change hair colour#l")
 

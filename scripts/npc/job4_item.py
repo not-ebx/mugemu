@@ -1,7 +1,7 @@
 magicSeed = 4031346
 
 selection = sm.sendNext("...Can I help you?"
-            "\r\n\r\n#b"
+            "#b\r\n\r\n"
             "#L0#Find the ingredients for the Flying Potion (Dragon moss Extract)#l\r\n"
             "#L1#Buy the #t" + str(magicSeed) + "##l")
 
@@ -29,7 +29,7 @@ elif selection == 1:
     seedCost = 30000
     seedCap = sm.getMesos() // seedCost
     
-    sm.sendNext("You don't seem to be from our town. How can I help you?\r\n#b"
+    sm.sendNext("You don't seem to be from our town. How can I help you? #b\r\n"
     "#L0# I would like some #z" + str(magicSeed) + "#.#l")
     if seedCap > 0:
         quantity = sm.sendAskNumber("#b#z" + str(magicSeed) + "##k is a precious item; I cannot give it to you just like that.\r\n"
