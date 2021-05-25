@@ -1,4 +1,4 @@
-# The Power of Crystals (25511)
+# The Power of Crystals (25511) | Luminous 3rd Job
 
 vieren = 1032209
 

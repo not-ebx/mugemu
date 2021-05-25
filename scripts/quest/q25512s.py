@@ -1,4 +1,4 @@
-# Epiphany (25512)
+# Epiphany (25512) | Luminous 4th Job
 
 if chr.getJob() == 2711:
     sm.flipDialoguePlayerAsSpeaker()

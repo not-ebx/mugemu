@@ -1,4 +1,4 @@
-# The Middle Road (25510)
+# The Middle Road (25510) | Luminous 2nd Job
 
 prism = 2430874
 vieren = 1032209
