@@ -3,7 +3,7 @@
 map = sm.getReturnField()
 portal = 0 #added because int portal was initially defined locally, throwing errors; KOOKIIEStudios2020
 
-if map is None or map == 910000000:
+if map in (0, 910000000):
     sm.chat("(Portal) Cannot find your previous map ID, warping to Henesys.")
     map = 100000000
     portal = 0
