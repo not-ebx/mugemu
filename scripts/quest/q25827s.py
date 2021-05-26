@@ -1,6 +1,9 @@
 # [Job Advancement] Pink Power Pact (25827) | AB 4th job advancement
 
+from net.swordie.ms.enums import InvType
+
 idol = 1142498
+greenRing = 1352604
 
 ESKALADE_NPC_ID = 3000018
 
@@ -39,12 +42,12 @@ if chr.getLevel() >= 100 and chr.getJob() == 6511:
     response = sm.sendAskYesNo("Probably, but you can deal! Now focus on my exceedingly attractive voice, okay? "
     "Just really listen to the timbre.")
     if response:
-        if sm.getEmptyInventorySlots(1) >= 2:
+        if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.setPlayerAsSpeaker()
             sm.jobAdvance(6512)
             sm.completeQuest(parentID)
             sm.giveItem(idol)
-            sm.giveAndEquip(1352604)
+            sm.giveAndEquip(greenRing)
             sm.sendSayOkay("I'm tougher than all the rest!")
         else:
             sm.sendSayOkay("Please make room in your Equip inventory.")

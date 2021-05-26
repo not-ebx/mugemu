@@ -1,13 +1,21 @@
 # Knight's Qualification Exam (20320) | Mihile 3rd Job
 
-sm.setSpeakerID(1101002)
+from net.swordie.ms.enums import InvType
+
+official = 1142401
+courageShield = 1098002
+
+neinhart = 1101002
+
+sm.setSpeakerID(neinhart)
 response = sm.sendAskYesNo("Now you're a REAL knight. Would you like to take your Job Advancement?")
 if response:
-    if sm.canHold(1142401):
+    if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
         if chr.getJob() == 5110:
             sm.jobAdvance(5111)
-            sm.giveItem(1142401)
             sm.completeQuest(parentID)
+            sm.giveItem(official)
+            sm.giveAndEquip(courageShield)
         else:
             sm.sendSayOkay("You are not a 2nd job Mihile.")
     else:

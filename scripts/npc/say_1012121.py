@@ -6,15 +6,15 @@ nxItems = []
 
 equipInv = chr.getInventoryByType(InvType.EQUIP)
 invItems = equipInv.getItems()
-# Sort by physical inventory slots, not item ID
+# Sort by physical inventory slot indices, not item ID
 invItems.sort(key=lambda item: item.getBagIndex())
+# Filter the player's Equip inventory to just Cash Equips
+invItems = filter(lambda item: item.isCash(), invItems)
 
-# Filter the player's inventory to just Cash Equips
 # Make sure to add the item's ID to nxItems, *not* the item entity itself
 for equip in invItems:
-    if equip.isCash():
-        equipId = equip.getItemId()
-        nxItems.append(equipId)
+    equipId = equip.getItemId()
+    nxItems.append(equipId)
 
 # No Cash Equips found
 if len(nxItems) == 0:

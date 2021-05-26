@@ -1,6 +1,9 @@
 # [Job Advancement] Pink Power Rising (25826) | AB 3rd job advancement
 
+from net.swordie.ms.enums import InvType
+
 angel = 1142497
+blueRing = 1352603
 
 ESKALADE_NPC_ID = 3000018
 
@@ -36,12 +39,12 @@ if chr.getLevel() >= 60 and chr.getJob() == 6510:
     sm.setSpeakerID(ESKALADE_NPC_ID)
     response = sm.sendAskYesNo("You have to make sacrifices to be a hero! Don't you want that?")
     if response:
-        if sm.getEmptyInventorySlots(1) >= 2:
+        if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.setPlayerAsSpeaker()
             sm.jobAdvance(6511)
             sm.completeQuest(parentID)
             sm.giveItem(angel)
-            sm.giveAndEquip(1352603)
+            sm.giveAndEquip(blueRing)
             sm.sendNext("I think I just got stronger!")
         else:
             sm.sendSayOkay("Please make room in your Equip inventory.")

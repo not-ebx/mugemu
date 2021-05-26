@@ -1,5 +1,7 @@
 # [Job Advancement] Break Nova Essence Limit (25710) | Kaiser 2nd job advancement
 
+from net.swordie.ms.enums import InvType
+
 fated = 1142485
 guardianEssence = 1352501
 
@@ -9,7 +11,7 @@ if chr.getJob() == 6100:
     "I'm pumped up with this Nova Essence stuff. I might be able to push my limit further... "
     "I should try that, yeah?")
     if response:
-        if sm.getEmptyInventorySlots(1) >= 2:
+        if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.jobAdvance(6110)
             sm.completeQuest(parentID)
             sm.giveItem(fated)

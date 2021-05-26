@@ -1,5 +1,7 @@
 # [Job Advancement] Call of the Kaiser (25712) | Kaiser 4th job advancement
 
+from net.swordie.ms.enums import InvType
+
 successor = 1142487
 truthEssence = 1352503
 
@@ -23,7 +25,7 @@ if chr.getJob() == 6111:
     sm.setSpeakerID(former)
     response = sm.sendAskYesNo("Are you ready to listen to me?")
     if response:
-        if sm.getEmptyInventorySlots(1) >= 2:
+        if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.jobAdvance(6112)
             sm.completeQuest(parentID)
             sm.giveItem(successor)

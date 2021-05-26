@@ -1,6 +1,9 @@
 # [Job Advancement] Agent of Justice (25825) | AB 2nd job advancement
 
+from net.swordie.ms.enums import InvType
+
 agent = 1142496
+purpleRing = 1352602
 
 ESKALADE_NPC_ID = 3000018
 
@@ -32,11 +35,11 @@ if chr.getLevel() >= 30 and chr.getJob() == 6500:
     sm.setSpeakerID(ESKALADE_NPC_ID)
     response = sm.sendAskYesNo("I knew you'd be swayed by a little extra power. Let's strengthen our bond.")
     if response:
-        if sm.getEmptyInventorySlots(1) >= 2:
+        if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.jobAdvance(6510)
             sm.completeQuest(parentID)
             sm.giveItem(agent)
-            sm.giveAndEquip(1352602) # secondary
+            sm.giveAndEquip(purpleRing)
             sm.sendNext("Now focus!")
         else:
             sm.sendSayOkay("Please make room in your Equip inventory.")

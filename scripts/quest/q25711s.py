@@ -1,5 +1,7 @@
 # [Job Advancement] Final Kaiser Awakening! (25711) | Kaiser 3rd job advancement
 
+from net.swordie.ms.enums import InvType
+
 awakened = 1142486
 justiceEssence = 1352502
 
@@ -8,7 +10,7 @@ if chr.getJob() == 6110:
     response = sm.sendAskYesNo("I'm full up on Nova Essence. Should I try my Final Awakening? "
     "If I succeed, I'll get my final form. I can do this...right?")
     if response:
-        if sm.getEmptyInventorySlots(1) >= 2:
+        if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.jobAdvance(6111)
             sm.completeQuest(parentID)
             sm.giveItem(awakened)

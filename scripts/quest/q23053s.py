@@ -1,20 +1,20 @@
-ELEX = 2151002
+# You Surpass Me (23053) | WH 4th job advancement quest
 
-sm.setSpeakerID(ELEX)
+BELLE = 2151002
+
+sm.setSpeakerID(BELLE)
 sm.sendNext("Welcome, #h #. You're quite the hero. Look around at this beautiful town. It's worth fighting for... worth dying for... don't you think?")
 
 sm.setPlayerAsSpeaker()
-sm.flipDialogue()
 sm.sendSay("Are you feeling better?")
 
-sm.setSpeakerID(ELEX)
+sm.setSpeakerID(BELLE)
 sm.sendSay("Yes. #p1540418#'s skills are second to none. I'm completely back to my old self. There is still one problem though...")
 
 sm.setPlayerAsSpeaker()
-sm.flipDialogue()
 sm.sendSay("What?! Are the Black Wings planning something?")
 
-sm.setSpeakerID(ELEX)
+sm.setSpeakerID(BELLE)
 if sm.sendAskYesNo("No, the problem is... you! You've become too strong. I'm supposed to be your teacher but you've accomplished something I couldn't do. So I want to give you a more difficult mission! You game?"):
     sm.startQuest(parentID)
     sm.completeQuest(parentID)
