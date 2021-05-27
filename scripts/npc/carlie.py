@@ -1,5 +1,6 @@
 # Staff Sergeant Charlie (2010000) | Orbis Park (200000200)
 
+from net.swordie.ms.enums import InvType
 import random
 
 exchangeList = [4000073, 4000070, 4000071, 4000072, 4000059, 4000060, 4000061, 4000058, 4000062,
@@ -57,7 +58,7 @@ if init == 0:
     if response:
         if not sm.hasItem(selectedFodder, 100):
             sm.sendSayOkay("Hmmm... are you sure you have #b100 #z" + str(selectedFodder) + "##k?")
-        elif sm.getEmptyInventorySlots(2) == 0 or sm.getEmptyInventorySlots(4) == 0:
+        elif sm.getEmptyInventorySlots(InvType.CONSUME) == 0 or sm.getEmptyInventorySlots(InvType.ETC) == 0:
             sm.sendSayOkay("Please check and see if your Use and Etc. inventories are full or not.")
         else:
             # Grab a random item tuple from rewardsDict using selectedFodder as the dictionary key
