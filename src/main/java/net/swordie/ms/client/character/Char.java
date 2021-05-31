@@ -2717,12 +2717,16 @@ public class Char {
 	}
 
 	public void addTraitExp(Stat traitStat, int amount) {
-		if (amount <= 0) {
+		int traitExp = getStat(traitStat);
+		if (amount <= 0 || traitExp >= 93596) {
 			return;
+		}
+		else if (traitExp + amount > 93596){
+			amount = 93596 - traitExp;
 		}
 		Map<Stat, Object> stats = new HashMap<>();
 		addStat(traitStat, amount);
-		stats.put(traitStat, getStat(traitStat));
+		stats.put(traitStat, traitExp);
 		stats.put(Stat.dayLimit, getAvatarData().getCharacterStat().getNonCombatStatDayLimit());
 		write(WvsContext.statChanged(stats));
 		write(WvsContext.incNonCombatStatEXPMessage(traitStat, amount));
