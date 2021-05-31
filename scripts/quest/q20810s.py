@@ -1,18 +1,27 @@
-# 20810 - [Job Adv] (Lv.30)   Mihile
-sm.setSpeakerID(2520025)
-if sm.sendAskYesNo("Congratulations on passing your trials, do you want to become one of my knights?"):
-    if not sm.canHold(1302038):
-        sm.sendSayOkay("You need inventory space.")
+# Apprentice Knight (20810) | Mihile 2nd Job
 
-    elif not sm.canHold(1142400):
-        sm.sendSayOkay("You need inventory space.")
-    else:
+from net.swordie.ms.enums import InvType
+
+apprentice = 1142400
+gladius = 1302038
+prideShield = 1098001
+
+cygnus = 2520025
+
+sm.setSpeakerID(cygnus)
+response = sm.sendAskYesNo("Congratulations on passing your trials, Mihile. "
+"Are you prepared to be declared an official apprentice knight?")
+if response:
+    if sm.getEmptyInventorySlots(InvType.EQUIP) >= 3:
         if chr.getJob() == 5100:
             sm.jobAdvance(5110)
-            sm.giveItem(1302038)
-            sm.giveItem(1142400)
-            sm.completeQuest(20810)
-            sm.dispose()
+            sm.completeQuest(parentID)
+            sm.giveItem(apprentice)
+            sm.giveItem(gladius)
+            sm.giveAndEquip(prideShield)
+            sm.sendSayOkay("I now pronounce you an Apprentice Knight! "
+            "I've given you some SP to use. Make us proud.")
         else:
-            sm.sendNext("You are not a mihile class.")
-            sm.dispose()
+            sm.sendSayOkay("You are not a 1st job Mihile.")
+    else:
+        sm.sendSayOkay("Please make room in your Equip inventory.")

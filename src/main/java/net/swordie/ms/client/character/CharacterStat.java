@@ -139,8 +139,8 @@ public class CharacterStat {
         return (short) level;
     }
 
-    public short getCharismaExp() {
-        return (short) charismaExp;
+    public int getCharismaExp() {
+        return charismaExp;
     }
 
     public short getLuk() {
@@ -227,12 +227,12 @@ public class CharacterStat {
         return worldIdForLog;
     }
 
-    public short getCharmExp() {
-        return (short) charmExp;
+    public int getCharmExp() {
+        return charmExp;
     }
 
-    public short getCraftExp() {
-        return (short) craftExp;
+    public int getCraftExp() {
+        return craftExp;
     }
 
     public int getAlbaActivityID() {
@@ -251,8 +251,8 @@ public class CharacterStat {
         return albaDuration;
     }
 
-    public short getInsightExp() {
-        return (short) insightExp;
+    public int getInsightExp() {
+        return insightExp;
     }
 
     public int getAlbaSpecialReward() {
@@ -279,12 +279,12 @@ public class CharacterStat {
         return pvpPoint;
     }
 
-    public short getSenseExp() {
-        return (short) senseExp;
+    public int getSenseExp() {
+        return senseExp;
     }
 
-    public short getWillExp() {
-        return (short) willExp;
+    public int getWillExp() {
+        return willExp;
     }
 
     public long getPosMap() {
