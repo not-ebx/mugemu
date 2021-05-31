@@ -6,8 +6,7 @@ options = []
 
 al = chr.getAvatarData().getAvatarLook()
 
-selection = sm.sendNext("Hello. How can I help you?"
-            "\r\n#b"
+selection = sm.sendNext("Hello. How can I help you? #b\r\n"
             "#L0#Change hair colour#l\r\n"
             "#L1#Change eye colour#l\r\n"
             "#L2#Change skin tone#l")

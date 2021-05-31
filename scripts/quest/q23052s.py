@@ -6,14 +6,12 @@ sm.setSpeakerID(BRISTON)
 sm.sendNext("Welcome, #h #. You're quite the hero. Look around at this beautiful town. It's worth fighting for... worth dying for... don't you think?")
 
 sm.setPlayerAsSpeaker()
-sm.flipDialogue()
 sm.sendSay("Are you feeling better?")
 
 sm.setSpeakerID(BRISTON)
 sm.sendSay("Yes. #p1540418#'s skills are second to none. I'm completely back to my old self. There is still one problem though...")
 
 sm.setPlayerAsSpeaker()
-sm.flipDialogue()
 sm.sendSay("What?! Are the Black Wings planning something?")
 
 sm.setSpeakerID(BRISTON)

@@ -541,12 +541,15 @@ public class JobConstants {
                 case BANDIT:
                 case CHIEFBANDIT:
                 case SHADOWER:
+                    wts.add(WeaponType.Dagger);
+                    break;
                 case BLADE_RECRUIT:
                 case BLADE_ACOLYTE:
                 case BLADE_SPECIALIST:
                 case BLADE_LORD:
                 case BLADE_MASTER:
                     wts.add(WeaponType.Dagger);
+                    wts.add(WeaponType.Katara);
                     break;
                 case PIRATE:
                     wts.add(WeaponType.Knuckle);
@@ -589,6 +592,9 @@ public class JobConstants {
                 case DAWNWARRIOR2:
                 case DAWNWARRIOR3:
                 case DAWNWARRIOR4:
+                    wts.add(WeaponType.OneHandedSword);
+                    wts.add(WeaponType.TwoHandedSword);
+                    break;
                 case KAISER:
                 case KAISER1:
                 case KAISER2:
