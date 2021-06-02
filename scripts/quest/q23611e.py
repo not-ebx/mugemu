@@ -1,4 +1,4 @@
-# [Job Advancement] Veritas's Finest (23611)
+# [Job Advancement] Veritas's Finest (23611) | Xenon 2nd Job
 
 promessa = 30021235
 secretAgent = 1142576

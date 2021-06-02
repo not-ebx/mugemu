@@ -184,8 +184,6 @@ public class Shade extends Job {
         return super.isBuff(skillID) || Arrays.stream(buffs).anyMatch(b -> b == skillID);
     }
 
-
-
     // Attack related methods ------------------------------------------------------------------------------------------
 
     @Override
@@ -518,6 +516,8 @@ public class Shade extends Job {
         chr.write(UserPacket.effect(Effect.skillUse(25111211, (byte) 1, 0)));
         chr.getField().broadcastPacket(UserRemote.effect(chr.getId(), Effect.skillUse(25111211, (byte) 1, 0)));
     }
+
+    // Character creation related methods ------------------------------------------------------------------------------
 
     @Override
     public void setCharCreationStats(Char chr) {

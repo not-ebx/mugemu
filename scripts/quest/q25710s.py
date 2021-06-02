@@ -1,4 +1,4 @@
-# [Job Advancement] Break Nova Essence Limit (25710) | Kaiser 2nd job advancement
+# [Job Advancement] Break Nova Essence Limit (25710) | Kaiser 2nd Job
 
 from net.swordie.ms.enums import InvType
 

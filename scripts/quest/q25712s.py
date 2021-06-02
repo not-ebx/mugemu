@@ -1,4 +1,4 @@
-# [Job Advancement] Call of the Kaiser (25712) | Kaiser 4th job advancement
+# [Job Advancement] Call of the Kaiser (25712) | Kaiser 4th Job
 
 from net.swordie.ms.enums import InvType
 

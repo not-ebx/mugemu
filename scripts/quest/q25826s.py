@@ -1,5 +1,4 @@
-# [Job Advancement] Pink Power Rising (25826) | AB 3rd job advancement
-
+# [Job Advancement] Pink Power Rising (25826) | AB 3rd Job
 from net.swordie.ms.enums import InvType
 
 angel = 1142497

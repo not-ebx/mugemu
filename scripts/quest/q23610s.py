@@ -1,4 +1,4 @@
-# [Job Advancement] Secret Instructions (23610)
+# [Job Advancement] Secret Instructions (23610) | Xenon 2nd Job
 
 tonero = 3001104
 claudine = 1540452

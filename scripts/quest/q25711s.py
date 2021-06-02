@@ -1,4 +1,4 @@
-# [Job Advancement] Final Kaiser Awakening! (25711) | Kaiser 3rd job advancement
+# [Job Advancement] Final Kaiser Awakening! (25711) | Kaiser 3rd Job
 
 from net.swordie.ms.enums import InvType
 

@@ -95,7 +95,6 @@ public class Xenon extends Job {
             MODAL_SHIFT,
             LIBERTY_BOOSTERS,
             MIMIC_PROTOCOL,
-            PROMESSA_ESCAPE,
     };
 
     private int[] buffs = new int[]{
@@ -138,18 +137,6 @@ public class Xenon extends Job {
         return JobConstants.isXenon(id);
     }
 
-    @Override
-    public void setCharCreationStats(Char chr) {
-        super.setCharCreationStats(chr);
-        CharacterStat cs = chr.getAvatarData().getCharacterStat();
-        cs.setLevel(10);
-        cs.setJob(JobConstants.JobEnum.XENON1.getJobId());
-        cs.setStr(19);
-        cs.setDex(19);
-        cs.setLuk(19);
-        chr.setSpToCurrentJob(5);
-        cs.setPosMap(310010000);
-    }
 
     // Buff related methods --------------------------------------------------------------------------------------------
 
@@ -629,5 +616,25 @@ public class Xenon extends Job {
         }
         super.handleHit(c, inPacket, hitInfo);
     }
+
+    // Character creation related methods ------------------------------------------------------------------------------
+
+    @Override
+    public void setCharCreationStats(Char chr) {
+        super.setCharCreationStats(chr);
+        CharacterStat cs = chr.getAvatarData().getCharacterStat();
+        cs.setLevel(10);
+        cs.setJob(JobConstants.JobEnum.XENON1.getJobId());
+        cs.setStr(19);
+        cs.setDex(19);
+        cs.setLuk(19);
+        cs.setHp(644);
+        cs.setMaxHp(644);
+        cs.setMp(263);
+        cs.setMaxMp(263);
+        chr.setSpToCurrentJob(5);
+        cs.setPosMap(310010000);
+    }
+
 }
 

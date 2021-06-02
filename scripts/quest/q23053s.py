@@ -1,4 +1,4 @@
-# You Surpass Me (23053) | WH 4th job advancement quest
+# You Surpass Me (23053) | WH 4th Job
 
 BELLE = 2151002
 

@@ -1,4 +1,4 @@
-# [Job Advancement] Only the Brave (23612)
+# [Job Advancement] Only the Brave (23612) | Xenon 3rd Job
 
 captainFreedom = 1142577
 

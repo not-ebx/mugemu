@@ -1,4 +1,4 @@
-# [Job Advancement] Agent of Justice (25825) | AB 2nd job advancement
+# [Job Advancement] Agent of Justice (25825) | AB 2nd Job
 
 from net.swordie.ms.enums import InvType
 
