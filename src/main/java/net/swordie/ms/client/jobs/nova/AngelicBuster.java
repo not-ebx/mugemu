@@ -2,6 +2,7 @@ package net.swordie.ms.client.jobs.nova;
 
 import net.swordie.ms.client.Client;
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.client.character.CharacterStat;
 import net.swordie.ms.client.character.info.HitInfo;
 import net.swordie.ms.client.character.items.Item;
 import net.swordie.ms.client.character.skills.Option;
@@ -141,10 +142,11 @@ public class AngelicBuster extends Job {
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
-        chr.setStat(Stat.level, 10);
-        chr.setStat(Stat.dex, 49);
-        chr.getAvatarData().getCharacterStat().setPosMap(400000000);
-        chr.getAvatarData().getCharacterStat().setJob(JobConstants.JobEnum.ANGELIC_BUSTER1.getJobId());
+        CharacterStat cs = chr.getAvatarData().getCharacterStat();
+        cs.setLevel(10);
+        cs.setDex(49);
+        cs.setPosMap(400000000);
+        cs.setJob(JobConstants.JobEnum.ANGELIC_BUSTER1.getJobId());
         Item secondary = ItemData.getItemDeepCopy(1352601);
         secondary.setBagIndex(10);
         chr.getAvatarData().getAvatarLook().getHairEquips().add(secondary.getItemId());
