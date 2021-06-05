@@ -46,6 +46,7 @@ if sm.canHold(borderPatrol):
     # Trigger Job Advance only if 3rd Job to prevent re-advancing from dialogue flipping
     if chr.getJob() == 3611:
         sm.jobAdvance(3612)
+        sm.startQuest(parentID)
         sm.completeQuest(parentID)
         sm.giveItem(borderPatrol)
 

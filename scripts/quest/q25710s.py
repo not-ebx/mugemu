@@ -13,6 +13,7 @@ if chr.getJob() == 6100:
     if response:
         if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.jobAdvance(6110)
+            sm.startQuest(parentID)
             sm.completeQuest(parentID)
             sm.giveItem(fated)
             sm.giveAndEquip(guardianEssence)

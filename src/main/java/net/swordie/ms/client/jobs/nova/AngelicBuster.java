@@ -603,11 +603,11 @@ public class AngelicBuster extends Job {
         super.setCharCreationStats(chr);
         CharacterStat cs = chr.getAvatarData().getCharacterStat();
         cs.setLevel(10);
+        cs.setJob(JobConstants.JobEnum.ANGELIC_BUSTER1.getJobId());
         cs.setDex(49);
         cs.setHp(644);
         cs.setMaxHp(644);
         cs.setPosMap(400000000);
-        cs.setJob(JobConstants.JobEnum.ANGELIC_BUSTER1.getJobId());
         Item secondary = ItemData.getItemDeepCopy(1352601);
         secondary.setBagIndex(10);
         chr.getAvatarData().getAvatarLook().getHairEquips().add(secondary.getItemId());

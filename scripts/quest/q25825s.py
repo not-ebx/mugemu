@@ -37,6 +37,7 @@ if chr.getLevel() >= 30 and chr.getJob() == 6500:
     if response:
         if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.jobAdvance(6510)
+            sm.startQuest(parentID)
             sm.completeQuest(parentID)
             sm.giveItem(agent)
             sm.giveAndEquip(purpleRing)

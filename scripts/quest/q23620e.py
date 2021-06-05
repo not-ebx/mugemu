@@ -68,9 +68,10 @@ if sm.canHold(lastOneHome):
     "#s" + str(echo) + "# #q" + str(echo) + "#\r\n"
     "#i" + str(lastOneHome) + "# #z" + str(lastOneHome) + "#")
 
-    sm.completeQuest(parentID)
-    sm.giveSkill(echo)
-    sm.giveItem(lastOneHome)
+    if sm.hasQuest(parentID):
+        sm.completeQuest(parentID)
+        sm.giveSkill(echo)
+        sm.giveItem(lastOneHome)
     
     sm.flipDialogue()
     sm.sendPrev("Thank you for helping Edelstein. Everyone here is glad you're back.")

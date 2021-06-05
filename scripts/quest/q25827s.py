@@ -45,6 +45,7 @@ if chr.getLevel() >= 100 and chr.getJob() == 6511:
         if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.setPlayerAsSpeaker()
             sm.jobAdvance(6512)
+            sm.startQuest(parentID)
             sm.completeQuest(parentID)
             sm.giveItem(idol)
             sm.giveAndEquip(greenRing)
