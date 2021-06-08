@@ -1,5 +1,5 @@
 # Portal for Hayato Tutorial cutsence when approaching Princess | Honnou-ji Temple Plaza (807100004)
-# Author: Tiger
+# Author: Tiger, Pyonta
 
 PRINCESS_NO = 9131005
 
@@ -7,19 +7,21 @@ sm.lockInGameUI(True)
 sm.removeEscapeButton()
 sm.forcedInput(0)
 
-sm.setPlayerAsSpeaker()
-sm.sendNext("Please step aside, madam, I have no quarrel with you.")
+sm.flipBoxChat()
+sm.flipBoxChatPlayerAsSpeaker()
+sm.sendNext("Please step aside, madam. I have no quarrel with you.")
 
 sm.setSpeakerID(PRINCESS_NO)
-sm.flipDialogue()
+sm.setBoxChat()
 sm.sendSay("How dare you speak to me in such a familiar tongue. I am Kichou, daughter of the Saitou Dousan, lawful wife of the Demon King!")
 
-sm.setPlayerAsSpeaker()
+sm.flipBoxChat()
+sm.flipBoxChatPlayerAsSpeaker()
 sm.sendSay("The tales of your beauty are not exaggerations, Lady No, but you must stand aside. Your husband is my sworn enemy.")
 
 sm.setSpeakerID(PRINCESS_NO)
-sm.flipDialogue()
-sm.sendSay("Cocky little brat! You will be me for death before I am done!")
+sm.setBoxChat()
+sm.sendSay("Cocky little brat! You will beg me for death before I am done!")
 
 sm.showNpcSpecialActionByTemplateId(PRINCESS_NO, "step")
 sm.sendDelay(1000)

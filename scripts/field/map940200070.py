@@ -10,10 +10,11 @@ moonbeam = 3002107
 silver = 3002108
 # Using tutorial Shade's NPC as a placeholder
 # TO DO: Replace with deepcopy of player and remote spawn
-if chr.getAvatarData().getAvatarLook().getGender() == 1:
-    you = 2159450
-else:
+gender = chr.getAvatarData().getAvatarLook().getGender()
+if gender == 0:
     you = 2159449
+else:
+    you = 2159450
 
 returnField = sm.getReturnField()
 portal = sm.getReturnPortal()
