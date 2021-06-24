@@ -12,6 +12,7 @@ import net.swordie.ms.client.character.skills.info.SkillInfo;
 import net.swordie.ms.client.character.skills.temp.TemporaryStatBase;
 import net.swordie.ms.client.character.skills.temp.TemporaryStatManager;
 import net.swordie.ms.connection.packet.FieldPacket;
+import net.swordie.ms.connection.packet.WvsContext;
 import net.swordie.ms.life.AffectedArea;
 import net.swordie.ms.life.Dragon;
 import net.swordie.ms.life.Summon;
@@ -33,6 +34,7 @@ import net.swordie.ms.life.mob.MobTemporaryStat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.*;
 import static net.swordie.ms.client.character.skills.SkillStat.*;
@@ -144,13 +146,10 @@ public class Evan extends Job {
         return skillID;
     }
 
-
     @Override
     public boolean isHandlerOfJob(short id) {
         return JobConstants.isEvan(id);
     }
-
-
 
     // Buff related methods --------------------------------------------------------------------------------------------
 
@@ -513,36 +512,50 @@ public class Evan extends Job {
         }
         super.handleHit(c, inPacket, hitInfo);
     }
+
+    // Character creation related methods ------------------------------------------------------------------------------
+
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
         CharacterStat cs = chr.getAvatarData().getCharacterStat();
         cs.setPosMap(900010000);
     }
+
     @Override
     public void handleLevelUp() {
         super.handleLevelUp();
-        //TODO give sp to proper job advancement, now gives sp to the old one(probably not enough time inbetween setting job and sp)
         if (chr.getLevel() == 10) {
-            chr.setJob(2210);
-            chr.setStatAndSendPacket(Stat.subJob, 2210);
-            chr.addSpToJobByCurrentLevel(3);
+            chr.setJob(JobConstants.JobEnum.EVAN1.getJobId());
+            chr.setSpToCurrentJob(3);
+            Map<Stat, Object> stats = new HashMap<>();
+            stats.put(Stat.subJob, JobConstants.JobEnum.EVAN1.getJobId());
+            stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+            chr.getClient().write(WvsContext.statChanged(stats));
         }
         if (chr.getLevel() == 30) {
-            chr.setJob(2212);
-            chr.setStatAndSendPacket(Stat.subJob, 2212);
-            chr.addSpToJobByCurrentLevel(3);
+            chr.setJob(JobConstants.JobEnum.EVAN2.getJobId());
+            chr.setSpToCurrentJob(3);
+            Map<Stat, Object> stats = new HashMap<>();
+            stats.put(Stat.subJob, JobConstants.JobEnum.EVAN2.getJobId());
+            stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+            chr.getClient().write(WvsContext.statChanged(stats));
         }
         if (chr.getLevel() == 60) {
-            chr.setJob(2214);
-            chr.setStatAndSendPacket(Stat.subJob, 2214);
-            chr.addSpToJobByCurrentLevel(3);
+            chr.setJob(JobConstants.JobEnum.EVAN3.getJobId());
+            chr.setSpToCurrentJob(3);
+            Map<Stat, Object> stats = new HashMap<>();
+            stats.put(Stat.subJob, JobConstants.JobEnum.EVAN3.getJobId());
+            stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+            chr.getClient().write(WvsContext.statChanged(stats));
         }
         if (chr.getLevel() == 100) {
-            chr.setJob(2218);
-            chr.setStatAndSendPacket(Stat.subJob, 2218);
-            chr.addSpToJobByCurrentLevel(3);
+            chr.setJob(JobConstants.JobEnum.EVAN4.getJobId());
+            chr.setSpToCurrentJob(3);
+            Map<Stat, Object> stats = new HashMap<>();
+            stats.put(Stat.subJob, JobConstants.JobEnum.EVAN4.getJobId());
+            stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+            chr.getClient().write(WvsContext.statChanged(stats));
         }
-
     }
 }

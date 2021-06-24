@@ -1,4 +1,4 @@
-# [Job Advancement] Final Kaiser Awakening! (25711) | Kaiser 3rd job advancement
+# [Job Advancement] Final Kaiser Awakening! (25711) | Kaiser 3rd Job
 
 from net.swordie.ms.enums import InvType
 
@@ -12,6 +12,7 @@ if chr.getJob() == 6110:
     if response:
         if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.jobAdvance(6111)
+            sm.startQuest(parentID)
             sm.completeQuest(parentID)
             sm.giveItem(awakened)
             sm.giveAndEquip(justiceEssence)

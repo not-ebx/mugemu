@@ -1,7 +1,6 @@
 # Evan Intro | Dream World: Dream Forest Entrance (900010000)
 # Tutorial skipper snippet
 
-
 def skip_tutorial():
     MAPLE_ADMINISTARTOR = 2007
 
@@ -27,21 +26,17 @@ def skip_tutorial():
     sm.lockInGameUI(True)
 
     if sm.sendAskYesNo("Would you like to skip the tutorial questline and instantly arrive at #m" + str(map_to_warp) + "#?"):
-        if sm.getChr().getLevel() < target_level:
-            sm.addLevel(target_level - sm.getChr().getLevel())
-
+        sm.giveItem(1372107)  # Beginner Magician's Wand
+        sm.levelUntil(target_level)
+        sm.resetAP(False, 2210)
         for quest in quests_to_complete:
             sm.completeQuestNoRewards(quest)
-
-        sm.giveItem(1372107)  # Beginner Magician's Wand
-        sm.resetAP(False, sm.getChr().getJob())
-        # sm.addSP(3, True)
         sm.warp(map_to_warp)
+        sm.lockInGameUI(False)
+        sm.dispose()
 
     sm.createQuestWithQRValue(22011, "noskip")
     sm.lockInGameUI(False)
-    sm.dispose()
-
 
 if sm.getQRValue(22011) != "noskip":
     skip_tutorial()

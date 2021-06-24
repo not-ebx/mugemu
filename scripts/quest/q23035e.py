@@ -1,4 +1,4 @@
-# Destroying the Energy Conducting Device (23035) | Mechanic 3rd job advancement quest
+# Destroying the Energy Conducting Device (23035) | Mechanic 3rd Job
 
 vitalMagnum = 1352702
 

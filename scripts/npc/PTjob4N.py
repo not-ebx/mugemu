@@ -1,5 +1,5 @@
 # Portrait (1403003) | Leafre Treasure Vault (915010201)
-# Phantom 4th job adv
+# Phantom 4th Job
 
 remembers = 1142378
 

@@ -1,3 +1,5 @@
+# Castle Wall Corner (921110301) | Shade 3rd Job
+
 import random
 
 if sm.hasQuestCompleted(38074) and not sm.hasQuestCompleted(38075):

@@ -50,7 +50,7 @@ if sm.getFieldID() == 807100000: # Honnou-ji Eastern Wall
 
     sm.flipBoxChat()
     sm.flipBoxChatPlayerAsSpeaker()
-    sm.sendNext("The Mist Cutter yearns for vengeance. That is the only emotion I feel")
+    sm.sendNext("The Mist Cutter yearns for vengeance. That is the only emotion I feel.")
 
     sm.setSpeakerID(TAKEDA)
     sm.setBoxChat()
@@ -67,11 +67,11 @@ if sm.getFieldID() == 807100000: # Honnou-ji Eastern Wall
 
     sm.flipBoxChat()
     sm.flipBoxChatPlayerAsSpeaker()
-    sm.sendNext("Alright but I hope your horsemen will forgive me when there are no enemies left to be trampled.")
+    sm.sendNext("All right, but I hope your horsemen will forgive me when there are no enemies left to be trampled.")
 
     sm.setSpeakerID(TAKEDA)
     sm.setBoxChat()
-    sm.sendNext("Haha, I wish I could adopt you! Good luck out there, soldier. Try not to beat them all!")
+    sm.sendNext("Haha. I wish I could adopt you! Good luck out there, soldier. Try not to beat them all!")
 
     sm.lockInGameUI(False, False)
 
@@ -137,38 +137,43 @@ elif sm.getFieldID() == 807100003: # Honnou-ji : Honnou-ji Courtyard
     sm.sendDelay(1000)
 
     sm.setSpeakerID(AKECHI)
-    sm.flipDialogue()
+    sm.setBoxChat()
     sm.sendNext("A little deer comes to meet the tiger? You cannot possibly belong to the Oda clan. You are far too unkempt. What brings you to Honnou-ji?")
 
-    sm.setPlayerAsSpeaker()
+    sm.flipBoxChat()
+    sm.flipBoxChatPlayerAsSpeaker()
     sm.sendSay("(This woman appears delicate, but her voice is deep and rough with callous intent. Could she be one of Oda's?)")
 
-    sm.setPlayerAsSpeaker()
+    sm.flipBoxChat()
+    sm.flipBoxChatPlayerAsSpeaker()
     sm.sendSay("My name is Anegasaki Kenji, eldest son of Anegasaki Tomonobu, retainer to the Matsuyama clan. I have come to avenge my family and rescue the princess. Who are you, fair maiden?")
 
     sm.setSpeakerID(AKECHI)
-    sm.flipDialogue()
+    sm.setBoxChat()
     sm.sendSay("Hehe, am I truly so fair that you would mistake me for a maiden? I vaguely recall an unimportant family from the southwest named Matsuyama, though I thought I had put it from my memory long ago.")
 
-    sm.setPlayerAsSpeaker()
+    sm.flipBoxChat()
+    sm.flipBoxChatPlayerAsSpeaker()
     sm.sendSay("Only Nobunaga's followers would be so sharp of tongue and empty of mind. I do not relish harming one so beautiful, but my katana is less discerning.")
 
-    sm.setPlayerAsSpeaker()
+    sm.flipBoxChat()
+    sm.flipBoxChatPlayerAsSpeaker()
     sm.sendSay("I will give you one last chance to tell me your name. Bear in mind, it will be the last thing you say on this plane of existence.")
 
     sm.setSpeakerID(TAKEDA)
-    sm.flipDialogue()
+    sm.setBoxChat()
     sm.sendSay("No need to get caught up dealing with this louse, Hayato.")
 
     sm.spawnNpc(TAKEDA, 92, 32)
     sm.sendDelay(100)
 
-    sm.setPlayerAsSpeaker()
+    sm.flipBoxChat()
+    sm.flipBoxChatPlayerAsSpeaker()
     sm.sendSay("Master Shingen!")
 
     sm.setSpeakerID(TAKEDA)
-    sm.flipDialogue()
-    sm.sendSay("Honnou-ji has fallen on worse times than I'd hoped. Though I can't say I'm suprised, now that I see one of Oda's Four Heavenly Kinds sthanding before me. Wouldn't you agree, Akechi Mitsuhide?!")
+    sm.setBoxChat()
+    sm.sendSay("Honnou-ji has fallen on worse times than I'd hoped. Though I can't say I'm suprised, now that I see one of Oda's Four Heavenly Kings sthanding before me. Wouldn't you agree, Akechi Mitsuhide?!")
 
     sm.sendDelay(500)
     sm.showBalloonMsg("Effect/DirectionJP3.img/effect/kenjiTuto/balloonMsg/0", 2000)
@@ -179,15 +184,16 @@ elif sm.getFieldID() == 807100003: # Honnou-ji : Honnou-ji Courtyard
     sm.sendDelay(2000)
 
     sm.setSpeakerID(AKECHI)
-    sm.flipDialogue()
+    sm.setBoxChat()
     sm.sendNext("You are slightly less idiotic than your portrait made you out to be, Takeda Shingen. Yet you figured out what is going on here, and you figured out that I was the one who started this rebellion. Bravo, you goonish oaf. Bravo!")
 
     sm.setSpeakerID(TAKEDA)
-    sm.flipDialogue()
+    sm.setBoxChat()
     sm.sendSay("I've been told you're the kind of guy that'd stab his mother in the back for the right price. How about you and I team up, turn the tables on the Demon King?")
 
-    sm.setPlayerAsSpeaker()
-    sm.sendSay("You would count yourself in league with this trickster?! This scoundrel who destroyed my family?! I will not let that happen! Prepared yourself, Akechi Mitsuhide!")
+    sm.flipBoxChat()
+    sm.flipBoxChatPlayerAsSpeaker()
+    sm.sendSay("You would count yourself in league with this trickster?! This scoundrel who destroyed my family?! I will not let that happen! Prepare yourself, Akechi Mitsuhide!")
 
     sm.sendDelay(500)
     sm.showBalloonMsg("Effect/DirectionJP3.img/effect/kenjiTuto/balloonMsg/5", 2000)

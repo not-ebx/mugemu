@@ -650,6 +650,8 @@ public class Aran extends Job {
         super.handleHit(c, inPacket, hitInfo);
     }
 
+    // Character creation related methods ------------------------------------------------------------------------------
+
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);

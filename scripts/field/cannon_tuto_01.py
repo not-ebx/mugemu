@@ -3,8 +3,7 @@ REITING = 1096001
 
 if sm.sendAskYesNo("Would you like to skip the intro?"):
     sm.completeQuestNoRewards(2568)
-    if sm.getChr().getLevel() < 10:
-        sm.addLevel(10 - sm.getChr().getLevel())
+    sm.levelUntil(10)
     sm.warp(912060500)
     sm.dispose()
 

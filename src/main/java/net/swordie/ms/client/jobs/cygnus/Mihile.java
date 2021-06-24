@@ -590,7 +590,8 @@ public class Mihile extends Job {
         super.handleHit(c, inPacket, hitInfo);
     }
     
-    // Character creation related methods ---------------------------------------------------------------------------------------------
+    // Character creation related methods ------------------------------------------------------------------------------
+
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);

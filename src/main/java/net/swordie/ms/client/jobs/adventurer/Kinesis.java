@@ -391,16 +391,20 @@ public class Kinesis extends Job {
         super.handleHit(c, inPacket, hitInfo);
     }
 
+    // Character creation related methods ------------------------------------------------------------------------------
+
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
         CharacterStat cs = chr.getAvatarData().getCharacterStat();
+        cs.setLevel(10);
+        cs.setJob(JobConstants.JobEnum.KINESIS_1.getJobId());
+        cs.setInt(49);
+        cs.setHp(574);
+        cs.setMaxHp(574);
         Item item = ItemData.getItemDeepCopy(1353200); // Pawn Chess Piece
         item.setBagIndex(BodyPart.Shield.getVal());
         chr.getEquippedInventory().addItem(item);
-        cs.setLevel(10);
-        cs.setMaxHp(574);
-        cs.setHp(574);
-        cs.setInt(45);
+        chr.setSpToCurrentJob(5);
     }
 }

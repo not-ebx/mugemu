@@ -121,14 +121,6 @@ public class Phantom extends Job {
         return JobConstants.isPhantom(id);
     }
 
-    @Override
-    public void setCharCreationStats(Char chr) {
-        super.setCharCreationStats(chr);
-        chr.setStolenSkills(new HashSet<>());
-        chr.setChosenSkills(new HashSet<>());
-        chr.getAvatarData().getCharacterStat().setPosMap(915000000);
-    }
-
     // Buff related methods --------------------------------------------------------------------------------------------
 
     public void handleBuff(Client c, InPacket inPacket, int skillID, byte slv) {
@@ -613,4 +605,15 @@ public class Phantom extends Job {
         tsm.putCharacterStatValue(NotDamaged, o);
         tsm.sendSetStatPacket();
     }
+
+    // Character creation related methods ------------------------------------------------------------------------------
+
+    @Override
+    public void setCharCreationStats(Char chr) {
+        super.setCharCreationStats(chr);
+        chr.setStolenSkills(new HashSet<>());
+        chr.setChosenSkills(new HashSet<>());
+        chr.getAvatarData().getCharacterStat().setPosMap(915000000);
+    }
+
 }

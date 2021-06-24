@@ -14,10 +14,10 @@ response = sm.sendAskYesNo("And please take this special gift for your friend. "
 "You know who I mean...")
 if response:
     if sm.canHold(elfRuler):
-        sm.giveSkill(echo)
-        #Swap out Sylvidia for the armored one
+        # Swap out Sylvidia for the armored one
         sm.removeSkill(sylvidia)
         sm.giveSkill(sylvidiaUpgrade)
+        sm.giveSkill(echo)
         sm.giveItem(elfRuler)
         sm.completeQuest(parentID)
         

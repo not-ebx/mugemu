@@ -1,4 +1,4 @@
-# You Surpass Me (23054) | Mechanic 4th job advancement quest
+# You Surpass Me (23054) | Mechanic 4th Job
 
 eternalMagnum = 1352703
 
