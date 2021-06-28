@@ -25,12 +25,9 @@ def skip_tutorial():
 	sm.lockInGameUI(True)
 
 	if sm.sendAskYesNo("Would you like to skip the tutorial questline and instantly arrive at #m" + str(map_to_warp) + "#?"):
-		if sm.getChr().getLevel() < target_level:
-			sm.addLevel(target_level - sm.getChr().getLevel())
-
+		sm.levelUntil(target_level)
 		for quest in quests_to_complete:
 			sm.completeQuestNoRewards(quest)
-		
 		sm.giveSkill(COMBAT_STEP, 1, 1)
 		sm.warp(map_to_warp)
 

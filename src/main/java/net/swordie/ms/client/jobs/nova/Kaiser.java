@@ -153,21 +153,6 @@ public class Kaiser extends Job {
         return JobConstants.isKaiser(id);
     }
 
-    @Override
-    public void setCharCreationStats(Char chr) {
-        super.setCharCreationStats(chr);
-        CharacterStat cs = chr.getAvatarData().getCharacterStat();
-        cs.setLevel(10);
-        cs.setJob(6100);
-        cs.setStr(49);
-        Item secondary = ItemData.getItemDeepCopy(1352500);
-        secondary.setBagIndex(10);
-        chr.getAvatarData().getAvatarLook().getHairEquips().add(secondary.getItemId());
-        chr.setSpToCurrentJob(5);
-        chr.getEquippedInventory().addItem(secondary);
-    }
-
-
     // Buff related methods --------------------------------------------------------------------------------------------
 
     public void handleBuff(Client c, InPacket inPacket, int skillID, byte slv) {
@@ -808,4 +793,26 @@ public class Kaiser extends Job {
 
         super.handleHit(c, inPacket, hitInfo);
     }
+
+    // Character creation related methods ------------------------------------------------------------------------------
+
+    @Override
+    public void setCharCreationStats(Char chr) {
+        super.setCharCreationStats(chr);
+        CharacterStat cs = chr.getAvatarData().getCharacterStat();
+        cs.setLevel(10);
+        cs.setJob(JobConstants.JobEnum.KAISER1.getJobId());
+        cs.setStr(49);
+        cs.setHp(543);
+        cs.setMaxHp(543);
+        cs.setMp(213);
+        cs.setMaxMp(213);
+        cs.setPosMap(400000000);
+        Item secondary = ItemData.getItemDeepCopy(1352500);
+        secondary.setBagIndex(10);
+        chr.getAvatarData().getAvatarLook().getHairEquips().add(secondary.getItemId());
+        chr.setSpToCurrentJob(5);
+        chr.getEquippedInventory().addItem(secondary);
+    }
+
 }

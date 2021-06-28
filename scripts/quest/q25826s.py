@@ -1,5 +1,4 @@
-# [Job Advancement] Pink Power Rising (25826) | AB 3rd job advancement
-
+# [Job Advancement] Pink Power Rising (25826) | AB 3rd Job
 from net.swordie.ms.enums import InvType
 
 angel = 1142497
@@ -42,6 +41,7 @@ if chr.getLevel() >= 60 and chr.getJob() == 6510:
         if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
             sm.setPlayerAsSpeaker()
             sm.jobAdvance(6511)
+            sm.startQuest(parentID)
             sm.completeQuest(parentID)
             sm.giveItem(angel)
             sm.giveAndEquip(blueRing)

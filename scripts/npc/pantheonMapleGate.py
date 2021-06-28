@@ -1,8 +1,12 @@
 # Interdimensional Portal (3000012) | Great Temple Interior (400000001)
 
-if sm.hasQuest(38030):
-    sm.setQRValue(38030, "clear", False)
-    sm.warp(100000000, 23)
+theReturn = 38030
+
+if sm.hasQuest(theReturn):
+    response = sm.sendAskYesNo("Would you like to travel to Maple World?")
+    if response:
+        sm.setQRValue(theReturn, "clear", False)
+        sm.warp(100000000, 23)
 
 else:
     fenelle = 3000001

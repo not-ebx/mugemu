@@ -189,80 +189,6 @@ public class Zero extends Job {
         return chr.getZeroInfo().isZeroBetaState();
     }
 
-    @Override
-    public void handleLevelUp() {
-        short level = chr.getLevel();
-        chr.addStat(Stat.mhp, 500);
-        chr.addStat(Stat.ap, 5);
-        chr.addHonorExp(700 + ((chr.getLevel() - 50) / 10) * 100);
-        int sp = 3;
-        if (level > 100 && (level % 10) % 3 == 0) {
-            sp = 6; // double sp on levels ending in 3/6/9
-            if (level == 110) {
-                chr.getQuestManager().completeQuest(QuestConstants.ZERO_WEAPON_WINDOW_QUEST); //enables weapon button
-                Quest q = QuestData.createQuestFromId(QuestConstants.ZERO_SET_QUEST);
-                q.setQrValue(String.valueOf(0));
-                chr.getQuestManager().addQuest(q);
-            }
-        }
-        ExtendSP esp = chr.getAvatarData().getCharacterStat().getExtendSP();
-        SPSet alphaSpSet = esp.getSpSet().get(0);
-        SPSet betaSpSet = esp.getSpSet().get(1);
-        alphaSpSet.addSp(sp);
-        betaSpSet.addSp(sp);
-        Map<Stat, Object> stats = new HashMap<>();
-        stats.put(Stat.mhp, chr.getStat(Stat.mhp));
-        stats.put(Stat.mmp, chr.getStat(Stat.mmp));
-        stats.put(Stat.ap, (short) chr.getStat(Stat.ap));
-        stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
-        chr.write(WvsContext.statChanged(stats));
-        byte linkSkillLevel = (byte) SkillConstants.getLinkSkillLevelByCharLevel(level);
-        int linkSkillID = SkillConstants.getOriginalOfLinkedSkill(SkillConstants.getLinkSkillByJob(chr.getJob()));
-        if (linkSkillID != 0 && linkSkillLevel > 0) {
-            Skill skill = chr.getSkill(linkSkillID, true);
-            if (skill.getCurrentLevel() != linkSkillLevel) {
-                chr.addSkill(linkSkillID, linkSkillLevel, 3);
-            }
-        }
-    }
-
-    @Override
-    public void setCharCreationStats(Char chr) {
-        AvatarLook mainLook = chr.getAvatarData().getAvatarLook();
-        chr.getAvatarData().setZeroAvatarLook(mainLook.deepCopy());
-        AvatarLook zeroLook = chr.getAvatarData().getZeroAvatarLook();
-        mainLook.getHairEquips().remove(new Integer(1562000));
-        zeroLook.getHairEquips().remove(new Integer(1572000));
-        zeroLook.setWeaponId(1562000);
-        zeroLook.setGender(1);
-        zeroLook.setSkin(chr.getAvatarData().getAvatarLook().getSkin());
-        zeroLook.setFace(21290);
-        zeroLook.setHair(37623);
-        zeroLook.setZeroBetaLook(true);
-        CharacterStat cs = chr.getAvatarData().getCharacterStat();
-        cs.setLevel(100);
-        cs.setStr(518);
-        cs.setHp(5000);
-        cs.setMaxHp(5000);
-        cs.setMp(100);
-        cs.setMaxMp(100);
-        cs.setJob(10112);
-        cs.setPosMap(100000000);
-        ExtendSP esp = chr.getAvatarData().getCharacterStat().getExtendSP();
-        SPSet alphaSpSet = esp.getSpSet().get(0);
-        SPSet betaSpSet = esp.getSpSet().get(1);
-        alphaSpSet.addSp(6);
-        betaSpSet.addSp(6);
-        Map<Stat, Object> stats = new HashMap<>();
-        stats.put(Stat.mhp, chr.getStat(Stat.mhp));
-        stats.put(Stat.mmp, chr.getStat(Stat.mmp));
-        stats.put(Stat.ap, (short) chr.getStat(Stat.ap));
-        stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
-        chr.write(WvsContext.statChanged(stats));
-    }
-
-
-
     // Buff related methods --------------------------------------------------------------------------------------------
 
     public void handleBuff(Client c, InPacket inPacket, int skillID, byte slv) {
@@ -697,4 +623,79 @@ public class Zero extends Job {
         chr.write(UserPacket.effect(Effect.skillSpecial(REWIND)));
         chr.getField().broadcastPacket(UserRemote.effect(chr.getId(), Effect.skillSpecial(REWIND)));
     }
+
+    // Character creation related methods ------------------------------------------------------------------------------
+
+    @Override
+    public void setCharCreationStats(Char chr) {
+        AvatarLook mainLook = chr.getAvatarData().getAvatarLook();
+        chr.getAvatarData().setZeroAvatarLook(mainLook.deepCopy());
+        AvatarLook zeroLook = chr.getAvatarData().getZeroAvatarLook();
+        mainLook.getHairEquips().remove(new Integer(1562000));
+        zeroLook.getHairEquips().remove(new Integer(1572000));
+        zeroLook.setWeaponId(1562000);
+        zeroLook.setGender(1);
+        zeroLook.setSkin(chr.getAvatarData().getAvatarLook().getSkin());
+        zeroLook.setFace(21290);
+        zeroLook.setHair(37623);
+        zeroLook.setZeroBetaLook(true);
+        CharacterStat cs = chr.getAvatarData().getCharacterStat();
+        cs.setLevel(100);
+        cs.setStr(518);
+        cs.setHp(5000);
+        cs.setMaxHp(5000);
+        cs.setMp(100);
+        cs.setMaxMp(100);
+        cs.setJob(10112);
+        cs.setPosMap(100000000);
+        ExtendSP esp = chr.getAvatarData().getCharacterStat().getExtendSP();
+        SPSet alphaSpSet = esp.getSpSet().get(0);
+        SPSet betaSpSet = esp.getSpSet().get(1);
+        alphaSpSet.addSp(6);
+        betaSpSet.addSp(6);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.mhp, chr.getStat(Stat.mhp));
+        stats.put(Stat.mmp, chr.getStat(Stat.mmp));
+        stats.put(Stat.ap, (short) chr.getStat(Stat.ap));
+        stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+        chr.write(WvsContext.statChanged(stats));
+    }
+
+    @Override
+    public void handleLevelUp() {
+        short level = chr.getLevel();
+        chr.addStat(Stat.mhp, 500);
+        chr.addStat(Stat.ap, 5);
+        chr.addHonorExp(700 + ((chr.getLevel() - 50) / 10) * 100);
+        int sp = 3;
+        if (level > 100 && (level % 10) % 3 == 0) {
+            sp = 6; // double sp on levels ending in 3/6/9
+            if (level == 110) {
+                chr.getQuestManager().completeQuest(QuestConstants.ZERO_WEAPON_WINDOW_QUEST); //enables weapon button
+                Quest q = QuestData.createQuestFromId(QuestConstants.ZERO_SET_QUEST);
+                q.setQrValue(String.valueOf(0));
+                chr.getQuestManager().addQuest(q);
+            }
+        }
+        ExtendSP esp = chr.getAvatarData().getCharacterStat().getExtendSP();
+        SPSet alphaSpSet = esp.getSpSet().get(0);
+        SPSet betaSpSet = esp.getSpSet().get(1);
+        alphaSpSet.addSp(sp);
+        betaSpSet.addSp(sp);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.mhp, chr.getStat(Stat.mhp));
+        stats.put(Stat.mmp, chr.getStat(Stat.mmp));
+        stats.put(Stat.ap, (short) chr.getStat(Stat.ap));
+        stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+        chr.write(WvsContext.statChanged(stats));
+        byte linkSkillLevel = (byte) SkillConstants.getLinkSkillLevelByCharLevel(level);
+        int linkSkillID = SkillConstants.getOriginalOfLinkedSkill(SkillConstants.getLinkSkillByJob(chr.getJob()));
+        if (linkSkillID != 0 && linkSkillLevel > 0) {
+            Skill skill = chr.getSkill(linkSkillID, true);
+            if (skill.getCurrentLevel() != linkSkillLevel) {
+                chr.addSkill(linkSkillID, linkSkillLevel, 3);
+            }
+        }
+    }
+
 }

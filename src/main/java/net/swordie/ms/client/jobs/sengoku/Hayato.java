@@ -10,6 +10,7 @@ import net.swordie.ms.client.character.skills.info.MobAttackInfo;
 import net.swordie.ms.client.character.skills.info.SkillInfo;
 import net.swordie.ms.client.character.skills.temp.TemporaryStatManager;
 import net.swordie.ms.client.jobs.Job;
+import net.swordie.ms.connection.packet.WvsContext;
 import net.swordie.ms.enums.Stat;
 import net.swordie.ms.life.mob.Mob;
 import net.swordie.ms.life.mob.MobTemporaryStat;
@@ -22,6 +23,8 @@ import net.swordie.ms.connection.packet.UserLocal;
 import net.swordie.ms.util.Util;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.*;
 import static net.swordie.ms.client.character.skills.SkillStat.*;
@@ -672,24 +675,33 @@ public class Hayato extends Job {
         }
     }
 
+    // Character creation related methods ------------------------------------------------------------------------------
+
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);
         CharacterStat cs = chr.getAvatarData().getCharacterStat();
         cs.setPosMap(807100000);
     }
+
     @Override
     public void handleLevelUp() {
         super.handleLevelUp();
         if (chr.getLevel() == 60) {
-            chr.setJob(4111);
-            chr.setStatAndSendPacket(Stat.subJob, 4111);
-            chr.addSpToJobByCurrentLevel(3);
+            chr.setJob(JobConstants.JobEnum.HAYATO3.getJobId());
+            chr.setSpToCurrentJob(3);
+            Map<Stat, Object> stats = new HashMap<>();
+            stats.put(Stat.subJob, JobConstants.JobEnum.HAYATO3.getJobId());
+            stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+            chr.getClient().write(WvsContext.statChanged(stats));
         }
         if (chr.getLevel() == 100) {
-            chr.setJob(4112);
-            chr.setStatAndSendPacket(Stat.subJob, 4112);
-            chr.addSpToJobByCurrentLevel(3);
+            chr.setJob(JobConstants.JobEnum.HAYATO4.getJobId());
+            chr.setSpToCurrentJob(3);
+            Map<Stat, Object> stats = new HashMap<>();
+            stats.put(Stat.subJob, JobConstants.JobEnum.HAYATO4.getJobId());
+            stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+            chr.getClient().write(WvsContext.statChanged(stats));
         }
     }
 }

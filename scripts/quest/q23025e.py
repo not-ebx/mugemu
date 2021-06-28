@@ -1,4 +1,4 @@
-# Revenge and Growth (23025) | Mechanic 2nd job advancement quest
+# Revenge and Growth (23025) | Mechanic 2nd Job
 
 splitMagnum = 1352701
 

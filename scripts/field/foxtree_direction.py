@@ -118,8 +118,8 @@ elif sm.hasQuest(38011):
         sm.flipDialoguePlayerAsSpeaker()
         sm.sendSay("Why are you doing this to me? Maaaaan, Silver's going to be spitting fire when he finds out...")
 
-    chr.addSkill(25001002, chr.getSkillLevel(25001000), 25)
-    chr.removeSkillAndSendPacket(25001000)
+    sm.addSkill(25001002, chr.getSkillLevel(25001000), 25)
+    sm.removeSkill(25001000)
     sm.giveExp(1800)
     sm.giveAndEquip(1353100)
     sm.completeQuest(38011)
