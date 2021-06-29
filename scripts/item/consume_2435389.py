@@ -2,4 +2,3 @@
 success = sm.addDamageSkin(2435389)
 if success:
     sm.chat("The White Heaven Rain Damage Skin has been added to your account's damage skin collection.")
-    # sm.consumeItem(2435389)
