@@ -45,7 +45,7 @@ echoDict = {
     14212: 140001005 # Kinesis
 }
 
-selection = sm.sendNext("Hi, how can I help you?\r\n#b"
+selection = sm.sendNext("Hi, how can I help you? #b\r\n"
             "#L0#Receive Echo of Hero/Exclusive Spell#l")
 
 if selection == 0:

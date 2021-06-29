@@ -1,11 +1,9 @@
-# Phantheon Return Scroll  |  (2432316)
-sm.removeEscapeButton()
+# Pantheon Return Scroll (2432316)
 sm.flipDialoguePlayerAsSpeaker()
-if sm.sendAskAccept("Want to go to Pantheon now?\r\n\r\n#r(You will be moved to Pantheon right away if you accept.)"):
+response = sm.sendAskAccept("Would you like to go to Pantheon? #r\r\n\r\n"
+"(You will be moved to Pantheon right away if you accept.)")
+if response:
     sm.levelUntil(30)
-
-    sm.warp(400000000, 0)
-    sm.startQuest(38028)
+    sm.warp(400000000)
     sm.completeQuest(38028)
-    sm.consumeItem(2432316, 1)
-    sm.dispose()
+    sm.consumeItem(parentID)

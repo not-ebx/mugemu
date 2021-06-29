@@ -1,16 +1,23 @@
-sm.setSpeakerID(1101002)
-if sm.sendAskYesNo("Now you're a REAL knight. Would you like to take your Job Advancement?"):
-    if not sm.canHold(1142401):
-        sm.sendSayOkay("You need inventory space.")
-        sm.dispose()
-    else:
+# Knight's Qualification Exam (20320) | Mihile 3rd Job
+
+from net.swordie.ms.enums import InvType
+
+official = 1142401
+courageShield = 1098002
+
+neinhart = 1101002
+
+sm.setSpeakerID(neinhart)
+response = sm.sendAskYesNo("Now you're a REAL knight. Would you like to take your Job Advancement?")
+if response:
+    if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
         if chr.getJob() == 5110:
             sm.jobAdvance(5111)
-            sm.giveItem(1142401)
-            sm.dispose()
+            sm.completeQuest(parentID)
+            sm.giveItem(official)
+            sm.giveAndEquip(courageShield)
         else:
-            sm.sendNext("You are not a mihile class.")
-            sm.dispose()
-else:
-    sm.dispose()
-
+            sm.sendSayOkay("You are not a 2nd job Mihile.")
+    else:
+        sm.sendSayOkay("Please make room in your Equip inventory.")
+    

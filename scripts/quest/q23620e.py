@@ -63,14 +63,15 @@ if sm.canHold(lastOneHome):
     sm.setSpeakerID(claudine)
     sm.flipDialogue()
     sm.sendSay("All right. Well, we got you a little gift. I mean, sort of. "
-    "It'll teach you a new skill. I hope you'll use this as your new source of power when things get dark.\r\n"
-    "#fUI/UIWindow2.img/QuestIcon/4/0#\r\n"
+    "It'll teach you a new skill. I hope you'll use this as your new source of power when things get dark. \r\n\r\n"
+    "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n\r\n"
     "#s" + str(echo) + "# #q" + str(echo) + "#\r\n"
     "#i" + str(lastOneHome) + "# #z" + str(lastOneHome) + "#")
 
-    sm.completeQuest(parentID)
-    sm.giveSkill(echo)
-    sm.giveItem(lastOneHome)
+    if sm.hasQuest(parentID):
+        sm.completeQuest(parentID)
+        sm.giveSkill(echo)
+        sm.giveItem(lastOneHome)
     
     sm.flipDialogue()
     sm.sendPrev("Thank you for helping Edelstein. Everyone here is glad you're back.")

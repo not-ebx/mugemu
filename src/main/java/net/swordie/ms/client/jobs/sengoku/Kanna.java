@@ -2,6 +2,7 @@ package net.swordie.ms.client.jobs.sengoku;
 
 import net.swordie.ms.client.Client;
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.client.character.CharacterStat;
 import net.swordie.ms.client.character.info.HitInfo;
 import net.swordie.ms.client.character.items.Item;
 import net.swordie.ms.client.character.skills.Option;
@@ -14,8 +15,10 @@ import net.swordie.ms.client.jobs.Job;
 import net.swordie.ms.connection.InPacket;
 import net.swordie.ms.connection.packet.FieldPacket;
 import net.swordie.ms.connection.packet.DropPool;
+import net.swordie.ms.connection.packet.WvsContext;
 import net.swordie.ms.constants.JobConstants;
 import net.swordie.ms.enums.ChatType;
+import net.swordie.ms.enums.Stat;
 import net.swordie.ms.life.AffectedArea;
 import net.swordie.ms.life.Summon;
 import net.swordie.ms.life.drop.Drop;
@@ -28,6 +31,8 @@ import net.swordie.ms.util.Util;
 import net.swordie.ms.world.field.Field;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -87,8 +92,6 @@ public class Kanna extends Job {
     public boolean isHandlerOfJob(short id) {
         return JobConstants.isKanna(id);
     }
-
-
 
     // Buff related methods --------------------------------------------------------------------------------------------
 
@@ -377,4 +380,35 @@ public class Kanna extends Job {
         tsm.removeStat(FireBarrier, false);
         tsm.sendResetStatPacket();
     }
+
+    // Character creation related methods ------------------------------------------------------------------------------
+
+    @Override
+    public void setCharCreationStats(Char chr) {
+        super.setCharCreationStats(chr);
+        CharacterStat cs = chr.getAvatarData().getCharacterStat();
+        cs.setPosMap(807040000);
+    }
+
+    @Override
+    public void handleLevelUp() {
+        super.handleLevelUp();
+        if (chr.getLevel() == 60) {
+            chr.setJob(JobConstants.JobEnum.KANNA3.getJobId());
+            chr.setSpToCurrentJob(3);
+            Map<Stat, Object> stats = new HashMap<>();
+            stats.put(Stat.subJob, JobConstants.JobEnum.KANNA3.getJobId());
+            stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+            chr.getClient().write(WvsContext.statChanged(stats));
+        }
+        if (chr.getLevel() == 100) {
+            chr.setJob(JobConstants.JobEnum.KANNA4.getJobId());
+            chr.setSpToCurrentJob(3);
+            Map<Stat, Object> stats = new HashMap<>();
+            stats.put(Stat.subJob, JobConstants.JobEnum.KANNA4.getJobId());
+            stats.put(Stat.sp, chr.getAvatarData().getCharacterStat().getExtendSP());
+            chr.getClient().write(WvsContext.statChanged(stats));
+        }
+    }
+
 }

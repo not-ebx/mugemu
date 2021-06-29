@@ -1,5 +1,6 @@
 # Staff Sergeant Charlie (2010000) | Orbis Park (200000200)
 
+from net.swordie.ms.enums import InvType
 import random
 
 exchangeList = [4000073, 4000070, 4000071, 4000072, 4000059, 4000060, 4000061, 4000058, 4000062,
@@ -38,11 +39,11 @@ sm.sendNext("Hey, got a little bit of time? Well, my job is to collect items her
 "What do you think? Do you want to do some business with me?")
 init = sm.sendNext("The deal is simple. You get me something I need, I get you something you need. "
 "The problem is, I deal with a whole bunch of people, so the items I have to offer may change every time you see me. "
-"What do you think? Still want to do it? \r\n#b"
+"What do you think? Still want to do it? #b\r\n"
 "#L0# Exchange items #l\r\n"
 "#L1# Check exchange list #l\r\n")
 if init == 0:
-    selString = "Ok! First you need to choose the item that you'll trade with. \r\n#b"
+    selString = "Ok! First you need to choose the item that you'll trade with. #b\r\n"
     # Construct selectable items to exchange
     for index, fodder in enumerate(exchangeList):
         selString += "#L"+ str(index) + "##i" + str(fodder) + "# 100 #z" + str(fodder) +"##l\r\n"
@@ -57,7 +58,7 @@ if init == 0:
     if response:
         if not sm.hasItem(selectedFodder, 100):
             sm.sendSayOkay("Hmmm... are you sure you have #b100 #z" + str(selectedFodder) + "##k?")
-        elif sm.getEmptyInventorySlots(2) == 0 or sm.getEmptyInventorySlots(4) == 0:
+        elif sm.getEmptyInventorySlots(InvType.CONSUME) == 0 or sm.getEmptyInventorySlots(InvType.ETC) == 0:
             sm.sendSayOkay("Please check and see if your Use and Etc. inventories are full or not.")
         else:
             # Grab a random item tuple from rewardsDict using selectedFodder as the dictionary key
@@ -74,7 +75,7 @@ if init == 0:
     else:
         sm.sendSayOkay("I'll be here if you change your mind later.")
 else:
-    selString = "Choose the trade item that you want to check. \r\n#b"
+    selString = "Choose the trade item that you want to check. #b\r\n"
     # Construct selectable items to exchange
     for index, fodder in enumerate(exchangeList):
         selString += "#L"+ str(index) + "##i" + str(fodder) + "# #z" + str(fodder) +"##l\r\n"
@@ -83,7 +84,7 @@ else:
     # Pull out the matching id from exchangeList
     selectedFodder = exchangeList[selection]
     rewardList = rewardsDict[selectedFodder]
-    rewardString = "I can give you one of the following items for #b100 #z" + str(selectedFodder) + "##k: \r\n#b"
+    rewardString = "I can give you one of the following items for #b100 #z" + str(selectedFodder) + "##k: #b\r\n"
     for index, (reward, quantity) in enumerate(rewardList):
         rewardString += "#L"+ str(index) + "##i" + str(reward) + "# " + str(quantity) + " #z" + str(reward) +"#(s)#l\r\n"
     sm.sendNext(rewardString)

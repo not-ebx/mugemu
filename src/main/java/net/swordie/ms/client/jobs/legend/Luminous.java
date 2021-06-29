@@ -560,6 +560,8 @@ public class Luminous extends Job {
         }
     }
 
+    // Character creation related methods ------------------------------------------------------------------------------
+
     @Override
     public void setCharCreationStats(Char chr) {
         super.setCharCreationStats(chr);

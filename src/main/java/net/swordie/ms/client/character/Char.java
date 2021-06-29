@@ -2717,12 +2717,16 @@ public class Char {
 	}
 
 	public void addTraitExp(Stat traitStat, int amount) {
-		if (amount <= 0) {
+		int traitExp = getStat(traitStat);
+		if (amount <= 0 || traitExp >= GameConstants.MAX_TRAIT_EXP) {
 			return;
+		}
+		else if (traitExp + amount > GameConstants.MAX_TRAIT_EXP){
+			amount = GameConstants.MAX_TRAIT_EXP - traitExp;
 		}
 		Map<Stat, Object> stats = new HashMap<>();
 		addStat(traitStat, amount);
-		stats.put(traitStat, getStat(traitStat));
+		stats.put(traitStat, traitExp + amount);
 		stats.put(Stat.dayLimit, getAvatarData().getCharacterStat().getNonCombatStatDayLimit());
 		write(WvsContext.statChanged(stats));
 		write(WvsContext.incNonCombatStatEXPMessage(traitStat, amount));
