@@ -46,7 +46,7 @@ echoDict = {
 }
 
 selection = sm.sendNext("Hi, how can I help you? #b\r\n"
-            "#L0#Receive Echo of Hero/Exclusive Spell#l")
+            "#L0#Learn Echo of Hero/Exclusive Spell#l")
 
 if selection == 0:
     if chr.getLevel() >= 200:
@@ -56,7 +56,7 @@ if selection == 0:
             if sm.hasSkill(echo):
                 sm.sendSayOkay("Hm...It looks like you have #s" + str(echo) + "# #q" + str(echo) + "# already.")
             else:
-                response = sm.sendAskYesNo("Greetings, hero. Would you like to receive #s" + str(echo) + "# #q" + str(echo) + "#?")
+                response = sm.sendAskYesNo("Greetings, hero. Would you like to learn #s" + str(echo) + "# #q" + str(echo) + "#?")
                 if response:
                     sm.giveSkill(echo)
                     sm.sendSayOkay("You have learned #s" + str(echo) + "# #q" + str(echo) + "#.")

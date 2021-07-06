@@ -44,7 +44,7 @@ elif sm.hasQuest(passEntry):
                 sm.warp(secretPassage, passageSides[currentSociety][1])
                 sm.completeQuest(passEntry)
         else:
-            sm.chat("The security device rejected your password." + str(password))
+            sm.chat("The security device rejected your password.")
 
 else:
     sm.chat("Your name is not on the list.")
