@@ -1,5 +1,4 @@
-# Alicia Damage Skin
+# Alicia's Damage Skin
 success = sm.addDamageSkin(2432465)
 if success:
-    sm.chat("The Alicia Damage Skin has been added to your account's damage skin collection.")
-    # sm.consumeItem(2432465)
+    sm.chat("The Alicia's Damage Skin has been added to your account's damage skin collection.")
