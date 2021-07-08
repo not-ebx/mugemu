@@ -1,6 +1,6 @@
-# Kiru (1100008) | Station <To Ereve> (200000161)
+# Kiriru (1100007) | Station to Ereve (104020120)
 
-map = 200090020
+map = 200090030
 
 response = sm.sendAskYesNo("Would you like to go to Ereve?")
 

@@ -1,3 +1,2 @@
-# 200090020
-sm.warp(130000210, 12)
-sm.dispose()
+# To Ereve (200090020) from Orbis => Sky Ferry
+sm.warp(130000210)
