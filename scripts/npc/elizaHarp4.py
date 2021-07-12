@@ -5,10 +5,10 @@ sm.playSound("orbis/pa", 100)
 
 eternalSleep = 3114
 songMaster = "CCGGAAGFFEEDDCGGFFEEDGGFFEEDCCGGAAGFFEEDDC"
+songStatus = sm.getQRValue(eternalSleep)
 
-if sm.hasQuest(eternalSleep):
+if sm.hasQuest(eternalSleep) and songStatus != "42":
     # Is this the first note?
-    songStatus = sm.getQRValue(eternalSleep)
     songProgress = ""
     if songStatus:
         songProgress = songStatus

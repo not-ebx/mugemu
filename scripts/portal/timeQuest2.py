@@ -1,6 +1,8 @@
-# 270010200
-if not sm.hasQuestCompleted(3502): # time lane quest
-    sm.chat("You have not completed the appropriate quest to enter here.")
+# Memory Lane 2 (270010200) => Memory Lane 3
+
+# The One Who Walks Down Memory Lane 2
+if sm.hasQuestCompleted(3502):
+    sm.warp(270010300, 6)
 else:
-    sm.warp(270010300, 0)
-sm.dispose()
+    sm.chat("Those who do not have the Goddess' permission may not move against the flow of time, and will be sent back to their previous location.")
+    sm.warp(270010110)

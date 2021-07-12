@@ -5,10 +5,10 @@ sm.playSound("orbis/do", 100)
 
 eternalSleep = 3114
 songMaster = "CCGGAAGFFEEDDCGGFFEEDGGFFEEDCCGGAAGFFEEDDC"
+songStatus = sm.getQRValue(eternalSleep)
 
-if sm.hasQuest(eternalSleep):
+if sm.hasQuest(eternalSleep) and songStatus != "42":
     # Is this the first note?
-    songStatus = sm.getQRValue(eternalSleep)
     songProgress = ""
     if songStatus:
         songProgress = songStatus
@@ -21,7 +21,7 @@ if sm.hasQuest(eternalSleep):
         songProgress = ""
         sm.chat("The performance was a failure. Eliza seems very displeased.")
     
-    # For C only: Is this the final note?
+    # Is this the final note?
     if songProgress == songMaster:
         songProgress = "42"
         sm.chat("The performance was a success. Eliza breathed a sigh of relief.")

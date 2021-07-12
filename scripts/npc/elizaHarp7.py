@@ -4,9 +4,9 @@
 sm.playSound("orbis/si", 100)
 
 eternalSleep = 3114
-songMaster = "CCGGAAGFFEEDDCGGFFEEDGGFFEEDCCGGAAGFFEEDDC"
+songStatus = sm.getQRValue(eternalSleep)
 
-if sm.hasQuest(eternalSleep):
+if sm.hasQuest(eternalSleep) and songStatus != "42":
     # B is never used in the song, so...
     # Uh oh, you screwed up
     songProgress = ""
