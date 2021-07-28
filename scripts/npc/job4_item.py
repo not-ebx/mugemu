@@ -1,16 +1,17 @@
+# Chief Tatamo (2081000) | Leafre (240000000)
+
 magicSeed = 4031346
 
-selection = sm.sendNext("...Can I help you?"
-            "#b\r\n\r\n"
-            "#L0#Find the ingredients for the Flying Potion (Dragon moss Extract)#l\r\n"
-            "#L1#Buy the #t" + str(magicSeed) + "##l")
+selection = sm.sendNext("...Can I help you? #b\r\n\r\n"
+"#L0#Find the ingredients for the Flying Potion (Dragon Moss Extract) #l\r\n"
+"#L1#Buy the #t" + str(magicSeed) + "# #l")
 
 if selection == 0:
     if sm.hasQuest(3759) and not sm.hasItem(4032531):
         sm.sendNext("So, have you progressed in the investigation of the Dragon Rider?")
-        sm.sendSay("What? You met#b Matada#k? Well, well, well. I suppose he's finally returned, after having traveled the world. Not that he's ever done anything for this town, but perhaps he missed his home?")
+        sm.sendSay("What? You met #bMatada#k? Well, well, well. I suppose he's finally returned, after having traveled the world. Not that he's ever done anything for this town, but perhaps he missed his home?")
         sm.setPlayerAsSpeaker()
-        sm.sendSay("To pursue the Dragon Rider, you'll have to be able to fly... To do so, you'll need the#b Dragon Moss Extract")
+        sm.sendSay("To pursue the Dragon Rider, you'll have to be able to fly... To do so, you'll need the #bDragon Moss Extract#k.")
         sm.setSpeakerID(parentID)
         sm.sendSay("The Dragon Moss Extract? That's an ingredient used in specialty medicine from the Halfingerers. Sure, I'll give you some if you need it, but are you sure it'll let you fly?")
         sm.setPlayerAsSpeaker()

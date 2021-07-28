@@ -8,7 +8,7 @@ veritas = 230050000
 claudine = 2151003
 
 sm.setSpeakerID(dreamboat)
-sm.sendNext("Welcome. You must be the one Claudine mentioned. I am Professore Drea... Moan. "
+sm.sendNext("Welcome. You must be the one Claudine mentioned. I am Professor Dreamboat... Moan. "
 "Sorry, the nickname's sort of hard to escape. "
 "I am the head of Resistance Research Command, otherwise known as #b#m" + str(veritas) + "##k.")
 

@@ -8,16 +8,9 @@ diffusionQuantity = sm.getQuantityOfItem(diffusionLine)
 lotusQuantity = sm.getQuantityOfItem(lotusExtraordinary)
 
 if diffusionQuantity >= 50 and lotusQuantity >= 1:
-    #How many coins can the user exchange up to?
+    # How many coins can the user exchange up to?
     diffusionQuotient = diffusionQuantity // 50
-    if diffusionQuotient > lotusQuantity:
-        purchaseCap = lotusQuantity
-    else:
-        purchaseCap = diffusionQuotient
-    
-    #Max stack sanity check
-    if purchaseCap > 100:
-        purchaseCap = 100
+    purchaseCap = min(diffusionQuotient, lotusQuantity, 100)
     
     sm.sendNext("I think you have what I need...")
     sm.sendNext("Give me 50 #i" + str(diffusionLine) + "##z" + str(diffusionLine)

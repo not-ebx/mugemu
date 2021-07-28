@@ -10,8 +10,8 @@ isTigun = sm.getnOptionByCTS(CharacterTemporaryStat.Morph) == 6
 sm.setSpeakerID(karcasa)
 if isTigun:
     sm.sendNext("Okay, here it is. Please handle this with care. This silk is very, very hard to find. "
-    "If it's damaged anywhere, you'll be in jail in no time.\r\n"
-    "#fUI/UIWindow2.img/QuestIcon/4/0#\r\n"
+    "If it's damaged anywhere, you'll be in jail in no time. \r\n"
+    "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
     "1 #i" + str(silk) + "##z" + str(silk) + "#")
     if sm.canHold(silk):
         sm.giveItem(silk)

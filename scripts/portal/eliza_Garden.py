@@ -4,6 +4,6 @@ calmEliza = 3112
 garden = 920020000
 
 if sm.hasQuest(calmEliza) or sm.hasQuestCompleted(calmEliza):
-    sm.warp(garden)
+    sm.warp(garden, 2)
 else:
     sm.chat("Eliza's rage is still permeating the garden. Calm him down first.")
