@@ -40,4 +40,4 @@ else:
         
         toReset.getOptions().set(6, 0)
         toReset.updateToChar(chr)
-        sm.consumeItem(parentID)
+        sm.consumeItem()

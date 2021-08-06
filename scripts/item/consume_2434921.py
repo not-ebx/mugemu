@@ -22,5 +22,5 @@ traitSelection = sm.sendNext("Select the trait you'd like to increase. #b\r\n"
 "#L4# Empathy #l\r\n"
 "#L5# Charm #l\r\n")
 
-sm.consumeItem(parentID)
+sm.consumeItem()
 chr.addTraitExp(traitDict[traitSelection], 11040)

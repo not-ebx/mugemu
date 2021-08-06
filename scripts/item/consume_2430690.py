@@ -13,7 +13,7 @@ selection = sm.sendNext(selString)
 selectedReward = prizes[selection]
 
 if sm.canHold(selectedReward):
-    sm.consumeItem(parentID)
+    sm.consumeItem()
     sm.giveItem(selectedReward)
 else:
     sm.sendSayOkay("Please check if you have room in your Equip and Cash inventories.")
