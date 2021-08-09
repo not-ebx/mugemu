@@ -417,7 +417,7 @@ public class SkillConstants {
             return 2333001;
         if ( JobConstants.isMercedes((short) job) )
             return 2061010;
-        if ( JobConstants.isAngelicBuster(job) )
+        if ( JobConstants.isAngelicBuster((short) job) )
             return 2333001;
         // TODO:
 //        if ( !JobConstants.isPhantom((short) job)

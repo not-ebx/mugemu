@@ -656,7 +656,7 @@ public class Warrior extends Beginner {
             }
         }
 
-        if (JobConstants.isPage(chr.getJob())) {
+        if (JobConstants.isPaladin(chr.getJob())) {
             if (hasHitMobs) {
 
             }

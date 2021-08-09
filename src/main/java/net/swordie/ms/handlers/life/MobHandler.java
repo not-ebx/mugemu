@@ -257,7 +257,7 @@ public class MobHandler {
             skillID = Xenon.TRIANGULATION;
         } else if (JobConstants.isDawnWarrior(chr.getJob()) && chr.hasSkill(DawnWarrior.IMPALING_RAYS)) {
             skillID = DawnWarrior.IMPALING_RAYS_EXPLOSION;
-        } else if (JobConstants.isAngelicBuster(chr.getId()) && chr.hasSkill(AngelicBuster.LOVELY_STING)) {
+        } else if (JobConstants.isAngelicBuster(chr.getJob()) && chr.hasSkill(AngelicBuster.LOVELY_STING)) {
             skillID = AngelicBuster.LOVELY_STING_EXPLOSION;
         } else {
             chr.chatMessage("Unhandled mob explosion for your job.");
