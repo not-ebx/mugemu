@@ -30,7 +30,7 @@ elif sm.hasQuest(passEntry):
         answer = sm.sendAskText("Please enter the passcode.", "", 1, 10)
         if answer == password[:10]:
             successStr = "The security device has been unlocked. "
-            #Store the current society's key into QRvalue
+            # Store the current society's key into QRvalue
             password += societyKey
             # Were both sides already unlocked?
             if any(unlockString in password for unlockString in unlocked):

@@ -1,4 +1,4 @@
-# Quartermaster Sakaro (2155009) | Deserted Camp (105300000)
+# Quartermaster Sakaro (1540893) | Deserted Camp (105300000)
 
 faintStigma = 4001868
 twistedStigma = 4001869
@@ -8,16 +8,9 @@ faintQuantity = sm.getQuantityOfItem(faintStigma)
 twistedQuantity = sm.getQuantityOfItem(twistedStigma)
 
 if faintQuantity >= 50 and twistedQuantity >= 1:
-    #How many coins can the user exchange up to?
+    # How many coins can the user exchange up to?
     faintQuotient = faintQuantity // 50
-    if faintQuotient > twistedQuantity:
-        purchaseCap = twistedQuantity
-    else:
-        purchaseCap = faintQuotient
-    
-    #Max stack sanity check
-    if purchaseCap > 100:
-        purchaseCap = 100
+    purchaseCap = min(faintQuotient, twistedQuantity, 100)
 
     sm.sendNext("Ah, a Spirit Stone marked by the stigma of vengeance.")
     sm.sendNext("Give to me 50 #i" + str(faintStigma) + "##z" + str(faintStigma)

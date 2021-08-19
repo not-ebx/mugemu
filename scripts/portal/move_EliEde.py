@@ -1,3 +1,2 @@
-# 200090701
-sm.warp(310000010, 0)
-sm.dispose()
+# Edelstein Bound (200090701) from Victoria Island
+sm.warp(310000010)

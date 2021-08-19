@@ -32,7 +32,7 @@ rewardsDict = {
     4000078: [(2000002, 15), (2010004, 15), (2000003, 25), (2050004, 30), (4003001, 30), (2040302, 1)], # Jr. Cerebes Teeth
     4000079: [(2000006, 25), (2050004, 30), (2022001, 35), (4020000, 8), (4020001, 8), (4020002, 8), (4020007, 2), (2041023, 1)], # Cerebes Teeth
     4000080: [(2000006, 35), (4020006, 9), (4020008, 4), (4020007, 4), (2041008, 1), (2070011, 1)] # Bain Collars
-    }
+}
 
 sm.sendNext("Hey, got a little bit of time? Well, my job is to collect items here and sell them elsewhere, "
 "but these days the monsters have become much more hostile so it's been difficult getting good items... "

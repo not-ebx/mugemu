@@ -15,5 +15,3 @@ if parentID in maps:
         sm.warp(vals[0], 0)
 else:
     sm.sendSayOkay("Not coded :(")
-
-
