@@ -575,68 +575,64 @@ public class GameConstants {
     }
 
     public static BaseStat getMainStatForJob(short job) {
-        if (JobConstants.isBeginnerJob(job) || JobConstants.isBuccaneer(job) || JobConstants.isAdventurerPirate(job)
-                || JobConstants.isPinkBean(job) || JobConstants.isDawnWarrior(job) || JobConstants.isKaiser(job)
-                || JobConstants.isZero(job) || JobConstants.isDemon(job)
-                || JobConstants.isDemonSlayer(job) || JobConstants.isAran(job) || JobConstants.isCannonShooter(job)
-            || JobConstants.isDarkKnight(job) || JobConstants.isHero(job) || JobConstants.isPage(job)
-            || JobConstants.isBlaster(job) || JobConstants.isHayato(job) || JobConstants.isMihile(job)
-            || JobConstants.isShade(job) || JobConstants.isThunderBreaker(job) || JobConstants.isAdventurerWarrior(job)) {
+        if (JobConstants.isBeginnerJob(job) || JobConstants.isAdventurerWarrior(job) || job == 500
+                || JobConstants.isBuccaneer(job) || JobConstants.isCannonShooter(job)
+                || JobConstants.isDawnWarrior(job) || JobConstants.isThunderBreaker(job)
+                || JobConstants.isAran(job) || JobConstants.isShade(job) || JobConstants.isDemonSlayer(job)
+                || JobConstants.isBlaster(job) || JobConstants.isHayato(job) || JobConstants.isMihile(job)
+                || JobConstants.isKaiser(job) || JobConstants.isZero(job) || JobConstants.isPinkBean(job)) {
             return BaseStat.str;
-        } else if (JobConstants.isJett(job) || JobConstants.isCorsair(job) || JobConstants.isWildHunter(job)
-                || JobConstants.isMercedes(job) || JobConstants.isAngelicBuster(job) || JobConstants.isWindArcher(job)
-                || JobConstants.isAdventurerArcher(job)) {
+        }
+        else if (JobConstants.isAdventurerArcher(job) || JobConstants.isCorsair(job) || JobConstants.isJett(job)
+                || JobConstants.isWindArcher(job) || JobConstants.isMercedes(job) || JobConstants.isWildHunter(job)
+                || JobConstants.isMechanic(job) || JobConstants.isAngelicBuster(job)) {
             return BaseStat.dex;
-        } else if (JobConstants.isBeastTamer(job) || JobConstants.isBlazeWizard(job) || JobConstants.isCleric(job)
-                || JobConstants.isEvan(job) || JobConstants.isIceLightning(job) || JobConstants.isFirePoison(job)
-                || JobConstants.isAdventurerMage(job) || JobConstants.isKanna(job) || JobConstants.isKinesis(job)
-                || JobConstants.isLuminous(job)) {
+        }
+        else if (JobConstants.isAdventurerMage(job) || JobConstants.isBlazeWizard(job)
+                || JobConstants.isEvan(job) || JobConstants.isLuminous(job) || JobConstants.isBattleMage(job)
+                || JobConstants.isKanna(job) || JobConstants.isBeastTamer(job) || JobConstants.isKinesis(job)) {
             return BaseStat.inte;
-        } else if (JobConstants.isAdventurerThief(job) || JobConstants.isNightLord(job) || JobConstants.isShadower(job)
-                || JobConstants.isPhantom(job) || JobConstants.isNightWalker(job) || JobConstants.isDualBlade(job)) {
+        }
+        else if (JobConstants.isAdventurerThief(job) || JobConstants.isNightWalker(job)
+                || JobConstants.isPhantom(job)) {
             return BaseStat.luk;
-        } else if (JobConstants.isDemonAvenger(job)) {
+        }
+        else if (JobConstants.isDemonAvenger(job)) {
             return BaseStat.mhp;
         }
         return null;
     }
 
-    public static ItemJob getItemJobByJob(int jobArg) {
-        short job = (short) jobArg;
-        if (JobConstants.isPinkBean(job) || JobConstants.isDawnWarrior(job) || JobConstants.isKaiser(job)
-                || JobConstants.isZero(job) || JobConstants.isDemon(job) || JobConstants.isDemonSlayer(job)
-                || JobConstants.isAran(job) || JobConstants.isDarkKnight(job) || JobConstants.isHero(job)
-                || JobConstants.isPage(job) || JobConstants.isBlaster(job) || JobConstants.isHayato(job)
-                || JobConstants.isMihile(job) || JobConstants.isAdventurerWarrior(job)) {
+    public static ItemJob getItemJobByJob(short job) {
+        if (JobConstants.isAdventurerWarrior(job) || JobConstants.isDawnWarrior(job) || JobConstants.isAran(job)
+                || JobConstants.isDemon(job) || JobConstants.isBlaster(job) || JobConstants.isHayato(job)
+                || JobConstants.isMihile(job) || JobConstants.isKaiser(job) || JobConstants.isZero(job)
+                || JobConstants.isPinkBean(job)) {
             return ItemJob.WARRIOR;
         }
-        if (JobConstants.isWildHunter(job) || JobConstants.isMercedes(job) || JobConstants.isWindArcher(job) ||
-                JobConstants.isAdventurerArcher(job)) {
+        else if (JobConstants.isAdventurerArcher(job) || JobConstants.isWindArcher(job) || JobConstants.isMercedes(job)
+                || JobConstants.isWildHunter(job)) {
             return ItemJob.BOWMAN;
         }
-        if (JobConstants.isBeastTamer(job) || JobConstants.isBlazeWizard(job) || JobConstants.isCleric(job)
-                || JobConstants.isEvan(job) || JobConstants.isIceLightning(job) || JobConstants.isFirePoison(job)
-                || JobConstants.isAdventurerMage(job) || JobConstants.isKanna(job) || JobConstants.isBlazeWizard(job)
-                || JobConstants.isKinesis(job) || JobConstants.isLuminous(job)) {
+        else if (JobConstants.isAdventurerMage(job) || JobConstants.isBlazeWizard(job)
+                || JobConstants.isEvan(job) || JobConstants.isLuminous(job) || JobConstants.isBattleMage(job)
+                || JobConstants.isKanna(job) || JobConstants.isBeastTamer(job) || JobConstants.isKinesis(job)) {
             return ItemJob.MAGICIAN;
         }
-        if (JobConstants.isAdventurerThief(job) || JobConstants.isNightLord(job) || JobConstants.isShadower(job)
-                || JobConstants.isPhantom(job) || JobConstants.isNightWalker(job) || JobConstants.isDualBlade(job)) {
+        else if (JobConstants.isAdventurerThief(job) || JobConstants.isNightWalker(job) || JobConstants.isPhantom(job)
+                || JobConstants.isXenon(job)) {
             return ItemJob.THIEF;
         }
-        if (JobConstants.isBuccaneer(job) || JobConstants.isAdventurerPirate(job) || JobConstants.isCannonShooter(job)
-                || JobConstants.isShade(job) || JobConstants.isThunderBreaker(job) || JobConstants.isCorsair(job)
-                || JobConstants.isAngelicBuster(job) || JobConstants.isJett(job)) {
+        else if (JobConstants.isAdventurerPirate(job) || JobConstants.isJett(job) || JobConstants.isThunderBreaker(job)
+                || JobConstants.isShade(job) || JobConstants.isMechanic(job) || JobConstants.isAngelicBuster(job)) {
             return ItemJob.PIRATE;
-        } else {
+        }
+        else {
             return ItemJob.BEGINNER;
         }
     }
 
     public static BaseStat getSecStatByMainStat(BaseStat mainStat) {
-        if(mainStat == null) {
-            return null;
-        }
         switch(mainStat) {
             case str:
                 return BaseStat.dex;
@@ -646,8 +642,9 @@ public class GameConstants {
                 return BaseStat.luk;
             case luk:
                 return BaseStat.dex;
+            default:
+                return null;
         }
-        return null;
     }
 
     public static double getExpOrbExpModifierById(int itemID) {

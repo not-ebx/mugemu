@@ -255,7 +255,6 @@ public class SkillConstants {
             case 61111113:
             case 61111218:
             case 61111111:
-            case 42120003:
             case 61111100:
             case 40021186:
             case 31201001:
@@ -417,7 +416,7 @@ public class SkillConstants {
             return 2333001;
         if ( JobConstants.isMercedes((short) job) )
             return 2061010;
-        if ( JobConstants.isAngelicBuster(job) )
+        if ( JobConstants.isAngelicBuster((short) job) )
             return 2333001;
         // TODO:
 //        if ( !JobConstants.isPhantom((short) job)
@@ -1483,7 +1482,7 @@ public class SkillConstants {
     public static boolean isDecompositionRecipe(int recipeID) {
         if (isMakingSkillRecipe(recipeID) && recipeCodeToMakingSkillCode(recipeID) == 92040000 && recipeID == 92049000
          || isDecompositionRecipeScroll(recipeID)
-         || isDecompositionRecipeScroll(recipeID)) {
+         || isDecompositionRecipeCube(recipeID)) {
             return true;
         }
         return false;

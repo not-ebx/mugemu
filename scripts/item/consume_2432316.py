@@ -6,4 +6,4 @@ if response:
     sm.levelUntil(30)
     sm.warp(400000000)
     sm.completeQuest(38028)
-    sm.consumeItem(parentID)
+    sm.consumeItem()

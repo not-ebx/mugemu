@@ -267,9 +267,9 @@ public class SkillHandler {
             return;
         }
         List<Tuple<Integer, Integer>> itemResult = new ArrayList<>();
-        for (Tuple<Integer, Integer> repice : msr.getIngredient()) {
-            int itemID = repice.getLeft();
-            int count = repice.getRight();
+        for (Tuple<Integer, Integer> recipe : msr.getIngredient()) {
+            int itemID = recipe.getLeft();
+            int count = recipe.getRight();
             if (chr.hasItemCount(itemID, count)) {
                 chr.consumeItem(itemID, count);
                 itemResult.add(new Tuple<>(itemID, -count));
