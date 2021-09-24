@@ -212,7 +212,6 @@ insert into equip_drops (id, job, level) values
 (1382000, "MAGICIAN", 10), # Wooden Staff - Lv 10
 (1382004, "MAGICIAN", 20), # Old Wooden Staff - Lv 20
 (1382017, "MAGICIAN", 30), # Circle-Winded Staff - Lv 30
-(1382018, "MAGICIAN", 30), # Petal Staff - Lv 35
 (1382019, "MAGICIAN", 40), # Hall Staff - Lv 40
 (1382020, "MAGICIAN", 40), # Arc Staff - Lv 45
 (1382026, "MAGICIAN", 50), # Thorns - Lv 55

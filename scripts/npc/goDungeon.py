@@ -15,5 +15,7 @@ if currentLevel >= 60:
     "All right, do you want to go in?")
     if response:
         sm.warp(sharpCliff, 5)
+    else:
+        sm.sendSayOkay("I know taking the risk isn't easy. Come back if you change your mind later. It's my duty to guard this place.")
 else:
     sm.sendSayOkay("I cannot let you enter the Dead Mine. Come back when you are at least Level 60.")

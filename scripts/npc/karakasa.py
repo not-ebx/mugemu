@@ -24,6 +24,6 @@ if init:
         else:
             sm.sendSayOkay("Wait, you don't have enough mesos. Sorry, but I'll have to stop you from boarding the flight.")
     else:
-        sm.sendSayOkay("My offer still stands if you change your mind!")
+        sm.sendSayOkay("You don't have the mesos to spare, do you?")
 else:
-    sm.sendSayOkay("My offer still stands if you change your mind!")
+    sm.sendSayOkay("You look skeptical. You don't believe me?")

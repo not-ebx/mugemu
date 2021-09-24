@@ -13,7 +13,7 @@ public enum CashItemType {
     Req_Buy(2),
     Req_Gift(3),
     Req_SetWish(4),
-    Req_IncSlotCount(6),
+    Req_IncSlotCount(5),
     Req_IncTrunkCount(7),
     Req_IncCharSlotCount(8),
     Req_IncBuyCharCount(9),
