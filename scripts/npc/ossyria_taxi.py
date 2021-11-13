@@ -9,7 +9,7 @@ destinationDict = {
     220050300: [220000000], # Path of Time
     240000000: [240030000, 240040500], # Leafre
     300000100: [211000000, 220000000], # Small Forest
-    }
+}
 
 currentMap = sm.getFieldID()
 optionList = destinationDict[currentMap]
@@ -22,6 +22,6 @@ if len(optionList) > 1:
     sm.warp(optionList[destIndex])
 else:
     destination = optionList[0]
-    response = sm.sendAskYesNo("Would you like to go to #m" + str(destination) + "m#?")
+    response = sm.sendAskYesNo("Would you like to go to #m" + str(destination) + "#?")
     if response:
         sm.warp(destination)

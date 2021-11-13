@@ -4,7 +4,7 @@ from net.swordie.ms.client.character.skills.temp import CharacterTemporaryStat
 from net.swordie.ms.enums import Stat
 import random
 
-# The debuff variants (2022224-2022227) won't work, so they've been excluded; read comments below for notes on how they work on GMS
+# The debuff variants (2022225-2022227) won't work, so they've been excluded; read comments below for notes on how they work on GMS
 potions = [
     2022199, # Power Elixir equivalent
     2022224, # Elixir equivalent

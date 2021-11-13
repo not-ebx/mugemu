@@ -151,7 +151,8 @@ insert into equip_drops (id, job, level) values
 (1542002, "WARRIOR", 30), # Iron Guardian - Lv 30
 (1542003, "WARRIOR", 40), # Bare Blade - Lv 40
 (1542004, "WARRIOR", 50), # Iron Savior - Lv 50
-(1542006, "WARRIOR", 60), # Helix - Lv 60
+(1542005, "WARRIOR", 60), # Death's Whisper - Lv 60
+(1542006, "WARRIOR", 70), # Helix - Lv 60
 (1542007, "WARRIOR", 80), # Heat Wave - Lv 80
 (1542008, "WARRIOR", 90), # Battle Cry - Lv 90
 (1542009, "WARRIOR", 100), # Gilded Sword - Lv 100
