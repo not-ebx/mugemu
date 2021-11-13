@@ -8,11 +8,11 @@ highSpotDict = {
     200080100: "orbis", # Entrance to Orbis Tower
 }
 
+touchedSky = 29004
 # This dummy quest outputs how many spots were found
 skyTracker = 27018
-touchedSky = 29004
 
-finalStatus = sm.getQRValue(touchedSky)
+medalStatus = sm.getQRValue(touchedSky)
 currentMap = sm.getFieldID()
 mapCap = "5"
 medalName = "The One Who's Touched the Sky"
@@ -27,18 +27,19 @@ if not sm.hasQuest(touchedSky) and not sm.hasQuestCompleted(touchedSky):
 if not sm.hasQuestCompleted(touchedSky):
     skyStatus = sm.getQRValue(skyTracker)
 
-    # Another contingency check to initialize the dummy quest if the user (re-)started it through the Medal UI
-    if finalStatus == "" and not skyStatus == "0" or not sm.hasQuest(skyTracker):
+    # Another contingency check to initialize the dummy quest if the user (re-)started the medal quest through the Medal UI
+    if medalStatus == "" and not skyStatus == "0" or not sm.hasQuest(skyTracker):
         sm.createQuestWithQRValue(skyTracker, "0")
 
-    # Check if currentMap actually exists in the dict first
     if currentMap in highSpotDict:
-        # Check if this is the first time this spot has been visited
+        # Is this the first time that spot has been visited?
         areaQR = highSpotDict[currentMap]
-        if areaQR not in finalStatus and not finalStatus == mapCap:
+        if areaQR not in medalStatus and not medalStatus == mapCap:
             updateStatus = int(skyStatus) + 1
             sm.setQRValue(skyTracker, str(updateStatus), False)
             sm.addQRValue(touchedSky, areaQR)
+
+            # Was that the last spot visited?
             if str(updateStatus) == mapCap:
                 sm.setQRValue(touchedSky, mapCap, False)
                 sm.chatScript("Earned " + medalName + " title!")
