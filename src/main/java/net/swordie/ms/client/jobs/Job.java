@@ -685,10 +685,10 @@ public abstract class Job {
 		int[][] incVal = GameConstants.getIncValArray(chr.getJob());
 		if (incVal != null) {
 			chr.addStat(Stat.mhp, incVal[0][1]);
-			stats.put(Stat.mhp, chr.getMaxHP());
+			stats.put(Stat.mhp, chr.getStat(Stat.mhp));
 			if (!JobConstants.isNoManaJob(chr.getJob())) {
 				chr.addStat(Stat.mmp, incVal[3][0]);
-				stats.put(Stat.mmp, chr.getMaxMP());
+				stats.put(Stat.mmp, chr.getStat(Stat.mmp));
 			}
 		} else {
 			chr.chatMessage("Unhandled HP/MP job " + chr.getJob());
