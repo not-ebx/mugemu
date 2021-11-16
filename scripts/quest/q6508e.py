@@ -2,7 +2,7 @@
 
 from net.swordie.ms.enums import Stat
 
-camila = 1012108
+camilla = 1012108
 
 rubble = 4000022
 ouch = 5160024
@@ -10,7 +10,7 @@ ouch = 5160024
 # Grab current fame for quest-induced defame later
 fame = chr.getStat(Stat.pop)
 
-sm.setSpeakerID(camila)
+sm.setSpeakerID(camilla)
 sm.sendNext("Hello. Is there something I can... Eeek! "
 "Is that #t" + str(rubble) + "#? Is there a Golem nearby?! I'm scared! WAAAAAAH! \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"

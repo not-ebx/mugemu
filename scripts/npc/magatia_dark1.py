@@ -15,6 +15,6 @@ if abs(sm.getObjectPositionX() - (currentPos.getX())) < xDistance and abs(sm.get
     elif sm.hasItem(secretDocument):
         sm.sendSayOkay("The bookshelf is now empty.")
     else:
-        sm.sendNext("Unable to take the book due to your inventory being full.")
+        sm.sendNext("Unable to take the book due to your Etc. inventory being full.")
 else:
     sm.sendSayOkay("You can't reach it. It's too far.")

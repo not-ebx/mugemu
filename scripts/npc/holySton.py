@@ -9,7 +9,7 @@ shamanDict = {
     105020200: (3, "000100"), # Cold Wind
     105020300: (4, "000010"), # Chilly Cave
     105020400: (5, "000001") # Cave Exit
-    }
+}
 
 if sm.hasQuest(shooEvil):
     # Which map's rock is the user interacting with?
