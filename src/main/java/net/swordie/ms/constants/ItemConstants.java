@@ -1068,7 +1068,7 @@ public class ItemConstants {
                  return 27;
             case 2433981: // Pink bean Damage skin:
                  return 28;
-            case 2436229: // Pig Bar Dmg Skin(Unknown ItemID):
+            case 2433990: // Pig Bar Damage Skin:
                  return 29;
 //         case 2432659: // Hard-Hitting Dmg Skin (already in): 30
 //         case 2return 432526;: // Keyboard Warrior (already in): 31
