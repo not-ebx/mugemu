@@ -1003,50 +1003,50 @@ public class ItemConstants {
 
     public static int getDamageSkinIDByItemID(int itemID) {
         switch(itemID) {
-            case 2431965: // base damage Skin:
+            case 2431965: // Basic Damage Skin:
                 return 0;
-            case 2431966: // digital Sunrise Skin Damage:
-            case 2432084: // digital Sunrise damage the skin
+            case 2431966: // Digitalized Damage Skin:
+            case 2432084: // Digitalized Damage Skin
                 return 1;
-            case 2431967: // Kritias Skin Damage:
+            case 2431967: // Kritias Damage Skin:
                 return 2;
-            case 2432131: // Party Quest Skin Damage:
+            case 2432131: // Party Quest Damage Skin:
                 return 3;
-            case 2432153: // Hard Hitting:
-            case 2432638: // Creative Impact Damage Skin
-            case 2432659: // Creative Impact Damage Skin
+            case 2432153: // Hard-Hitting Damage Skin:
+            case 2432638: // Hard-Hitting Damage Skin
+            case 2432659: // Hard-Hitting Damage Skin
                 return 4;
-            case 2432154: // sweet traditional Han Skin Damage:
-            case 2432637: // sweet traditional one and damage the skin
-            case 2432658: // sweet traditional one and damage the skin
+            case 2432154: // Sweet Tea Cake Damage Skin:
+            case 2432637: // Sweet Tea Cake Damage Skin
+            case 2432658: // Sweet Tea Cake Damage Skin
                 return 5;
-            case 2432207: // Club Henesys' damage Skin:
+            case 2432207: // Club Henesys' Damage Skin:
                  return 6;
-            case 2432354: // Merry Christmas Skin Damage:
+            case 2432354: // Merry Christmas Damage Skin:
                  return 7;
-            case 2432355: // Snow Blossom Skin Damage:
-            case 2432972: // Snow Blossom Skin Damage
+            case 2432355: // Snow Blossom Damage Skin:
+            case 2432972: // Snow Blossom Damage Skin
                  return 8;
-            case 2432465: // damage the skin of Alicia:
+            case 2432465: // Alicia's Damage Skin:
                  return 9;
-            case 2432479: // Dorothy skin damage:
+            case 2432479: // Dorothy Damage Skin:
                  return 10;
-            case 2432526: // Keyboard Warrior Skin Damage:
-            case 2432639: // Keyboard Warrior Skin Damage
-            case 2432660: // Keyboard Warrior Skin Damage
+            case 2432526: // Keyboard Warrior Damage Skin:
+            case 2432639: // Keyboard Warrior Damage Skin
+            case 2432660: // Keyboard Warrior Damage Skin
                  return 11;
-            case 2432532: // spring breeze rustling skin damage:
+            case 2432532: // Gentle Springtime Breeze Damage Skin:
                  return 12;
-            case 2432592: // solo troops skin damage:
+            case 2432592: // Singles Army Damage Skin:
                  return 13;
-            case 2432640: // Reminiscence skin damage:
-            case 2432661: // Remy you damage the skin Suns
+            case 2432640: // Reminiscence Damage Skin:
+            case 2432661: // Reminiscence Damage Skin
                  return 14;
-            case 2432710: // Orange Mushroom Skin Damage:
+            case 2432710: // Orange Mushroom Damage Skin:
                  return 15;
-            case 2432836: // crown damage Skin:
+            case 2432836: // Crown Damage Skin:
                  return 16;
-            case 2432973: // monotone skin damage:
+            case 2432973: // Monotone Damage Skin:
                  return 17;
             case 2433063: // Star Planet skin:
                  return 18;
@@ -1054,7 +1054,7 @@ public class ItemConstants {
                  return 20;
             case 2433456: // Hangul Skin:
                  return 21;
-            case 2435960: // Fried Chicken Dmg Skin(Unknown ItemID):
+            case 2433631: // Nene Chicken Damage Skin:
                  return 22;
             case 2433715: // Striped Damage Skin:
                  return 23;
@@ -1066,21 +1066,21 @@ public class ItemConstants {
                  return 26;
             case 2433980: // Slime and Mushroom Damage Skin:
                  return 27;
-            case 2433981: // Pink bean Damage skin:
+            case 2433981: // Pink Bean Damage skin:
                  return 28;
             case 2433990: // Pig Bar Damage Skin:
                  return 29;
-//         case 2432659: // Hard-Hitting Dmg Skin (already in): 30
+//         case 2432659: // Hard-Hitting Damage Skin (already in): 30
 //         case 2return 432526;: // Keyboard Warrior (already in): 31
-//         case 2432710: // Orange mushroom Skin Damage(already in): 32
-//         case 2432355: // Snowflake Dmg Skin(already in): 33
+//         case 2432710: // Orange mushroom Damage Skin(already in): 32
+//         case 2432355: // Snowflake Damage Skin(already in): 33
             case 2434248: // Rainbow Boom Damage Skin:
                  return 34;
             case 2433362: // Night Sky Damage Skin:
                  return 35;
             case 2434274: // Marshmallow Damage Skin:
                  return 36;
-            case 2434289: // Mu Lung Dojo Dmg Skin:
+            case 2434289: // Mu Lung Dojo Damage Skin:
                  return 37;
             case 2434390: // Teddy Damage Skin:
                  return 38;
@@ -1118,7 +1118,7 @@ public class ItemConstants {
                 // case 2431967: // Kritias Damage Skin(already in): 55 - (2)
                 // case 2432154: // Sweet tea cake Damage Skin(already in): 56 - (5)
                 // case 2432354: // Merry Christmas Damage Skin(already in): 57 - (7)
-                // case 2432532: // Gentle spring breeze damage skin(already in): 58 - (12)
+                // case 2432532: // Gentle Springtime Breeze Damage skin(already in): 58 - (12)
                 // case 2433715: // Striped Damage Skin(already in): 59 - (23)
                 // case 2433063: // Star Damage Skin(already in): 60 - (25)
                 // case 2433913: // Yeti and Pepe Damage Skin(already in): 61 - (26)
