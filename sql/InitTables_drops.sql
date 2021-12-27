@@ -7115,7 +7115,7 @@ insert into `mob_drops` (`mobid`, `itemid`, `chance`, `minquant`, `maxquant`) va
 (9600016, 4034635, 100, 1, 1),
 (9600017, 4034636, 100, 1, 1),
 (9600022, 4034724, 100, 1, 1),
-(9600024, 4034724, 100, 1, 1);
+(9600024, 4034724, 100, 1, 1),
 # Raving Chicken
 (9600300, 4001857, 5, 1, 1),
 (9600300, 4001858, 5, 1, 1),
@@ -7324,7 +7324,7 @@ insert into `mob_drops` (`mobid`, `itemid`, `chance`, `minquant`, `maxquant`) va
 (9600318, 4021032, 100, 1, 1),
 (9600318, 4021033, 100, 1, 1),
 (9600318, 4021034, 100, 1, 1),
-(9600318, 4021035, 100, 1, 1),
+(9600318, 4021035, 100, 1, 1);
 
 #Reactor drops
 insert into `mob_drops` (`mobid`, `itemid`, `chance`, `minquant`, `maxquant`, reactordrop) values
