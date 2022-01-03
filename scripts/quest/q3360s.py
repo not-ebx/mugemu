@@ -7,7 +7,7 @@ parwen = 2111006
 sm.setSpeakerID(parwen)
 sm.sendNext("Oh, you're here! Good thing, because I, Parwen, have found the master key "
 "that will allow you to enter the Secret Passage! Isn't it great? Tell me Parwen is great!")
-response = sm.sendAskYesNo("Now, the passcode is very long and complex, so I suggest you write it down somewhere. "
+response = sm.sendAskAccept("Now, the passcode is very long and complex, so I suggest you write it down somewhere. "
 "I'm only going to tell you this once, okay? Are you ready?")
 if response:
     # Constructing the generated password per quest accept instance

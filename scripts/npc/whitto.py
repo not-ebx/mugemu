@@ -46,23 +46,23 @@ rewardsDict = {
     4000094: [(2000006, 1), (4020008, 2), (2022018, 5), (2022018, 10), (2022018, 20), (2022000, 10), (2022000, 20), (2022025, 15)], # Boss's Pomades
 }
 
-init = sm.sendNext("If you're looking for someone that can pinpoint the characteristics of various items, "
+viewMode = sm.sendNext("If you're looking for someone that can pinpoint the characteristics of various items, "
 "you're looking at one right now. I'm currently looking for something. "
 "Would you like to hear my story? #b\r\n"
 "#L0# Exchange items #l\r\n"
 "#L1# Check exchange list #l\r\n")
-if init == 0:
-    selString = "Now, shall we trade? #b\r\n"
+if viewMode == 0:
+    selString = ["Now, shall we trade? #b\r\n"]
     # Construct selectable items to exchange
     for index, fodder in enumerate(exchangeList):
-        selString += "#L"+ str(index) + "##i" + str(fodder) + "# 100 #z" + str(fodder) +"##l\r\n"
-    selection = sm.sendNext(selString)
+        selString.append(''.join(["#L", repr(index), "##i", repr(fodder), "# 100 #z", repr(fodder), "##l\r\n"]))
+    selection = sm.sendNext(''.join(selString))
 
     # Pull out the matching id from exchangeList
     selectedFodder = exchangeList[selection]
 
     if not sm.hasItem(selectedFodder, 100):
-        sm.sendSayOkay("You don't have #b100 #z" + str(selectedFodder) + "##k, do you? Don't waste my time.")
+        sm.sendSayOkay("You don't have #b100 #z" + repr(selectedFodder) + "##k, do you? Don't waste my time.")
     elif sm.getEmptyInventorySlots(InvType.EQUIP) == 0 or sm.getEmptyInventorySlots(InvType.CONSUME) == 0 or sm.getEmptyInventorySlots(InvType.ETC) == 0:
         sm.sendSayOkay("Come back when you have room in your Equip, Use, and Etc. inventories.")
     else:
@@ -73,18 +73,18 @@ if init == 0:
 
         sm.consumeItem(selectedFodder, 100)
         sm.giveItem(rewardItem, rewardQuant)
-        sm.sendNext("Here, I'll give you " + str(rewardQuant) + " #z" + str(rewardItem) + "#(s) for your #b100 #z" + str(selectedFodder) + "##k.")
+        sm.sendNext(''.join(["Here, I'll give you ", repr(rewardQuant), " #z", repr(rewardItem), "#(s) for your #b100 #z", repr(selectedFodder), "##k."]))
 else:
-    selString = "Choose the trade item that you want to check. #b\r\n"
+    selString = ["Choose the trade item that you want to check. #b\r\n"]
     # Construct selectable items to exchange
     for index, fodder in enumerate(exchangeList):
-        selString += "#L"+ str(index) + "##i" + str(fodder) + "# #z" + str(fodder) +"##l\r\n"
-    selection = sm.sendNext(selString)
+        selString.append(''.join(["#L", repr(index), "##i", repr(fodder), "# #z", repr(fodder), "##l\r\n"]))
+    selection = sm.sendNext(''.join(selString))
 
     # Pull out the matching id from exchangeList
     selectedFodder = exchangeList[selection]
     rewardList = rewardsDict[selectedFodder]
-    rewardString = "I can give you one of the following items for #b100 #z" + str(selectedFodder) + "##k: #b\r\n"
+    rewardString = ["I can give you one of the following items for #b100 #z", repr(selectedFodder), "##k: #b\r\n"]
     for index, (reward, quantity) in enumerate(rewardList):
-        rewardString += "#L"+ str(index) + "##i" + str(reward) + "# " + str(quantity) + " #z" + str(reward) +"#(s)#l\r\n"
-    sm.sendNext(rewardString)
+        rewardString.append(''.join(["#L", repr(index), "##i", repr(reward), "# ", repr(quantity), " #z", repr(reward), "#(s)#l\r\n"]))
+    sm.sendNext(''.join(rewardString))

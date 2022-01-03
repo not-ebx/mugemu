@@ -54,7 +54,7 @@ sm.setSpeakerID(mir)
 sm.sendSay("Ahem. It's not like I was born yesterday. "
 "I know a whole lot about humans now.")
 
-response = sm.sendAskYesNo("Here you go, master. Take my scale. I know you'll be able to make something really great with it!")
+response = sm.sendAskAccept("Here you go, master. Take my scale. I know you'll be able to make something really great with it!")
 if response:
     if sm.canHold(dragonMaster):
         sm.giveItem(dragonMaster)

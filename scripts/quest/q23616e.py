@@ -11,17 +11,17 @@ if sm.canHold(borderPatrol):
     sm.sendNext("Why the serious face? Wait, you always look serious. Why the more-serious face?")
 
     sm.flipDialoguePlayerAsSpeaker()
-    sm.sendSay("#p" + str(rooD) + "#, what if I never get my memories back? "
+    sm.sendSay("#p" + repr(rooD) + "#, what if I never get my memories back? "
     "What if I threw away my whole life for something I'll never see?")
 
     sm.setSpeakerID(rooD)
-    sm.sendSay("What? That's crazy! If you had stayed in that lab, #p" + str(gelimer) + "# would have you... "
+    sm.sendSay("What? That's crazy! If you had stayed in that lab, #p" + repr(gelimer) + "# would have you... "
     "stomping on puppies or something! What if he'd ordered you to destroy Edelstein?! That could have been you!")
 
     sm.flipDialoguePlayerAsSpeaker()
     sm.sendSay("I know that. I don't regret leaving. "
     "But I feel an emptiness inside that I do not know how to deal with. "
-    "You and #p" + str(beryl) + "# do not seem to care about your past at all. "
+    "You and #p" + repr(beryl) + "# do not seem to care about your past at all. "
     "Why does it trouble me so much? Am I... broken?")
 
     sm.setSpeakerID(rooD)
@@ -33,7 +33,7 @@ if sm.canHold(borderPatrol):
     sm.sendSay("......")
 
     sm.setSpeakerID(rooD)
-    sm.sendSay("You taught me that Xenoroids are different. You and #p" + str(beryl) + "# couldn't be less alike. "
+    sm.sendSay("You taught me that Xenoroids are different. You and #p" + repr(beryl) + "# couldn't be less alike. "
     "That means we were meant to have different personalities. "
     "If anything, you wanting to find your memories makes you MORE human than the rest of us.")
     sm.sendSay("I know you're struggling. This isn't gonna be easy for you. It could take years. "
@@ -51,7 +51,7 @@ if sm.canHold(borderPatrol):
         sm.giveItem(borderPatrol)
 
     sm.flipDialoguePlayerAsSpeaker()
-    sm.sendSay("Thank you for standing beside me, #p" + str(rooD) + "#. "
+    sm.sendSay("Thank you for standing beside me, #p" + repr(rooD) + "#. "
     "I hope that the choices I make will help you as much as they help me.")
 
     sm.setSpeakerID(rooD)

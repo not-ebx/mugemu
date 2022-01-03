@@ -5,11 +5,11 @@ mini = 2041009
 ray = 5160027
 
 sm.setSpeakerID(mini)
-sm.sendNext("AH! Aren't you #h #? I've heard so much about you! "
+sm.sendNext(''.join(["AH! Aren't you #h #? I've heard so much about you! "
 "The adventurer who defeats Ghost Pirates and Dual Ghost Pirates like they're insects! "
 "And you're so charming...am I dreaming? \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
-"#i" + str(ray) + "# #t" + str(ray) + "# x 1")
+"#i", repr(ray), "# #t", repr(ray), "# x 1"]))
 
 sm.giveItem(ray)
 sm.completeQuest(parentID)

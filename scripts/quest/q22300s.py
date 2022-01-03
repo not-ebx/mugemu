@@ -36,7 +36,7 @@ sm.setPlayerAsSpeaker()
 sm.sendSay("Really? But it's still shining.")
 
 sm.setSpeakerID(mir)
-response = sm.sendAskYesNo("Master, take this scale. It feels like I've shed something to take another step forward.")
+response = sm.sendAskAccept("Master, take this scale. It feels like I've shed something to take another step forward.")
 if response:
     if sm.canHold(successor):
         sm.giveSkill(echo)
@@ -45,9 +45,9 @@ if response:
         sm.completeQuest(parentID)
 
         sm.setPlayerAsSpeaker()
-        sm.sendNext("(You received #p" + str(mir) + "#'s dragon scale. "
-        "As you place your hand on the scale, it magically transforms into #i" + str(successor) + "#.)")
-        sm.sendSay("(You have learned #b#q" + str(echo) + "##k.)")
+        sm.sendNext(''.join(["(You received #p", repr(mir), "#'s dragon scale. "
+        "As you place your hand on the scale, it magically transforms into #i", repr(successor), "#.)"]))
+        sm.sendSay("(You have learned #b#q" + repr(echo) + "##k.)")
         sm.sendSay("Yay, a new skill! Now I really look like Freud's true successor!")
 
         sm.setSpeakerID(mir)

@@ -12,12 +12,12 @@ sm.sendNext("Hello, #h #! What's up? You want to learn how to wink? Hm. "
 sm.giveItem(wink)
 sm.completeQuest(parentID)
 
-sm.sendNext("All right, let me teach you the art of the wink. Close one eye. No, just one! "
+sm.sendNext(''.join(["All right, let me teach you the art of the wink. Close one eye. No, just one! "
 "Okay, that's fine...wait, don't frown! You need to smile. "
 "The wink has to be refreshing...you closed both eyes again! Okay, no, open that one... "
 "Okay, there! It's not good as my wink, but it's not bad, either. Is that good enough? \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
-"#i" + str(wink) + "# #t" + str(wink) + "# x 1")
+"#i", repr(wink), "# #t", repr(wink), "# x 1"]))
 
 sm.setPlayerAsSpeaker()
 sm.sendSay("#b(You learned the Wink Expression from Sirin.)")

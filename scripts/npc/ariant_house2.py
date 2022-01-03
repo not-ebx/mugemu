@@ -24,7 +24,7 @@ if sm.hasQuest(sejan):
         sm.setQRValue(sejan, sejanStatus, False)
         sm.sendSayOkay("You slowly placed the food on the floor.")
     elif not sm.hasItem(food) and sejanParse[houseIndex] != "3" and sejanStatus != "3333":
-        sm.sendSayOkay("You do not have any more #t" + str(food) + "#. Forfeit the quest and talk to Sejan again.")
+        sm.sendSayOkay("You do not have any more food. Forfeit the quest and talk to Sejan again.")
     else:
         sm.sendSayOkay("There's already food placed here.")
 elif not sm.hasQuestCompleted(sejan):

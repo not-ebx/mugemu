@@ -36,13 +36,13 @@ if not sm.hasQuestCompleted(touchedSky):
         areaQR = highSpotDict[currentMap]
         if areaQR not in medalStatus and not medalStatus == mapCap:
             updateStatus = int(skyStatus) + 1
-            sm.setQRValue(skyTracker, str(updateStatus), False)
+            sm.setQRValue(skyTracker, repr(updateStatus), False)
             sm.addQRValue(touchedSky, areaQR)
 
             # Was that the last spot visited?
-            if str(updateStatus) == mapCap:
+            if repr(updateStatus) == mapCap:
                 sm.setQRValue(touchedSky, mapCap, False)
                 sm.chatScript("Earned " + medalName + " title!")
             else:
-                sm.chatScript(str(updateStatus) + "/" + mapCap + " Regions Completed")
+                sm.chatScript(''.join([repr(updateStatus), "/", mapCap, " Regions Completed"]))
                 sm.chatScript(medalName + " title in progress.")

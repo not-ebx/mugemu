@@ -28,8 +28,8 @@ maps = [
     ]
 
 sm.setSpeakerID(guard)
-destString = "This gate will take you out of the kingdom. Where would you like to go? #b\r\n"
+destString = ["This gate will take you out of the kingdom. Where would you like to go? #b\r\n"]
 for index, option in enumerate(maps):
-    destString += "#L"+ str(index) + "##m" + str(option) + "##l\r\n"
-destination = sm.sendNext(destString)
+    destString.append(''.join(["#L", repr(index), "##m", repr(option), "##l\r\n"]))
+destination = sm.sendNext(''.join(destString))
 sm.warp(maps[destination])

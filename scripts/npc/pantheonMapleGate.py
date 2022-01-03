@@ -37,8 +37,8 @@ else:
         ]
 
     sm.setSpeakerID(fenelle)
-    destString = "You can use the Interdimensional Portal to move to any town. Where would you like to go? #b\r\n"
+    destString = ["You can use the Interdimensional Portal to move to any town. Where would you like to go? #b\r\n"]
     for index, option in enumerate(maps):
-        destString += "#L"+ str(index) + "##m" + str(option) + "##l\r\n"
-    destination = sm.sendNext(destString)
+        destString.append(''.join(["#L", repr(index), "##m", repr(option), "##l\r\n"]))
+    destination = sm.sendNext(''.join(destString))
     sm.warp(maps[destination])

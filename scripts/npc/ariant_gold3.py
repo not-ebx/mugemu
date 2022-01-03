@@ -24,7 +24,7 @@ if sm.hasQuest(redScorpions):
         sm.setQRValue(redScorpions, jewelryStatus, False)
         sm.sendSayOkay("You carefully placed the treasure on the ground.")
     elif not sm.hasItem(jewelry) and jewelryParse[houseIndex] != "3" and jewelryStatus != "3333":
-        sm.sendSayOkay("You do not have any more #t" + str(jewelry) + "#. Forfeit the quest and return to the Red Scorpion's Lair.")
+        sm.sendSayOkay("You do not have any more treasure. Forfeit the quest and return to the Red Scorpion's Lair.")
     else:
         sm.sendSayOkay("There's already treasure placed here.")
 elif not sm.hasQuestCompleted(redScorpions):

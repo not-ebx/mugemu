@@ -12,7 +12,7 @@ sm.sendSay("The next time you see Moonbeam, show her her own spirit. "
 sm.sendSay("But we can't put this off any longer. She must be lonely without her guardian spirit!")
 sm.sendSay("I know you really hoped that Moonbeam would remember you when you showed her the spirit, "
 "but it looks like you might want to let go of that hope.")
-response = sm.sendAskYesNo("You better go see Moonbeam before it gets any later. #e#b\r\n\r\n"
+response = sm.sendAskAccept("You better go see Moonbeam before it gets any later. #e#b\r\n\r\n"
 "(You will be instantly moved to Fox Point Village if you accept.)")
 
 if response:
@@ -22,4 +22,4 @@ if response:
         sm.setReturnPortal(0)
         sm.warpInstanceIn(foxTree)
     else:
-        sm.sendSayOkay("Please learn #s" + str(spiritBondMax) + "# #b#q" + str(spiritBondMax) + "##k first.")
+        sm.sendSayOkay(''.join(["Please learn #s", repr(spiritBondMax), "# #b#q", repr(spiritBondMax), "##k first."]))

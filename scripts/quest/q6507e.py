@@ -6,13 +6,13 @@ orange = 2010003
 bleh = 5160033
 
 sm.setSpeakerID(wing)
-sm.sendNext("Huh? What is it? I'm busy, human. Huh, what's that? A gift for me? "
-"I don't like #t" + str(orange) + "#s. No thanks. \r\n\r\n"
+sm.sendNext(''.join(["Huh? What is it? I'm busy, human. Huh, what's that? A gift for me? "
+"I don't like #t", repr(orange), "#s. No thanks. \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
-"#i" + str(bleh) + "# #t" + str(bleh) + "# x 1")
+"#i", repr(bleh), "# #t", repr(bleh), "# x 1"]))
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("#b(With that, #p" + str(wing) + "# sticks his tongue out and blows a raspberry at you. "
+sm.sendSay("#b(With that, #p" + repr(wing) + "# sticks his tongue out and blows a raspberry at you. "
 "Why must he always be so rude?)")
 
 sm.setSpeakerID(wing)

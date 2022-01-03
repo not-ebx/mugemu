@@ -20,7 +20,7 @@ if sm.canHold(throne):
         sm.giveItem(throne)
     
     sm.flipDialogue()
-    sm.sendSay("You've gained the #b#i" + str(throne) + "# #z" + str(throne) + "##k! \r\n\r\n"
+    sm.sendSay("You've gained the #b#i" + repr(throne) + "# #z" + repr(throne) + "##k! \r\n\r\n"
     "Darkness still threatens Maple World, but it's always darkest before the dawn! "
     "It's up to you, #b#h ##k, to join others to bring the light of hope to our world.")
 

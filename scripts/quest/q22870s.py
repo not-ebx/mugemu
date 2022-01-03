@@ -24,8 +24,8 @@ sm.sendSay("This power is imbued with the wills of Maple World's guardians. "
 "I'll share some of this power with you. I know you'll put it to good use.")
 
 sm.flipDialogue()
-response = sm.sendAskYesNo("And I'll also give you a token symbolizing your strength. #b\r\n\r\n"
-"#i" + str(king) + "# #z" + str(king) + "#")
+response = sm.sendAskAccept(''.join(["And I'll also give you a token symbolizing your strength. #b\r\n\r\n"
+"#i", repr(king), "# #z", repr(king), "#"]))
 if response:
     if sm.canHold(king):
         sm.startQuest(parentID)

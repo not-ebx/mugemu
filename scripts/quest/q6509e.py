@@ -13,12 +13,12 @@ sm.giveItem(breath)
 sm.completeQuest(parentID)
 sm.consumeItem(fruit)
 
-sm.sendNext("HWAAAH! D-diz iz vewy ot! Wuh kiwa froo iz diz? "
+sm.sendNext(''.join(["HWAAAH! D-diz iz vewy ot! Wuh kiwa froo iz diz? "
 "(This is very hot! What kind of fruit is this?!) "
 "Eh? Ehendez froo? Aaaah! Buh duh seez zo goo! "
-"(Eh? #t" + str(fruit) + "#? Aaaaah! But the seeds're so good!) \r\n\r\n"
+"(Eh? #t", repr(fruit), "#? Aaaaah! But the seeds're so good!) \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
-"#i" + str(breath) + "# #t" + str(breath) + "# x 1")
+"#i", repr(breath), "# #t", repr(breath), "# x 1"]))
 
 sm.setPlayerAsSpeaker()
 sm.sendSay("#b(You have no clue what he's saying. "

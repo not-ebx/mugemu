@@ -13,11 +13,11 @@ sm.giveItem(sweetness)
 sm.completeQuest(parentID)
 sm.consumeItem(scissorhands)
 
-sm.sendNext("WOW! #t" + str(scissorhands) + "#?! "
+sm.sendNext(''.join(["WOW! #t", repr(scissorhands), "#?! "
 "The material...the color...the sound of the blades snipping together... "
 "It's so beautiful! Thank you so much! You're the best, #h #! \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
-"#i" + str(sweetness) + "# #t" + str(sweetness) + "# x 1")
+"#i", repr(sweetness), "# #t", repr(sweetness), "# x 1"]))
 
 sm.setPlayerAsSpeaker()
 sm.sendSay("#b(You learned the Cheering Expression from Rinz the Assistant.)")

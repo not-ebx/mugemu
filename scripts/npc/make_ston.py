@@ -54,12 +54,12 @@ if selection == 0:
         if currentJob in echoDict:
             echo = echoDict[currentJob]
             if sm.hasSkill(echo):
-                sm.sendSayOkay("Hm...It looks like you have #s" + str(echo) + "# #q" + str(echo) + "# already.")
+                sm.sendSayOkay(''.join(["Hm...It looks like you have #s", repr(echo), "# #q", repr(echo), "# already."]))
             else:
-                response = sm.sendAskYesNo("Greetings, hero. Would you like to learn #s" + str(echo) + "# #q" + str(echo) + "#?")
+                response = sm.sendAskYesNo(''.join(["Greetings, hero. Would you like to learn #s", repr(echo), "# #q", repr(echo), "#?"]))
                 if response:
                     sm.giveSkill(echo)
-                    sm.sendSayOkay("You have learned #s" + str(echo) + "# #q" + str(echo) + "#.")
+                    sm.sendSayOkay(''.join(["You have learned #s", repr(echo), "# #q", repr(echo), "#."]))
         elif JobConstants.isBeastTamer(currentJob):
             sm.sendSayOkay("Unfortunately, I can't offer Echo of Hero to Beast Tamers.")
         else:

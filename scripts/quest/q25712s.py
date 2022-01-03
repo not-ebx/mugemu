@@ -32,14 +32,14 @@ if chr.getJob() == 6111:
             sm.giveItem(successor)
             sm.giveAndEquip(truthEssence)
 
-            sm.sendNext("A few decades ago, I went to Heliseum to free it from Darmoor's clutches, "
+            sm.sendNext(''.join(["A few decades ago, I went to Heliseum to free it from Darmoor's clutches, "
             "but Magnus caught me in a surprise in a surprise attack. "
-            "I had to stop him and his Specters from reaching #m" + str(pantheon) + "m#, "
-            "and buy some time for the survivors to get to #m" + str(pantheon) + "m# safely.")
-            sm.sendSay("If I didn't stop them there, they could have conquered Pantheon as well. "
-            "Our shield at #m" + str(pantheon) + "m# was down, and I was the last line of defense. "
-            "You might think #p" + str(beldar) + "# was cowardly to escape with the Nova Relics "
-            "to #m" + str(pantheon) + "m#, but it was the right call.")
+            "I had to stop him and his Specters from reaching #m", repr(pantheon), "m#, "
+            "and buy some time for the survivors to get to #m", repr(pantheon), "m# safely."]))
+            sm.sendSay(''.join(["If I didn't stop them there, they could have conquered Pantheon as well. "
+            "Our shield at #m", repr(pantheon), "m# was down, and I was the last line of defense. "
+            "You might think #p", repr(beldar), "# was cowardly to escape with the Nova Relics "
+            "to #m", repr(pantheon), "m#, but it was the right call."]))
             sm.sendSay("Magnus poisoned me in our battle, and I was forced to sacrifice myself "
             "to unleash Ancestral Prominence, wiping out Magnus and his Specters...")
 

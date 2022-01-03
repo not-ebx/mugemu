@@ -7,9 +7,9 @@ cygnus = 1101000
 
 if sm.canHold(cygnusConstellation):
     sm.setSpeakerID(cygnus)
-    sm.sendNext("You have exceeded all our expectations. Please take this as a symbol of your heroism.\r\n"
-    "#s" + str(echo) + "# #q" + str(echo) + "#\r\n"
-    "#i" + str(cygnusConstellation) + "# #z" + str(cygnusConstellation) + "#")
+    sm.sendNext(''.join(["You have exceeded all our expectations. Please take this as a symbol of your heroism.\r\n"
+    "#s", repr(echo), "# #q", repr(echo), "#\r\n"
+    "#i", repr(cygnusConstellation), "# #z", repr(cygnusConstellation), "#"]))
     sm.completeQuest(parentID)
     sm.giveSkill(echo)
     sm.giveItem(cygnusConstellation)

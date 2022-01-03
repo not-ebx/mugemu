@@ -19,11 +19,11 @@ sm.flipDialogue()
 sm.sendSay("Did you wreck them already? Geez, man...")
 
 sm.flipDialogue()
-response = sm.sendAskYesNo("Whatever. I think we can agree that you're ready for the next upgrade. "
+response = sm.sendAskYesNo(''.join(["Whatever. I think we can agree that you're ready for the next upgrade. "
 "Any objections? #b\r\n\r\n"
 "(Accept for 3rd Job Advancement.) \r\n\r\n"
-"#i" + str(rookMedal) + "# #z" + str(rookMedal) + "# \r\n"
-"#i" + str(rookChess) + "# #z" + str(rookChess) + "#")
+"#i", repr(rookMedal), "# #z", repr(rookMedal), "# \r\n"
+"#i", repr(rookChess), "# #z", repr(rookChess), "#"]))
 if response:
     if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
         sm.jobAdvance(14211)

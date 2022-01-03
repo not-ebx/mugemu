@@ -4,7 +4,7 @@ magicSeed = 4031346
 
 selection = sm.sendNext("...Can I help you? #b\r\n\r\n"
 "#L0#Find the ingredients for the Flying Potion (Dragon Moss Extract) #l\r\n"
-"#L1#Buy the #t" + str(magicSeed) + "# #l")
+"#L1#Buy the #t" + repr(magicSeed) + "# #l")
 
 if selection == 0:
     if sm.hasQuest(3759) and not sm.hasItem(4032531):
@@ -31,14 +31,15 @@ elif selection == 1:
     seedCap = sm.getMesos() // seedCost
     
     sm.sendNext("You don't seem to be from our town. How can I help you? #b\r\n"
-    "#L0# I would like some #z" + str(magicSeed) + "#.#l")
+    "#L0# I would like some #z" + repr(magicSeed) + "#.#l")
     if seedCap > 0:
-        quantity = sm.sendAskNumber("#b#z" + str(magicSeed) + "##k is a precious item; I cannot give it to you just like that.\r\n"
+        quantityString = ''.join(["#b#z", repr(magicSeed), "##k is a precious item; I cannot give it to you just like that.\r\n"
         "How about doing me a little favor? Then I'll give it to you. "
-        "I'll sell the #b#z" + str(magicSeed) + "##k to you for #b 30,000 mesos#k each.\r\n"
-        "Are you willing to make the purchase? How many would you like, then?", 1, 1, seedCap)
-        response = sm.sendAskYesNo("Buying #b" + str(quantity) + " #z" + str(magicSeed) + "#(s)#k will cost you #b" + str(seedCost * quantity) + " mesos#k. "
-        "Are you sure you want to make the purchase?")
+        "I'll sell the #b#z", repr(magicSeed), "##k to you for #b 30,000 mesos#k each.\r\n"
+        "Are you willing to make the purchase? How many would you like, then?"])
+        quantity = sm.sendAskNumber(quantityString, 1, 1, seedCap)
+        response = sm.sendAskYesNo(''.join(["Buying #b", repr(quantity), " #z", repr(magicSeed), "#(s)#k will cost you #b", repr(seedCost * quantity), " mesos#k. "
+        "Are you sure you want to make the purchase?"]))
         if response:
             if sm.canHold(magicSeed):
                 sm.deductMesos(seedCost * quantity)

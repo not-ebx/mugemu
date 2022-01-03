@@ -1,4 +1,4 @@
-# 3933: Ardin's Sand Bandits
+# Ardin's Sand Bandits (3933)
 
 ardin = 2101003
 backStreet = 926000000
@@ -7,7 +7,7 @@ sm.setSpeakerID(ardin)
 sm.sendNext("I didn't think you'd be this strong. I feel like you have what it takes to become a member of the Sand Bandits. "
 "The most important aspect of being a member is power, and I think you have that. "
 "I also... want to test you one more time, just to make sure you're the right one. What do you think? Can you handle it?")
-response = sm.sendAskYesNo("To truly see your strength, I'll have to face you myself. "
+response = sm.sendAskAccept("To truly see your strength, I'll have to face you myself. "
 "Don't worry, I'll summon my other self to face off against you. Are you ready?")
 if response:
     sm.sendNext("Good. I like your confidence.")
