@@ -2,8 +2,8 @@
 
 kerningJQ = [690000041, 690000044, 690000047]
 
-destString = "Would you like to enter the Subway Construction Site?\r\n"
+destString = ["Would you like to enter the Subway Construction Site?\r\n"]
 for index, option in enumerate(kerningJQ):
-    destString += "#L"+ str(index) + "##m" + str(option) + "##l\r\n"
-jqIndex = sm.sendNext(destString)
+    destString.append(''.join(["#L", repr(index), "##m", repr(option), "##l\r\n"]))
+jqIndex = sm.sendNext(''.join(destString))
 sm.warp(kerningJQ[jqIndex])

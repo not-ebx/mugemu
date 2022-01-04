@@ -14,7 +14,7 @@ if response:
     # The pool of valid characters consists of upper-case letters and digits
     passPool = string.ascii_uppercase + string.digits
     # Randomly generate the password string of length 10
-    password = "".join(random.choice(passPool) for letter in range(10))
+    password = ''.join(random.choice(passPool) for letter in range(10))
     # Two dummy quest IDs are to be declared here, and called up by the secretDoor script. They are to be cleaned up after completing this quest:
     # 7061 stores the generated password into its QR value
     # 7062 tracks which side(s) of the secret passage's security device has been unlocked
