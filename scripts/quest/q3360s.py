@@ -13,9 +13,14 @@ if response:
     # Constructing the generated password per quest accept instance
     # The pool of valid characters consists of upper-case letters and digits
     passPool = string.ascii_uppercase + string.digits
-    # Randomly generate the password string of length 10 before storing it into the quest's QRvalue for later
+    # Randomly generate the password string of length 10
     password = "".join(random.choice(passPool) for letter in range(10))
-    sm.createQuestWithQRValue(parentID, password)
+    # Two dummy quest IDs are to be declared here, and called up by the secretDoor script. They are to be cleaned up after completing this quest:
+    # 7061 stores the generated password into its QR value
+    # 7062 tracks which side(s) of the secret passage's security device has been unlocked
+    sm.createQuestWithQRValue(parentID, "0")
+    sm.createQuestWithQRValue(7061, password)
+    sm.createQuestWithQRValue(7062, "00")
     sm.sendSayOkay("The passcode is #b" + str(password) + "#k. You didn't forget it, did you? "
     "Enter this passcode at the entrance of Secret Passage, and you will have unlimited access to it.")
 else:

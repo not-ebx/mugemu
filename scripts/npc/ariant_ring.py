@@ -12,4 +12,5 @@ if sm.hasQuest(queensRing):
         sm.sendSayOkay("You already got a ring. Stealing any more might not be wise...")
     else:
         sm.sendSayOkay("Please make room in your Etc. inventory.")
-        
+else:
+    sm.sendSayOkay("Stealing from the cabinet will alert the palace guards. Best to leave it alone...")

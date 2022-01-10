@@ -95,6 +95,73 @@ public class CashShopHandler {
                 c.write(CCashShop.cashItemResBuyDone(cii, null, null, 0));
                 c.write(CCashShop.queryCashResult(chr));
                 break;
+            case Req_IncSlotCount:
+                byte idk10 = inPacket.decodeByte();
+                byte idk11 = inPacket.decodeByte();
+                int idk12 = inPacket.decodeInt();
+                byte idk13 = inPacket.decodeByte();
+                byte slotType = inPacket.decodeByte();
+                byte idk14 = inPacket.decodeByte();
+                byte idk15 = inPacket.decodeByte();
+                byte idk16 = inPacket.decodeByte();
+                int cost1 = inPacket.decodeInt();
+                long idk17 = inPacket.decodeLong();
+                boolean notEnoughMoney1 = false;
+                switch (slotType) {
+                    case 26: // Equip
+                        if (account.getNxCredit() >= cost1) {
+                            account.deductNXCredit(cost1);
+                            chr.getInventoryByType(InvType.getInvTypeByString("equip")).addSlots((byte) 8);
+                            CashShopItem csi1 = cs.getItemByPosition(25); // client's pos starts at 1
+                            CashItemInfo cii1 = csi1.toCashItemInfo(account, chr);
+                            Item item1 = cii1.getItem();
+                            c.write(CCashShop.cashItemResBuyDone(cii1, null, null, 0));
+                            c.write(CCashShop.queryCashResult(chr));
+                        } else {
+                            notEnoughMoney1 = true;
+                        }
+                        break;
+                    case 27: // Use
+                        if (account.getNxCredit() >= cost1) {
+                            account.deductNXCredit(cost1);
+                            chr.getInventoryByType(InvType.getInvTypeByString("use")).addSlots((byte) 8);
+                            CashShopItem csi1 = cs.getItemByPosition(26); // client's pos starts at 1
+                            CashItemInfo cii1 = csi1.toCashItemInfo(account, chr);
+                            Item item1 = cii1.getItem();
+                            c.write(CCashShop.cashItemResBuyDone(cii1, null, null, 0));
+                            c.write(CCashShop.queryCashResult(chr));
+                        } else {
+                            notEnoughMoney1 = true;
+                        }
+                        break;
+                    case 28: // Etc
+                        if (account.getNxCredit() >= cost1) {
+                            account.deductNXCredit(cost1);
+                            chr.getInventoryByType(InvType.getInvTypeByString("install")).addSlots((byte) 8);
+                            CashShopItem csi1 = cs.getItemByPosition(27); // client's pos starts at 1
+                            CashItemInfo cii1 = csi1.toCashItemInfo(account, chr);
+                            Item item1 = cii1.getItem();
+                            c.write(CCashShop.cashItemResBuyDone(cii1, null, null, 0));
+                            c.write(CCashShop.queryCashResult(chr));
+                        } else {
+                            notEnoughMoney1 = true;
+                        }
+                        break;
+                    case 29: // Install
+                        if (account.getNxCredit() >= cost1) {
+                            account.deductNXCredit(cost1);
+                            chr.getInventoryByType(InvType.getInvTypeByString("etc")).addSlots((byte) 8);
+                            CashShopItem csi1 = cs.getItemByPosition(28); // client's pos starts at 1
+                            CashItemInfo cii1 = csi1.toCashItemInfo(account, chr);
+                            Item item1 = cii1.getItem();
+                            c.write(CCashShop.cashItemResBuyDone(cii1, null, null, 0));
+                            c.write(CCashShop.queryCashResult(chr));
+                        } else {
+                            notEnoughMoney1 = true;
+                        }
+                        break;
+                }
+                break;
             case Req_MoveLtoS:
                 long itemSn = inPacket.decodeLong();
                 cii = trunk.getLockerItemBySn(itemSn);

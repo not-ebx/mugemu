@@ -149,7 +149,7 @@ public class Char {
 
 	@JoinColumn(name = "cashInventory")
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	private Inventory cashInventory = new Inventory(InvType.CASH, 52);
+	private Inventory cashInventory = new Inventory(InvType.CASH, 96);
 
 	@JoinColumn(name = "avatarData")
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

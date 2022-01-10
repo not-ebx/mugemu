@@ -13,7 +13,7 @@ sm.sendSay("#b(#p" + str(calico) + "# is fast asleep. Observe his expression. "
 "Adding some drool would make the picture even more realistic...)")
 sm.sendSay("#b(Ew, a bubble just formed from #p" + str(calico) + "#'s nose! "
 "Hmm...that actually gave it an even more realistic look. "
-"Try making an expression that even exceeds the look on #p" + str(calico) + "#'s face. \r\n\r\n"
+"Try making an expression that even exceeds the look on #p" + str(calico) + "#'s face.) \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
 "#i" + str(drool) + "# #t" + str(drool) + "# x 1")
 

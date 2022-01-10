@@ -70,7 +70,6 @@ public class ItemConstants {
     public static final int SPECIAL_BONUS_POTENTIAL_CUBE = 5062501;
     public static final int WHITE_BONUS_POTENTIAL_CUBE = 5062503;
 
-
     public static final int OCCULT_CUBE = 2711000;
     public static final int REBOOT_OCCULT_CUBE = 2711001; //Later Versions 2711011(?)
     public static final List<Integer> OCCULT_CUBES = Arrays.asList(2711000, 2711001, 2711009, 2711011); //2711000 = Tradable Stackable, 2711001 = Untradable NonStackable, 2711009 = Untradable Stackable, >v176 2711011 = Account Movement only
@@ -86,11 +85,9 @@ public class ItemConstants {
     public static final int BONUS_OCCULT_CUBE = 2730002; // > v176
     public static final List<Integer> BONUS_OCCULT_CUBES = Arrays.asList(2730000, 2730002, 2730004); //2730000 = Untradable Stackable, 2730002 = Tradable Stackable, 2730004 = Account Movement only Stackable
 
-
     public static final int SYSTEM_DEFAULT_CUBE_INDICATOR = -1; //Cause default int value is 0 and we want to differentiate when it is intentional to not have a cube source
 
     //Chances are out of 1k (10* typical 100 values so we don't have to use doubles)
-
 
     public static final int[] OCCULT_CUBE_TIER_UP_RATES = new int[]{10, 0, 0}; //1%, 0%, 0%
     public static final int[] MASTER_CRAFTSMANS_CUBE_TIER_UP_RATES = new int[]{120, 40, 0}; //12%, 4%, 0%
@@ -101,16 +98,11 @@ public class ItemConstants {
 
     public static final int[] VIOLET_CUBE_TIER_UP_RATES = new int[]{30, 12, 5}; //3%, 1.2%, 0.5% //No data to support this, but it's confirmed to be the worst cube to tier with
 
-
     public static final int[] BONUS_OCCULT_CUBE_TIER_UP_RATES = new int[]{20, 0, 0}; //2%, 0%, 0%
     public static final int[] BONUS_POT_CUBE_TIER_UP_RATE = new int[]{200, 100, 50}; //20%, 10%, 5%
     public static final int[] WHITE_BONUS_POT_CUBE_TIER_UP_RATE = new int[]{200, 150, 75}; //20%, 15%, 7.5%
 
-
     public static final int[] DEFAULT_CUBE_TIER_UP_RATES = new int[]{100, 50, 25}; //10%, 5%, 2.5%
-
-
-
 
     public static final int NEBILITE_BASE_ID = 3060000;
 
@@ -199,29 +191,35 @@ public class ItemConstants {
 
     private static void initConsumableDrops() {
         consumableDropsPerLevel.put(0, Util.makeSet(
-                new DropInfo(2000046, 200), // Red Potion
-                new DropInfo(2000014, 200)  // Blue Potion
+                new DropInfo(2000000, 200), // Red Potion
+                new DropInfo(2000003, 200)  // Blue Potion
         ));
         consumableDropsPerLevel.put(20, Util.makeSet(
                 new DropInfo(2000002, 200), // White Potion
                 new DropInfo(2000006, 200)  // Mana Elixir
         ));
         consumableDropsPerLevel.put(40, Util.makeSet(
-                new DropInfo(2001527, 200), // Unagi
-                new DropInfo(2022000, 200)  // Pure Water
+                new DropInfo(2022000, 200),  // Pure Water
+                new DropInfo(2022003, 200)   // Unagi
         ));
         consumableDropsPerLevel.put(60, Util.makeSet(
-                new DropInfo(2001527, 200), // Unagi
-                new DropInfo(2022000, 200)  // Pure Water
+                new DropInfo(2001001, 200), // Ice Cream Pop
+                new DropInfo(2001002, 200)  // Very Special Sundae
         ));
         consumableDropsPerLevel.put(80, Util.makeSet(
                 new DropInfo(2001001, 200), // Ice Cream Pop
-                new DropInfo(2001002, 200)  // Pure Water
+                new DropInfo(2001002, 200)  // Very Special Sundae
         ));
         consumableDropsPerLevel.put(100, Util.makeSet(
-                new DropInfo(2020012, 100), // Melting Cheese
+                new DropInfo(2020012, 200), // Melting Cheese
+                new DropInfo(2020014, 200)  // Sunrise Dew
+        ));
+        consumableDropsPerLevel.put(120, Util.makeSet(
+                new DropInfo(2020012, 200), // Melting Cheese
+                new DropInfo(2020014, 200)  // Sunrise Dew
+        ));
+        consumableDropsPerLevel.put(140, Util.makeSet(
                 new DropInfo(2020013, 100), // Reindeer Milk
-                new DropInfo(2020014, 100), // Sunrise Dew
                 new DropInfo(2020015, 100), // Sunset Dew
                 new DropInfo(2050004, 10)   // All Cure
         ));
@@ -1596,7 +1594,7 @@ public class ItemConstants {
     }
 
     public static Set<DropInfo> getConsumableMobDrops(int level) {
-        level = Math.min(100, (level / 20) * 20); // round it to the nearest 20th level + max of level 100
+        level = Math.min(140, (level / 20) * 20); // round it to the nearest 20th level + max of level 140
         return consumableDropsPerLevel.getOrDefault(level, new HashSet<>());
     }
 

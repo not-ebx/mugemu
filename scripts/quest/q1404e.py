@@ -1,5 +1,4 @@
 # 1404 - Thieves of Kerning City
-from net.swordie.ms.enums import Stat
 
 sm.setSpeakerID(1052001)
 response = sm.sendAskYesNo("So you want to become a Thief?")

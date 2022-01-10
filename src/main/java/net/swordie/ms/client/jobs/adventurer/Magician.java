@@ -712,7 +712,7 @@ public class Magician extends Beginner {
                 applyFreezingCrushOnMob(attackInfo, skillID);
             }
         }
-        if (JobConstants.isCleric(chr.getJob())) {
+        if (JobConstants.isBishop(chr.getJob())) {
             if(hasHitMobs) {
 
             }

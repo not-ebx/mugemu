@@ -3,7 +3,7 @@
 destinationDict = {
     230000000: [230030200, 251000100], # Aquarium
     251000100: [230000000] # Pier on the Beach
-    }
+}
 
 currentMap = sm.getFieldID()
 optionList = destinationDict[currentMap]
@@ -16,6 +16,6 @@ if len(optionList) > 1:
     sm.warp(optionList[destIndex])
 else:
     destination = optionList[0]
-    response = sm.sendAskYesNo("Would you like to go to #m" + str(destination) + "m#?")
+    response = sm.sendAskYesNo("Would you like to go to #m" + str(destination) + "#?")
     if response:
         sm.warp(destination)
