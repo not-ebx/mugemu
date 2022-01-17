@@ -1,6 +1,6 @@
 # Where You Came From [Kaiser] (25808)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 sm.flipDialoguePlayerAsSpeaker()
 sm.sendNext("Memories... Memories from when? When I became Kaiser?")
@@ -13,4 +13,5 @@ sm.sendSay("(Recalling your memories has given you a healthier perspective on li
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

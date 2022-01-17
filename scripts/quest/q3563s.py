@@ -1,6 +1,6 @@
 # Where You Came From [Kinesis] (3563)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 gender = chr.getAvatarData().getAvatarLook().getGender()
 if gender == 0:
@@ -61,4 +61,5 @@ sm.sendNext("#face2#Okay, I'll stop now. The talk is over. \r\n"
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

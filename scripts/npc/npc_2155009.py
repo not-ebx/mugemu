@@ -14,7 +14,7 @@ if diffusionQuantity >= 50 and lotusQuantity >= 1:
     
     sm.sendNext("I think you have what I need...")
     sm.sendNext(''.join(["Give me 50 #i", repr(diffusionLine), "##z", repr(diffusionLine),
-    "# items and 1 #i", repr(lotusExtraordinary), "##z", repr(lotusExtraordinary), "#,\r\n"
+    "# and 1 #i", repr(lotusExtraordinary), "##z", repr(lotusExtraordinary), "#,\r\n"
     "and I'll give you 1 #i", repr(absoCoin), "##z", repr(absoCoin), "#..."
     "Do we have a deal?\r\n"
     "#L0# #i", repr(absoCoin), "##z", repr(absoCoin), "##l"]))

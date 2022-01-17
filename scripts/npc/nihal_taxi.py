@@ -7,8 +7,7 @@ destinationDict = {
     260020700: 260000000, # Sahel 1
 }
 
-currentMap = sm.getFieldID()
-destination = destinationDict[currentMap]
+destination = destinationDict[sm.getFieldID()]
 
 response = sm.sendAskYesNo("Do you want to go to #m" + repr(destination) + "#?")
 if response:

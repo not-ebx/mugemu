@@ -5,8 +5,14 @@ if sm.getFieldID() == 105000000 and sm.hasQuest(30004):
     sm.warp(910700200, 0) # Root Abyss Quest Line Map
     sm.completeQuest(30004)
 
+# Lith Harbor title
 elif sm.getFieldID() == 104000000:
     sm.showEffect("Map/Effect.img/maplemap/enter/104000000")
+
+# Foreign World (Mercedes)
+elif sm.getFieldID() == 101000000 and sm.hasQuest(24046):
+    sm.startQuest(24094)
+    sm.setQRValue(24094, "1", False)
 
 elif sm.getFieldID() == 220080000 and sm.hasQuest(1662):
     sm.chatScript("Enter papulatus.")

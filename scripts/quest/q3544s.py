@@ -1,6 +1,6 @@
 # Seeking Lost Memories [Demon] (3544)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 sm.flipDialoguePlayerAsSpeaker()
 sm.sendNext("Memories? What memories? When I served the Black Mage, or when I did battle with him? "
@@ -13,4 +13,5 @@ sm.sendSay("(Recalling your memories has given you a healthier perspective on li
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)
