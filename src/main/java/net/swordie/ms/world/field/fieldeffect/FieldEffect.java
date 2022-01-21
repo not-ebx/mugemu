@@ -205,15 +205,15 @@ public class FieldEffect {
         return fieldEffect;
     }
 
-    public static FieldEffect blind(int enable, int x, int color, int unk1, int unk2, int time) {
+    public static FieldEffect blind(int enable, int alpha, int red, int green, int blue, int time) {
         FieldEffect fieldEffect = new FieldEffect();
         fieldEffect.setFieldEffectType(FieldEffectType.Blind);
 
         fieldEffect.setArg1(enable);
-        fieldEffect.setArg2(x);
-        fieldEffect.setArg3(color);
-        fieldEffect.setArg4(unk1);
-        fieldEffect.setArg5(unk2);
+        fieldEffect.setArg2(alpha);
+        fieldEffect.setArg3(red);
+        fieldEffect.setArg4(green);
+        fieldEffect.setArg5(blue);
         fieldEffect.setArg6(time);
 
         return fieldEffect;

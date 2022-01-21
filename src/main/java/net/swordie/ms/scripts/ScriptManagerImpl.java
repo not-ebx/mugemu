@@ -901,7 +901,7 @@ public class ScriptManagerImpl implements ScriptManager {
 				al.setFace(look);
 				chr.setStatAndSendPacket(Stat.face, look);
 			}
-			else{
+			else {
 				log.error(String.format("Tried changing a look with invalid id (%d)", look));
 			}
 		} else if (ItemConstants.MIN_HAIR <= look && look < ItemConstants.MAX_HAIR) {
@@ -909,7 +909,7 @@ public class ScriptManagerImpl implements ScriptManager {
 				al.setHair(look);
 				chr.setStatAndSendPacket(Stat.hair, look);
 			}
-			else{
+			else {
 				log.error(String.format("Tried changing a look with invalid id (%d)", look));
 			}
 		} else {
@@ -2528,9 +2528,10 @@ public class ScriptManagerImpl implements ScriptManager {
 		chr.write(FieldPacket.fieldEffect(FieldEffect.playSound(sound, vol)));
 	}
 
-	public void blind(int enable, int x, int color, int time) { blind(enable, x, color, 0, 0, time); }
+	public void blind(int enable, int alpha, int red, int time) { blind(enable, alpha, red, 0, 0, time); }
+	@Override
+	public void blind(int enable, int alpha, int red, int green, int blue, int time) { chr.write(FieldPacket.fieldEffect(FieldEffect.blind(enable, alpha, red, green, blue, time))); }
 
-	public void blind(int enable, int x, int color, int unk1, int unk2, int time) { chr.write(FieldPacket.fieldEffect(FieldEffect.blind(enable, x, color, unk1, unk2, time))); }
 	@Override
 	public int getRandomIntBelow(int upBound) {
 		return new Random().nextInt(upBound);

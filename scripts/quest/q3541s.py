@@ -2,7 +2,7 @@
 
 recoveredMemory = 7081
 
-claudine = 2159315
+claudine = 2151003
 
 sm.setSpeakerID(claudine)
 sm.sendNext("Long time, no see, #h #. I heard you left Edelstein to grow stronger... What brings you here?")
