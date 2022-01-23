@@ -19,20 +19,20 @@ for equip in invItems:
     equipId = equip.getItemId()
     anviledItems.append(equipId)
 
+sm.setSpeakerID(admin)
 # No anviled Equips found
 if len(anviledItems) == 0:
     sm.sendSayOkay("You don't have any anviled equips in your inventory.")
 else:
-    resetString = "Select the anviled equip you want to reset. #b\r\n"
+    resetString = ["Select the anviled equip you want to reset. #b\r\n"]
     # Construct anviled gear list
     for index, anviledItem in enumerate(anviledItems):
-        resetString += "#L"+ str(index) + "##i" + str(anviledItem) + "# #z" + str(anviledItem) +"##l\r\n"
-    selection = sm.sendNext(resetString)
+        resetString.append(''.join(["#L", repr(index), "##i", repr(anviledItem), "# #z", repr(anviledItem), "##l\r\n"]))
+    selection = sm.sendNext(''.join(resetString))
 
     # Pull out item id from anviledItems
     resetID = anviledItems[selection]
-
-    response = sm.sendAskYesNo("Are you sure you want to reset the appearance of #b#i" + str(resetID) + "# #z" + str(resetID) + "##k?")
+    response = sm.sendAskYesNo(''.join(["Are you sure you want to reset the appearance of #b#i", repr(resetID), "# #z", repr(resetID), "##k?"]))
     if response:
         # Retrieve the original item entity by index inside invItems (invItems and anviledItems already follow the same physical sort order)
         # This allows for targeting a *specific* entity, not the first copy within inventory if the player has two of the same item with different anvils

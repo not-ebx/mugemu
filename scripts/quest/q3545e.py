@@ -1,6 +1,6 @@
 # Seeking Lost Memories [Phantom] (3545)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 gaston = 1401000
 
@@ -49,4 +49,5 @@ sm.sendSay("That old man will be the death of me... but I hope he never leaves."
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

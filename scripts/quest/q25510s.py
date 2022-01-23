@@ -21,7 +21,7 @@ if chr.getJob() == 2700:
         sm.setSpeakerID(vieren)
         sm.sendSay("It was nothing. "
         "All I did was help you find the strength to control your Dark. "
-        "Here, this #t" + str(prism) + "# will let you come and go as you please.")
+        "Here, this #t" + repr(prism) + "# will let you come and go as you please.")
 
         sm.jobAdvance(2710)
         sm.startQuest(parentID)

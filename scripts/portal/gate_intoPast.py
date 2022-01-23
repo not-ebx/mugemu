@@ -26,8 +26,8 @@ else:
         filteredPast = pastList[:pastEnd]
 
         sm.setSpeakerID(johanna)
-        destString = "I can instantly warp those with the proper permissions around the Temple. Where would you like to go? #b\r\n"
+        destString = ["I can instantly warp those with the proper permissions around the Temple. Where would you like to go? #b\r\n"]
         for index, option in enumerate(filteredPast):
-            destString += "#L"+ str(index) + "##m" + str(option[0]) + "##l\r\n"
-        destIndex = sm.sendNext(destString)
+            destString.append(''.join(["#L", repr(index), "##m", repr(option[0]), "##l\r\n"]))
+        destIndex = sm.sendNext(''.join(destString))
         sm.warp(filteredPast[destIndex][0])

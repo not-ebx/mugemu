@@ -17,10 +17,10 @@ sm.sendSay("It is the strength of an Onyx Dragon as well as the strength of its 
 "That means your spirit has grown that much, too, master.")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("#bI see you've matured. You even sound different, #p" + str(mir) + "#.")
+sm.sendSay("#bI see you've matured. You even sound different, #p" + repr(mir) + "#.")
 
 sm.setSpeakerID(mir)
-response = sm.sendAskYesNo("Haha, of course. It would be embarrasing to talk like a child with this elegant bod! "
+response = sm.sendAskAccept("Haha, of course. It would be embarrasing to talk like a child with this elegant bod! "
 "Anyway, master, I have another shiny scale that came off when I was shedding. "
 "It seems to be even more powerful than the last one I gave you. Here you go.")
 if response:

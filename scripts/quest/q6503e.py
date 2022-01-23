@@ -13,11 +13,11 @@ sm.giveItem(whoa)
 sm.completeQuest(parentID)
 sm.consumeItem(curseEyeTail, 350)
 
-sm.sendNext("AUGH! A snake! A SNAKE! Is it poisonous?! Contact the knights immediately! "
-"...Wait a minute here, that's a #t" + str(curseEyeTail) + "#! You scared the heck out of me. "
+sm.sendNext(''.join(["AUGH! A snake! A SNAKE! Is it poisonous?! Contact the knights immediately! "
+"...Wait a minute here, that's a #t", repr(curseEyeTail), "#! You scared the heck out of me. "
 "Why would I want that?! \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
-"#i" + str(whoa) + "# #t" + str(whoa) + "# x 1")
+"#i", repr(whoa), "# #t", repr(whoa), "# x 1"]))
 
 sm.setPlayerAsSpeaker()
 sm.sendSay("#b(You learned the Surprised Expression from Hersha.)")

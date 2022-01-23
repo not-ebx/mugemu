@@ -1,7 +1,8 @@
 # In Search for the Lost Memory [Cygnus Knights] (3529)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

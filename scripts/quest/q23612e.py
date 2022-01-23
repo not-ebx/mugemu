@@ -12,7 +12,7 @@ sm.flipDialoguePlayerAsSpeaker()
 sm.sendSay("(You explain that you were almost discovered by the Black Wings.)")
 
 sm.setSpeakerID(promathus)
-sm.sendSay("Haha! #p" + str(gelimer) + "# would be furious if he knew you'd gotten by right under his nose. "
+sm.sendSay("Haha! #p" + repr(gelimer) + "# would be furious if he knew you'd gotten by right under his nose. "
 "Quite a daring move, yes, yes.")
 response = sm.sendAskYesNo("Well done, child, well done. Your courage is evident. "
 "Will you take what we have readied for you?")
@@ -23,6 +23,6 @@ if response:
         sm.giveItem(captainFreedom)
         sm.sendSayOkay("I've uploaded every bit of information on the Black Wings and their agents to your memory banks. "
         "Your neural interface should create a sort of camouflage effect, should any Black Wings cross your path. "
-        "To them, you will appear as someone they do not know. It should even work on #p" + str(gelimer) + "#.")
+        "To them, you will appear as someone they do not know. It should even work on #p" + repr(gelimer) + "#.")
     else:
         sm.sendSayOkay("Please make room in your Equip inventory.")

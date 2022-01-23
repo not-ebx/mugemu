@@ -1,6 +1,6 @@
 # A Quick Look Back [Luminous] (23523)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 lania = 1032205
 
@@ -23,4 +23,5 @@ sm.sendSay("That's sweet. Let me know ahead next time. "
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

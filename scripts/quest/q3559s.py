@@ -1,6 +1,6 @@
 # Where You Came From [Mihile] (3559)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 neinheart = 1101002
 
@@ -12,4 +12,5 @@ sm.sendSay("Well, I guess it could be considered a fond memory of sorts...")
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

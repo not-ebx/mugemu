@@ -20,17 +20,17 @@ for equip in invItems:
 if len(nxItems) == 0:
     sm.sendSayOkay("You don't have anything for the Clothes Collector.")
 else:
-    disposeString = "Select the clothes you want to throw away. #b\r\n"
+    disposeString = ["Select the clothes you want to throw away. #b\r\n"]
     # Construct disposal list
     for index, nxItem in enumerate(nxItems):
-        disposeString += "#L"+ str(index) + "##i" + str(nxItem) + "# #z" + str(nxItem) +"##l\r\n"
-    selection = sm.sendNext(disposeString)
+        disposeString.append(''.join(["#L", repr(index), "##i", repr(nxItem), "# #z", repr(nxItem), "##l\r\n"]))
+    selection = sm.sendNext(''.join(disposeString))
 
     # Pull out item id from nxItems
     toDispose = nxItems[selection]
 
-    response = sm.sendAskYesNo("Are you sure you want to throw away #b#i" + str(toDispose) + "# #z" + str(toDispose) + "##k? "
-    "Once they're gone, they're gone for good!")
+    response = sm.sendAskYesNo(''.join(["Are you sure you want to throw away #b#i", repr(toDispose), "# #z", repr(toDispose), "##k? "
+    "Once they're gone, they're gone for good!"]))
     if response:
         sm.consumeItem(toDispose)
         sm.sendSayOkay("Thank you for your garbage.")

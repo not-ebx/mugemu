@@ -1,6 +1,7 @@
 # Lost Memories Found [Kanna] (57465)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
+
 mouriMotonari = 9130008
 
 sm.setSpeakerID(mouriMotonari)
@@ -11,4 +12,5 @@ sm.sendSay("I'm glad you're on my side, Kanna.")
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

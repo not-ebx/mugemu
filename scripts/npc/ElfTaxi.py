@@ -5,8 +5,8 @@ currentMap = sm.getFieldID()
 if currentMap in maps:
     maps.remove(currentMap)
 
-destString = "(If you don't have any more buisness in Elluel, you can move to other towns through the Mysterious Portal.) #b\r\n"
+destString = ["(If you don't have any more buisness in Elluel, you can move to other towns through the Mysterious Portal.) #b\r\n"]
 for index, option in enumerate(maps):
-    destString += "#L"+ str(index) + "##m" + str(option) + "##l\r\n"
-destination = sm.sendNext(destString)
+    destString.append(''.join(["#L", repr(index), "##m", repr(option), "##l\r\n"])) 
+destination = sm.sendNext(''.join(destString))
 sm.warp(maps[destination])

@@ -37,7 +37,7 @@ if sm.hasQuest(shooEvil):
                 shamanStatus = shamanParse[:shamanIndex] + "1" + shamanParse[shamanIndex+1:]
         
         sm.setQRValue(shooEvil, shamanStatus, False)
-        sm.sendSayOkay("You placed the charm onto the #p" + str(parentID) + "#.")
+        sm.sendSayOkay("You placed the charm onto the Shaman Rock.")
     elif not sm.hasItem(charm) and shamanParse[shamanIndex] != "1" and shamanStatus != "111111":
         sm.sendSayOkay("You do not have any more charms. Forfeit the quest and talk to Chrishrama again.")
     else:

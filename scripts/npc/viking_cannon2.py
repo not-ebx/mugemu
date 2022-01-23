@@ -2,6 +2,6 @@
 
 castleWalls = 106030300
 
-response = sm.sendAskYesNo("Would you like to use the cannon to return to #m" + str(castleWalls) + "#?")
+response = sm.sendAskYesNo("Would you like to use the cannon to return to #m" + repr(castleWalls) + "#?")
 if response:
     sm.warp(castleWalls)

@@ -1520,6 +1520,18 @@ public interface ScriptManager extends Observer {
 	void showClearStageExpWindow(long expGiven);
 
 	/**
+	 * Covers the client window with the specified coloration filter.
+	 * Note that changing maps will automatically remove any blind effects.
+	 * @param enable Toggles the blind effect; 1 enables it, 0 disables it regardless of color inputs
+	 * @param alpha The filter's color alpha/opacity, from 0-255
+	 * @param red The filter's red RGB value, from 0-255
+	 * @param green The filter's green RGB value, from 0-255
+	 * @param blue The filter's blue RGB value, from 0-255
+	 * @param time The time (in ms) before the blind effect is completely active
+	 */
+	void blind(int enable, int alpha, int red, int green, int blue, int time);
+
+	/**
 	 * Returns a random integer below the number specified.
 	 *
 	 * @param upBound

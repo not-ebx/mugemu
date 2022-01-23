@@ -1,6 +1,7 @@
 # Lost Memories Found [Hayato] (57172)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
+
 mouriMotonari = 9130008
 
 sm.setSpeakerID(mouriMotonari)
@@ -12,4 +13,5 @@ sm.sendSay("Continue your quest, and I shall ensure we go down in history.")
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

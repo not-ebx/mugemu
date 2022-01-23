@@ -10,13 +10,13 @@ claudine = 2151003
 sm.setSpeakerID(dreamboat)
 sm.sendNext("Welcome. You must be the one Claudine mentioned. I am Professor Dreamboat... Moan. "
 "Sorry, the nickname's sort of hard to escape. "
-"I am the head of Resistance Research Command, otherwise known as #b#m" + str(veritas) + "##k.")
+"I am the head of Resistance Research Command, otherwise known as #b#m" + repr(veritas) + "##k.")
 
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendSay("#b#m" + str(veritas) + "##k?")
+sm.sendSay("#b#m" + repr(veritas) + "##k?")
 
 sm.setSpeakerID(dreamboat)
-sm.sendSay("I doubt #p" + str(claudine) + "# gave you the details over an insecure channel. "
+sm.sendSay("I doubt #p" + repr(claudine) + "# gave you the details over an insecure channel. "
 "We are a research group, dedicated to tracking and addressing strange phenomena across Maple World "
 "that may be related to the Black Mage. "
 "We have gathered scholars of all areas of expertise to investigate these happenings.")
@@ -57,7 +57,7 @@ sm.sendSay("#bPulse Disruptor#k?")
 sm.setSpeakerID(dreamboat)
 sm.sendSay("If you're giving off a signal, I'm sure we can create SOME sort of counter-system to block it out. "
 "It would require multiple devices though, probably scattered all over...")
-sm.sendSay("This is actually very similar to something #p" + str(claudine) + "# requested. "
+sm.sendSay("This is actually very similar to something #p" + repr(claudine) + "# requested. "
 "I bet I can dig up that research somewhere...")
 
 sm.flipDialoguePlayerAsSpeaker()
@@ -69,7 +69,7 @@ sm.sendSay("Well, it's probably a little below your abilities, "
 
 sm.setSpeakerID(dreamboat)
 response = sm.sendAskYesNo("If you're willing to take the job, "
-"I'm ready to hire you as the one-and-only #b#m" + str(veritas) + "##k special agent. Do you accept? #b#e \r\n\r\n"
+"I'm ready to hire you as the one-and-only #b#m" + repr(veritas) + "##k special agent. Do you accept? #b#e \r\n\r\n"
 "<Accept 2nd Job Advancement.>")
 if response:
     if sm.canHold(secretAgent):
@@ -82,7 +82,7 @@ if response:
         "but one of your engineers created the world's gaudiest transport device. "
         "You can use it to go out on missions, or get back to the lab any time.")
         sm.sendSay("He named it the #bPromessa#k."
-        "You can use the #b#q" + str(promessa) + "##k skill to call it wherever you are.")
+        "You can use the #b#q" + repr(promessa) + "##k skill to call it wherever you are.")
         sm.sendPrev("I know it's pretty ridiculous-looking, but the design is solid as can be.")
     else:
         sm.sendSayOkay("Please make room in your Equip inventory.")

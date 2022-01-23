@@ -14,9 +14,9 @@ sm.sendSay("#b(Chief Stan's not turning you away, but he's not happy either. "
 "That expression...maybe you can learn something from it.)")
 
 sm.setSpeakerID(stan)
-sm.sendSay("Hmm... I'm not happy about this. \r\n\r\n"
+sm.sendSay(''.join(["Hmm... I'm not happy about this. \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
-"#i" + str(constantSigh) + "# #t" + str(constantSigh) + "# x1")
+"#i", repr(constantSigh), "# #t", repr(constantSigh), "# x1"]))
 
 sm.giveItem(constantSigh)
 sm.completeQuest(parentID)

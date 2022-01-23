@@ -1,6 +1,6 @@
 # In Search of Lost Memories [Evan] (3540)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 chiefStan = 1012003
 
@@ -13,4 +13,5 @@ sm.sendSay("It's amazing how time flies.")
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

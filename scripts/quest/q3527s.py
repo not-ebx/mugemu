@@ -1,6 +1,6 @@
 # In Search for the Lost Memory [Explorer Pirate + Jett] (3527)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 kyrin = 1090000
 
@@ -15,4 +15,5 @@ sm.sendSay("What I can tell you is-- keep going. "
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

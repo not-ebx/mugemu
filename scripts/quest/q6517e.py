@@ -7,10 +7,10 @@ ouch = 5160024
 googoo = 5160028
 
 sm.setSpeakerID(lana)
-response = sm.sendNext("Okay, show me...the depth of your love! \r\n"
-"#L0##i" + str(googoo) + "##l\r\n"
-"#L1##i" + str(ouch) + "##l\r\n"
-"#L2##i" + str(panicky) + "##l\r\n")
+response = sm.sendNext(''.join(["Okay, show me...the depth of your love! \r\n"
+"#L0##i", repr(googoo), "##l\r\n"
+"#L1##i", repr(ouch), "##l\r\n"
+"#L2##i", repr(panicky), "##l\r\n"]))
 if response == 0:
     sm.giveItem(googoo)
     sm.completeQuest(parentID)

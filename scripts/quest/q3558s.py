@@ -1,6 +1,6 @@
 # Where You Came From [Dual Blade] (3558)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 ryden = 1057001
 
@@ -12,4 +12,5 @@ sm.sendSay("You didn't let me down... You made me proud of being your teacher...
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

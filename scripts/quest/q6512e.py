@@ -13,11 +13,11 @@ sm.giveItem(flaming)
 sm.completeQuest(parentID)
 sm.consumeItem(gloves)
 
-sm.sendNext("...Hey! These gloves are all torn up! They were so expensive...! "
+sm.sendNext(''.join(["...Hey! These gloves are all torn up! They were so expensive...! "
 "CRIMSON BALROG, YOU WILL SUFFER! I've got to start training until I can make him pay. "
 "There will be blood!! \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
-"#i" + str(flaming) + "# #t" + str(flaming) + "# x 1")
+"#i", repr(flaming), "# #t", repr(flaming), "# x 1"]))
 
 sm.setPlayerAsSpeaker()
 sm.sendSay("#b(You learned the Rage Expression from Sunny.)")

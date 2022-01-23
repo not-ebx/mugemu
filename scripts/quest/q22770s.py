@@ -23,10 +23,10 @@ sm.sendSay("I bet your power level rose since I saw you last. "
 "I can't WAIT to chart you.")
 
 sm.flipDialogue()
-response = sm.sendAskYesNo("You wanna go ahead and update your data? Say yes. #b\r\n\r\n"
+response = sm.sendAskYesNo(''.join(["You wanna go ahead and update your data? Say yes. #b\r\n\r\n"
 "(Accept for 2nd Job Advancement.) \r\n\r\n"
-"#i" + str(knightMedal) + "# #z" + str(knightMedal) + "# \r\n"
-"#i" + str(knightChess) + "# #z" + str(knightChess) + "#")
+"#i", repr(knightMedal), "# #z", repr(knightMedal), "# \r\n"
+"#i", repr(knightChess), "# #z", repr(knightChess), "#"]))
 if response:
     if sm.getEmptyInventorySlots(InvType.EQUIP) >= 2:
         sm.jobAdvance(14210)

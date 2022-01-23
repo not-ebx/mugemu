@@ -8,14 +8,14 @@ sm.setSpeakerID(calico)
 sm.sendNext("Zzzzz...")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("#b(#p" + str(calico) + "# is fast asleep. Observe his expression. "
+sm.sendSay("#b(#p" + repr(calico) + "# is fast asleep. Observe his expression. "
 "His eyes are closed and his mouth is slightly open... "
 "Adding some drool would make the picture even more realistic...)")
-sm.sendSay("#b(Ew, a bubble just formed from #p" + str(calico) + "#'s nose! "
+sm.sendSay(''.join(["#b(Ew, a bubble just formed from #p", repr(calico), "#'s nose! "
 "Hmm...that actually gave it an even more realistic look. "
-"Try making an expression that even exceeds the look on #p" + str(calico) + "#'s face.) \r\n\r\n"
+"Try making an expression that even exceeds the look on #p", repr(calico), "#'s face.) \r\n\r\n"
 "#fUI/UIWindow2.img/QuestIcon/4/0# \r\n"
-"#i" + str(drool) + "# #t" + str(drool) + "# x 1")
+"#i", repr(drool), "# #t", repr(drool), "# x 1"]))
 
 sm.giveItem(drool)
 sm.completeQuest(parentID)

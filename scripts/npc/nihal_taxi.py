@@ -1,17 +1,14 @@
 # Camel Cab (2110005)
 
-ariant = 260000000
-ariantNorth = 260020000
-magatia = 261000000
-sahel = 260020700
+destinationDict = {
+    260000000: 261000000, # Ariant
+    260020000: 261000000, # Outside North Entrance of Ariant
+    261000000: 260000000, # Magatia
+    260020700: 260000000, # Sahel 1
+}
 
-if sm.getFieldID() == ariant or sm.getFieldID() == ariantNorth:
-    destination = magatia
-    query = "Do you want to go to #m" + str(magatia) + "#?"
-else:
-    destination = ariant
-    query = "Do you want to go to #m" + str(ariant) + "#?"
+destination = destinationDict[sm.getFieldID()]
 
-response = sm.sendAskYesNo(query)
+response = sm.sendAskYesNo("Do you want to go to #m" + repr(destination) + "#?")
 if response:
     sm.warp(destination)

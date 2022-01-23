@@ -5,8 +5,14 @@ if sm.getFieldID() == 105000000 and sm.hasQuest(30004):
     sm.warp(910700200, 0) # Root Abyss Quest Line Map
     sm.completeQuest(30004)
 
+# Lith Harbor title
 elif sm.getFieldID() == 104000000:
     sm.showEffect("Map/Effect.img/maplemap/enter/104000000")
+
+# Foreign World (Mercedes)
+elif sm.getFieldID() == 101000000 and sm.hasQuest(24046):
+    sm.startQuest(24094)
+    sm.setQRValue(24094, "1", False)
 
 elif sm.getFieldID() == 220080000 and sm.hasQuest(1662):
     sm.chatScript("Enter papulatus.")
@@ -23,26 +29,26 @@ def regionExploration(mapDictionary, medalQuest, trackerQuest, currentMap, mapCa
 
     # Don't run the rest of the function if the medal has been claimed
     if not sm.hasQuestCompleted(medalQuest):
-        skyStatus = sm.getQRValue(trackerQuest)
+        explorationStatus = sm.getQRValue(trackerQuest)
 
         # Another contingency check to initialize the dummy quest if the user (re-)started the medal quest through the Medal UI
-        if medalStatus == "" and not skyStatus == "0" or not sm.hasQuest(trackerQuest):
+        if medalStatus == "" and not explorationStatus == "0" or not sm.hasQuest(trackerQuest):
             sm.createQuestWithQRValue(trackerQuest, "0")
 
         if currentMap in mapDictionary:
             # Is this the first time that spot has been visited?
             areaQR = mapDictionary[currentMap]
             if areaQR not in medalStatus and not medalStatus == mapCap:
-                updateStatus = int(skyStatus) + 1
-                sm.setQRValue(trackerQuest, str(updateStatus), False)
+                updateStatus = int(explorationStatus) + 1
+                sm.setQRValue(trackerQuest, repr(updateStatus), False)
                 sm.addQRValue(medalQuest, areaQR)
 
                 # Was that the last map entry visited?
-                if str(updateStatus) == mapCap:
+                if repr(updateStatus) == mapCap:
                     sm.setQRValue(medalQuest, mapCap, False)
                     sm.chatScript("Earned the " + medalName + " title!")
                 else:
-                    sm.chatScript(str(updateStatus) + "/" + mapCap + " regions explored.")
+                    sm.chatScript(''.join([repr(updateStatus), "/", mapCap, " regions explored."]))
                     sm.chatScript("Trying for the " + medalName + " title.")
 
 beginnerDict = {

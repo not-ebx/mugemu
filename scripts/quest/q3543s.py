@@ -1,6 +1,6 @@
 # Seeking Lost Memories [Mercedes] (3543)
 
-memoryKeeper = 3507
+recoveredMemory = 7081
 
 sm.flipDialoguePlayerAsSpeaker()
 sm.sendNext("Memories...? From when? Perhaps when I battled the Black Mage with Aran, Freud, and the others? "
@@ -13,4 +13,5 @@ sm.sendSay("(You recalled your entire past, unsure of which memories to focus on
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
-sm.completeQuest(memoryKeeper)
+sm.startQuest(recoveredMemory)
+sm.setQRValue(recoveredMemory, "1", False)

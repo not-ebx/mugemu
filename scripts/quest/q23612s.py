@@ -10,10 +10,10 @@ mine = 310040000
 sm.setSpeakerID(promathus)
 sm.flipDialogue()
 sm.sendNext("Ah, there you are. I must speak with you. "
-"I don't know if you know this, but #p" + str(gelimer) + "# has not ended his search for you.")
+"I don't know if you know this, but #p" + repr(gelimer) + "# has not ended his search for you.")
 
 sm.flipDialogue()
-sm.sendSay("The thing I find very strange is that #p" + str(beryl) + "# was the only one to actually pursue you. "
+sm.sendSay("The thing I find very strange is that #p" + repr(beryl) + "# was the only one to actually pursue you. "
 "It seems your very existence was kept a secret, even among the Black Wings. "
 "WAS... things tend to change rapidly in their organization.")
 
@@ -31,12 +31,12 @@ sm.flipDialogue()
 sm.sendNext("I would not be swayed by so petty a reason.")
 
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendSay("Is it because #p" + str(gelimer) + "# is my creator?")
+sm.sendSay("Is it because #p" + repr(gelimer) + "# is my creator?")
 
 sm.setSpeakerID(promathus)
 sm.flipDialogue()
 sm.sendNext("Again, no. You were created as a weapon, and a weapon is only as dangerous as the person who wields it. "
-"Who's to say that the evil dwelling within #p" + str(gelimer) + "#'s soul has not infected mine as well? "
+"Who's to say that the evil dwelling within #p" + repr(gelimer) + "#'s soul has not infected mine as well? "
 "All men are susceptible to greed, especially those fueled by the desire of knowledge.")
 
 sm.flipDialogue()
@@ -47,7 +47,7 @@ if response:
     sm.startQuest(parentID)
     sm.flipDialogue()
     sm.sendSayOkay("Splendid. I would like you to show me the courage in your heart, "
-    "and bring me a #b#t" + str(bwHat) + "##k. There is a gentleman on the #b#m" + str(mine) + "##k. "
+    "and bring me a #b#t" + repr(bwHat) + "##k. There is a gentleman on the #b#m" + repr(mine) + "##k. "
     "He is known to be rather unscrupulous towards his own organization. "
     "But be wary, their base is rather nearby. It will require skill, bravery, and cunning. Good luck.")
 else:

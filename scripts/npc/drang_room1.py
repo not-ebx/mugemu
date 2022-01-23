@@ -6,7 +6,7 @@ deLangPotion = 3354
 dranLab = 926120200
 
 if sm.hasQuest(parwenKnows) or sm.hasQuestCompleted(parwenKnows) and not sm.hasQuest(deLangPotion) and not sm.hasQuestCompleted(deLangPotion):
-    response = sm.sendAskYesNo("Are you ready to visit #m" + str(dranLab) + "#?")
+    response = sm.sendAskYesNo("Are you ready to visit #m" + repr(dranLab) + "#?")
     if response:
         sm.warpInstanceIn(dranLab, 0)
 else:

@@ -4,7 +4,7 @@ from net.swordie.ms.constants import JobConstants
 
 def exchangePieces(gear):
     if not sm.hasItem(parentID, 5):
-        sm.sendSayOkay("You need #b5 #i" + str(parentID) + "# #z" + str(parentID) + "##k to exchange for #b#i" + str(gear) + "# #z" + str(gear) + "##k.")
+        sm.sendSayOkay(''.join(["You need #b5 #i", repr(parentID), "# #z", repr(parentID), "##k to exchange for #b#i", repr(gear), "# #z", repr(gear), "##k."]))
     elif not sm.canHold(gear):
         sm.sendSayOkay("Please make room in your Equip inventory.")
     else:
@@ -34,19 +34,19 @@ if JobConstants.isPirateEquipJob(job):
 viewAll = len(recList)
 
 sm.setSpeakerID(admin)
-recString = "Equipment for your class will be recommended first. #b\r\n"
+recString = ["Equipment for your class will be recommended first. #b\r\n"]
 # Construct initial recommendations
 for index, gear in enumerate(recList):
-    recString += "#L"+ str(index) + "##i" + str(gear) + "# #z" + str(gear) +"##l\r\n"
-recString += "#L"+ str(viewAll) + "#View the entire item list.#l\r\n"
-recSelection = sm.sendNext(recString)
+    recString.append(''.join(["#L", repr(index), "##i", repr(gear), "# #z", repr(gear), "##l\r\n"]))
+recString.append(''.join(["#L", repr(viewAll), "#View the entire item list.#l\r\n"]))
+recSelection = sm.sendNext(''.join(recString))
 
 # Look at everything
 if recSelection == viewAll:
-    selString = "Please select the armor you'd like to receive. #b\r\n"
+    selString = ["Please select the armor you'd like to receive. #b\r\n"]
     for index, gear in enumerate(masterList):
-        selString += "#L"+ str(index) + "##i" + str(gear) + "# #z" + str(gear) +"##l\r\n"
-    selection = sm.sendNext(selString)
+        selString.append(''.join(["#L", repr(index), "##i", repr(gear), "# #z", repr(gear), "##l\r\n"]))
+    selection = sm.sendNext(''.join(selString))
 
     selectedGear = masterList[selection]
     exchangePieces(selectedGear)

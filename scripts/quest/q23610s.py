@@ -43,7 +43,7 @@ sm.sendSay("I'm sure they would be more than happy to help you with your problem
 "May fortune smile on you.")
 
 sm.flipDialoguePlayerAsSpeaker()
-response = sm.sendAskYesNo("Now that #p" + str(gelimer) + "# is off my tail, "
+response = sm.sendAskYesNo("Now that #p" + repr(gelimer) + "# is off my tail, "
 "these people may be just what I need. It couldn't hurt to visit, at least. #r\r\n\r\n"
 "(Press Yes to move automatically.)")
 if response:
