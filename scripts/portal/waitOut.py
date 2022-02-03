@@ -1,2 +1,2 @@
-# 252030000 - Entrance to Ravana's Altar -> Room of Suffering
+# Entrance to Ravana's Altar (252030000) => Room of Suffering
 sm.warp(252020700, 1)

@@ -4,4 +4,4 @@
 # Stands outside the portal to the SnowFro boss
 # ID 9000075
 
-sm.sendSayOkay("These monkey's are butt-ugly.")
+sm.sendSayOkay("These monkeys are butt-ugly.")
