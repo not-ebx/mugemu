@@ -1,4 +1,8 @@
-# 252020000 - to gold boss
-# idk if this is the correct portal progression but i couldn't find another way to link everything together
+# Abandoned Temple (252020000) => Room of Suffering
 
-sm.warp(252030000, 5)
+demonMostPeculiar = 3861
+
+if sm.hasQuest(demonMostPeculiar) or sm.hasQuestCompleted(demonMostPeculiar):
+    sm.warp(252020700, 2)
+else:
+    sm.chat("Corrupted energy from the temple's depths prevents you from advancing further.")

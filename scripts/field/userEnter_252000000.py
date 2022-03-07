@@ -1,3 +1,4 @@
-# Golden Temple | Golden Temple (252000000)
-sm.showFieldEffect("Map/Effect.img/temaD/enter/goldTemple") # Golden Temple Theme Dungeon Effect
-sm.dispose()
+# Golden Temple (252000000)
+
+# Golden Temple Theme Dungeon Effect
+sm.showFieldEffect("Map/Effect.img/temaD/enter/goldTemple") 

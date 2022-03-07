@@ -965,6 +965,7 @@ public class ScriptManagerImpl implements ScriptManager {
 		lockInGameUI(lock, true);
 	}
 
+	@Override
 	public void lockInGameUI(boolean lock, boolean blackFrame) {
 		if (chr != null) {
 			chr.write(UserLocal.setInGameDirectionMode(lock, blackFrame, false));
@@ -984,6 +985,7 @@ public class ScriptManagerImpl implements ScriptManager {
 		chr.write(UserPacket.progressMessageFont(fontNameType, fontSize, fontColorType, fadeOutDelay, message));
 	}
 
+	@Override
 	public void localEmotion(int emotion, int duration, boolean byItemOption) {
 		chr.write(UserLocal.emotion(emotion, duration, byItemOption));
 	}

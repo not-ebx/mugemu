@@ -14,5 +14,9 @@ if sm.canHold(heroNoMore):
     sm.giveExp(500)
     sm.giveItem(heroNoMore)
     sm.completeQuest(parentID)
+
+    # TO DO: Find the "LEVEL 10!?" balloon message effect
+    sm.localEmotion(5, 5000, False)
+    
 else:
     sm.sendNext("Calm down, Mercedes. Maybe a little breathing room in my inventory would help right now...")
