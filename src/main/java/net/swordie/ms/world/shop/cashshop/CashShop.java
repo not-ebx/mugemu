@@ -19,7 +19,7 @@ public class CashShop {
     private boolean usingOTP;
     private boolean usingNewOTP;
     private boolean betaTest;
-    private final String BANNER_URL = "https://i.ytimg.com/vi/aXwf3CvmEC8/hqdefault.jpg";
+    private final String BANNER_URL = "";
 
     public CashShop() {
         items = new TreeMap<>(Comparator.comparingInt(CashShopCategory::getIdx));
