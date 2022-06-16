@@ -1710,10 +1710,10 @@ public class ItemData {
                                 io.addMiscValue(level, ItemOption.ItemOptionType.time, value);
                                 break;
                             case "HP":
-                                io.addMiscValue(level, ItemOption.ItemOptionType.hpRecoveryOnHit, value);
+                                io.addMiscValue(level, ItemOption.ItemOptionType.HP, value);
                                 break;
                             case "MP":
-                                io.addMiscValue(level, ItemOption.ItemOptionType.mpRecoveryOnHit, value);
+                                io.addMiscValue(level, ItemOption.ItemOptionType.MP, value);
                                 break;
                             case "attackType":
                                 io.addMiscValue(level, ItemOption.ItemOptionType.attackType, value);
@@ -1722,7 +1722,13 @@ public class ItemData {
                                 io.addMiscValue(level, ItemOption.ItemOptionType.level, value);
                                 break;
                             case "ignoreDAM":
-                                io.addMiscValue(level, ItemOption.ItemOptionType.ignoreDam, value);
+                                io.addMiscValue(level, ItemOption.ItemOptionType.ignoreDAM, value);
+                                break;
+                            case "ignoreDAMr":
+                                io.addMiscValue(level, ItemOption.ItemOptionType.ignoreDAMr, value);
+                                break;
+                            case "DAMreflect":
+                                io.addMiscValue(level, ItemOption.ItemOptionType.DAMreflect, value);
                                 break;
                         }
                     }

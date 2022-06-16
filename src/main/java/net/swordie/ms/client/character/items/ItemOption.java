@@ -98,17 +98,48 @@ public class ItemOption {
     public String getString(int level) {
         level = level / 10;
         String str = getString();
-        String[] split = str.split("#");
-        String[] split2 = split[1].split("[% ]");
-        String opt = split2[0];
         int val = -1;
-        for (Map.Entry<ItemOptionType, Integer> e : getMiscValuesByLevel(level).entrySet()) {
-            val = e.getValue();
+        String[] split = str.split("#");
+
+        if (getMiscValuesByLevel(level).isEmpty()) {
+            String[] split2 = split[1].split("[% ]");
+            String opt = split2[0];
+            for (Map.Entry<BaseStat, Double> e : getStatValuesByLevel(level).entrySet()) {
+                val = e.getValue().intValue();
+                str = str.replace("#" + opt, val + "");
+            }
+        } else {
+            for (String currentString : split) {
+                String opt = removeSpecialCharacters(currentString.split(" ")[0]);
+                if (!currentString.equals("") && doesItemOptionTypeExists(opt)) {
+                    val = getMiscValuesByLevel(level).get(ItemOptionType.valueOf(opt));
+                    str = str.replace("#" + opt, val + "");
+                }
+            }
         }
-        for (Map.Entry<BaseStat, Double> e : getStatValuesByLevel(level).entrySet()) {
-            val = e.getValue().intValue();
+        return str;
+    }
+
+    public boolean doesItemOptionTypeExists(String typeForCheck) {
+        for (ItemOptionType types : ItemOptionType.values()) {
+            if (types.toString().equals(typeForCheck)) {
+                return true;
+            }
         }
-        return str.replace("#" + opt, val + "");
+        return false;
+    }
+
+    public boolean doesBaseStatTypeExists(String typeForCheck) {
+        for (BaseStat types : BaseStat.values()) {
+            if (types.toString().equals(typeForCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String removeSpecialCharacters(String str) {
+        return str.replaceAll("[!\"#$%&’()*+,-./:;<=>?@\\[\\]^_`{|}~]","");
     }
 
     public String getString() {
@@ -118,12 +149,13 @@ public class ItemOption {
     public enum ItemOptionType {
         prop,
         face,
-        hpRecoveryOnHit,
-        mpRecoveryOnHit,
         attackType,
         level,
-        ignoreDam,
-        damReflect,
+        ignoreDAMr,
+        ignoreDAM,
+        DAMreflect,
+        HP,
+        MP,
         time
     }
 }
