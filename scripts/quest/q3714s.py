@@ -1,6 +1,6 @@
 # The Remnants of Horntail... (3714)
 
-from net.swordie.ms.enums import Stat
+from net.mugeemu.ms.enums import Stat
 
 nineSpirit = 2081011
 

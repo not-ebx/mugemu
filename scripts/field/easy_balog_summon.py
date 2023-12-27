@@ -1,7 +1,7 @@
 # easy balrog enter field script
 # has three parts, they are all spawned at the same time and place
 
-from net.swordie.ms.constants import BossConstants
+from net.mugeemu.ms.constants import BossConstants
 from time import sleep
 
 sm.spawnBalrog(True) # True = easy

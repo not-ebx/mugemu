@@ -1,5 +1,5 @@
 # Scarecrow Summoning Sack (2434325) | Used to spawn a Dojo Dummy on Client's position
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 STRAW_DUMMY_ID = 9305655
 DURATION = GameConstants.DOJO_DUMMY_DURATION * 60 * 1000

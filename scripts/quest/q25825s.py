@@ -1,6 +1,6 @@
 # [Job Advancement] Agent of Justice (25825) | AB 2nd Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 agent = 1142496
 purpleRing = 1352602

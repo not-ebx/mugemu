@@ -1,5 +1,5 @@
 # Maps in  Lord Pirate PQ  |  Used to show the Weather Notice on the maps
-from net.swordie.ms.enums import WeatherEffNoticeType
+from net.mugeemu.ms.enums import WeatherEffNoticeType
 
 stage = ((sm.getFieldID() % 1000) / 100) + 1
 

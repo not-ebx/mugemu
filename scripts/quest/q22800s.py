@@ -1,6 +1,6 @@
 # [Job Advancement] Type E: Data Upgrade (22800) | Kinesis 3rd Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 rookMedal = 1142865
 rookChess = 1353202

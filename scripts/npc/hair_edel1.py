@@ -2,7 +2,7 @@
 # Male: 40000 - 40990 (Boomy to Bandana)
 # Female: 41000 - 41990 (Free to Bandana)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

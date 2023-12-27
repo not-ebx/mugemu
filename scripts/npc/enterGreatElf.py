@@ -1,6 +1,6 @@
 # Elf's Harp (1033211) | King's Seat (101050010)
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 advent = 910150100
 

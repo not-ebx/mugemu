@@ -1,4 +1,4 @@
-from net.swordie.ms.enums import DimensionalPortalType
+from net.mugeemu.ms.enums import DimensionalPortalType
 
 return_field = sm.getFieldID()
 current = sm.getFieldID()

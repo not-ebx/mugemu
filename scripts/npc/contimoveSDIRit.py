@@ -1,6 +1,6 @@
 # Olaf (1002101) | Lith Harbor (104000000)
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 # Check character's job category
 adv = chr.getJob()

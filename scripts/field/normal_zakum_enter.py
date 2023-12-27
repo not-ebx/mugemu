@@ -1,4 +1,4 @@
-from net.swordie.ms.constants import BossConstants
+from net.mugeemu.ms.constants import BossConstants
 import time
 
 RECTANGLE_SIZE = 400

@@ -1,6 +1,6 @@
 # Used In All except the first map of the Escape Party Quest
 
-from net.swordie.ms.enums import WeatherEffNoticeType
+from net.mugeemu.ms.enums import WeatherEffNoticeType
 
 PRISON_GUARD_ANI = 9300454
 

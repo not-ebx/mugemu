@@ -1,6 +1,6 @@
 # Root Abyss | Abyssal Cave  (Vellum's Boss Map)
 
-from net.swordie.ms.enums import WeatherEffNoticeType
+from net.mugeemu.ms.enums import WeatherEffNoticeType
 
 sm.showWeatherNotice("Vellum is nowhere to be seen. Take a look around the altar.", WeatherEffNoticeType.SnowySnowAndSprinkledFlowerAndSoapBubbles, 10000)
 if sm.hasQuest(30012):

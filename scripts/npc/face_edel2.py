@@ -1,6 +1,6 @@
 # Wendelline (2150006) | Edelstein (310000000)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

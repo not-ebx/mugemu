@@ -1,4 +1,4 @@
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 # 925100100 - Second Map  of the Lord Pirate PQ
 if int(sm.getQRValue(GameConstants.LORD_PIRATE_QUEST)) < 3:

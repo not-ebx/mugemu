@@ -1,4 +1,4 @@
-from net.swordie.ms.client.character.skills.temp import CharacterTemporaryStat
+from net.mugeemu.ms.client.character.skills.temp import CharacterTemporaryStat
 
 KUPOS_RIDE = 1932165
 KUPO = 2210002

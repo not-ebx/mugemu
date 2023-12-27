@@ -1,8 +1,8 @@
-from net.swordie.ms.constants import BossConstants
-from net.swordie.ms.life.mob.boss.demian import Demian
-from net.swordie.ms.connection.packet import DemianFieldPacket
-from net.swordie.ms.life.mob.boss.demian.sword import DemianFlyingSword
-from net.swordie.ms.connection.packet import FieldPacket
+from net.mugeemu.ms.constants import BossConstants
+from net.mugeemu.ms.life.mob.boss.demian import Demian
+from net.mugeemu.ms.connection.packet import DemianFieldPacket
+from net.mugeemu.ms.life.mob.boss.demian.sword import DemianFlyingSword
+from net.mugeemu.ms.connection.packet import FieldPacket
 
 field = chr.getField()
 instance = chr.getInstance()

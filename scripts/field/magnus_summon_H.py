@@ -1,5 +1,5 @@
-from net.swordie.ms.constants import BossConstants
-from net.swordie.ms.enums import ObtacleAtomEnum
+from net.mugeemu.ms.constants import BossConstants
+from net.mugeemu.ms.enums import ObtacleAtomEnum
 
 sm.spawnMob(8880001, 1900, -1347, False)
 

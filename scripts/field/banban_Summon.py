@@ -1,5 +1,5 @@
 # Root Abyss - Temporal Crevasse (Von Bon's Map)
-from net.swordie.ms.enums import WeatherEffNoticeType
+from net.mugeemu.ms.enums import WeatherEffNoticeType
 
 sm.showWeatherNotice("Summon Von Bon in the Dimensional Schism.", WeatherEffNoticeType.SnowySnowAndSprinkledFlowerAndSoapBubbles, 10000)
 if sm.hasQuest(3009):

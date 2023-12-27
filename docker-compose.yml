@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  mugee_db:
+    container_name: mymugee-db
+    image: mariadb:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mugee
+      MYSQL_USER: mugay
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_mariadb:/var/lib/mysql
+
+volumes:
+  db_mariadb:

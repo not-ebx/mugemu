@@ -1,6 +1,6 @@
 # Love Lost, but not Forgotten (23220)
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 echo = 30011005
 vengeanceIncarnate = 1142345

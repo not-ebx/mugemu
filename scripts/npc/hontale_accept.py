@@ -1,6 +1,6 @@
 # Mark of the Squad(2083004) | Cave of Life, Entrance to Horntail's Cave
-from net.swordie.ms.constants import BossConstants
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import BossConstants
+from net.mugeemu.ms.constants import GameConstants
 
 dict = {
     0 : 240060000,

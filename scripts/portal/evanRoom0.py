@@ -1,7 +1,7 @@
 # Portal for Evan Intro | Utah's House: Attic (100030100)
 # Author: Tiger
 
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 # "What a strange dream"
 sm.avatarOriented("Effect/OnUserEff.img/guideEffect/evanTutorial/evanBalloon30")

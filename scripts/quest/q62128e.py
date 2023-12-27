@@ -2,8 +2,8 @@
 
 import time
 
-from net.swordie.ms.loaders import ItemData
-from net.swordie.ms.util import FileTime
+from net.mugeemu.ms.loaders import ItemData
+from net.mugeemu.ms.util import FileTime
 
 huiKoonKit = 9310537
 

@@ -1,6 +1,6 @@
 # Black Jack - Resistance Headquarters : Secret Plaza
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 BLACK_JACK = 2151008
 

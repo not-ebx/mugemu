@@ -2,7 +2,7 @@
 # Male: 25000 - 25099 (Crimsonheart to Hysteric)
 # Female: 26000 - 26099 (Glona to Hysteric)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

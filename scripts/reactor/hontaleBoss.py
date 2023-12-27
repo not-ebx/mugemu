@@ -1,6 +1,6 @@
 # Normal horntail gem
 
-from net.swordie.ms.constants import BossConstants
+from net.mugeemu.ms.constants import BossConstants
 import random
 
 HORNTAIL = 8810026 # HT invis body, dies immediately and spawns all the parts

@@ -1,6 +1,6 @@
 # Soaring skill quest
 
-from net.swordie.ms.constants import SkillConstants
+from net.mugeemu.ms.constants import SkillConstants
 
 sm.setSpeakerID(2085000)
 sm.sendNext("Whoa, you've brought it! Just hold on a minute! I'll make you the special potion.")

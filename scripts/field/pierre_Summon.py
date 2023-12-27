@@ -1,4 +1,4 @@
-from net.swordie.ms.enums import WeatherEffNoticeType
+from net.mugeemu.ms.enums import WeatherEffNoticeType
 PIERRE = 8900100
 
 sm.spawnMob(PIERRE, 1155, 551, False)

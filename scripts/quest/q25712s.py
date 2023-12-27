@@ -1,6 +1,6 @@
 # [Job Advancement] Call of the Kaiser (25712) | Kaiser 4th Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 successor = 1142487
 truthEssence = 1352503

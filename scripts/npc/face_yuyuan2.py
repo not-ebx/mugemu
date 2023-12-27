@@ -1,6 +1,6 @@
 # Tae Hee (9310547) | Yu Garden (701100000)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

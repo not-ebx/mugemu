@@ -4,15 +4,15 @@
 <hibernate-configuration>
     <session-factory>
         <property name = "hibernate.dialect">
-            org.hibernate.dialect.MySQLDialect
+            org.hibernate.dialect.MariaDBDialect
         </property>
 
         <property name = "hibernate.connection.driver_class">
-            com.mysql.cj.jdbc.Driver
+            org.mariadb.jdbc.Driver
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:mysql://127.0.0.1:3306/swordie?autoReconnect=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC
+            jdbc:mariadb://localhost:3306/mugee
         </property>
 
         <property name = "hibernate.connection.username">
@@ -20,7 +20,11 @@
         </property>
 
         <property name = "hibernate.connection.password">
-            
+            password
+        </property>
+
+        <property name="hibernate.hbm2ddl.auto">
+            update
         </property>
 
         <property name="hibernate.enable_lazy_load_no_trans">
@@ -39,6 +43,5 @@
             true
         </property>
 
-        <!-- List of XML mapping files -->
     </session-factory>
 </hibernate-configuration>

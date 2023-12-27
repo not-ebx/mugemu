@@ -1,7 +1,7 @@
 # Mazra (2100006) | Ariant (260000000)
 # 39000 - 39990
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

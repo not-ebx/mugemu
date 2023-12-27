@@ -1,5 +1,5 @@
 # Tower of Oz Weekly Ranking Bulletin Board | Tower of Oz (992000000)
-from net.swordie.ms.enums import UIType
+from net.mugeemu.ms.enums import UIType
 
 answer = sm.sendNext("#e[Tower of Oz Ranking Board] #n\r\n#b"
                     "#L0#Tower of Oz Exploration Ranking#l\r\n"

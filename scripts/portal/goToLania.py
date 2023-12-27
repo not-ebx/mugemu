@@ -1,6 +1,6 @@
 # Close to the Birds (101020100) => Lania's Front Yard
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 lania = 101000101
 

@@ -1,6 +1,6 @@
 # Shaolin Temple : Sutra Despository 5-6F (701220310)  |  Secret room used for a minigame in the Shaolin questline
 
-from net.swordie.ms.client.character.skills.temp import CharacterTemporaryStat
+from net.mugeemu.ms.client.character.skills.temp import CharacterTemporaryStat
 
 time = 3 *60
 

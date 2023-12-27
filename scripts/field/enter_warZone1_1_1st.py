@@ -1,5 +1,5 @@
 # Occupied reclamation HQ  |  Used for Magnus prequest
-from net.swordie.ms.constants import WzConstants
+from net.mugeemu.ms.constants import WzConstants
 
 
 sm.showFieldEffect("Map/Effect.img/monsterPark/stageEff/stage")

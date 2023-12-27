@@ -1,4 +1,4 @@
-from net.swordie.ms.enums import WeatherEffNoticeType
+from net.mugeemu.ms.enums import WeatherEffNoticeType
 
 chaosQueenId = 8920000
 reactor.incHitCount()

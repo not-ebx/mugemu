@@ -1,7 +1,7 @@
 # Maplerunner - Entry | Forest of Tenacity
 # Author: shavit
 
-from net.swordie.ms.enums import UIType
+from net.mugeemu.ms.enums import UIType
 
 REQUIRED_QUEST = 34515
 REQUIRED_LEVEL = 33

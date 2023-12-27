@@ -1,6 +1,6 @@
 # Momijigaoka (807000000)
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 # Relevant to Hayato only. For some reason, Kanna is unaffected.
 # Certain NPCs in Momijigaoka are meant to be unhidden as Hayato progresses through his 1st job questline.

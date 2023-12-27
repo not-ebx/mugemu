@@ -1,6 +1,6 @@
 # Shaolin Temple : Sutra Depository Top (701220600)  |  Used for Cutscene in Shaolin Temple Questline
 
-from net.swordie.ms.world.field.fieldeffect import GreyFieldType
+from net.mugeemu.ms.world.field.fieldeffect import GreyFieldType
 
 WISE_CHIEF_PRIEST = 9310596
 NINE_TAILED_FOX = 9310579

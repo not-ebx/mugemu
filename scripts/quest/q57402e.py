@@ -1,6 +1,6 @@
 # Fresh Start (57402)
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 rewards = [
     (2000000, 100), # Red Potions

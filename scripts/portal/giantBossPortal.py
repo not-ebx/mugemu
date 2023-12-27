@@ -1,6 +1,6 @@
 import time
-from net.swordie.ms.connection.packet import FieldPacket
-from net.swordie.ms.world.field import ClockPacket
+from net.mugeemu.ms.connection.packet import FieldPacket
+from net.mugeemu.ms.world.field import ClockPacket
 # Gollux Portals
 fields = {
 # Main map id : main portal id : [to field id, to field portal]

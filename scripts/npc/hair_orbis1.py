@@ -2,7 +2,7 @@
 # Male: 35000 - 35990 (Bang-up to Rover)
 # Female: 37000 - 37990 (Orchid to Apple Tea)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

@@ -1,6 +1,6 @@
 # Aldin (2100009) | Ariant (260000000)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

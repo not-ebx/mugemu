@@ -1,4 +1,4 @@
-from net.swordie.ms.world.field.fieldeffect import GreyFieldType
+from net.mugeemu.ms.world.field.fieldeffect import GreyFieldType
 
 BLUE_DEMON = 9310577
 GOBLIN_DEMON = 9310578

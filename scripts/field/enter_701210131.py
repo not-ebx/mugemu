@@ -1,6 +1,6 @@
 # Hidden Street : Secret Library (701210131)
 
-from net.swordie.ms.world.field.fieldeffect import GreyFieldType
+from net.mugeemu.ms.world.field.fieldeffect import GreyFieldType
 
 NINE_TAILED_FOX = 9310579
 KINDLY_WOODCUTTER = 9310584

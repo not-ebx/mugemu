@@ -1,6 +1,6 @@
 # Trait Boost Potion (2434921)
 
-from net.swordie.ms.enums import Stat
+from net.mugeemu.ms.enums import Stat
 
 traitDict = {
     0: Stat.charismaEXP, # Ambition

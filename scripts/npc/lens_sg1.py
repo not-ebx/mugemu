@@ -1,6 +1,6 @@
 # Sixx (9270026) | CBD (540000000)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

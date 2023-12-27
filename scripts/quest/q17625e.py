@@ -1,5 +1,5 @@
 # [Commerci Republic] Delfinos? More like dead Fishos
-from net.swordie.ms.constants import WzConstants
+from net.mugeemu.ms.constants import WzConstants
 
 COMMERCI_SUIT = 1052673
 expGiven = 530255

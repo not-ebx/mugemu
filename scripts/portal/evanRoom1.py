@@ -1,7 +1,7 @@
 # Portal for Evan Intro | Utah's House: Attic (100030100)
 # Author: Tiger
 
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 if "1" in sm.getQRValue(GameConstants.EVAN_INTRO):
     sm.sendSayImage("UI/tutorial/evan/0/0")

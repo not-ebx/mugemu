@@ -1,5 +1,5 @@
 # [Silent Crusade] A Cry for Help
-from net.swordie.ms.constants import QuestConstants
+from net.mugeemu.ms.constants import QuestConstants
 
 JAKE = 1052006
 SUBWAY_TRANSTICKET = 2030028

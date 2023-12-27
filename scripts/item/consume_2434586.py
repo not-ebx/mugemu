@@ -1,6 +1,6 @@
 # Piece of Anguish (2434586)
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 def exchangePieces(gear):
     if not sm.hasItem(parentID, 5):

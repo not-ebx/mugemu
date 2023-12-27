@@ -1,5 +1,5 @@
 # End of Lesson 1 - Ereve History
-from net.swordie.ms.life.npc.NpcScriptInfo import Param
+from npc.life.net.mugeemu.ms.NpcScriptInfo import Param
 scriptInfo = sm.getNpcScriptInfo()
 
 KINU = 1102006

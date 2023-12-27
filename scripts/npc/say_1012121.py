@@ -1,6 +1,6 @@
 # Clothes Collector (1012121) | Henesys Market
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 nxItems = []
 

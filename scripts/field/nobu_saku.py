@@ -1,7 +1,7 @@
 # Cut sence for Sengoku Questline (Investigating Hieizan) | Master Room (811000009)
 # Author: Tiger
 
-from net.swordie.ms.world.field.fieldeffect import GreyFieldType
+from net.mugeemu.ms.world.field.fieldeffect import GreyFieldType
 
 SAKUNO = 9130124
 NOBUKANE = 9000430

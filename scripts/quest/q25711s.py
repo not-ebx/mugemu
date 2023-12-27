@@ -1,6 +1,6 @@
 # [Job Advancement] Final Kaiser Awakening! (25711) | Kaiser 3rd Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 awakened = 1142486
 justiceEssence = 1352502

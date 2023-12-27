@@ -1,5 +1,5 @@
 # 141060000
-from net.swordie.ms.client.character.skills.temp import CharacterTemporaryStat
+from net.mugeemu.ms.client.character.skills.temp import CharacterTemporaryStat
 
 sm.warp(141020000, 0) # Middle of Strait : Ice Station 2
 

@@ -1,6 +1,6 @@
 # 951000000 - Monster Park
 
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 minLv = 105
 maxLv = 115

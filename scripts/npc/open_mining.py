@@ -1,4 +1,4 @@
-from net.swordie.ms.enums import UIType
+from net.mugeemu.ms.enums import UIType
 
 MINING_SKILL = 92010000
 

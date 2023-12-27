@@ -1,7 +1,7 @@
 # Guon (2094002) | Inside the  Lord Pirate Party Quest
 
-from net.swordie.ms.constants import GameConstants
-from net.swordie.ms.constants import WzConstants
+from net.mugeemu.ms.constants import GameConstants
+from net.mugeemu.ms.constants import WzConstants
 
 pqItems = [
 4001117, # Old Metal Key

@@ -1,6 +1,6 @@
 # Dr. Chops (9390331) | Stump Town (866000000)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

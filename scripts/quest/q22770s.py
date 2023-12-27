@@ -1,6 +1,6 @@
 # [Job Advancement] Type N Data Upgrade (22770) | Kinesis 2nd Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 knightMedal = 1142864
 knightChess = 1353201

@@ -1,5 +1,5 @@
 # horntail entrace - The Cave of Trial 1
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 mobs = {
 	240060000 : 8810212,

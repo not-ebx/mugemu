@@ -1,4 +1,4 @@
-from net.swordie.ms.constants import BossConstants
+from net.mugeemu.ms.constants import BossConstants
 
 response = sm.sendAskYesNo("Would you like to fight magnus?")
 

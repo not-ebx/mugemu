@@ -1,6 +1,6 @@
 # J.J. (9201062) | NLC Mall (600000001)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

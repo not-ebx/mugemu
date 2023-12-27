@@ -1,6 +1,6 @@
 # Teary Expression (6508)
 
-from net.swordie.ms.enums import Stat
+from net.mugeemu.ms.enums import Stat
 
 camilla = 1012108
 

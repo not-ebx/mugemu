@@ -1,9 +1,9 @@
 # Custom NPC script used for @sell player command
 # Author: Clueless Cow
 
-from net.swordie.ms.loaders import ItemData
-from net.swordie.ms.constants import ItemConstants
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.loaders import ItemData
+from net.mugeemu.ms.constants import ItemConstants
+from net.mugeemu.ms.enums import InvType
 
 def disposeAll():
     sm.dispose()

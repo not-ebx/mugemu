@@ -1,6 +1,6 @@
 # Black Heaven Inside: Core (350060200)  |  Stage 3 Lotus Boss  |  Used to spawn the Boss
-from net.swordie.ms.enums import ObtacleAtomEnum
-from net.swordie.ms.constants import BossConstants
+from net.mugeemu.ms.enums import ObtacleAtomEnum
+from net.mugeemu.ms.constants import BossConstants
 
 LOTUS = 8240105 # Stage 3
 

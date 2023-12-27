@@ -1,4 +1,4 @@
-from net.swordie.ms.enums import UIType
+from net.mugeemu.ms.enums import UIType
 
 SMITHING_CRAFT_SKILL = 92020000
 

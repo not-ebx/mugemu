@@ -1,7 +1,7 @@
 # Mu Lung Dojo Floors (except 1st Floor) | Used to spawn the Bosses & Display "Floor Effect & Dojo Clock"
 
-from net.swordie.ms.constants import WzConstants
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import WzConstants
+from net.mugeemu.ms.constants import GameConstants
 from time import sleep
 
 MuLungDojoF1 = 925070100

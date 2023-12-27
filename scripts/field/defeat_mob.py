@@ -1,4 +1,4 @@
-from net.swordie.ms.constants import QuestConstants
+from net.mugeemu.ms.constants import QuestConstants
 
 CRUSADER_COIN = 4310018
 

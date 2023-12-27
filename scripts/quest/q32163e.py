@@ -1,5 +1,5 @@
 # [Riena Strait] Maybe I Shouldn't have gotten a boat
-from net.swordie.ms.constants import WzConstants
+from net.mugeemu.ms.constants import WzConstants
 
 lumber = 4030022
 exp = 17739

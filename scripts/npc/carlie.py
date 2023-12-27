@@ -1,6 +1,6 @@
 # Staff Sergeant Charlie (2010000) | Orbis Park (200000200)
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 import random
 
 exchangeList = [4000073, 4000070, 4000071, 4000072, 4000059, 4000060, 4000061, 4000058, 4000062,

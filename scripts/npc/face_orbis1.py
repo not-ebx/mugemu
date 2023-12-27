@@ -2,7 +2,7 @@
 # Male: 23000 - 23099 (Vibrant Explorer to He Who Awakened)
 # Female: 24000 - 24099 (Sugar to Alicia)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

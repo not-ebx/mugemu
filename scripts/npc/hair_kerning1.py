@@ -2,7 +2,7 @@
 # Male: 33000 - 33990 (Prince Cut to Hot Top)
 # Female: 34000 - 34990 (Palm Tree to Jett)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

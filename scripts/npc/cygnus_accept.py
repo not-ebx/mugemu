@@ -1,6 +1,6 @@
 # Mark of the Squad(2083004) | Cave of Life, Entrance to Horntail's Cave
-from net.swordie.ms.constants import BossConstants
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import BossConstants
+from net.mugeemu.ms.constants import GameConstants
 if sm.getFieldID() == 271040100 or sm.getFieldID() == 211070102:
     if sm.sendAskYesNo("Would you like to leave the fight?"):
         sm.warpInstanceOut(271040000, 0)

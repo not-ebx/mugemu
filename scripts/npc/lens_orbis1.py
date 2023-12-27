@@ -1,6 +1,6 @@
 # Dr. Rhomes (9200101) | Orbis Plastic Surgery (200000201)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

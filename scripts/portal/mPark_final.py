@@ -1,6 +1,6 @@
-from net.swordie.ms.enums import QuestStatus
-from net.swordie.ms.client.character.quest import Quest
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.enums import QuestStatus
+from net.mugeemu.ms.client.character.quest import Quest
+from net.mugeemu.ms.constants import GameConstants
 
 qm = sm.getChr().getQuestManager()
 quest = qm.getQuests().get(GameConstants.MONSTER_PARK_EXP_QUEST)

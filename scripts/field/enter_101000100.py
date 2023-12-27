@@ -1,7 +1,7 @@
-from net.swordie.ms.util import Position
-from net.swordie.ms.connection.packet import Effect
-from net.swordie.ms.connection.packet import User
-from net.swordie.ms.enums import TextEffectType
+from net.mugeemu.ms.util import Position
+from net.mugeemu.ms.connection.packet import Effect
+from net.mugeemu.ms.connection.packet import User
+from net.mugeemu.ms.enums import TextEffectType
 
 sm.lockInGameUI(True)
 

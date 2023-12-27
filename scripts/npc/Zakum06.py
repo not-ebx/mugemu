@@ -1,4 +1,4 @@
-from net.swordie.ms.constants import BossConstants
+from net.mugeemu.ms.constants import BossConstants
 
 # Amon - (Easy/Chaos) Zakum's Altar
 

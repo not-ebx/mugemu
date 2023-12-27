@@ -1,8 +1,8 @@
 # Lion King's Castle | Audience Room Corridor
 # Entry Portal to Von Leon boss quest
 
-from net.swordie.ms.constants import BossConstants
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import BossConstants
+from net.mugeemu.ms.constants import GameConstants
 
 maps = [211070100, 211070102]
 

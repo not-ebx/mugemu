@@ -1,7 +1,7 @@
 # Cutsence for Hayato Tutorial
 # Author: Tiger
 
-from net.swordie.ms.world.field.fieldeffect import GreyFieldType
+from net.mugeemu.ms.world.field.fieldeffect import GreyFieldType
 
 # npc
 TAKEDA = 9131007

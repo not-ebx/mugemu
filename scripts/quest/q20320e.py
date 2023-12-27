@@ -1,6 +1,6 @@
 # Knight's Qualification Exam (20320) | Mihile 3rd Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 official = 1142401
 courageShield = 1098002

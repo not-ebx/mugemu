@@ -1,6 +1,6 @@
 # [Job Advancement] Type S: Data Upgrade (22850) | Kinesis 4th Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 # This medal should really be awarded by 22861, but since Kinesis' quests are unscripted...
 queenMedal = 1142866

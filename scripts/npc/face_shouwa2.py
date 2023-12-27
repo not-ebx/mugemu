@@ -1,6 +1,6 @@
 # Saeko (9120103) | Plastic Surgery (801000002)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

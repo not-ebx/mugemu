@@ -1,5 +1,5 @@
 # horntail - Cave of Life - Cave of trial 1
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 maps = {
 	240060000 : 240060100,

@@ -1,6 +1,6 @@
 # Eurek the Alchemist (2040050)
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 echoDict = {
     112: 1005, # Hero

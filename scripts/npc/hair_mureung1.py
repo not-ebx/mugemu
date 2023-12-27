@@ -1,7 +1,7 @@
 # Grandpa Luo (1012103) | Mu Lung Hair Salon (250000003)
 # 32000 - 32990
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

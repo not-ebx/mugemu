@@ -2,7 +2,7 @@
 # Male: 36000 - 36990 (Eastern Rocker to Big Point)
 # Female: 38000 - 38990 (Harmony to Glam Shiny)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

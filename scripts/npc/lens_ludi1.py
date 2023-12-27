@@ -1,6 +1,6 @@
 # Dr. Bosch (9200102) | Ludibrium Plastic Surgery (220000003)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

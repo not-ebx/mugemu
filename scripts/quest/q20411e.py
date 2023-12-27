@@ -1,6 +1,6 @@
 # Ensorcelled Knights (20411) | Mihile 4th Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 chief = 1142402
 justiceShield = 1098003

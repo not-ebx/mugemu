@@ -1,5 +1,5 @@
 # [Job Advancement] Pink Power Rising (25826) | AB 3rd Job
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 angel = 1142497
 blueRing = 1352603

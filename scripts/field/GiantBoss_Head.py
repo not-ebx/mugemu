@@ -1,8 +1,8 @@
 import time
-from net.swordie.ms.enums import GolluxDifficultyType
-from net.swordie.ms.connection.packet import FieldPacket
-from net.swordie.ms.world.field import ClockPacket
-from net.swordie.ms.life.mob.boss.demian.stigma import DemianStigma
+from net.mugeemu.ms.enums import GolluxDifficultyType
+from net.mugeemu.ms.connection.packet import FieldPacket
+from net.mugeemu.ms.world.field import ClockPacket
+from net.mugeemu.ms.life.mob.boss.demian.stigma import DemianStigma
 firstPhaseHeadID = 9390600
 secondPhaseHeadID = 9390601
 thirdPhaseHeadID = 9390602

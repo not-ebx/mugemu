@@ -1,8 +1,8 @@
 # Monster Park Maps
 
-from net.swordie.ms.enums import WeatherEffNoticeType
-from net.swordie.ms.constants import WzConstants
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.enums import WeatherEffNoticeType
+from net.mugeemu.ms.constants import WzConstants
+from net.mugeemu.ms.constants import GameConstants
 
 stage = ((sm.getFieldID() % 1000) / 100) + 1
 if stage == 6:

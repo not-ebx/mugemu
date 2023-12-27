@@ -1,7 +1,7 @@
 # Piece of Ruin (2434588)
 
-from net.swordie.ms.constants import JobConstants
-from net.swordie.ms.constants import ItemConstants
+from net.mugeemu.ms.constants import JobConstants
+from net.mugeemu.ms.constants import ItemConstants
 
 def exchangePieces(gear):
     if not sm.hasItem(parentID, 15):

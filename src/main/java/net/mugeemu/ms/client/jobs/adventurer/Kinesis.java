@@ -1,0 +1,411 @@
+package net.mugeemu.ms.client.jobs.adventurer;
+
+import net.mugeemu.ms.client.character.CharacterStat;
+import net.mugeemu.ms.client.character.info.HitInfo;
+import net.mugeemu.ms.client.character.items.BodyPart;
+import net.mugeemu.ms.client.character.items.Item;
+import net.mugeemu.ms.client.character.skills.Option;
+import net.mugeemu.ms.client.character.skills.Skill;
+import net.mugeemu.ms.client.character.skills.SkillStat;
+import net.mugeemu.ms.client.character.skills.info.AttackInfo;
+import net.mugeemu.ms.client.character.skills.info.ForceAtomInfo;
+import net.mugeemu.ms.client.character.skills.info.MobAttackInfo;
+import net.mugeemu.ms.client.character.skills.info.SkillInfo;
+import net.mugeemu.ms.client.character.skills.temp.CharacterTemporaryStat;
+import net.mugeemu.ms.client.character.skills.temp.TemporaryStatManager;
+import net.mugeemu.ms.connection.InPacket;
+import net.mugeemu.ms.connection.packet.FieldPacket;
+import net.mugeemu.ms.constants.JobConstants;
+import net.mugeemu.ms.loaders.ItemData;
+import net.mugeemu.ms.loaders.SkillData;
+import net.mugeemu.ms.client.Client;
+import net.mugeemu.ms.client.character.Char;
+import net.mugeemu.ms.client.character.skills.*;
+import net.mugeemu.ms.world.field.Field;
+import net.mugeemu.ms.client.jobs.Job;
+import net.mugeemu.ms.life.mob.Mob;
+import net.mugeemu.ms.life.mob.MobTemporaryStat;
+import net.mugeemu.ms.enums.ForceAtomEnum;
+import net.mugeemu.ms.life.mob.MobStat;
+import net.mugeemu.ms.util.Position;
+import net.mugeemu.ms.util.Util;
+
+import java.util.Arrays;
+
+/**
+ * Created on 12/14/2017.
+ */
+public class Kinesis extends Job {
+    public static final int RETURN_KINESIS = 140001290;
+
+    public static final int PSYCHIC_FORCE = 142001000;
+    public static final int MENTAL_SHIELD = 142001007;
+    public static final int ESP_BOOSTER = 142001003;
+    public static final int ULTIMATE_METAL_PRESS = 142001002;
+    public static final int PSYCHIC_BLAST_FWD = 142100000;
+    public static final int PSYCHIC_BLAST_DOWN = 142100001;
+    public static final int PSYCHIC_ASSAULT_FWD = 142110000;
+    public static final int PSYCHIC_ASSAULT_DOWN = 142110001;
+    public static final int PSYCHIC_DRAIN = 142101009; // TODO, AffectedArea?
+    public static final int PSYCHIC_ARMOR = 142101004;
+    public static final int ULTIMATE_DEEP_IMPACT = 142101003;
+    public static final int PSYCHIC_BULWARK = 142110009;
+    public static final int PURE_POWER = 142101005;
+    public static final int PSYCHIC_REINFORCEMENT = 142111008;
+    public static final int KINETIC_JAUNT = 142111010;
+    public static final int ULTIMATE_TRAINWRECK = 142111007;
+    public static final int KINETIC_COMBO = 142110011;
+    public static final int MIND_BREAK = 142121004;
+    public static final int ULTIMATE_PSYCHIC_SHOT = 142120002;
+    public static final int ULTIMATE_BPM = 142120002;
+    public static final int PRESIDENTS_ORDERS = 142121016;
+    public static final int PSYCHIC_CHARGER = 142121008;
+    public static final int TELEPATH_TACTICS = 142121006;
+    public static final int MENTAL_TEMPEST = 142121030;
+    public static final int MENTAL_SHOCK = 142121031;
+    public static final int MENTAL_OVERDRIVE = 142121032;
+
+
+    private static final int MAX_PP = 30;
+
+    private final int[] buffs = new int[]{
+            ESP_BOOSTER,
+            MENTAL_SHIELD,
+            PSYCHIC_ARMOR,
+            PURE_POWER,
+            PSYCHIC_BULWARK,
+            PSYCHIC_REINFORCEMENT,
+            PRESIDENTS_ORDERS,
+            TELEPATH_TACTICS,
+            KINETIC_JAUNT,
+    };
+
+    private final int[] nonOrbSkills = new int[] {
+            ULTIMATE_METAL_PRESS,
+            ULTIMATE_BPM,
+            ULTIMATE_DEEP_IMPACT,
+            ULTIMATE_PSYCHIC_SHOT,
+            ULTIMATE_TRAINWRECK,
+            PSYCHIC_FORCE,
+            PSYCHIC_DRAIN,
+            MENTAL_TEMPEST,
+            KINETIC_COMBO,
+    };
+
+    public Kinesis(Char chr) {
+        super(chr);
+        pp = 0;
+    }
+
+    private int pp;
+
+    @Override
+    public boolean isHandlerOfJob(short id) {
+        return JobConstants.isKinesis(id);
+    }
+
+    public int getPp() {
+        return pp;
+    }
+
+    public void setPp(int pp) {
+        this.pp = pp;
+    }
+
+    public void addPP(int amount) {
+        pp = pp + amount > MAX_PP ? MAX_PP : pp + amount;
+        sendPPPacket();
+    }
+
+    public void substractPP(int amount) {
+        pp = pp - amount < 0 ? 0 : pp - amount;
+        sendPPPacket();
+    }
+
+    private void sendPPPacket() {
+        Option o = new Option();
+        o.nOption = pp;
+        TemporaryStatManager tsm = chr.getTemporaryStatManager();
+        tsm.putCharacterStatValue(CharacterTemporaryStat.KinesisPsychicPoint, o);
+        tsm.sendSetStatPacket();
+    }
+
+
+
+    // Buff related methods --------------------------------------------------------------------------------------------
+
+    public void handleBuff(Client c, InPacket inPacket, int skillID, byte slv) {
+        Char chr = c.getChr();
+        SkillInfo si = SkillData.getSkillInfoById(skillID);
+        TemporaryStatManager tsm = chr.getTemporaryStatManager();
+        Option o1 = new Option();
+        Option o2 = new Option();
+        Option o3 = new Option();
+        int curTime = (int) System.currentTimeMillis();
+        switch (skillID) {
+            case ESP_BOOSTER:
+                o1.nValue = si.getValue(SkillStat.indieBooster, slv);
+                o1.nReason = skillID;
+                o1.tStart = curTime;
+                o1.tTerm = si.getValue(SkillStat.time, slv);
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndieBooster, o1);
+                break;
+            case MENTAL_SHIELD:
+                o1.nOption = si.getValue(SkillStat.x, slv);
+                o1.nReason = skillID;
+                tsm.putCharacterStatValue(CharacterTemporaryStat.KinesisPsychicEnergeShield, o1);
+                break;
+            case PSYCHIC_ARMOR:
+            case PSYCHIC_BULWARK:
+                int t = SkillData.getSkillInfoById(PSYCHIC_ARMOR).getValue(SkillStat.time, slv);
+                o1.nValue = si.getValue(SkillStat.indiePdd, slv);
+                o1.nReason = skillID;
+                o1.tStart = curTime;
+                o1.tTerm = t;
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndiePDD, o1);
+                o2.nValue = si.getValue(SkillStat.indieMdd, slv);
+                o2.nReason = skillID;
+                o2.tStart = curTime;
+                o2.tTerm = t;
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndieMDD, o2);
+                o3.nOption = si.getValue(SkillStat.stanceProp, slv);
+                o3.rOption = skillID;
+                o3.tOption = t;
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndieStance, o3);
+                break;
+            case PURE_POWER:
+                o1.nValue = si.getValue(SkillStat.indieDamR, slv);
+                o1.nReason = skillID;
+                o1.tStart = curTime;
+                o1.tTerm = si.getValue(SkillStat.time, slv);
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndieDamR, o1);
+                break;
+            case PSYCHIC_REINFORCEMENT:
+                o1.nValue = si.getValue(SkillStat.indieMadR, slv);
+                o1.nReason = skillID;
+                o1.tStart = curTime;
+                o1.tTerm = si.getValue(SkillStat.time, slv);
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndieMADR, o1);
+                break;
+            case PRESIDENTS_ORDERS:
+                o1.nValue = si.getValue(SkillStat.x, slv);
+                o1.nReason = skillID;
+                o1.tStart = curTime;
+                o1.tTerm = si.getValue(SkillStat.time, slv);
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndieStatR, o1);
+                break;
+            case TELEPATH_TACTICS:
+                o1.nValue = si.getValue(SkillStat.indieMad, slv);
+                o1.nReason = skillID;
+                o1.tStart = curTime;
+                o1.tTerm = si.getValue(SkillStat.time, slv);
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndieMADR, o1);
+                o2.nValue = si.getValue(SkillStat.indieDamR, slv);
+                o2.nReason = skillID;
+                o2.tStart = curTime;
+                o2.tTerm = si.getValue(SkillStat.time, slv);
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndieDamR, o2);
+                break;
+            case KINETIC_JAUNT:
+                o1.nOption = 1;
+                o1.rOption = skillID;
+                o1.tOption = si.getValue(SkillStat.time, slv);
+                tsm.putCharacterStatValue(CharacterTemporaryStat.NewFlying, o1); //38s
+                break;
+        }
+        tsm.sendSetStatPacket();
+    }
+
+    public boolean isBuff(int skillID) {
+        return super.isBuff(skillID) || Arrays.stream(buffs).anyMatch(b -> b == skillID);
+    }
+
+
+
+    // Attack related methods ------------------------------------------------------------------------------------------
+
+    @Override
+    public void handleAttack(Client c, AttackInfo attackInfo) {
+        Char chr = c.getChr();
+        TemporaryStatManager tsm = chr.getTemporaryStatManager();
+        Skill skill = chr.getSkill(attackInfo.skillId);
+        if(skill == null) {
+            switch(attackInfo.skillId) {
+                case PSYCHIC_ASSAULT_DOWN:
+                    skill = chr.getSkill(PSYCHIC_ASSAULT_FWD);
+                    break;
+                case PSYCHIC_BLAST_DOWN:
+                    skill = chr.getSkill(PSYCHIC_BLAST_FWD);
+                    break;
+            }
+        }
+        int skillID = 0;
+        SkillInfo si = null;
+        boolean hasHitMobs = attackInfo.mobAttackInfo.size() > 0;
+        byte slv = 0;
+        if (skill != null) {
+            si = SkillData.getSkillInfoById(skill.getSkillId());
+            slv = (byte) skill.getCurrentLevel();
+            skillID = skill.getSkillId();
+        }
+        if (hasHitMobs && chr.hasSkill(KINETIC_COMBO)) {
+            createKineticOrbForceAtom(skillID, slv, attackInfo);
+        }
+        Option o1 = new Option();
+        Option o2 = new Option();
+        Option o3 = new Option();
+        kinesisPPAttack(skillID, slv, si);
+        switch (attackInfo.skillId) {
+            case PSYCHIC_FORCE:
+            case PSYCHIC_BLAST_FWD:
+            case PSYCHIC_BLAST_DOWN:
+            case PSYCHIC_ASSAULT_FWD:
+            case PSYCHIC_ASSAULT_DOWN:
+                for (MobAttackInfo mai : attackInfo.mobAttackInfo) {
+                    Mob mob = (Mob) chr.getField().getLifeByObjectID(mai.mobId);
+                    if (mob == null) {
+                        continue;
+                    }
+                    MobTemporaryStat mts = mob.getTemporaryStat();
+                    mts.createAndAddBurnedInfo(chr, skill);
+                }
+                break;
+            case MIND_BREAK:
+                int count = 0;
+                for (MobAttackInfo mai : attackInfo.mobAttackInfo) {
+                    Mob mob = (Mob) chr.getField().getLifeByObjectID(mai.mobId);
+                    if (mob == null) {
+                        continue;
+                    }
+                    if(mob.isBoss()) {
+                        count += si.getValue(SkillStat.x, slv);
+                    } else {
+                        count++;
+                    }
+                }
+                count = count > si.getValue(SkillStat.w, slv) ? si.getValue(SkillStat.w, slv) : count;
+                o1.nValue = count * si.getValue(SkillStat.indiePMdR, slv);
+                o1.nReason = skillID;
+                o1.tStart = (int) System.currentTimeMillis();
+                o1.tTerm = si.getValue(SkillStat.time, slv);
+                tsm.putCharacterStatValue(CharacterTemporaryStat.IndiePMdR, o1);
+                tsm.sendSetStatPacket();
+                break;
+            case MENTAL_SHOCK:
+                for (MobAttackInfo mai : attackInfo.mobAttackInfo) {
+                    Mob mob = (Mob) chr.getField().getLifeByObjectID(mai.mobId);
+                    if (mob == null) {
+                        continue;
+                    }
+                    if(!mob.isBoss()) {
+                        MobTemporaryStat mts = mob.getTemporaryStat();
+                        o1.nOption = 1;
+                        o1.rOption = skillID;
+                        o1.tOption = si.getValue(SkillStat.time, slv);
+                        mts.addStatOptionsAndBroadcast(MobStat.Stun, o1);
+                    }
+                }
+                break;
+        }
+
+        super.handleAttack(c, attackInfo);
+    }
+
+    private void createKineticOrbForceAtom(int skillID, byte slv, AttackInfo attackInfo) {
+        if(Arrays.asList(nonOrbSkills).contains(skillID)) {
+            return;
+        }
+        SkillInfo si = SkillData.getSkillInfoById(KINETIC_COMBO);
+        for(MobAttackInfo mai : attackInfo.mobAttackInfo) {
+            if (Util.succeedProp(si.getValue(SkillStat.prop, slv))) {
+                int mobID = mai.mobId;
+                ForceAtomEnum fae = ForceAtomEnum.KINESIS_ORB_REAL;
+                int curTime = Util.getCurrentTime();
+                ForceAtomInfo fai = new ForceAtomInfo(1, fae.getInc(), 15, 15,
+                        0, 0, curTime, 0, skillID, new Position(0, 0));
+                c.getChr().getField().broadcastPacket(FieldPacket.createForceAtom(false, 0, chr.getId(), fae.getForceAtomType(), true,
+                        mobID, KINETIC_COMBO, fai, null, 0, 0, null, 0, null));
+            }
+        }
+    }
+
+    private void kinesisPPAttack(int skillID, byte slv, SkillInfo si) {
+        if(si == null) {
+            return;
+        }
+        int ppRec = si.getValue(SkillStat.ppRecovery, slv);
+        addPP(ppRec);
+        int ppCons = si.getValue(SkillStat.ppCon, slv);
+        substractPP(ppCons);
+    }
+
+    @Override
+    public int getFinalAttackSkill() {
+        return 0;
+    }
+
+
+
+    // Skill related methods -------------------------------------------------------------------------------------------
+
+    @Override
+    public void handleSkill(Client c, int skillID, byte slv, InPacket inPacket) {
+        super.handleSkill(c, skillID, slv, inPacket);
+        Char chr = c.getChr();
+        Skill skill = chr.getSkill(skillID);
+        SkillInfo si = null;
+        if(skill != null) {
+            si = SkillData.getSkillInfoById(skillID);
+        }
+        if (isBuff(skillID)) {
+            handleBuff(c, inPacket, skillID, slv);
+        } else {
+            Option o1 = new Option();
+            switch(skillID) {
+                case PSYCHIC_CHARGER:
+                    int add = (MAX_PP - getPp()) / 2;
+                    addPP(add);
+                    break;
+                case RETURN_KINESIS:
+                    o1.nValue = si.getValue(SkillStat.x, slv);
+                    Field toField = chr.getOrCreateFieldByCurrentInstanceType(o1.nValue);
+                    chr.warp(toField);
+                    break;
+            }
+        }
+    }
+
+
+
+    // Hit related methods ---------------------------------------------------------------------------------------------
+
+    @Override
+    public void handleHit(Client c, InPacket inPacket, HitInfo hitInfo) {
+        TemporaryStatManager tsm = chr.getTemporaryStatManager();
+        if(tsm.hasStat(CharacterTemporaryStat.KinesisPsychicShield)) {
+            hitInfo.hpDamage = (int) (hitInfo.hpDamage * (tsm.getOption(CharacterTemporaryStat.KinesisPsychicEnergeShield).nOption / 100D));
+            substractPP(1);
+        }
+        if(getPp() <= 0) {
+            tsm.removeStat(CharacterTemporaryStat.KinesisPsychicShield, false);
+        }
+        super.handleHit(c, inPacket, hitInfo);
+    }
+
+    // Character creation related methods ------------------------------------------------------------------------------
+
+    @Override
+    public void setCharCreationStats(Char chr) {
+        super.setCharCreationStats(chr);
+        CharacterStat cs = chr.getAvatarData().getCharacterStat();
+        cs.setLevel(10);
+        cs.setJob(JobConstants.JobEnum.KINESIS_1.getJobId());
+        cs.setInt(49);
+        cs.setHp(574);
+        cs.setMaxHp(574);
+        Item item = ItemData.getItemDeepCopy(1353200); // Pawn Chess Piece
+        item.setBagIndex(BodyPart.Shield.getVal());
+        chr.getEquippedInventory().addItem(item);
+        chr.setSpToCurrentJob(5);
+    }
+}

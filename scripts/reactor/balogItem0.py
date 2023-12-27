@@ -1,6 +1,6 @@
 # reward reactor in easy balrog win map
 
-from net.swordie.ms.constants import BossConstants
+from net.mugeemu.ms.constants import BossConstants
 
 # TODO drops lol
 DROPLIST = {

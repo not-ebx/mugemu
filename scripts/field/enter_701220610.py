@@ -1,6 +1,6 @@
 # Shaolin Temple : Sutra Depository - Top
 
-from net.swordie.ms.enums import WeatherEffNoticeType
+from net.mugeemu.ms.enums import WeatherEffNoticeType
 
 CHIEF_PRIEST = 9601068 # mob id
 ZHEUNG_GUAN = 9310046 # Npc id

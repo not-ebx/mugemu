@@ -1,7 +1,7 @@
 # Life Alchemy, and the Missing Alchemist (3314)
 
-from net.swordie.ms.client.character.skills.temp import CharacterTemporaryStat
-from net.swordie.ms.enums import Stat
+from net.mugeemu.ms.client.character.skills.temp import CharacterTemporaryStat
+from net.mugeemu.ms.enums import Stat
 import random
 
 # The debuff variants (2022225-2022227) won't work, so they've been excluded; read comments below for notes on how they work on GMS

@@ -1,6 +1,6 @@
 # Faito (9120010) | Showa Street Market (801000300)
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 import random
 
 exchangeList = [4000064, 4000065, 4000066, 4000075, 4000077,

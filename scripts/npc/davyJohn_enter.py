@@ -1,6 +1,6 @@
 # Guon (2094000) | Spiegelmann's Guest House
 
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 pqItems = [
 4001117, # Old Metal Key

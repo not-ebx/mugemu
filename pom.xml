@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.swordie</groupId>
+    <groupId>net.mugeemu</groupId>
     <artifactId>maplestory</artifactId>
-    <name>SwordieMS</name>
-    <version>1.77.3</version>
+    <name>MugeEmu</name>
+    <version>0.1.0</version>
 
     <properties>
         <java.version>17</java.version>
@@ -51,6 +51,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -99,7 +103,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>net.swordie.ms.Server</mainClass>
+                            <mainClass>net.mugeemu.ms.Server</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -156,6 +160,7 @@
                 <plugins>
 
                     <plugin>
+
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>versions-maven-plugin</artifactId>
                         <version>2.8.1</version>
@@ -185,17 +190,10 @@
     </profiles>
 
     <dependencies>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.27</version>
-        </dependency>
-
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.72.Final</version>
+            <version>4.1.86.Final</version>
             <scope>compile</scope>
         </dependency>
 
@@ -215,7 +213,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.6.3.Final</version>
+            <version>6.2.7.Final</version>
         </dependency>
 
         <dependency>
@@ -228,6 +226,18 @@
             <groupId>org.openjdk.nashorn</groupId>
             <artifactId>nashorn-core</artifactId>
             <version>15.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>2.1.2</version>
         </dependency>
 
         <dependency>

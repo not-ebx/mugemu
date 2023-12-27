@@ -1,4 +1,4 @@
-from net.swordie.ms.scripts import ScriptType
+from net.mugeemu.ms.scripts import ScriptType
 
 sm.showHP()
 # field scripts should be stopped by warpInstanceOut()

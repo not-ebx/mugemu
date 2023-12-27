@@ -1,5 +1,5 @@
 # 2432093 - Gollux Right-Shoulder Teleport Rock
-from net.swordie.ms.constants import BossConstants
+from net.mugeemu.ms.constants import BossConstants
 
 sm.setSpeakerID(9390124) #Heart Tree Guardian
 if not chr.getInstance() == None and chr.getFieldID() in BossConstants.GOLLUX_MAPS:

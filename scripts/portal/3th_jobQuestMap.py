@@ -1,5 +1,5 @@
 # 3rd job advancement portal for explorers
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 mapID = 0
 job = chr.getJob()

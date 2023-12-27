@@ -1,4 +1,4 @@
-from net.swordie.ms.enums import UIType
+from net.mugeemu.ms.enums import UIType
 
 HERBALISM_SKILL = 92000000
 

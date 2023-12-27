@@ -1,6 +1,6 @@
 # Stealing Queen's Order of Silk (3941)
 
-from net.swordie.ms.client.character.skills.temp import CharacterTemporaryStat
+from net.mugeemu.ms.client.character.skills.temp import CharacterTemporaryStat
 
 karcasa = 2101013
 tigun = 2101004

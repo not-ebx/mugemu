@@ -1,5 +1,5 @@
 # Occupied reclamation HQ  |  Used for Magnus prequest
-from net.swordie.ms.constants import WzConstants
+from net.mugeemu.ms.constants import WzConstants
 
 sm.chatScript("Defeat all Specters inside Heliseum Reclamation HQ.")
 sm.spawnMob(2400122, -599, 182, False) #Specter miner

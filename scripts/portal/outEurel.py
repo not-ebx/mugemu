@@ -1,6 +1,6 @@
 # Elluel (101050000) => Dark Cave Path
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 awakening = 24040
 barrierDown = 24093

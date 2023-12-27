@@ -1,6 +1,6 @@
 # Path of a Mechanic (23013) | Mechanic 1st job advancement quest
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 pistol = 1492000
 magnum = 1352700

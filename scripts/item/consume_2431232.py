@@ -1,6 +1,6 @@
 import random
-from net.swordie.ms.enums import ChatType
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.enums import ChatType
+from net.mugeemu.ms.loaders import StringData
 
 # 2431232 - Suspicious Mineral Pouch (Gollux and Root Abyss(?))
 sm.setSpeakerID(2007) #Maple Administrator

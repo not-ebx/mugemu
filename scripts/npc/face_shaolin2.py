@@ -1,6 +1,6 @@
 # Ruhua (9310037) | Mount Song Hamlet (701210000)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

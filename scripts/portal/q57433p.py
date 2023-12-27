@@ -1,7 +1,7 @@
 # El Nath Town
 # Portal to house next to FM
 
-from net.swordie.ms.constants import BossConstants
+from net.mugeemu.ms.constants import BossConstants
 
 sm.setSpeakerID(9000185) # Eileen next to the portal
 

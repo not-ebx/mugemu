@@ -1,5 +1,5 @@
 # Clara
-from net.swordie.ms.loaders import ItemData
+from net.mugeemu.ms.loaders import ItemData
 
 sendStr = "Your equips:\r\n"
 for equip in chr.getEquippedInventory().getItems():

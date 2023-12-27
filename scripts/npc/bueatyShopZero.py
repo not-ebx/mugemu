@@ -1,6 +1,6 @@
 # Lagoon (2400004) | Zero's Temple (320000000)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

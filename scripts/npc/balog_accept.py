@@ -1,8 +1,8 @@
 # Mu Young
 # Balrog Entry
 
-from net.swordie.ms.constants import BossConstants
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import BossConstants
+from net.mugeemu.ms.constants import GameConstants
 
 options = {
 	0 : BossConstants.BALROG_EASY_BATTLE_MAP,

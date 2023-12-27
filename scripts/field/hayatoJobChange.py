@@ -1,7 +1,7 @@
 # Momijigaoka : Unfamiliar Hillside (807040000) | Hayato/Kanna Starting Map
 # Author: Tiger, Pyonta
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 yukimori = 9130031
 kanetsugu = 9130082

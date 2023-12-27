@@ -1,6 +1,6 @@
 # [Stone Colossus] Rolling with Kupo
 
-from net.swordie.ms.client.character.skills.temp import CharacterTemporaryStat
+from net.mugeemu.ms.client.character.skills.temp import CharacterTemporaryStat
 
 KUPO = 2210002
 KUPOS_RIDE = 1932165

@@ -1,6 +1,6 @@
 # The Sorcerer Who Sells Emotions (3514)
 
-from net.swordie.ms.enums import Stat
+from net.mugeemu.ms.enums import Stat
 
 sorcerer = 2140002
 

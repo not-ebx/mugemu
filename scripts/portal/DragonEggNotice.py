@@ -1,7 +1,7 @@
 # Portal for Evan Intro | Hidden Street: Lush Forest (900020110)
 # Author: Tiger
 
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 # Custom QR value to prevent sayImage from loop repeatedly when portal script is run
 

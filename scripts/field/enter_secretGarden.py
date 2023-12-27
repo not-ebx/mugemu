@@ -1,6 +1,6 @@
 # Knight Stronghold: Secret Grove
 # Quest: Rescue Neinhart
-from net.swordie.ms.enums import WeatherEffNoticeType
+from net.mugeemu.ms.enums import WeatherEffNoticeType
 
 KNIGHT_DISTRICT_4 = 271030400
 WATCHMAN = 8610016

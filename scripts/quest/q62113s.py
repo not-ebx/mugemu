@@ -1,6 +1,6 @@
 # Just a Little Test 2 (62113)
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 huangZhen = 9310536
 zhenLong = 9310532

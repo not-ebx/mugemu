@@ -1,5 +1,5 @@
 # Azwan corridor 1 -> corridor 2 portal
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 if sm.getChr().getField().getMobs().size() == 0:
     if int(sm.getQRValue(GameConstants.EASY_HILLA_QUEST)) < 2:

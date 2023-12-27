@@ -2,7 +2,7 @@
 # Male: 30000 - 30990 (Toben to Tentacle)
 # Female: 31000 - 31990 (Sammy to Evan)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

@@ -1,6 +1,6 @@
 # Dr. Lenu (9200100) | Henesys Plastic Surgery (100000103)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

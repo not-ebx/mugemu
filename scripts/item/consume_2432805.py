@@ -1,6 +1,6 @@
 # Appearance Reset Coupon (2432805)
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 admin = 2007
 

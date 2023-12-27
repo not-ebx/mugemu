@@ -1,6 +1,6 @@
 # Madame Song (9390214) | San Commerci (865000000)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

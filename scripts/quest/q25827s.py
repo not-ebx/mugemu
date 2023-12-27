@@ -1,6 +1,6 @@
 # [Job Advancement] Pink Power Pact (25827) | AB 4th Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 idol = 1142498
 greenRing = 1352604

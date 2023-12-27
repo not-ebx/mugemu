@@ -1,6 +1,6 @@
 # [Job Advancement] Break Nova Essence Limit (25710) | Kaiser 2nd Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 fated = 1142485
 guardianEssence = 1352501

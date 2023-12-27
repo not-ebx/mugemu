@@ -2,7 +2,7 @@
 # Male: 20000 - 20099 (Motivated to Tess)
 # Female: 21000 - 21099 (Defiant to Futuroid)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

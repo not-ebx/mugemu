@@ -1,4 +1,4 @@
-from net.swordie.ms.constants import QuestConstants
+from net.mugeemu.ms.constants import QuestConstants
 
 sm.waitForMobDeath(9300510)
 sm.spawnNpc(9073022, -380, -405)

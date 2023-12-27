@@ -1,6 +1,6 @@
 # Elluel (101050000)
 
-from net.swordie.ms.constants import JobConstants
+from net.mugeemu.ms.constants import JobConstants
 
 mercTutEnd = 24009
 

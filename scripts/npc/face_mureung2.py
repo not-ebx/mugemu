@@ -1,6 +1,6 @@
 # Noma (2090104) | Mu Lung (250000000)
 
-from net.swordie.ms.loaders import StringData
+from net.mugeemu.ms.loaders import StringData
 
 options = []
 

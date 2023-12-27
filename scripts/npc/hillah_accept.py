@@ -1,6 +1,6 @@
 # Medina (2183003) | Azwan Refuge Zone : Azwan
-from net.swordie.ms.constants import BossConstants
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import BossConstants
+from net.mugeemu.ms.constants import GameConstants
 if 262030100 <= sm.getFieldID() <= 262031300:
     if sm.sendAskYesNo("Would you like to leave the boss fight?"):
         sm.warpInstanceOut(262000000, 0)

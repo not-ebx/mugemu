@@ -1,4 +1,4 @@
-from net.swordie.ms.constants import GameConstants
+from net.mugeemu.ms.constants import GameConstants
 
 guild = chr.getGuild()
 

@@ -1,6 +1,6 @@
 # Apprentice Knight (20810) | Mihile 2nd Job
 
-from net.swordie.ms.enums import InvType
+from net.mugeemu.ms.enums import InvType
 
 apprentice = 1142400
 gladius = 1302038
