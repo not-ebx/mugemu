@@ -1,5 +1,5 @@
 libs/
-resources/nxfiles/
+bin/nxfiles/
 *.class
 .idea/
 SwordieMS.iml
