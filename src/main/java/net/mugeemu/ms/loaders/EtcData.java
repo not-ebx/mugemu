@@ -39,6 +39,9 @@ public class EtcData {
 
     public static void loadAndroidsFromWz() throws IOException {
         NXNode androids = new LazyNXFile(ServerConstants.NX_DIR + "/Etc.nx").resolve("Android");
+        if (androids == null){
+            return;
+        }
         for (NXNode android : androids) {
             AndroidInfo ai = new AndroidInfo(
                 Integer.parseInt(android.getName().replace(".img", ""))
@@ -140,7 +143,7 @@ public class EtcData {
         try {
             loadAndroidsFromWz();
             loadSetEffectsFromWz();
-            loadFamiliarSkillsFromWz();
+            //loadFamiliarSkillsFromWz();
             //loadCharacterCardsFromWz();
         } catch (IOException e) {
             throw new RuntimeException(e);

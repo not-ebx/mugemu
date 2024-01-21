@@ -30,16 +30,12 @@ public enum OutHeader {
     DELETE_CHARACTER_RESULT(15),
     MIGRATE_COMMAND(16),
     ALIVE_REQ(17), // ping
-
-
     AUTHEN_CODE_CHANGED(18),
-
     AUTHEN_MESSAGE(19),
     SECURITY_PACKET(20),
 
 
     // My opcodes
-
 
     LATEST_CONNECTED_WORLD(27),
     RECOMMENDED_WORLD_MESSAGE(28),

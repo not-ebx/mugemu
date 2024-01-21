@@ -597,6 +597,10 @@ public class SkillData {
             NXNode recipesRoot = new LazyNXFile(ServerConstants.NX_DIR + "/Skill.nx")
                 .resolve(String.format("Recipe_%d.img",recipeCategory));
 
+            if (recipesRoot == null){
+                return;
+            }
+
             for (NXNode recipeNode: recipesRoot) {
                 MakingSkillRecipe msr = new MakingSkillRecipe();
                 int recipeID = Integer.parseInt(recipeNode.getName());

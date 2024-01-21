@@ -69,20 +69,17 @@ public class Login {
         OutPacket outPacket = new OutPacket(OutHeader.CHECK_PASSWORD_RESULT.getValue());
 
         if (success) {
-            //outPacket.encodeByte(LoginType.Success.getValue());
+            outPacket.encodeByte(LoginType.Success.getValue());
             outPacket.encodeByte(0);
-            outPacket.encodeByte(0);
-            outPacket.encodeInt(0); //
             outPacket.encodeInt(user.getId()); //
             outPacket.encodeByte(user.getGender()); //
             outPacket.encodeByte(user.getGradeCode() > 0); //ios it gm
-            outPacket.encodeShort(0); //
+            outPacket.encodeByte(0); //
             outPacket.encodeByte(user.getGradeCode() > 0); //
             outPacket.encodeString(user.getName());
             outPacket.encodeByte(3); // 0 for new accs
             outPacket.encodeByte(0); // Quiet ban
             outPacket.encodeLong(0); // Quiet ban time
-            outPacket.encodeByte(1); // idk
             outPacket.encodeFT(user.getCreationDate()); // Create Date
             outPacket.encodeInt(4); // Something related to "SElect the world you want to play in"
             outPacket.encodeByte(1); // Pin Disabled

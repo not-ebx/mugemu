@@ -15,7 +15,7 @@ public class ServerConstants {
 	public static final String SCRIPT_DIR = DIR + "/scripts";
 	public static final String RESOURCES_DIR = DIR + "/resources";
 	public static final String HANDLERS_DIR = DIR + "/src/main/java/net/mugeemu/ms/handlers";
-	public static final short VERSION = 111;
+	public static final short VERSION = 92;
 	public static final String MINOR_VERSION = "1";
 	public static final byte[] SERVER_IP = new byte[] {
 		(byte)192,

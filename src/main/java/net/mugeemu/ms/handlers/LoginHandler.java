@@ -116,9 +116,6 @@ public class LoginHandler {
     @Handler(op = InHeader.CHECK_LOGIN_AUTH_INFO)
     public static void handleCheckLoginAuthInfo(Client c, InPacket inPacket) {
         UserDAO udao = new UserDAO();
-
-
-        //byte sid = inPacket.decodeByte();
         String username = inPacket.decodeString();
         String password = inPacket.decodeString();
         byte[] machineID = inPacket.decodeArr(16);

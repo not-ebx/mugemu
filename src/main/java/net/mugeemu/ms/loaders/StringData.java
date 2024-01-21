@@ -76,12 +76,16 @@ public class StringData {
                 continue;
             }
             for (NXNode categoryChildNode: categoryNode) {
-                int id = Integer.parseInt(categoryChildNode.getName());
-                String name = (String) (categoryChildNode.getChild("name") != null
-                    ? categoryChildNode.getChild("name").get() : null);
+                try {
+                    int id = Integer.parseInt(categoryChildNode.getName());
+                    String name = (String) (categoryChildNode.getChild("name") != null
+                        ? categoryChildNode.getChild("name").get() : null);
 
-                if(name != null)
-                    itemStrings.put(id, name);
+                    if (name != null)
+                        itemStrings.put(id, name);
+                } catch (Exception e) {
+                    log.warn("Skipped " + categoryChildNode.getName() + " due to getting a value that was not string");
+                }
             }
         }
 
