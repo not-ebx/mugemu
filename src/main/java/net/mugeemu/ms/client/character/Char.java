@@ -822,6 +822,22 @@ public class Char {
 
 
 		// BagDatas
+
+		/*
+		from odin:
+		for (int i = 0; i < chr.getExtendedSlots().size(); i++) {
+            mplew.writeInt(i);
+            mplew.writeInt(chr.getExtendedSlot(i));
+            for (Item item : chr.getInventory(MapleInventoryType.ETC).list()) {
+                if (item.getPosition() > (i * 100 + 100) && item.getPosition() < (i * 100 + 200)) {
+                    addItemPosition(mplew, item, false, true);
+                    addItemInfo(mplew, item, chr);
+                }
+            }
+            mplew.writeInt(-1);
+        }
+		 */
+
 		// Extended slots ??
 		outPacket.encodeInt(-1);
 		// After a 00 80
@@ -837,7 +853,8 @@ public class Char {
 
 
 		if (mask.isInMask(DBChar.SkillRecord)) {
-			boolean encodeSkills = !getSkills().isEmpty();
+			//boolean encodeSkills = !getSkills().isEmpty();
+			boolean encodeSkills = getSkills().size() < 500;
 			outPacket.encodeByte(encodeSkills);
 			if (encodeSkills) {
 				Set<LinkSkill> linkSkills = getLinkSkills();
@@ -859,12 +876,15 @@ public class Char {
 						outPacket.encodeInt(3); // whatevs
 					}
 				}
+
 				/*
 				outPacket.encodeShort(linkSkills.size());
 				for (LinkSkill linkSkill : linkSkills) {
 					outPacket.encodeInt(linkSkill.getLinkSkillID()); // another nCount
 					outPacket.encodeShort(linkSkill.getLevel() - 1); // idk
-				}*/
+				}
+
+				 */
 			} else {
 				Set<Skill> skills = getSkills();
 				int size = skills.size();
@@ -924,6 +944,7 @@ public class Char {
 					outPacket.encodeShort(0); // nQRKey // Was int./
 				}
 			}
+
 			size = 0;
 			outPacket.encodeShort(size);
 			// Not sure what this is for
@@ -1024,7 +1045,7 @@ public class Char {
 		if (mask.isInMask(DBChar.NewYearCard)) {
 			short size = 0;
 			outPacket.encodeShort(size);
-			//outPacket.encodeShort(size);
+			outPacket.encodeShort(size);
 			//outPacket.encodeString("");
 			for (int i = 0; i < size; i++) {
 				outPacket.encodeInt(0);
@@ -1074,7 +1095,7 @@ public class Char {
 		outPacket.encodeShort(0);
 
 
-		for (int i = 0; i < 36; i++) { // damn son
+		for (int i = 0; i < 17; i++) { // damn son was 36
 			outPacket.encodeInt(0); // Fuc you phantom.
 		}
 
@@ -2124,7 +2145,7 @@ public class Char {
 			}
 			currentField.removeChar(this);
 		}
-
+		// Was before
 		setField(toField);
 		toField.addChar(this);
 		getAvatarData().getCharacterStat().setPortal(portal.getId());
@@ -2143,6 +2164,8 @@ public class Char {
 				-1
 			)
 		);
+
+
 
 		//showProperUI(currentField != null ? currentField.getId() : -1, toField.getId());
 		if (characterData) {
@@ -3920,6 +3943,7 @@ public class Char {
 			);
 		}
 		List<Integer> expiredItemIDs = expiredItems.stream().map(Item::getItemId).collect(Collectors.toList());
+		// TODO: re-add message
 		//write(WvsContext.message(MessageType.GENERAL_ITEM_EXPIRE_MESSAGE, expiredItemIDs));
 		for (Item item : expiredItems) {
 			consumeItem(item);

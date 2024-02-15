@@ -63,6 +63,7 @@ public class MigrationHandler {
             c.write(WvsContext.returnToTitle());
             return;
         }
+
         c.setMachineID(machineID);
         c.setOldChannel(oldClient.getOldChannel());
         User user = oldClient.getUser();
@@ -90,6 +91,7 @@ public class MigrationHandler {
         chr.setFieldInstanceType(FieldInstanceType.CHANNEL);
         Server.getInstance().addUser(user);
         Field field = chr.getOrCreateFieldByCurrentInstanceType(chr.getFieldID() <= 0 ? 100000000 : chr.getFieldID());
+
         if (chr.getHP() <= 0) { // automatically revive when relogging
             chr.heal(chr.getMaxHP() / 2, true);
         }
@@ -111,10 +113,10 @@ public class MigrationHandler {
         }
 
         // Start sending packets
-        c.write(FieldPacket.funcKeyMappedManInit(chr.getFuncKeyMap()));
-        chr.setBulletIDForAttack(chr.calculateBulletIDForAttack(1));
+        //c.write(FieldPacket.funcKeyMappedManInit(chr.getFuncKeyMap()));
+        //chr.setBulletIDForAttack(chr.calculateBulletIDForAttack(1));
         //c.write(WvsContext.friendResult(new LoadFriendResult(chr.getAllFriends())));
-        c.write(WvsContext.macroSysDataInit(chr.getMacros()));
+        //c.write(WvsContext.macroSysDataInit(chr.getMacros()));
         //c.write(UserLocal.damageSkinSaveResult(DamageSkinType.Req_SendInfo, null, chr));
         //c.write(WvsContext.mapTransferResult(MapTransferType.RegisterListSend, (byte) 5, chr.getHyperRockFields()));
         //acc.getMonsterCollection().init(chr);

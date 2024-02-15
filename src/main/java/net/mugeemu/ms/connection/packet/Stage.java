@@ -24,8 +24,11 @@ public class Stage {
                                      boolean canNotifyAnnouncedQuest, int stackEventGauge) {
         OutPacket outPacket = new OutPacket(OutHeader.SET_FIELD);
 
-        // Opt code thing
-        outPacket.encodeShort(0);
+        outPacket.encodeShort(2);
+        outPacket.encodeInt(1);
+        outPacket.encodeInt(0);
+        outPacket.encodeInt(2);
+        outPacket.encodeInt(0);
 
         outPacket.encodeInt(channelId - 1);
         outPacket.encodeByte(0); // Idk yet
