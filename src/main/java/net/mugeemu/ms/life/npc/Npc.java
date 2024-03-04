@@ -41,7 +41,7 @@ public class Npc extends Life {
         outPacket.encodeShort(getRx0()); // rgHorz.low
         outPacket.encodeShort(getRx1()); // rgHorz.high
         outPacket.encodeByte(isEnabled());
-        outPacket.encodeInt(0); // ?
+        /*outPacket.encodeInt(0); // ?
         outPacket.encodeInt(getPresentItemID());
         outPacket.encodeByte(getPresentItemState());
         outPacket.encodeInt(getPresentItemTime());
@@ -55,7 +55,7 @@ public class Npc extends Life {
         outPacket.encodeByte(si != null);
         if (si != null) {
             si.encode(outPacket);
-        }
+        }*/
     }
 
     public boolean isEnabled() {

@@ -25,7 +25,7 @@ public class MobPool {
     public static OutPacket enterField(Mob mob, boolean hasBeenInit) {
         OutPacket outPacket = new OutPacket(OutHeader.MOB_ENTER_FIELD);
 
-        outPacket.encodeByte(mob.isSealedInsteadDead());
+        //outPacket.encodeByte(mob.isSealedInsteadDead());
         outPacket.encodeInt(mob.getObjectId());
         outPacket.encodeByte(mob.getCalcDamageIndex());
         outPacket.encodeInt(mob.getTemplateId());

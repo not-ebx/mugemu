@@ -37,10 +37,10 @@ public class NpcPool {
 
 		outPacket.encodeByte(controller);
 		outPacket.encodeInt(npc.getObjectId());
-                if (!remove) {
-                    outPacket.encodeInt(npc.getTemplateId());
-                    npc.encode(outPacket);
-                }
+		if (!remove) {
+			outPacket.encodeInt(npc.getTemplateId());
+			npc.encode(outPacket);
+		}
 
 		return outPacket;
 	}

@@ -50,7 +50,7 @@ public class Mob extends Life {
     private int refImgMobID, lifeReleaseOwnerAID, afterAttack, currentAction, scale, eliteGrade, eliteType, targetUserIdFromServer;
     private long hp;
     private long mp;
-    private byte calcDamageIndex = 1, moveAction, appearType, teamForMCarnival;
+    private byte calcDamageIndex = 1, moveAction, appearType, teamForMCarnival = -1;
     private Position prevPos;
     private Foothold curFoodhold;
     private Foothold homeFoothold;
@@ -1755,10 +1755,10 @@ public class Mob extends Life {
         // CMob::Init
         outPacket.encodePosition(getPosition());
         outPacket.encodeByte(getMoveAction());
-        int tid = getTemplateId();
-        if (tid == 8910000 || tid == 8910100 || tid == 9990033) { // is_banban_boss
+        //int tid = getTemplateId();
+        /*if (tid == 8910000 || tid == 8910100 || tid == 9990033) { // is_banban_boss
             outPacket.encodeByte(0); // fake?
-        }
+        }*/
         if (getCurFoodhold() == null) {
             setCurFoodhold(getField().findFootHoldBelow(getPosition()));
             if (getCurFoodhold() == null) {
@@ -1771,14 +1771,21 @@ public class Mob extends Life {
         outPacket.encodeShort(getCurFoodhold().getId());
         outPacket.encodeShort(getHomeFoothold().getId());
         byte appearType = getAppearType();
-        outPacket.encodeShort(appearType);
+        outPacket.encodeByte(appearType);//appearType);
         if (appearType == -3 || appearType >= 0) {
             // init -> -2, -1 else
-            outPacket.encodeInt(getOption());
+            //outPacket.encodeInt(getOption());
+            outPacket.encodeInt(0);
         }
+
+
         outPacket.encodeByte(getTeamForMCarnival());
-        outPacket.encodeInt(getHp() > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) getHp());
-        outPacket.encodeInt(getEffectItemID());
+        //outPacket.encodeInt(getHp() > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) getHp());
+        //outPacket.encodeInt(getEffectItemID());
+        outPacket.encodeInt(0);
+        outPacket.encodeInt(0);
+        outPacket.encodeByte(-1);
+        /*
         if (isPatrolMob()) {
             outPacket.encodeInt(getPosition().getX() - getRange());
             outPacket.encodeInt(getPosition().getX() + getRange());
@@ -1828,7 +1835,7 @@ public class Mob extends Life {
             outPacket.encodeInt(0); // key?
         }
         outPacket.encodeInt(getTargetUserIdFromServer());
-        outPacket.encodeInt(0);
+        outPacket.encodeInt(0);*/
     }
 
     public int getNxDropAmount() {

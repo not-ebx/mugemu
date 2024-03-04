@@ -376,12 +376,13 @@ public enum OutHeader {
     MACRO_SYS_DATA_INIT(184),//
 
     // CStage::OnPacket : v176 -> 00E75B70
-    SET_FARM_FIELD(429),
+    SET_FARM_FIELD(429000),
     // sub_E759A0(430),
-    SET_CASH_SHOP(431),
 
     // CField::OnPacket (general) : v176 -> 00844E10
     SET_FIELD(185), //
+
+    SET_CASH_SHOP(187),
     TRANSFER_FIELD_REQ_IGNORED(432),
     TRANSFER_CHANNEL_REQ_IGNORED(433),
     TRANSFER_PVP_REQ_IGNORED(434),

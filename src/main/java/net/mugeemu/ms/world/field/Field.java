@@ -500,7 +500,6 @@ public class Field {
             //=======================================
             //Normal Controller System
             //=======================================
-
             /*Char controller = null;
             if (getLifeToControllers().containsKey(life)) {
                 controller = getLifeToControllers().get(life);
@@ -510,15 +509,11 @@ public class Field {
             }
             life.broadcastSpawnPacket(onlyChar);*/
 
-            
-
-
             //=======================================
             //Controller system Adjusted for Auto Aggro
             //=======================================
 
             Char controller = getChars().get(0);
-            life.notifyControllerChange(controller);
             putLifeController(life,controller);
 
             life.broadcastSpawnPacket(onlyChar);

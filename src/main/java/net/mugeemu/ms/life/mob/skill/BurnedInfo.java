@@ -138,6 +138,7 @@ public class BurnedInfo {
     }
 
     public void encode(OutPacket outPacket) {
+        // TODO is 7 ints, but unsure about the last one.
         outPacket.encodeInt(getCharacterId());
         outPacket.encodeInt(getSkillId());
         outPacket.encodeInt(Util.maxInt(getDamage()));
@@ -146,11 +147,11 @@ public class BurnedInfo {
         outPacket.encodeInt(getDotAnimation());
         outPacket.encodeInt(getDotCount());
         outPacket.encodeInt(getSuperPos());
-        outPacket.encodeInt(getAttackDelay());
+        /*outPacket.encodeInt(getAttackDelay());
         outPacket.encodeInt(getDotTickIdx());
         outPacket.encodeInt(getDotTickDamR());
         outPacket.encodeInt(getLastUpdate());
-        outPacket.encodeInt(getStartTime());
+        outPacket.encodeInt(getStartTime());*/
     }
 
     public Char getChr() {

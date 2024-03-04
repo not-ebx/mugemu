@@ -302,7 +302,25 @@ public class FieldData {
 
                     for(NXNode idChildNode : idNodes) {
                         for (NXNode idNode : idChildNode) {
-                            Life life = new Life(0);
+                            // Get the type immediately.
+                            String type = idNode.getChild("type").get().toString();
+                            if (type == null) {
+                                continue;
+                            }
+
+                            Life life;
+                            switch(type){
+                                case "m":
+                                    life = new Mob(0);
+                                    break;
+                                case "n":
+                                    life = new Npc(0);
+                                    break;
+                                default:
+                                    life = new Life(0);
+                            }
+
+
                             for (NXNode n : idNode) {
                                 String name = n.getName();
                                 String value = n.get().toString();

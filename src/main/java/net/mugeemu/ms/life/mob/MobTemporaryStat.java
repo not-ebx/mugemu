@@ -79,7 +79,7 @@ public class MobTemporaryStat {
 
 	public void encode(OutPacket outPacket) {
 		synchronized (currentStatVals) {
-			// DecodeBuffer(12) + MobStat::DecodeTemporary
+			// DecodeBuffer(32) + MobStat::DecodeTemporary
 			int[] mask = getNewMask();
 			for (int i = 0; i < mask.length; i++) {
 				outPacket.encodeInt(mask[i]);
@@ -169,27 +169,54 @@ public class MobTemporaryStat {
 						outPacket.encodeShort(getNewOptionsByMobStat(mobStat).tOption / 500);
 				}
 			}
-			if (hasNewMobStat(PDR)) {
-				outPacket.encodeInt(getNewOptionsByMobStat(PDR).cOption);
+
+			if (hasNewMobStat(BurnedInfo)) {
+				outPacket.encodeByte(getBurnedInfos().size());
+				for (BurnedInfo bi : getBurnedInfos()) {
+					bi.encode(outPacket);
+				}
 			}
-			if (hasNewMobStat(MDR)) {
-				outPacket.encodeInt(getNewOptionsByMobStat(MDR).cOption);
-			}
+
 			if (hasNewMobStat(PCounter)) {
 				outPacket.encodeInt(getNewOptionsByMobStat(PCounter).wOption);
 			}
 			if (hasNewMobStat(MCounter)) {
 				outPacket.encodeInt(getNewOptionsByMobStat(MCounter).wOption);
 			}
+
 			if (hasNewMobStat(PCounter)) {
 				outPacket.encodeInt(getNewOptionsByMobStat(PCounter).mOption); // nCounterProb
-				outPacket.encodeByte(getNewOptionsByMobStat(PCounter).bOption); // bCounterDelay
+				//outPacket.encodeByte(getNewOptionsByMobStat(PCounter).bOption); // bCounterDelay
 				outPacket.encodeInt(getNewOptionsByMobStat(PCounter).nReason); // nAggroRank
 			} else if (hasNewMobStat(MCounter)) {
 				outPacket.encodeInt(getNewOptionsByMobStat(MCounter).mOption); // nCounterProb
-				outPacket.encodeByte(getNewOptionsByMobStat(MCounter).bOption); // bCounterDelay
+				//outPacket.encodeByte(getNewOptionsByMobStat(MCounter).bOption); // bCounterDelay
 				outPacket.encodeInt(getNewOptionsByMobStat(MCounter).nReason); // nAggroRank
 			}
+		/*
+			if (hasNewMobStat(InvincibleBalog)) {
+				outPacket.encodeByte(getNewOptionsByMobStat(InvincibleBalog).nOption);
+				outPacket.encodeByte(getNewOptionsByMobStat(InvincibleBalog).bOption);
+			}
+			// Unsure about these two.
+			if (hasNewMobStat(ExchangeAttack)) {
+				outPacket.encodeByte(getNewOptionsByMobStat(ExchangeAttack).bOption);
+			}
+			if (hasNewMobStat(AddDamParty)) {
+				outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).wOption);
+				outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).pOption);
+				outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).cOption);
+			}
+*/
+			/*
+			if (hasNewMobStat(PDR)) {
+				outPacket.encodeInt(getNewOptionsByMobStat(PDR).cOption);
+			}
+			if (hasNewMobStat(MDR)) {
+				outPacket.encodeInt(getNewOptionsByMobStat(MDR).cOption);
+			}
+
+
 			if (hasNewMobStat(Fatality)) {
 				outPacket.encodeInt(getNewOptionsByMobStat(Fatality).wOption);
 				outPacket.encodeInt(getNewOptionsByMobStat(Fatality).uOption);
@@ -237,24 +264,8 @@ public class MobTemporaryStat {
 			if (hasNewMobStat(Freeze)) {
 				outPacket.encodeInt(getNewOptionsByMobStat(Freeze).cOption);
 			}
-			if (hasNewMobStat(BurnedInfo)) {
-				outPacket.encodeByte(getBurnedInfos().size());
-				for (BurnedInfo bi : getBurnedInfos()) {
-					bi.encode(outPacket);
-				}
-			}
-			if (hasNewMobStat(InvincibleBalog)) {
-				outPacket.encodeByte(getNewOptionsByMobStat(InvincibleBalog).nOption);
-				outPacket.encodeByte(getNewOptionsByMobStat(InvincibleBalog).bOption);
-			}
-			if (hasNewMobStat(ExchangeAttack)) {
-				outPacket.encodeByte(getNewOptionsByMobStat(ExchangeAttack).bOption);
-			}
-			if (hasNewMobStat(AddDamParty)) {
-				outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).wOption);
-				outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).pOption);
-				outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).cOption);
-			}
+
+
 			if (hasNewMobStat(LinkTeam)) {
 				outPacket.encodeString(getLinkTeam());
 			}
@@ -311,13 +322,13 @@ public class MobTemporaryStat {
 			if (hasNewMobStat(BahamutLightElemAddDam)) {
 				outPacket.encodeInt(getNewOptionsByMobStat(BahamutLightElemAddDam).pOption);
 				outPacket.encodeInt(getNewOptionsByMobStat(BahamutLightElemAddDam).cOption);
-			}
+			}*/
 			getNewStatVals().clear();
 		}
 	}
 
 	private int[] getMaskByCollection(Map<MobStat, Option> map) {
-		int[] res = new int[3];
+		int[] res = new int[8];
 		for (MobStat mobStat : map.keySet()) {
 			res[mobStat.getPos()] |= mobStat.getVal();
 		}

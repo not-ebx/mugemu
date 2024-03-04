@@ -9,7 +9,6 @@ public enum MobStat {
     EVA(5),
     Speed(6),
     Stun(7),
-
     Freeze(8),
     Poison(9),
     Seal(10),
@@ -35,8 +34,8 @@ public enum MobStat {
     BodyPressure(28),
     Weakness(29),
     Showdown(30),
-    MagicCrash(31),
-
+    MagicCrash(31), // Should end here.
+    ////
     DamagedElemAttr(32),
     Dark(33),
     Mystery(34),
