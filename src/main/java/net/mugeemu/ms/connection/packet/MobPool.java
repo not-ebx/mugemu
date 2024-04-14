@@ -27,7 +27,8 @@ public class MobPool {
 
         //outPacket.encodeByte(mob.isSealedInsteadDead());
         outPacket.encodeInt(mob.getObjectId());
-        outPacket.encodeByte(mob.getCalcDamageIndex());
+        //outPacket.encodeByte(mob.getCalcDamageIndex());
+        outPacket.encodeByte(1);
         outPacket.encodeInt(mob.getTemplateId());
         ForcedMobStat fms = mob.getForcedMobStat();
         outPacket.encodeByte(fms != null);
@@ -44,21 +45,22 @@ public class MobPool {
 
     public static OutPacket changeController(Mob mob, boolean hasBeenInit, boolean isController) {
         OutPacket outPacket = new OutPacket(OutHeader.MOB_CHANGE_CONTROLLER);
-        outPacket.encodeByte(isController);
+        outPacket.encodeByte(isController ? 2 : 1); //wtf
         outPacket.encodeInt(mob.getObjectId());
-        if(isController) {
-            outPacket.encodeByte(mob.getCalcDamageIndex());
-            outPacket.encodeInt(mob.getTemplateId());
-            ForcedMobStat fms = mob.getForcedMobStat();
-            outPacket.encodeByte(fms != null);
-            if(fms != null) {
-                fms.encode(outPacket);
-            }
-            mob.getTemporaryStat().encode(outPacket);
-            if(!hasBeenInit) {
-                mob.encodeInit(outPacket);
-            }
+        //if(isController) {
+        outPacket.encodeByte(mob.getCalcDamageIndex());
+        outPacket.encodeInt(mob.getTemplateId());
+        ForcedMobStat fms = mob.getForcedMobStat();
+        outPacket.encodeByte(fms != null);
+        if(fms != null) {
+            fms.encode(outPacket);
         }
+        mob.getTemporaryStat().encode(outPacket);
+        if(!hasBeenInit) {
+            mob.encodeInit(outPacket);
+        }
+        //}
+
 
         return outPacket;
     }

@@ -377,7 +377,7 @@ public class UserDAO {
 
             query.setParameter(
                 "av",
-                av.getId()
+                av
             );
 
             foundCharacter = query.getSingleResultOrNull();

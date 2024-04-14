@@ -263,9 +263,6 @@ public class Login {
         outPacket.encodeByte(errorCode);
 
         if (loginType == LoginType.Success) {
-            //byte[] server = new byte[]{8, 31, 99, ((byte) 141)};
-            //TODO: Must take ip from ServerConfig / Constants
-            //byte[] server = new byte[]{(byte) 192, (byte)168, 1, (byte)167};
             outPacket.encodeArr(ServerConstants.SERVER_IP);
             outPacket.encodeShort(port);
 

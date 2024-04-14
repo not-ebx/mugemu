@@ -1774,8 +1774,8 @@ public class Mob extends Life {
         outPacket.encodeByte(appearType);//appearType);
         if (appearType == -3 || appearType >= 0) {
             // init -> -2, -1 else
-            //outPacket.encodeInt(getOption());
-            outPacket.encodeInt(0);
+            outPacket.encodeInt(getOption());
+            //outPacket.encodeInt(0);
         }
 
 

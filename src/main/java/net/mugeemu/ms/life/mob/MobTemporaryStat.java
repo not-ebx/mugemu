@@ -80,6 +80,7 @@ public class MobTemporaryStat {
 	public void encode(OutPacket outPacket) {
 		synchronized (currentStatVals) {
 			// DecodeBuffer(32) + MobStat::DecodeTemporary
+			// SHOULD BE size 7.
 			int[] mask = getNewMask();
 			for (int i = 0; i < mask.length; i++) {
 				outPacket.encodeInt(mask[i]);
@@ -193,7 +194,7 @@ public class MobTemporaryStat {
 				//outPacket.encodeByte(getNewOptionsByMobStat(MCounter).bOption); // bCounterDelay
 				outPacket.encodeInt(getNewOptionsByMobStat(MCounter).nReason); // nAggroRank
 			}
-		/*
+
 			if (hasNewMobStat(InvincibleBalog)) {
 				outPacket.encodeByte(getNewOptionsByMobStat(InvincibleBalog).nOption);
 				outPacket.encodeByte(getNewOptionsByMobStat(InvincibleBalog).bOption);
@@ -205,9 +206,8 @@ public class MobTemporaryStat {
 			if (hasNewMobStat(AddDamParty)) {
 				outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).wOption);
 				outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).pOption);
-				outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).cOption);
+				//outPacket.encodeInt(getNewOptionsByMobStat(AddDamParty).cOption);
 			}
-*/
 			/*
 			if (hasNewMobStat(PDR)) {
 				outPacket.encodeInt(getNewOptionsByMobStat(PDR).cOption);
@@ -332,10 +332,11 @@ public class MobTemporaryStat {
 		for (MobStat mobStat : map.keySet()) {
 			res[mobStat.getPos()] |= mobStat.getVal();
 		}
+		/*
 		OutPacket outPacket = new OutPacket();
 		for (int i = 0; i < res.length; i++) {
 			outPacket.encodeInt(res[i]);
-		}
+		}*/
 		return res;
 	}
 

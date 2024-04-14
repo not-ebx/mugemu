@@ -1,6 +1,6 @@
 libs/
 bin/nxfiles/
-resources/nxfiles/
+resources/nxfiles_v92/
 *.class
 .idea/
 SwordieMS.iml
@@ -10,6 +10,9 @@ dat/
 bin/classes/headerText.txt
 bin/classes/decodeforlocal.txt
 bin/
+resources/nxfiles_v92
+resources/nxfiles_v111
+resources/nxfiles
 resources/Cash.txt
 resources/Eqp.txt
 resources/Etc.txt

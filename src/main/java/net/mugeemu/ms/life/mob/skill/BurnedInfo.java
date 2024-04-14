@@ -144,13 +144,13 @@ public class BurnedInfo {
         outPacket.encodeInt(Util.maxInt(getDamage()));
         outPacket.encodeInt(getInterval());
         outPacket.encodeInt(getEnd());
-        outPacket.encodeInt(getDotAnimation());
         outPacket.encodeInt(getDotCount());
-        outPacket.encodeInt(getSuperPos());
+        outPacket.encodeInt(getLastUpdate());
+        //outPacket.encodeInt(getDotAnimation());
+        //outPacket.encodeInt(getSuperPos());
         /*outPacket.encodeInt(getAttackDelay());
         outPacket.encodeInt(getDotTickIdx());
         outPacket.encodeInt(getDotTickDamR());
-        outPacket.encodeInt(getLastUpdate());
         outPacket.encodeInt(getStartTime());*/
     }
 

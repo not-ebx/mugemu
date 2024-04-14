@@ -124,7 +124,7 @@ public class ForcedMobStat {
         outPacket.encodeInt(getPushed());
         //outPacket.encodeInt(getSpeed() > 0 ? -getSpeed() : getSpeed());
         outPacket.encodeInt(getLevel());
-        outPacket.encodeInt(getUserCount());
+        //outPacket.encodeInt(getUserCount());
     }
 
     public ForcedMobStat deepCopy() {

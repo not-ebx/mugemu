@@ -99,8 +99,9 @@ public class MobHandler {
         int slv = 0;
         msai.targetInfo = inPacket.decodeInt();
         int afterAttack = -1;
-        //c.getChr().chatMessage("" + msai.action);
+        c.getChr().chatMessage("" + msai.action);
         boolean didSkill = action != -1;
+
         if (didSkill && mob.hasSkillDelayExpired() && !mob.isInAttack()) {
             List<MobSkill> skillList = mob.getSkills();
             if (Util.succeedProp(GameConstants.MOB_SKILL_CHANCE)) {
@@ -160,6 +161,7 @@ public class MobHandler {
                 }
             }
         }
+
         byte multiTargetForBallSize = inPacket.decodeByte();
         for (int i = 0; i < multiTargetForBallSize; i++) {
             Position pos = inPacket.decodePosition(); // list of ball positions
@@ -168,6 +170,7 @@ public class MobHandler {
 
         byte randTimeForAreaAttackSize = inPacket.decodeByte();
         for (int i = 0; i < randTimeForAreaAttackSize; i++) {
+            // TODO check if useful for cheat detection, eventually lol
             short randTimeForAreaAttack = inPacket.decodeShort(); // could be used for cheat detection, but meh
             msai.randTimeForAreaAttacks.add(randTimeForAreaAttack);
         }
