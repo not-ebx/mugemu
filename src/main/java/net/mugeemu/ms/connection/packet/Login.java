@@ -71,13 +71,14 @@ public class Login {
         if (success) {
             outPacket.encodeByte(LoginType.Success.getValue());
             outPacket.encodeByte(0);
-            outPacket.encodeInt(user.getId()); //
-            outPacket.encodeByte(user.getGender()); //
+            outPacket.encodeInt(0); // Just empty.
+            outPacket.encodeInt(user.getId());
+            outPacket.encodeByte(user.getGender());
             outPacket.encodeByte(user.getGradeCode() > 0); //ios it gm
-            outPacket.encodeByte(0); //
-            outPacket.encodeByte(user.getGradeCode() > 0); //
+            outPacket.encodeByte(0); // gm level or something
+            outPacket.encodeByte(user.getGradeCode() > 0); // is it admin account?
             outPacket.encodeString(user.getName());
-            outPacket.encodeByte(3); // 0 for new accs
+            outPacket.encodeByte(0); // nPurchaseExp? wtf
             outPacket.encodeByte(0); // Quiet ban
             outPacket.encodeLong(0); // Quiet ban time
             outPacket.encodeFT(user.getCreationDate()); // Create Date
@@ -124,7 +125,9 @@ public class Login {
         outPacket.encodeString(world.getWorldEventDescription());
         outPacket.encodeShort(world.getWorldEventEXP_WSE());
         outPacket.encodeShort(world.getWorldEventDrop_WSE());
-        outPacket.encodeByte(world.isCharCreateBlock());
+        //TODO check this
+        //outPacket.encodeByte(world.isCharCreateBlock());
+        outPacket.encodeByte(0);
         outPacket.encodeByte(world.getChannels().size());
         for (Channel c : world.getChannels()) {
             outPacket.encodeString(String.format("%s-%d",world.getName(), c.getChannelId()));
@@ -133,6 +136,8 @@ public class Login {
             outPacket.encodeByte(c.getChannelId());
             outPacket.encodeByte(c.isAdultChannel());
         }
+
+        /*
         if (stringInfos == null) {
             outPacket.encodeShort(0);
         } else {
@@ -141,8 +146,8 @@ public class Login {
                 outPacket.encodePosition(stringInfo.getLeft());
                 outPacket.encodeString(stringInfo.getRight());
             }
-        }
-        outPacket.encodeInt(0); // some offset
+        }*/
+        outPacket.encodeInt(0);
         return outPacket;
     }
 
@@ -154,6 +159,7 @@ public class Login {
         return outPacket;
     }
 
+    // Pretty much the acc details and charlist.
     public static OutPacket sendAccountInfo(User user) {
         OutPacket outPacket = new OutPacket(OutHeader.ACCOUNT_INFO_RESULT);
 
@@ -203,13 +209,15 @@ public class Login {
         List<Char> chars = udao.getSelectCharacterFromAccount(account);
         outPacket.encodeByte(code);
         outPacket.encodeByte(chars != null ? chars.size() : 0);
+
         if(chars != null) {
             for (Char chr : chars) {
                 chr.getAvatarData().encode(outPacket);
-                // v111 has family? Dont think so xd
-                outPacket.encodeByte(false); // family stuff, deprecated (v61 = &v2->m_abOnFamily.a[v59];)
+
+                // View All vv I thjink this only sends when  NOT VAC
+                outPacket.encodeByte(false);
+
                 boolean hasRanking = chr.getRanking() != null && !JobConstants.isGmJob(chr.getJob());
-                //outPacket.encodeByte(0);
                 outPacket.encodeByte(hasRanking);
                 if (hasRanking) {
                     chr.getRanking().encode(outPacket);
@@ -217,8 +225,8 @@ public class Login {
             }
         }
         //outPacket.encodeByte(user.getPicStatus().getVal()); // bLoginOpt
-        outPacket.encodeByte(2); // bLoginOpt
-        outPacket.encodeByte(1);
+        outPacket.encodeByte(2); // bLoginOpt // No poic
+        //outPacket.encodeByte(1);
         outPacket.encodeInt(user.getCharacterSlots());
         outPacket.encodeInt(0); // buying char slots
 
@@ -260,18 +268,12 @@ public class Login {
         outPacket.encodeByte(errorCode);
 
         if (loginType == LoginType.Success) {
-            //byte[] server = new byte[]{8, 31, 99, ((byte) 141)};
-            //TODO: Must take ip from ServerConfig / Constants
-            //byte[] server = new byte[]{(byte) 192, (byte)168, 1, (byte)167};
             outPacket.encodeArr(ServerConstants.SERVER_IP);
             outPacket.encodeShort(port);
 
             outPacket.encodeInt(characterId);
-            outPacket.encodeByte(1);
+            outPacket.encodeByte(0);
             outPacket.encodeInt(0);
-            outPacket.encodeByte(1);
-            outPacket.encodeShort(0);
-            outPacket.encodeShort(0);
         }
         return outPacket;
     }
@@ -286,7 +288,7 @@ public class Login {
         return outPacket;
     }
 
-    public static OutPacket sendRecommendWorldMessage(int nWorldID, String nMsg) {
+    public static OutPacket sendRecommendWorldMessage(int nWorldID, String nMsg, short worldSize) {
         OutPacket oPacket = new OutPacket(OutHeader.RECOMMENDED_WORLD_MESSAGE);
         oPacket.encodeByte(!nMsg.isEmpty());
         oPacket.encodeInt(nWorldID);
@@ -298,5 +300,11 @@ public class Login {
         OutPacket outPacket = new OutPacket(OutHeader.CHANGE_SPW_RESULT);
         outPacket.encodeByte(result.getValue());
         return outPacket;
+    }
+
+    public static OutPacket sendLastConnectedWorld(int world) {
+        OutPacket oPacket = new OutPacket(OutHeader.LAST_CONNECTED_WORLD);
+        oPacket.encodeInt(world);
+        return oPacket;
     }
 }

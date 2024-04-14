@@ -237,7 +237,7 @@ public class AvatarLook {
         outPacket.encodeByte(getGender());
         outPacket.encodeByte(getSkin());
         outPacket.encodeInt(getFace());
-        outPacket.encodeInt(getJob()); // hair
+        //outPacket.encodeInt(getJob()); // hair
         outPacket.encodeByte(1); // ignored (mega??)
         outPacket.encodeInt(getHair());
 
@@ -256,7 +256,7 @@ public class AvatarLook {
         }
         outPacket.encodeByte(-1);
         outPacket.encodeInt(getWeaponStickerId());
-        outPacket.encodeByte(isDrawElfEar());
+        //outPacket.encodeByte(isDrawElfEar());
 
         for (int i = 0; i < 3; i++) {
             if (getPetIDs().size() > i) {
@@ -265,9 +265,7 @@ public class AvatarLook {
                 outPacket.encodeInt(0);
             }
         }
-        if (JobConstants.isDemon((short) getJob())) {
-            outPacket.encodeInt(getDemonSlayerDefFaceAcc());
-        }
+
     }
 
     public void encodePackedCharacterLook(OutPacket outPacket, Char chr) {

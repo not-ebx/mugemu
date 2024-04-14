@@ -14,8 +14,6 @@ public class ClientSocket {
 
         outPacket.encodeByte(succeed); // will disconnect if false
         if(succeed) {
-            //byte[] server = new byte[]{8, 31, 99, ((byte) 141)};
-            //byte[] server = new byte[]{(byte)192, (byte)168, 1, ((byte) 167)};
             outPacket.encodeArr(ServerConstants.SERVER_IP);
             outPacket.encodeShort(port);
             outPacket.encodeInt(0); // ?

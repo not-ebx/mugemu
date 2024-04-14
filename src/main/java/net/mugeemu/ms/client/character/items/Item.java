@@ -175,7 +175,7 @@ public class Item implements Serializable, Encodable {
         }
         outPacket.encodeFT(getDateExpire());
         //outPacket.encodeInt(getBagIndex());
-        outPacket.encodeInt(-1);
+        //outPacket.encodeInt(-1); // Unsure if we need this.
         if (getType() == Type.ITEM) {
             outPacket.encodeShort(getQuantity()); // nQuantity
             outPacket.encodeString(getOwner()); // sOwner

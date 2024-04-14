@@ -48,10 +48,10 @@ public class FuncKeyMap {
         for (int i = 0; i < MAX_KEYBINDS; i++) {
             Keymapping tuple = getMappingAt(i);
             if (tuple == null) {
-                outPacket.encodeByte(0);
+                //outPacket.encodeByte(0);
                 outPacket.encodeInt(0);
             } else {
-                outPacket.encodeByte(tuple.getType());
+                //outPacket.encodeByte(tuple.getType());
                 outPacket.encodeInt(tuple.getVal());
             }
         }

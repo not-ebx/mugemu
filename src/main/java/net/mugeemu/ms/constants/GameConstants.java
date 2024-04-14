@@ -22,7 +22,7 @@ import java.util.List;
 public class GameConstants {
     public static final int CHANNELS_PER_WORLD = 3;
     public static final int BUFFED_CHANNELS = 7;
-    public static final int MOB_EXP_RATE = 10;
+    public static final int MOB_EXP_RATE = 1;
     public static final long MAX_MONEY = 9_999_999_999L;
     public static final short DAMAGE_SKIN_MAX_SIZE = 100;
     public static final int MAX_PET_AMOUNT = 3;
@@ -31,7 +31,7 @@ public class GameConstants {
     public static final int MAX_TRAIT_EXP = 93596;
     public static final int BEGINNER_SP_MAX_LV = 7;
     public static final int RESISTANCE_SP_MAX_LV = 10;
-    public static final int QUICKSLOT_LENGTH = 28;
+    public static final int QUICKSLOT_LENGTH = 7; // 7 in v92
 
     // Field
     public static final int NO_MAP_ID = 999999999;

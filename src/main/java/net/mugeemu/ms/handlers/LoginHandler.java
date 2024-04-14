@@ -186,6 +186,7 @@ public class LoginHandler {
         c.write(Login.checkPasswordResult(success, result, user));
     }
 
+    /*
     @Handler(op = InHeader.WORLD_LIST_REQUEST)
     public static void handleWorldListRequest(Client c, InPacket packet) {
         for (World world : Server.getInstance().getWorlds()) {
@@ -194,16 +195,17 @@ public class LoginHandler {
         c.write(Login.sendWorldInformationEnd());
         c.write(Login.sendRecommendWorldMessage(ServerConfig.WORLD_ID, ServerConfig.RECOMMEND_MSG));
     }
+     */
 
     @Handler(op = InHeader.WORLD_INFO_REQUEST)
     public static void handleWorldInfoRequest(Client c, InPacket packet) {
-        for (World world : Server.getInstance().getWorlds()) {
+        List<World> worlds = Server.getInstance().getWorlds();
+        for (World world : worlds) {
             c.write(Login.sendWorldInformation(world, null));
         }
         c.write(Login.sendWorldInformationEnd());
-        c.write(Login.sendRecommendWorldMessage(ServerConfig.WORLD_ID, ServerConfig.RECOMMEND_MSG));
+        c.write(Login.sendRecommendWorldMessage(ServerConfig.WORLD_ID, ServerConfig.RECOMMEND_MSG, (short)worlds.size()));
     }
-
 
     @Handler(op = InHeader.SERVERSTATUS_REQUEST)
     public static void handleServerStatusRequest(Client c, InPacket inPacket) {
@@ -219,11 +221,7 @@ public class LoginHandler {
 
     @Handler(op = InHeader.REDISPLAY_SERVERLIST)
     public static void handleRedisplayServerlist(Client c, InPacket inPacket) {
-        for (World world : Server.getInstance().getWorlds()) {
-            c.write(Login.sendWorldInformation(world, null));
-        }
-        c.write(Login.sendWorldInformationEnd());
-        c.write(Login.sendRecommendWorldMessage(ServerConfig.WORLD_ID, ServerConfig.RECOMMEND_MSG));
+        handleWorldInfoRequest(c, inPacket);
     }
 
     @Handler(op = InHeader.SELECT_WORLD)
@@ -231,9 +229,10 @@ public class LoginHandler {
         UserDAO udao = new UserDAO();
         byte somethingThatIsTwo = inPacket.decodeByte();
         byte worldId = inPacket.decodeByte();
-        byte channel = (byte) (inPacket.decodeByte() + 1);
+        byte channel = (byte) (inPacket.decodeByte() + (byte)1);
         byte code = 0; // success code
         User user = c.getUser();
+
 
         World world = Server.getInstance().getWorldById(worldId);
         if (world != null && world.getChannelById(channel) != null) {
@@ -244,8 +243,10 @@ public class LoginHandler {
             c.setAccount(acc);
             c.setWorldId(worldId);
             c.setChannel(channel);
-            c.write(Login.sendAccountInfo(user));
+            // Unused in v92 cause it sent before
+            //c.write(Login.sendAccountInfo(user));
             c.write(Login.selectWorldResult(c.getUser(), c.getAccount(), code));
+            int lanIpQuestionmark = inPacket.decodeInt();
         } else {
             c.write(Login.selectCharacterResult(LoginType.UnauthorizedUser, (byte) 0, 0, 0));
         }
@@ -253,10 +254,8 @@ public class LoginHandler {
 
     @Handler(op = InHeader.SELECT_PREVIOUS_WORLD)
     public static void handleReselectWorld(Client c, InPacket inPacket) {
-        //handleWorldStatusRequest(c, inPacket);
-        OutPacket test = new OutPacket(0x03);
-        test.encodeInt(0);
-        c.write(test);
+        // Nothing, ignored. Maybe we can return the last world? idk lol
+        c.write(Login.sendLastConnectedWorld(0));
     }
 
     @Handler(op = InHeader.CHECK_DUPLICATE_ID)
@@ -278,19 +277,23 @@ public class LoginHandler {
         UserDAO udao = new UserDAO();
         Account acc = c.getAccount();
         String name = inPacket.decodeString();
-        //int keySettingType = inPacket.decodeInt();
         int curSelectedRace = inPacket.decodeInt();
         JobConstants.JobEnum job = JobConstants.LoginJob.getLoginJobById(curSelectedRace).getBeginJob();
         short curSelectedSubJob = inPacket.decodeShort(); // Is db or not, subjobs
-        byte gender = inPacket.decodeByte();
-        byte skin = inPacket.decodeByte();
-        byte itemLength = inPacket.decodeByte();
-        int[] items = new int[itemLength]; //face, hair, markings, skin, overall, top, bottom, cape, boots, weapon
+
+        //byte gender = inPacket.decodeByte();
+        //byte skin = inPacket.decodeByte();
+        //byte itemLength = inPacket.decodeByte();
+        byte itemLength = 8; // Guess
+        int[] items = new int[itemLength]; // Face, hair, hairColor, skinColor, top, bottom, shoes, weapon
         for (int i = 0; i < itemLength; i++) {
             items[i] = inPacket.decodeInt();
         }
         int face = items[0];
-        int hair = items[1];
+        int hair = items[1] + items[2];
+        byte skin = (byte)items[3];
+        byte gender = inPacket.decodeByte();
+        items = Arrays.copyOfRange(items, 4, items.length);
         CharNameResult code = null;
         if (!ItemData.isStartingItems(items) || skin > ItemConstants.MAX_SKIN || skin < 0
                 || face < ItemConstants.MIN_FACE || face > ItemConstants.MAX_FACE
@@ -390,7 +393,7 @@ public class LoginHandler {
         UserDAO udao = new UserDAO();
         int characterId = inPacket.decodeInt();
         String mac = inPacket.decodeString();
-        String somethingElse = inPacket.decodeString();
+        //String somethingElse = inPacket.decodeString();
 
         Char foundCharacter = udao.getCharacterByIdAndAccount(c.getAccount(), characterId);
         if (c.isAuthorized() && foundCharacter != null) {

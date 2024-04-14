@@ -1049,7 +1049,7 @@ public class Equip extends Item {
         outPacket.encodeShort(getTotalStat(EquipBaseStat.iMDD));
         outPacket.encodeShort(getTotalStat(EquipBaseStat.iACC));
         outPacket.encodeShort(getTotalStat(EquipBaseStat.iEVA));
-        outPacket.encodeShort(getiCraft());
+        outPacket.encodeShort(getiCraft()); // Hands :)
         outPacket.encodeShort(getTotalStat(EquipBaseStat.iSpeed));
         outPacket.encodeShort(getTotalStat(EquipBaseStat.iJump));
 
@@ -1061,37 +1061,18 @@ public class Equip extends Item {
         outPacket.encodeInt(getExp());
         outPacket.encodeInt(getDurability());
         outPacket.encodeInt(getIuc()); // hammer
-        outPacket.encodeShort(getiPvpDamage());
 
         // Potential flags
         outPacket.encodeByte(getGrade());
         outPacket.encodeByte(getChuc()); // Enchant / Enhance
 
         for (int i = 0; i < 5; i++) {
+            // TODO check this and add potential.. maybe
+            // Also, first 3 are pot lines, last 2 idk tbh lol
             //outPacket.encodeShort(getOptions().get(i)); // 5x, last is potential5
             outPacket.encodeShort(0);
         }
 
-        // This is swordie stuff, ill keep it since it does nothing, cause i dont even use it.
-        short socketMask = 0; // 0b0nnn_kkkb: from right to left: boolean active, k empty, n has socket
-        for (int i = 0; i < getSockets().size(); i++) {
-            int socket = getSocket(i);
-            // Self made numbers for socket: 3 == empty (since 0 is already taken for STR+1, similar for 1/2)
-            if (socket != 0) {
-                socketMask |= 1;
-                socketMask |= 1 << i + 1;
-                if (socket != ItemConstants.EMPTY_SOCKET_ID) {
-                    socketMask |= 1 << (i + 4); // 3 sockets, look at the comment at socketMask.
-                }
-            }
-        }
-        //outPacket.encodeShort(socketMask); // socket state, 0 = nothing, 0xFF = see loop
-        outPacket.encodeShort(0);
-        for (int i = 0; i < 3; i++) {
-            // sockets 0 through 2 (-1 = none, 0 = empty, >0 = filled
-            //outPacket.encodeShort(getSocket(i));
-            outPacket.encodeShort(0);
-        }
         if(!isCash()) {
             outPacket.encodeLong(getId()); // Again ... ?
         }

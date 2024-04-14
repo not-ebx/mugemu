@@ -18,10 +18,10 @@ public class ServerConstants {
 	public static final short VERSION = 92;
 	public static final String MINOR_VERSION = "1";
 	public static final byte[] SERVER_IP = new byte[] {
-		(byte)192,
-		(byte)168,
-		(byte)1,
-		(byte)167
+		(byte)127,
+		(byte)0,
+		(byte)0,
+		(byte)1
 	};
 	public static final int LOGIN_PORT = 8484;
 	public static final short CHAT_PORT = 8483;

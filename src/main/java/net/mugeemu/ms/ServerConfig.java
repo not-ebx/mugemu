@@ -6,7 +6,7 @@ package net.mugeemu.ms;
 public class ServerConfig {
 
     public static final int USER_LIMIT = 500;
-    public static final byte WORLD_ID = 1; // bera
+    public static final byte WORLD_ID = 0; // bera
     public static final String SERVER_NAME = "Spoooky";
     public static final String EVENT_MSG = "#bNIGGERS#k";
     public static final String RECOMMEND_MSG = "Bera, as passed to harvey";

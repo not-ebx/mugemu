@@ -360,11 +360,12 @@ public class CharacterStat {
         outPacket.encodeShort(getDex());
         outPacket.encodeShort(getInt());
         outPacket.encodeShort(getLuk());
-        outPacket.encodeInt(getHp());
-        outPacket.encodeInt(getMaxHp());
-        outPacket.encodeInt(getMp());
-        outPacket.encodeInt(getMaxMp());
+        outPacket.encodeShort(getHp());
+        outPacket.encodeShort(getMaxHp());
+        outPacket.encodeShort(getMp());
+        outPacket.encodeShort(getMaxMp());
         outPacket.encodeShort(getAp());
+        // TODO check this, ahvent tested
         if (JobConstants.isExtendSpJob(getJob())) {
             getExtendSP().encode(outPacket);
         } else {
@@ -373,43 +374,16 @@ public class CharacterStat {
         }
 
         outPacket.encodeInt((int)getExp()); // Long in numaple!
-        outPacket.encodeInt(getPop());
+        outPacket.encodeShort(getPop());
         outPacket.encodeInt(getGachExp());
         outPacket.encodeInt((int)getPosMap());
         outPacket.encodeByte(getPortal());
         outPacket.encodeInt(0); // TODO figure out -> Online time in seconds wtf
         outPacket.encodeShort(getSubJob());
-        if (JobConstants.isDemon(getJob())) {
-            outPacket.encodeInt(getDefFaceAcc());
-        }
-        outPacket.encodeByte(getFatigue());
-        outPacket.encodeInt(getLastFatigueUpdateTime());
-        outPacket.encodeInt(getCharismaExp());
-        outPacket.encodeInt(getInsightExp());
-        outPacket.encodeInt(getWillExp());
-        outPacket.encodeInt(getCraftExp());
-        outPacket.encodeInt(getSenseExp());
-        outPacket.encodeInt(getCharmExp());
 
-        getNonCombatStatDayLimit().encode(outPacket);
+        //outPacket.encodeInt(0);
+        //outPacket.encodeFT(getLastLogout());
 
-        outPacket.encodeInt(getPvpExp());
-        outPacket.encodeByte(getPvpGrade());
-        outPacket.encodeInt(getPvpPoint());
-        outPacket.encodeByte(5); // Was 2
-        /* Fuck that, setting the above byte lower than 2 will make all 3rd and 4th job that have the property
-         ((skillID % 10000) / 10000 == 0) be bugged (you see the level, but can't actually use it). ?????????????*/
-        outPacket.encodeInt(0);
-        outPacket.encodeFT(getLastLogout());
-
-        //outPacket.encodeByte(getPvpModeType());
-        //outPacket.encodeInt(getEventPoint());
-        //outPacket.encodeByte(getAlbaActivityID()); // part time job
-        //outPacket.encodeFT(getAlbaStartTime());
-        //outPacket.encodeInt(getAlbaDuration());
-        //outPacket.encodeByte(getAlbaSpecialReward());
-        //getCharacterCard().encode(outPacket);
-        //outPacket.encodeByte(isBurning()); // bBurning
     }
 
     public FileTime getLastLogout() {

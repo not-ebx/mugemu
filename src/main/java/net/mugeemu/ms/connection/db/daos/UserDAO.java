@@ -235,6 +235,7 @@ public class UserDAO {
             if (curSelectedRace == JobConstants.LoginJob.DUAL_BLADE.getJobType()) {
                 cs.setSubJob(1);
             }
+
             cs.setCharacterIdForLog(chr.getId());
             cs.setWorldIdForLog(account.getWorldId());
             for (int i : chr.getAvatarData().getAvatarLook().getHairEquips()) {
@@ -245,10 +246,10 @@ public class UserDAO {
                     chr.addItemToInventory(EQUIPPED, equip, true);
                 }
             }
-            Equip codex = ItemData.getEquipDeepCopyFromID(1172000, false);
+            /*Equip codex = ItemData.getEquipDeepCopyFromID(1172000, false);
             codex.setInvType(EQUIPPED);
             codex.setBagIndex(BodyPart.MonsterBook.getVal());
-            chr.addItemToInventory(EQUIPPED, codex, true);
+            chr.addItemToInventory(EQUIPPED, codex, true);*/
 
             chr.setAccount(account);
             account.addCharacter(chr);
@@ -377,7 +378,7 @@ public class UserDAO {
 
             query.setParameter(
                 "av",
-                av.getId()
+                av
             );
 
             foundCharacter = query.getSingleResultOrNull();

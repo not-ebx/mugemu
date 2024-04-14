@@ -455,8 +455,8 @@ public class Char {
 		getAvatarData().setCharacterStat(characterStat);
 		characterStat.setGender(gender);
 		characterStat.setSkin(skin);
-		characterStat.setFace(items.length > 0 ? items[0] : 0);
-		characterStat.setHair(items.length > 1 ? items[1] : 0);
+		characterStat.setFace(face);
+		characterStat.setHair(hair);
 		characterStat.setSubJob(curSelectedSubJob);
 		setFieldInstanceType(FieldInstanceType.CHANNEL);
 		ranking = new Ranking();
@@ -644,15 +644,13 @@ public class Char {
 	 * @param mask      Which info should be encoded.
 	 */
 	public void encode(OutPacket outPacket, DBChar mask) {
-		//outPacket.encodeLong(mask.get() );
-		outPacket.encodeInt(-1);
-		outPacket.encodeInt(-3);
+		outPacket.encodeLong(mask.get());
 
 		//if((mask.get() & 0x2) == 0) { // 0x2
 		//	return;
 		//}
 
-		outPacket.encodeByte(0); // Combat orders
+		//outPacket.encodeByte(0); // Combat orders
 
 		boolean somethingWeirdValue = false;
 		outPacket.encodeByte(somethingWeirdValue);
@@ -684,15 +682,13 @@ public class Char {
 
 		}
 
-		outPacket.encodeInt(0); //dunno
-		outPacket.encodeByte(false); // 7 bytes up to here
-
 		if (mask.isInMask(DBChar.Character)) {
 			getAvatarData().getCharacterStat().encode(
 				outPacket,
 				getAvatarData().getAvatarLook().getPetIDs()
 			);
 			outPacket.encodeByte(getFriendRecords().size());
+			/*
 			boolean hasBlessingOfFairy = getBlessingOfFairy() != null;
 			outPacket.encodeByte(hasBlessingOfFairy);
 			if (hasBlessingOfFairy) {
@@ -703,6 +699,7 @@ public class Char {
 			if (hasBlessingOfEmpress) {
 				outPacket.encodeString(getBlessingOfEmpress());
 			}
+			 */
 			boolean isUltimateExplorer = false;
 			outPacket.encodeByte(isUltimateExplorer); // ultimate explorer, TODO
 			if (isUltimateExplorer) {
@@ -768,28 +765,6 @@ public class Char {
 				}
 			}
 			outPacket.encodeShort(0);
-
-			// Mech Equipment
-			for (Item item : getEquippedInventory().getItems()) {
-				Equip equip = (Equip) item;
-				if (item.getBagIndex() >= BodyPart.MechBase.getVal() && item.getBagIndex() < BodyPart.MechEnd.getVal()) {
-					outPacket.encodeShort(equip.getBagIndex());
-					equip.encode(outPacket);
-				}
-			}
-
-			outPacket.encodeShort(0);
-
-			// VirtualEquipInventory::Decode (Android)
-			// >= 20k < 200024?
-			for (Item item : getEquippedInventory().getItems()) {
-				Equip equip = (Equip) item;
-				if (item.getBagIndex() >= BodyPart.APBase.getVal() && item.getBagIndex() < BodyPart.APEnd.getVal()) {
-					outPacket.encodeShort(equip.getBagIndex());
-					equip.encode(outPacket);
-				}
-			}
-			outPacket.encodeShort(0);
 		}
 		if (mask.isInMask(DBChar.ItemSlotConsume)) {
 			for (Item item : getConsumeInventory().getItems()) {
@@ -820,73 +795,16 @@ public class Char {
 			outPacket.encodeByte(0);
 		}
 
-
-		// BagDatas
-		// Extended slots ??
-		outPacket.encodeInt(-1);
-		// After a 00 80
-		// Before a 00 00 02 00
-		//0x400 000 00
-		outPacket.encodeInt(0);
-		//0x400
-		outPacket.encodeInt(0);
-		//outPacket.encodeByte(0);
-		// End bagdatas
-		//0x20000000
-		outPacket.encodeByte(0);
-
-
 		if (mask.isInMask(DBChar.SkillRecord)) {
-			boolean encodeSkills = !getSkills().isEmpty();
-			outPacket.encodeByte(encodeSkills);
-			if (encodeSkills) {
-				Set<LinkSkill> linkSkills = getLinkSkills();
-				short size = (short) (getSkills().size() + linkSkills.size());
-				outPacket.encodeShort(size);
-				for (Skill skill : getSkills()) {
-					outPacket.encodeInt(skill.getSkillId());
-					outPacket.encodeInt(skill.getCurrentLevel());
-					outPacket.encodeFT(FileTime.fromType(FileTime.Type.MAX_TIME));
-					if (SkillConstants.isSkillNeedMasterLevel(skill.getSkillId())) {
-						outPacket.encodeInt(skill.getMasterLevel());
-					}
+			short size = (short) (getSkills().size());
+			outPacket.encodeShort(size);
+			for (Skill skill : getSkills()) {
+				outPacket.encodeInt(skill.getSkillId());
+				outPacket.encodeInt(skill.getCurrentLevel());
+				outPacket.encodeFT(FileTime.fromType(FileTime.Type.MAX_TIME));
+				if (SkillConstants.isSkillNeedMasterLevel(skill.getSkillId())) {
+					outPacket.encodeInt(skill.getMasterLevel());
 				}
-				for (LinkSkill linkSkill : linkSkills) {
-					outPacket.encodeInt(linkSkill.getLinkSkillID());
-					outPacket.encodeInt(linkSkill.getOwnerID());
-					outPacket.encodeFT(FileTime.fromType(FileTime.Type.MAX_TIME));
-					if (SkillConstants.isSkillNeedMasterLevel(linkSkill.getLinkSkillID())) {
-						outPacket.encodeInt(3); // whatevs
-					}
-				}
-				/*
-				outPacket.encodeShort(linkSkills.size());
-				for (LinkSkill linkSkill : linkSkills) {
-					outPacket.encodeInt(linkSkill.getLinkSkillID()); // another nCount
-					outPacket.encodeShort(linkSkill.getLevel() - 1); // idk
-				}*/
-			} else {
-				Set<Skill> skills = getSkills();
-				int size = skills.size();
-				short size2 = 0;
-				outPacket.encodeShort(size);
-
-				for (Skill skill : skills) {
-					outPacket.encodeInt(skill.getId());
-					outPacket.encodeInt(skill.getSkillId());
-				}
-				outPacket.encodeShort(size2);
-				for (int i = 0; i < size2; i++) {
-					outPacket.encodeInt(0); // nTI
-					outPacket.encodeInt(0); // sValue
-				}
-				outPacket.encodeShort(size2);
-				for (int i = 0; i < size2; i++) {
-					outPacket.encodeInt(0); // nTI
-				}
-
-				short size3 = 0;
-				outPacket.encodeShort(size3);
 			}
 		}
 
@@ -908,7 +826,7 @@ public class Char {
 		if (mask.isInMask(DBChar.QuestRecord)) {
 			// modified/deleted, not completed anyway
 			boolean removeAllOldEntries = true;
-			outPacket.encodeByte(removeAllOldEntries);
+			//outPacket.encodeByte(removeAllOldEntries);
 			short size = (short) getQuestManager().getQuestsInProgress().size();
 			outPacket.encodeShort(size);
 			for (Quest quest : getQuestManager().getQuestsInProgress()) {
@@ -934,20 +852,13 @@ public class Char {
 		}
 
 		if (mask.isInMask(DBChar.QuestComplete)) {
-			boolean removeAllOldEntries = true;
-			outPacket.encodeByte(removeAllOldEntries);
+			//boolean removeAllOldEntries = true;
+			//outPacket.encodeByte(removeAllOldEntries);
 			Set<Quest> completedQuests = getQuestManager().getCompletedQuests();
 			outPacket.encodeShort(completedQuests.size());
 			for (Quest quest : completedQuests) {
 				outPacket.encodeShort(quest.getQRKey()); // Was int
 				outPacket.encodeFT(quest.getCompletedTime()); // Timestamp of completion // Was int
-			}
-			if (!removeAllOldEntries) {
-				short size = 0;
-				outPacket.encodeShort(size);
-				for (int i = 0; i < size; i++) {
-					outPacket.encodeShort(0); // nQRKey?
-				}
 			}
 		}
 		if (mask.isInMask(DBChar.MinigameRecord)) {
@@ -958,6 +869,7 @@ public class Char {
 			}
 		}
 
+		//TODO add ring support
 		if (mask.isInMask(DBChar.CoupleRecord)) {
 			int coupleSize = 0;
 			outPacket.encodeShort(coupleSize);
@@ -976,8 +888,7 @@ public class Char {
 			}
 		}
 
-
-
+		// TODO add vip rock support
 		if (mask.isInMask(DBChar.MapTransfer)) {
 			for (int i = 0; i < 5; i++) {
 				outPacket.encodeInt(0);
@@ -985,13 +896,8 @@ public class Char {
 			for (int i = 0; i < 10; i++) {
 				outPacket.encodeInt(0);
 			}
-			for (int i = 0; i < 13; i++) {
-				outPacket.encodeInt(0);
-			}
-			for (int i = 0; i < 13; i++) {
-				outPacket.encodeInt(0);
-			}
 		}
+
 		if (mask.isInMask(DBChar.MonsterBookCover)) {
 			//outPacket.encodeInt(getMonsterBookInfo().getCoverID());
 			outPacket.encodeInt(0);
@@ -1005,7 +911,7 @@ public class Char {
 				outPacket.encodeShort(size);
 				for (int card : getMonsterBookInfo().getCards()) {
 					outPacket.encodeShort(card); // or int ?
-					outPacket.encodeByte(true); // bEnabled?
+					outPacket.encodeByte(true); // level of the card. Gotta get that.
 				}
 			} else {
 				// TODO: Write finished
@@ -1041,22 +947,17 @@ public class Char {
 			}
 		}
 
-		if (mask.isInMask(DBChar.QuestCompleteOld)) {
-			byte size = 0; // TODO Get thjios
-			outPacket.encodeShort(size);
-			for (Quest q : questManager.getCompletedQuests()) {
-				outPacket.encodeShort(q.getQRKey());
-				outPacket.encodeString(q.getQRValue());
-			}
-		}
-
-		/*if (mask.isInMask(DBChar.QuestRecordEx)) {
+		if (mask.isInMask(DBChar.QuestRecordEx)) {
 			outPacket.encodeShort(getQuestManager().getEx().size());
 			for (Quest quest : getQuestManager().getEx()) {
 				outPacket.encodeShort(quest.getQRKey());
 				outPacket.encodeString(quest.getQRValue());
 			}
-		}*/
+		}
+
+		if(mask.isInMask(DBChar.AdminShopCount)) {
+			outPacket.encodeShort(0);
+		}
 
 		if(mask.isInMask(DBChar.WildHunterInfo)
 			&& JobConstants.isWildHunter(getAvatarData().getCharacterStat().getJob())
@@ -1067,28 +968,8 @@ public class Char {
 			// buffer 8u
 			outPacket.encodeByte(111112);
 			outPacket.encodeArr(new byte[20]);
-		}
-
-		outPacket.encodeShort(0);
-		outPacket.encodeShort(0);
-		outPacket.encodeShort(0);
-
-
-		for (int i = 0; i < 36; i++) { // damn son
-			outPacket.encodeInt(0); // Fuc you phantom.
-		}
-
-		outPacket.encodeShort(0);
-		outPacket.encodeByte(1);
-		outPacket.encodeShort(0);
-
-		if (mask.isInMask(DBChar.Avatar)) {
-			short size = 0;
-			outPacket.encodeShort(size);
-			for (int i = 0; i < size; i++) {
-				outPacket.encodeInt(0); // sValue
-				new AvatarLook().encode(outPacket);
-			}
+		} else {
+			outPacket.encodeShort(0);
 		}
 	}
 
@@ -2195,7 +2076,7 @@ public class Char {
 		if (tsm.hasStat(CharacterTemporaryStat.Flying) && !toField.isFly()) {
 			tsm.removeStat(CharacterTemporaryStat.Flying, false);
 		}*/
-		notifyChanges(); // TODO: check
+		//notifyChanges(); // TODO: check
 		toField.execUserEnterScript(this);
 		//initPets();
 		/*
@@ -2218,10 +2099,6 @@ public class Char {
 		Dragon dragon = getDragon();
 		if (dragon != null) {
 			toField.spawnLife(dragon, null);
-		}
-		Android android = getAndroid();
-		if (android != null) {
-			toField.spawnLife(android, null);
 		}
 		 */
 

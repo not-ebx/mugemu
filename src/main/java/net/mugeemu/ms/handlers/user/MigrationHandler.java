@@ -115,7 +115,6 @@ public class MigrationHandler {
         chr.setBulletIDForAttack(chr.calculateBulletIDForAttack(1));
         //c.write(WvsContext.friendResult(new LoadFriendResult(chr.getAllFriends())));
         c.write(WvsContext.macroSysDataInit(chr.getMacros()));
-        //c.write(UserLocal.damageSkinSaveResult(DamageSkinType.Req_SendInfo, null, chr));
         //c.write(WvsContext.mapTransferResult(MapTransferType.RegisterListSend, (byte) 5, chr.getHyperRockFields()));
         //acc.getMonsterCollection().init(chr);
         chr.checkAndRemoveExpiredItems();
@@ -139,6 +138,7 @@ public class MigrationHandler {
 
         byte fieldKey = inPacket.decodeByte();
         // Check if has portal name or not
+        // fieldKey 1 = from dying; 0 = regular portals
 
         int targetField = inPacket.decodeInt();
         if (targetField == 106020100 || targetField == 106020400) {

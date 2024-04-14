@@ -26,12 +26,9 @@ public class Stage {
 
         // Opt code thing
         outPacket.encodeShort(0);
-
         outPacket.encodeInt(channelId - 1);
-        outPacket.encodeByte(0); // Idk yet
         outPacket.encodeInt(oldDriverID);
-        outPacket.encodeByte(1); // sNotifierMessage
-        outPacket.encodeInt(0); // Idk yet
+        outPacket.encodeByte(0); // sNotifierMessage
         outPacket.encodeByte(characterData);
         short notifierCheck = 0;
         outPacket.encodeShort(notifierCheck); // Notifier Check
@@ -83,9 +80,9 @@ public class Stage {
 
         // 41 bytes below
         outPacket.encodeFT(FileTime.currentTime());
-        outPacket.encodeInt(mobStatAdjustRate); //mobStatAdjustRate
-        outPacket.encodeByte(setWhiteFadeInOut); //setWhiteFadeInOut
-        outPacket.encodeByte(1); // why one
+        //outPacket.encodeInt(mobStatAdjustRate); //mobStatAdjustRate
+        //outPacket.encodeByte(setWhiteFadeInOut); //setWhiteFadeInOut
+        //outPacket.encodeByte(1); // why one
 
         return outPacket;
     }
