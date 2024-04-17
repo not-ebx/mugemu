@@ -381,9 +381,6 @@ public class CharacterStat {
         outPacket.encodeInt(0); // TODO figure out -> Online time in seconds wtf
         outPacket.encodeShort(getSubJob());
 
-        //outPacket.encodeInt(0);
-        //outPacket.encodeFT(getLastLogout());
-
     }
 
     public FileTime getLastLogout() {

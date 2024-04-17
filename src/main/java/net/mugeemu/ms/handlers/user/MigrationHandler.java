@@ -148,11 +148,10 @@ public class MigrationHandler {
             // warping from portal in 106020403 is unable to find defined portal (not a scripted portal)
             targetField = 106020000;
         }
-        inPacket.decodeInt();
         String portalName = inPacket.decodeString();
 
-        int x = inPacket.decodeShort();
-        int y = inPacket.decodeShort();
+        //int x = inPacket.decodeShort();
+        //int y = inPacket.decodeShort();
 
         if (portalName != null && !portalName.isEmpty()) {
             Field field = chr.getField();

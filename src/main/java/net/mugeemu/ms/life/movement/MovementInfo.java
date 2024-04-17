@@ -46,7 +46,7 @@ public class MovementInfo implements Encodable {
     }
 
     public void decode(InPacket inPacket) {
-        encodedGatherDuration = inPacket.decodeInt();
+        //encodedGatherDuration = inPacket.decodeInt();
         oldPos = inPacket.decodePosition();
         oldVPos = inPacket.decodePosition();
         movements = parseMovement(inPacket);
@@ -55,7 +55,7 @@ public class MovementInfo implements Encodable {
 
     @Override
     public void encode(OutPacket outPacket) {
-        outPacket.encodeInt(encodedGatherDuration);
+        //outPacket.encodeInt(encodedGatherDuration);
         outPacket.encodePosition(oldPos);
         outPacket.encodePosition(oldVPos);
         outPacket.encodeByte(movements.size());

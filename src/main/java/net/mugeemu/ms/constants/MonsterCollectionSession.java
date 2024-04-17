@@ -103,6 +103,5 @@ public class MonsterCollectionSession {
         for (int i = 0; i < total.length; i++) {
             stringBuilder.append(Util.leftPaddedString(8, '0', Integer.toHexString(total[i])));
         }
-        chr.write(UserLocal.collectionRecordMessage(sessionKey, stringBuilder.toString()));
     }
 }

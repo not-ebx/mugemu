@@ -77,12 +77,7 @@ public class Stage {
             }
         }
 
-
-        // 41 bytes below
         outPacket.encodeFT(FileTime.currentTime());
-        //outPacket.encodeInt(mobStatAdjustRate); //mobStatAdjustRate
-        //outPacket.encodeByte(setWhiteFadeInOut); //setWhiteFadeInOut
-        //outPacket.encodeByte(1); // why one
 
         return outPacket;
     }

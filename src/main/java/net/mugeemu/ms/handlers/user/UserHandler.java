@@ -61,11 +61,14 @@ public class UserHandler {
     @Handler(op = InHeader.USER_MOVE)
     public static void handleUserMove(Char chr, InPacket inPacket) {
         Field field = chr.getField();
+        /*
         // CVecCtrlUser::EndUpdateActive
         byte fieldKey = inPacket.decodeByte();
         inPacket.decodeInt(); // ? something with field
         inPacket.decodeInt(); // tick
         inPacket.decodeByte(); // ? doesn't get set at all
+         */
+        inPacket.decodeArr(29);
         // CMovePathCommon::Encode
         MovementInfo movementInfo = new MovementInfo(inPacket);
         movementInfo.applyTo(chr);

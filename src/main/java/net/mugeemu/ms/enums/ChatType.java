@@ -34,32 +34,9 @@ public enum ChatType {
     SpeakerChannel(12),
     SpeakerWorld(13),
     SpeakerWorldGuildSkill(14),
-    ItemSpeaker(15),
-    ItemSpeakerItem(16),
-    SpeakerBridge(17),
-    SpeakerWorldExPreview(18),
-    Mob(19),
-    Expedition(20),
-    ItemMessage(21),
-    MiracleTime(22),
-    LotteryItemSpeaker(23),
-    LotteryItemSpeakerWorld(24),
-    AvatarMegaphone(25),
-    PickupSpeakerWorld(26),
-    WorldName(27),
-    BossArenaNotice(28),
-    Claim(29),
-    AfreecaTv(30),
-    // non kmst from here
-    GachaReward(31),
-    GachaRed(32),
-    GachaRed2(33), // same as GachaRed(32)
-    DarkBlue2(34), // same as ItemSpeakerItem(16)
-    ItemNoItemSmegaDarkText(35),
-    WhiteOnGreen(36),
-    CakeSpeaker(37),
-    PieSpeaker(38),
-    BlackOnWhite(39),
+    Mob(13),
+    Expedition(13),
+    BlackOnWhite(13),
     ;
     private short val;
 

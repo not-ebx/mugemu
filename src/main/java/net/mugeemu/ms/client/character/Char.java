@@ -646,12 +646,6 @@ public class Char {
 	public void encode(OutPacket outPacket, DBChar mask) {
 		outPacket.encodeLong(mask.get());
 
-		//if((mask.get() & 0x2) == 0) { // 0x2
-		//	return;
-		//}
-
-		//outPacket.encodeByte(0); // Combat orders
-
 		boolean somethingWeirdValue = false;
 		outPacket.encodeByte(somethingWeirdValue);
 		if(somethingWeirdValue) {
@@ -712,7 +706,6 @@ public class Char {
 			outPacket.encodeInt((int)getMoney());
 		}
 
-		outPacket.encodeInt(0);
 
 		if (mask.isInMask(DBChar.InventorySize)) {
 			outPacket.encodeByte(getEquipInventory().getSlots());
@@ -825,35 +818,15 @@ public class Char {
 
 		if (mask.isInMask(DBChar.QuestRecord)) {
 			// modified/deleted, not completed anyway
-			boolean removeAllOldEntries = true;
-			//outPacket.encodeByte(removeAllOldEntries);
 			short size = (short) getQuestManager().getQuestsInProgress().size();
 			outPacket.encodeShort(size);
 			for (Quest quest : getQuestManager().getQuestsInProgress()) {
 				outPacket.encodeShort(quest.getQRKey()); // Was int.
 				outPacket.encodeString(quest.getQRValue());
 			}
-
-			if (!removeAllOldEntries) {
-				// blacklisted quests
-				short size2 = 0;
-				outPacket.encodeShort(size2);
-				for (int i = 0; i < size2; i++) {
-					outPacket.encodeShort(0); // nQRKey // Was int./
-				}
-			}
-			size = 0;
-			outPacket.encodeShort(size);
-			// Not sure what this is for
-			for (int i = 0; i < size; i++) {
-				outPacket.encodeString("");
-				outPacket.encodeString("");
-			}
 		}
 
 		if (mask.isInMask(DBChar.QuestComplete)) {
-			//boolean removeAllOldEntries = true;
-			//outPacket.encodeByte(removeAllOldEntries);
 			Set<Quest> completedQuests = getQuestManager().getCompletedQuests();
 			outPacket.encodeShort(completedQuests.size());
 			for (Quest quest : completedQuests) {
@@ -899,8 +872,7 @@ public class Char {
 		}
 
 		if (mask.isInMask(DBChar.MonsterBookCover)) {
-			//outPacket.encodeInt(getMonsterBookInfo().getCoverID());
-			outPacket.encodeInt(0);
+			outPacket.encodeInt(getMonsterBookInfo().getCoverID());
 		}
 
 		if (mask.isInMask(DBChar.MonsterBookCard)) {
@@ -923,7 +895,7 @@ public class Char {
 				outPacket.encodeShort(encSize);
 				outPacket.encodeArr(new byte[encSize]);
 			}
-			outPacket.encodeInt(getMonsterBookInfo().getSetID()); // monsterbook set
+			//outPacket.encodeInt(getMonsterBookInfo().getSetID()); // monsterbook set
 		}
 
 
@@ -959,16 +931,7 @@ public class Char {
 			outPacket.encodeShort(0);
 		}
 
-		if(mask.isInMask(DBChar.WildHunterInfo)
-			&& JobConstants.isWildHunter(getAvatarData().getCharacterStat().getJob())
-		) {
-			// Jaguar info, TODO
-			//short
-			// short
-			// buffer 8u
-			outPacket.encodeByte(111112);
-			outPacket.encodeArr(new byte[20]);
-		} else {
+		if (mask.isInMask(DBChar.WildHunterInfo)) {
 			outPacket.encodeShort(0);
 		}
 	}
@@ -2026,6 +1989,7 @@ public class Char {
 		);
 
 		//showProperUI(currentField != null ? currentField.getId() : -1, toField.getId());
+		/*
 		if (characterData) {
 			Party party = getParty();
 			if (party != null) {
@@ -2049,6 +2013,7 @@ public class Char {
 						: FriendFlag.AccountFriendOffline);
 			}
 		}
+		*/
 		toField.spawnLifesForChar(this);
 
 		if (JobConstants.isEvan(getJob()) && getJob() != JobConstants.JobEnum.EVAN_NOOB.getJobId()) {
@@ -2092,9 +2057,6 @@ public class Char {
 		}
 		if (getDeathCount() > 0) {
 			write(UserLocal.deathCountInfo(getDeathCount()));
-		}
-		if (getActiveFamiliar() != null) {
-			getField().broadcastPacket(CFamiliar.familiarEnterField(getId(), true, getActiveFamiliar(), true, false));
 		}
 		Dragon dragon = getDragon();
 		if (dragon != null) {

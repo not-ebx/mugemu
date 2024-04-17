@@ -914,7 +914,7 @@ public class JobConstants {
     }
 
     public static boolean isExtendSpJob(short jobId) {
-        return isEvan(jobId) || isResistance(jobId) || isMercedes(jobId) || isDemon(jobId);
+        return isEvan(jobId) || isResistance(jobId);
     }
 
     public static boolean isDemon(short jobId) {

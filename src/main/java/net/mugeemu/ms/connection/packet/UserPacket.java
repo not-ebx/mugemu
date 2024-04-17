@@ -75,9 +75,7 @@ public class UserPacket {
     
     public static OutPacket scriptProgressMessage(String string) {
         OutPacket outPacket = new OutPacket(OutHeader.SCRIPT_PROGRESS_MESSAGE);
-
         outPacket.encodeString(string);
-
         return outPacket;
     }
 

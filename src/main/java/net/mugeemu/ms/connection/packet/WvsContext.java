@@ -76,9 +76,6 @@ public class WvsContext {
             switch (stat) {
                 case skin:
                 case level:
-                case fatigue:
-                    outPacket.encodeByte((Byte) value);
-                    break;
                 case face:
                 case hair:
                 case hp:
@@ -478,16 +475,9 @@ public class WvsContext {
                 break;
             case QUEST_RECORD_EX_MESSAGE:
             case WORLD_SHARE_RECORD_MESSAGE:
-            case COLLECTION_RECORD_MESSAGE:
-                outPacket.encodeInt(i);
-                outPacket.encodeString(string);
-                break;
             case INC_HARDCORE_EXP_MESSAGE:
                 outPacket.encodeInt(i); //You have gained x EXP
                 outPacket.encodeInt(i); //Field Bonus Exp
-                break;
-            case BARRIER_EFFECT_IGNORE_MESSAGE:
-                outPacket.encodeByte(type); //protection/shield scroll pop-up Message
                 break;
         }
 

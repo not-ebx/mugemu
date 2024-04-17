@@ -285,16 +285,6 @@ public class UserLocal {
         return outPacket;
     }
 
-    public static OutPacket collectionRecordMessage(int collectionIndex, String value) {
-        OutPacket outPacket = new OutPacket(OutHeader.MESSAGE);
-
-        outPacket.encodeByte(MessageType.COLLECTION_RECORD_MESSAGE.getVal());
-        outPacket.encodeInt(collectionIndex);
-        outPacket.encodeString(value);
-
-        return outPacket;
-    }
-
     public static OutPacket setDead(boolean tremble) {
         OutPacket outPacket = new OutPacket(OutHeader.SET_DEAD);
 

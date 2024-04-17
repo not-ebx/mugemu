@@ -28,19 +28,19 @@ public class NpcPool {
 		return outPacket;
 	}
         
-        public static OutPacket npcChangeController(Npc npc, boolean controller) {
-            return npcChangeController(npc, controller, false);
-        }
+	public static OutPacket npcChangeController(Npc npc, boolean controller) {
+		return npcChangeController(npc, controller, false);
+	}
         
 	public static OutPacket npcChangeController(Npc npc, boolean controller, boolean remove) {
 		OutPacket outPacket = new OutPacket(OutHeader.NPC_CHANGE_CONTROLLER);
 
 		outPacket.encodeByte(controller);
 		outPacket.encodeInt(npc.getObjectId());
-                if (!remove) {
-                    outPacket.encodeInt(npc.getTemplateId());
-                    npc.encode(outPacket);
-                }
+		if (!remove) {
+			outPacket.encodeInt(npc.getTemplateId());
+			npc.encode(outPacket);
+		}
 
 		return outPacket;
 	}

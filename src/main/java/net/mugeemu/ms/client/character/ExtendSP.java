@@ -43,6 +43,7 @@ public class ExtendSP {
         this.spSet = spSet;
     }
 
+    // TODO fix
     public void encode(OutPacket outPacket) {
         //outPacket.encodeByte(getSpSet().size());
         outPacket.encodeByte(4);
@@ -50,7 +51,6 @@ public class ExtendSP {
         //for(SPSet spSet : getSpSet()) {
         for (int i = 0; i < 4; i++){
             outPacket.encodeByte(i + 1);
-            //outPacket.encodeInt(spSets.get(i).getSp());
             outPacket.encodeByte(spSets.get(i).getSp());
         }
     }

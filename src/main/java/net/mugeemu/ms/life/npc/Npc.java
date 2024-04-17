@@ -34,28 +34,18 @@ public class Npc extends Life {
 
     public void encode(OutPacket outPacket) {
         // CNpc::Init
-        outPacket.encodePosition(getPosition());
-        outPacket.encodeByte(isMove());
+        if(getPosition() != null){
+            outPacket.encodeShort(getPosition().getX());
+        } else {
+            outPacket.encodeShort(0);
+        }
+        outPacket.encodeShort(getCy());
+        //outPacket.encodeByte(isMove());
         outPacket.encodeByte(!isFlip());
         outPacket.encodeShort(getFh());
         outPacket.encodeShort(getRx0()); // rgHorz.low
         outPacket.encodeShort(getRx1()); // rgHorz.high
         outPacket.encodeByte(isEnabled());
-        outPacket.encodeInt(0); // ?
-        outPacket.encodeInt(getPresentItemID());
-        outPacket.encodeByte(getPresentItemState());
-        outPacket.encodeInt(getPresentItemTime());
-        outPacket.encodeInt(getNoticeBoardType());
-        if (getNoticeBoardType() == 1) {
-            outPacket.encodeInt(getNoticeBoardValue());
-        }
-        outPacket.encodeInt(getAlpha());
-        outPacket.encodeString(getLocalRepeatEffect());
-        ScreenInfo si = getScreenInfo();
-        outPacket.encodeByte(si != null);
-        if (si != null) {
-            si.encode(outPacket);
-        }
     }
 
     public boolean isEnabled() {
@@ -179,7 +169,7 @@ public class Npc extends Life {
         Field field = getField();
         for (Char chr : field.getChars()) {
             chr.write(NpcPool.npcLeaveField(this));
-            chr.write(NpcPool.npcChangeController(this, false, true));
+            //chr.write(NpcPool.npcChangeController(this, false, true));
         }
     }
 
