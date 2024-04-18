@@ -43,7 +43,7 @@ public class MobData {
             loadMobsFromWz();
             QuestData.linkMobData();
             //saveToFile(ServerConstants.DAT_DIR + "/mobs");
-            log.info(String.format("Completed generating mob data in %dms.", System.currentTimeMillis() - start));
+            log.info(String.format("Completed loading %d mobs in %dms.", getMobs().size(), System.currentTimeMillis() - start));
         } catch (IOException e) {
             log.error("There was an error reading mob.nx :(");
             System.exit(-1);
@@ -282,7 +282,10 @@ public class MobData {
 
                     for (NXNode info : mobInfo) {
                         String name = info.getName();
-                        String value = info.get().toString();
+                        String value = "0";
+                        if (info.get() != null) {
+                            value = info.get().toString();
+                        }
 
                         switch (name) {
                             case "level":
@@ -547,15 +550,17 @@ public class MobData {
                                 currentMob.setPatrolMob(true);
                                 for (NXNode patrolNode : info) {
                                     String patrolNodeName = patrolNode.getName();
-                                    String patrolNodeValue = patrolNode.get().toString();
                                     switch (patrolNodeName) {
                                         case "range":
+                                            String patrolNodeValue = patrolNode.get().toString();
                                             currentMob.setRange(Integer.parseInt(patrolNodeValue));
                                             break;
                                         case "detectX":
+                                            patrolNodeValue = patrolNode.get().toString();
                                             currentMob.setDetectX(Integer.parseInt(patrolNodeValue));
                                             break;
                                         case "senseX":
+                                            patrolNodeValue = patrolNode.get().toString();
                                             currentMob.setSenseX(Integer.parseInt(patrolNodeValue));
                                             break;
                                         default:
@@ -567,15 +572,18 @@ public class MobData {
                                 currentMob.setBanMap(true);
                                 for (NXNode banNode : info) {
                                     String banNodeName = banNode.getName();
-                                    String banNodeValue = banNode.get().toString();
+                                    String banNodeValue = "";
                                     switch (banNodeName) {
                                         case "banType":
+                                            banNodeValue = banNode.get().toString();
                                             currentMob.setBanType(Integer.parseInt(banNodeValue));
                                             break;
                                         case "banMsgType":
+                                            banNodeValue = banNode.get().toString();
                                             currentMob.setBanMsgType(Integer.parseInt(banNodeValue));
                                             break;
                                         case "banMsg":
+                                            banNodeValue = banNode.get().toString();
                                             currentMob.setBanMsg(banNodeValue);
                                             break;
                                         case "banMap":
@@ -857,8 +865,10 @@ public class MobData {
                                     log.warn(String.format("Unkown property %s with value %s.", name, value));
                                 }
                         }
-                        getMobs().put(currentMob.getTemplateId(), currentMob);
                     }
+                    currentMob.setForcedMobStat(fms);
+                    currentMob.setTemporaryStat(mts);
+                    getMobs().put(currentMob.getTemplateId(), currentMob);
                 }
             }
         }
