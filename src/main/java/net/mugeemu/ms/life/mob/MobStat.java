@@ -12,28 +12,30 @@ public enum MobStat {
     Freeze(8),
     Poison(9),
     Seal(10),
-    Darkness(11),
+
+    Showdown(11),
     PowerUp(12),
     MagicUp(13),
     PGuardUp(14),
     MGuardUp(15),
 
-    PImmune(16),
-    MImmune(17),
-    Web(18),
-    HardSkin(19),
-    Ambush(20),
-    Venom(21),
-    Blind(22),
-    SealSkill(23),
+    Doom(16), // ??
+    Web(17),
 
-    Dazzle(24),
-    PCounter(25), // nOption = % of dmg, mOption = % chance
-    MCounter(26),
+    PImmune(18),
+    MImmune(19),
+    HardSkin(20),
+    Ambush(21),
+    Venom(22),
+    Blind(23),
+    SealSkill(24),
+    Darkness(25),
+    Dazzle(26), // Hyptonize?
+    PCounter(27), // nOption = % of dmg, mOption = % chance
+    MCounter(28),
     RiseByToss(27),
     BodyPressure(28),
     Weakness(29),
-    Showdown(30),
     MagicCrash(31), // Should end here.
     ////
     DamagedElemAttr(32),
@@ -99,6 +101,12 @@ public enum MobStat {
     Ember(85),
     TrueSight(86),
     Laser(87),
+    EMPTY_1(6),
+    EMPTY_2(7),
+    EMPTY_3(8),
+    EMPTY_4(9),
+    EMPTY_5(10),
+    EMPTY_6(11)
     ;
 
     private int val, pos, bitPos;

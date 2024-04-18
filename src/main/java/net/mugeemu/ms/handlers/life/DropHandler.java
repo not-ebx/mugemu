@@ -19,11 +19,11 @@ public class DropHandler {
     @Handler(op = InHeader.DROP_PICK_UP_REQUEST)
     public static void handleDropPickUpRequest(Client c, InPacket inPacket) {
         Char chr = c.getChr();
-        byte fieldKey = inPacket.decodeByte();
         inPacket.decodeInt(); // tick
-        Position pos = inPacket.decodePosition();
+        byte fieldKey = inPacket.decodeByte();
+        //Position pos = inPacket.decodePosition();
         int dropID = inPacket.decodeInt();
-        inPacket.decodeInt(); // CliCrc
+        //inPacket.decodeInt(); // CliCrc
         // rest is some info about foreground info, not interested
         Field field = chr.getField();
         Life life = field.getLifeByObjectID(dropID);

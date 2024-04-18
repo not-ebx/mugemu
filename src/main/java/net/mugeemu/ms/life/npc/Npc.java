@@ -34,7 +34,13 @@ public class Npc extends Life {
 
     public void encode(OutPacket outPacket) {
         // CNpc::Init
-        outPacket.encodePosition(getPosition());
+        //outPacket.encodePosition(getPosition());
+        if (getPosition() != null){
+            outPacket.encodeShort(getPosition().getX());
+        } else {
+            outPacket.encodeShort(0);
+        }
+        outPacket.encodeShort(getCy());
         outPacket.encodeByte(isMove());
         outPacket.encodeByte(!isFlip());
         outPacket.encodeShort(getFh());

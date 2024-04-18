@@ -27,8 +27,7 @@ public class MobPool {
 
         //outPacket.encodeByte(mob.isSealedInsteadDead());
         outPacket.encodeInt(mob.getObjectId());
-        //outPacket.encodeByte(mob.getCalcDamageIndex());
-        outPacket.encodeByte(1);
+        outPacket.encodeByte(mob.getCalcDamageIndex());
         outPacket.encodeInt(mob.getTemplateId());
         ForcedMobStat fms = mob.getForcedMobStat();
         outPacket.encodeByte(fms != null);

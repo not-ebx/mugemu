@@ -262,7 +262,7 @@ public class MobData {
             }
 
             long respawnDelay = 0;
-            for(NXNode mobInfo : mobs){
+            for(NXNode mobInfo : mob){
                 // Death animation check
                 if(mobInfo.getName().matches("^(die)")){
                     for(NXNode delayNode : mobInfo) {
@@ -275,7 +275,7 @@ public class MobData {
                     }
                 } else if (mobInfo.getName().equals("info")) {
                     // Now rest of data.
-                    int id = Integer.parseInt(mobInfo.getName().replace(".img", ""));
+                    int id = Integer.parseInt(mob.getName().replace(".img", ""));
                     Mob currentMob = new Mob(id);
                     ForcedMobStat fms = currentMob.getForcedMobStat();
                     MobTemporaryStat mts = currentMob.getTemporaryStat();

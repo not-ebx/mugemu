@@ -50,7 +50,7 @@ public class Mob extends Life {
     private int refImgMobID, lifeReleaseOwnerAID, afterAttack, currentAction, scale, eliteGrade, eliteType, targetUserIdFromServer;
     private long hp;
     private long mp;
-    private byte calcDamageIndex = 1, moveAction, appearType, teamForMCarnival = -1;
+    private byte calcDamageIndex = 1, moveAction, appearType, teamForMCarnival;
     private Position prevPos;
     private Foothold curFoodhold;
     private Foothold homeFoothold;
@@ -1775,67 +1775,19 @@ public class Mob extends Life {
         if (appearType == -3 || appearType >= 0) {
             // init -> -2, -1 else
             outPacket.encodeInt(getOption());
-            //outPacket.encodeInt(0);
         }
 
-
         outPacket.encodeByte(getTeamForMCarnival());
-        //outPacket.encodeInt(getHp() > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) getHp());
-        //outPacket.encodeInt(getEffectItemID());
-        outPacket.encodeInt(0);
-        outPacket.encodeInt(0);
-        outPacket.encodeByte(-1);
-        /*
+        outPacket.encodeInt(getEffectItemID());
+        outPacket.encodeInt(getPhase());
+
         if (isPatrolMob()) {
             outPacket.encodeInt(getPosition().getX() - getRange());
             outPacket.encodeInt(getPosition().getX() + getRange());
             outPacket.encodeInt(getDetectX());
             outPacket.encodeInt(getSenseX());
         }
-        outPacket.encodeInt(getPhase());
-        outPacket.encodeInt(getCurZoneDataType());
-        outPacket.encodeInt(getRefImgMobID());
-        outPacket.encodeInt(0); // ?
-        int ownerAID = getLifeReleaseOwnerAID();
-        outPacket.encodeByte(ownerAID > 0);
-        if (ownerAID > 0) {
-            outPacket.encodeInt(ownerAID);
-            outPacket.encodeString(getLifeReleaseOwnerName());
-            outPacket.encodeString(getLifeReleaseMobName());
-        }
-        outPacket.encodeInt(getAfterAttack());
-        outPacket.encodeInt(getCurrentAction());
-        outPacket.encodeByte(isLeft());
-        int size = 0;
-        outPacket.encodeInt(size);
-        for (int i = 0; i < size; i++) {
-            outPacket.encodeInt(0); // ?
-            outPacket.encodeInt(0); // extra time?
-        }
-        outPacket.encodeInt(getScale());
-        outPacket.encodeInt(getEliteGrade());
-        if (getEliteGrade() >= 0) {
-            size = 0;
-            outPacket.encodeInt(size);
-            for (int i = 0; i < size; i++) {
-                outPacket.encodeInt(0); // first skillID?
-                outPacket.encodeInt(0); // second skillID?
-            }
-            outPacket.encodeInt(getEliteType()); // 1 normal, 3 elite boss probably
-        }
-        ShootingMoveStat sms = getShootingMoveStat();
-        outPacket.encodeByte(sms != null);
-        if (sms != null) {
-            sms.encode(outPacket);
-        }
-        size = 0;
-        outPacket.encodeInt(size);
-        for (int i = 0; i < size; i++) {
-            outPacket.encodeInt(0); // nType
-            outPacket.encodeInt(0); // key?
-        }
-        outPacket.encodeInt(getTargetUserIdFromServer());
-        outPacket.encodeInt(0);*/
+        outPacket.encodeByte(0); // was -01 lol
     }
 
     public int getNxDropAmount() {

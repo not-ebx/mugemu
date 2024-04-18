@@ -52,14 +52,14 @@ public class DropPool {
                                            boolean prepareCollisionPickUp, boolean canBePickedUpByPet) {
         OutPacket outPacket = new OutPacket(OutHeader.DROP_ENTER_FIELD);
 
-        outPacket.encodeByte(drop.getDropType().getVal());
         outPacket.encodeByte(dropEnterType.getVal());
         outPacket.encodeInt(drop.getObjectId());
-
         outPacket.encodeByte(drop.isMoney());
-        outPacket.encodeInt(drop.getDropMotionType().ordinal()); // 2 = Horizontal, 4 = Vertical movement
-        outPacket.encodeInt(dropSpeed);
-        outPacket.encodeInt(rand);
+
+        //outPacket.encodeInt(drop.getDropMotionType().ordinal()); // 2 = Horizontal, 4 = Vertical movement
+        //outPacket.encodeInt(dropSpeed);
+        //outPacket.encodeInt(rand);
+
         outPacket.encodeInt(drop.getItem() == null ? drop.getMoney() : drop.getItem().getItemId());
         outPacket.encodeInt(drop.getOwnerID());
         outPacket.encodeByte(ownType); // 3 = high drop
@@ -68,9 +68,10 @@ public class DropPool {
         byte enterType = dropEnterType.getVal();
         if(enterType != 2) {
             outPacket.encodePosition(tempPos);
-            outPacket.encodeInt(delay);
+            outPacket.encodeShort(delay);
         }
-        outPacket.encodeByte(drop.isExplosiveDrop());
+        // uhm... gotta check this onm idb.
+        //outPacket.encodeByte(drop.isExplosiveDrop());
         // TODO: Fake money: if ( !v8->bIsMoney || (v34 = v8->nInfo == 0, bFakeMoney = 1, !v34) )
         if(!drop.isMoney()) {
             FileTime expireTime = drop.getExpireTime();
@@ -79,14 +80,15 @@ public class DropPool {
             }
             outPacket.encodeFT(expireTime);
         }
-        outPacket.encodeByte(drop.canBePickedUpByPet() && canBePickedUpByPet); // former = general case, latter = specific to a single chr
-        outPacket.encodeByte(unkBool);
+        outPacket.encodeShort(drop.canBePickedUpByPet() && canBePickedUpByPet ? 1 : 0); // former = general case, latter = specific to a single chr
+        //outPacket.encodeByte(drop.canBePickedUpByPet() && canBePickedUpByPet); // former = general case, latter = specific to a single chr
+        /*outPacket.encodeByte(unkBool);
         outPacket.encodeShort(fallingVY);
         outPacket.encodeByte(fadeInEffect);
         outPacket.encodeByte(makeType);
         outPacket.encodeInt(collisionPickup); // decode4, but is bCollisionPickUp?
         outPacket.encodeByte(ItemGrade.getHiddenGradeByVal(drop.getItemGrade()).getVal());
-        outPacket.encodeByte(prepareCollisionPickUp);
+        outPacket.encodeByte(prepareCollisionPickUp);*/
 
         return outPacket;
     }
