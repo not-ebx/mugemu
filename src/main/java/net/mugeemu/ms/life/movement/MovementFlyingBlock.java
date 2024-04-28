@@ -22,9 +22,11 @@ public class MovementFlyingBlock extends MovementBase {
         short vy = inPacket.decodeShort();
         vPosition = new Position(vx, vy);
 
+        short yOffset = inPacket.decodeShort();
+
         moveAction = inPacket.decodeByte();
         elapse = inPacket.decodeShort();
-        forcedStop = inPacket.decodeByte();
+        //forcedStop = inPacket.decodeByte();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class DropHandler {
         Char chr = c.getChr();
         inPacket.decodeInt(); // tick
         byte fieldKey = inPacket.decodeByte();
-        //Position pos = inPacket.decodePosition();
+        Position pos = inPacket.decodePosition();
         int dropID = inPacket.decodeInt();
         //inPacket.decodeInt(); // CliCrc
         // rest is some info about foreground info, not interested

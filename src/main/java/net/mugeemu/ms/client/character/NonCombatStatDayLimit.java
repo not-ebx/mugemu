@@ -105,6 +105,7 @@ public class NonCombatStatDayLimit {
         //outPacket.encodeShort(getCraft()); // 8
         //outPacket.encodeShort(getSense()); // 10
         //outPacket.encodeShort(getCharm()); // 12
+        // TODO
         outPacket.encodeShort(0);
         outPacket.encodeShort(0);
         outPacket.encodeShort(0);

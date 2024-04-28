@@ -65,7 +65,7 @@ public class UserHandler {
         byte fieldKey = inPacket.decodeByte();
         inPacket.decodeInt(); // ? something with field
         inPacket.decodeInt(); // tick
-        inPacket.decodeByte(); // ? doesn't get set at all
+        //inPacket.decodeByte(); // ? doesn't get set at all
         // CMovePathCommon::Encode
         MovementInfo movementInfo = new MovementInfo(inPacket);
         movementInfo.applyTo(chr);
@@ -425,5 +425,16 @@ public class UserHandler {
         }
         reactor.die(success);
         c.write(UserPacket.gatherResult(chr.getId(), success));
+    }
+
+    @Handler(op = InHeader.USER_MAP_PORTAL_REQUEST)
+    public static void handleInnerMapPortal(Char chr, InPacket inPacket) {
+        Portal portal = chr.getField().getPortalByName(inPacket.decodeString());
+        if (portal == null) {
+            log.info(String.format("Character %s tried to use unknown portal in field %s", chr.getName(), chr.getFieldID()));
+            return;
+        }
+        // TODO
+        //Do something with this? Movmeent already handles this, but we could use it to check for cheat
     }
 }

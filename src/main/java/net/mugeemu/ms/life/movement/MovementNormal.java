@@ -26,7 +26,8 @@ public class MovementNormal extends MovementBase {
 
         fh = inPacket.decodeShort();
 
-        if (command == 15 || command == 17) {
+        //if (command == 15 || command == 17) {
+        if (command == 14) {
             footStart = inPacket.decodeShort();
         }
 
@@ -36,7 +37,7 @@ public class MovementNormal extends MovementBase {
 
         moveAction = inPacket.decodeByte();
         elapse = inPacket.decodeShort();
-        forcedStop = inPacket.decodeByte();
+        //forcedStop = inPacket.decodeByte();
     }
 
     @Override

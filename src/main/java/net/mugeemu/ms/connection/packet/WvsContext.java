@@ -143,6 +143,15 @@ public class WvsContext {
         return outPacket;
     }
 
+    public static OutPacket inventoryGrow(byte invType, byte newSlots) {
+        OutPacket outPacket = new OutPacket(OutHeader.INVENTORY_GROW);
+
+        outPacket.encodeByte(invType);
+        outPacket.encodeByte(newSlots);
+
+        return outPacket;
+    }
+
     public static OutPacket inventoryOperation(boolean exclRequestSent, boolean notRemoveAddInfo, InventoryOperation type, short oldPos, short newPos,
                                                int bagPos, Item item) {
         // logic like this in packets :(
@@ -177,7 +186,7 @@ public class WvsContext {
                 outPacket.encodeByte(0);
                 break;
             case ItemExp:
-                outPacket.encodeLong(((Equip) item).getExp());
+                outPacket.encodeInt(((Equip) item).getExp());
                 break;
             case UpdateBagPos:
                 outPacket.encodeInt(bagPos);

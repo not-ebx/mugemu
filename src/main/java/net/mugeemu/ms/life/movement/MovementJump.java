@@ -18,13 +18,13 @@ public class MovementJump extends MovementBase {
         short vy = inPacket.decodeShort();
         position = new Position(vx, vy);
 
-        if (command == 21 || command == 22) {
+        if (command == 18 || command == 19) {
             footStart = inPacket.decodeShort();
         }
 
         moveAction = inPacket.decodeByte();
         elapse = inPacket.decodeShort();
-        forcedStop = inPacket.decodeByte();
+        //forcedStop = inPacket.decodeByte();
     }
 
     @Override

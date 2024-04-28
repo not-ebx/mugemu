@@ -21,8 +21,10 @@ public class MovementTeleport extends MovementBase {
         fh = inPacket.decodeShort();
 
         moveAction = inPacket.decodeByte();
+
+        // Unsure about those 2.
         elapse = inPacket.decodeShort();
-        forcedStop = inPacket.decodeByte();
+        //forcedStop = inPacket.decodeByte();
     }
 
     @Override

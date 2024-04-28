@@ -24,8 +24,10 @@ public class MovementStartFallDown extends MovementBase {
         footStart = inPacket.decodeShort();
 
         moveAction = inPacket.decodeByte();
+
+        // UNSUER
         elapse = inPacket.decodeShort();
-        forcedStop = inPacket.decodeByte();
+        //forcedStop = inPacket.decodeByte();
     }
 
     @Override
