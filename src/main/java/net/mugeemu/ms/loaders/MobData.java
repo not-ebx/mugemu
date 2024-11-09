@@ -261,8 +261,14 @@ public class MobData {
                 continue;
             }
 
+            int id = Integer.parseInt(mob.getName().replace(".img", ""));
+            Mob currentMob = new Mob(id);
+            ForcedMobStat fms = currentMob.getForcedMobStat();
+            MobTemporaryStat mts = currentMob.getTemporaryStat();
+
             long respawnDelay = 0;
-            for(NXNode mobInfo : mobs){
+            for(NXNode mobInfo : mob){
+
                 // Death animation check
                 if(mobInfo.getName().matches("^(die)")){
                     for(NXNode delayNode : mobInfo) {
@@ -275,13 +281,11 @@ public class MobData {
                     }
                 } else if (mobInfo.getName().equals("info")) {
                     // Now rest of data.
-                    int id = Integer.parseInt(mobInfo.getName().replace(".img", ""));
-                    Mob currentMob = new Mob(id);
-                    ForcedMobStat fms = currentMob.getForcedMobStat();
-                    MobTemporaryStat mts = currentMob.getTemporaryStat();
-
                     for (NXNode info : mobInfo) {
                         String name = info.getName();
+                        if(info.get() == null){
+                            break;
+                        }
                         String value = info.get().toString();
 
                         switch (name) {
@@ -857,9 +861,9 @@ public class MobData {
                                     log.warn(String.format("Unkown property %s with value %s.", name, value));
                                 }
                         }
-                        getMobs().put(currentMob.getTemplateId(), currentMob);
                     }
                 }
+                getMobs().put(currentMob.getTemplateId(), currentMob);
             }
         }
     }

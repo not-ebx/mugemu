@@ -24,6 +24,7 @@ import us.aaronweiss.pkgnx.NXNode;
 
 import java.io.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,7 +45,8 @@ public class QuestData {
             int questID = Integer.parseInt(questIDNode.getName());
             quest.setQuestID(questID);
             for (NXNode statusNode : questIDNode) {
-                byte status = Byte.parseByte(statusNode.getName());
+                // Was byte
+                short status = Short.parseShort(statusNode.getName());
                 for (NXNode infoNode: statusNode) {
                     String name = infoNode.getName();
                     String value = "";
@@ -117,6 +119,9 @@ public class QuestData {
                             quest.addRequirement(new QuestStartMarriageRequirement());
                             break;
                         case "lvmin":
+                            if(Integer.parseInt(value) > 255){
+                                break;
+                            }
                             quest.addRequirement(new QuestStartMinStatRequirement(Stat.level, Short.parseShort(value)));
                             break;
                         case "pop":

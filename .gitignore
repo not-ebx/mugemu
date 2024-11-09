@@ -25,3 +25,4 @@ resourcesNpc
 resourcesSkill.txt
 *.iml
 Exclude/
+*.dylib
